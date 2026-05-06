@@ -149,6 +149,75 @@
   .marked-badge { display: inline-block; padding: 1px 7px; border-radius: 999px; background: var(--yellow-soft); color: #6b4e00; font-size: 11px; border: 1px solid var(--yellow); margin-left: 4px; }
   .wrong-row.mk { border-color: var(--yellow); }
 
+
+  .nu-badge { display:inline-flex; align-items:center; gap:6px; padding:5px 10px; background:#fff; border:1px solid var(--line); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ink); margin-left:auto; transition:all .15s; }
+  .nu-badge:hover { background:var(--primary-soft); border-color:var(--primary); color:var(--primary); }
+  .nu-badge .nu-dot { width:8px; height:8px; border-radius:50%; background:var(--green); }
+  .nu-badge .nu-name { font-weight:600; }
+  .nu-modal-bg { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:9999; }
+  .nu-modal-bg.show { display:flex; }
+  .nu-modal { background:#fff; border-radius:12px; padding:24px; max-width:500px; width:92%; max-height:80vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,.18); }
+  .nu-modal h3 { margin:0 0 6px; font-size:17px; }
+  .nu-modal .nu-sub { color:#666; font-size:13px; margin-bottom:14px; }
+  .nu-modal .nu-list { list-style:none; padding:0; margin:0 0 12px; max-height:240px; overflow-y:auto; }
+  .nu-modal .nu-item { display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #e4e7eb; border-radius:8px; margin-bottom:6px; }
+  .nu-modal .nu-item.active { background:#f0f9ff; border-color:#1d6f9b; }
+  .nu-modal .nu-item .nu-iname { flex:1; font-weight:600; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .nu-modal .nu-item .nu-idate { font-size:11px; color:#888; min-width:90px; text-align:right; }
+  .nu-modal .nu-item button { padding:4px 10px; font-size:12px; border:1px solid #d4d7db; background:#fff; border-radius:6px; cursor:pointer; }
+  .nu-modal .nu-item button:hover { background:#f1f3f5; }
+  .nu-modal .nu-item button.nu-del { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-modal .nu-item button.nu-del:hover { background:#ffe3e3; }
+  .nu-modal .nu-item button:disabled { opacity:.45; cursor:not-allowed; }
+  .nu-modal .nu-add-row { display:flex; gap:6px; margin-top:8px; }
+  .nu-modal .nu-add-row input { flex:1; padding:8px 10px; border:1px solid #d4d7db; border-radius:6px; font-size:14px; }
+  .nu-modal .nu-add-row button { padding:8px 14px; background:#1d6f9b; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer; font-weight:600; }
+  .nu-modal .nu-tip { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:8px 10px; font-size:12px; color:#666; margin-top:10px; }
+  .nu-modal .nu-actions { margin-top:14px; text-align:right; }
+  .nu-modal .nu-actions button { padding:8px 14px; border:1px solid #d4d7db; background:#fff; border-radius:6px; font-size:13px; cursor:pointer; }
+
+  /* Top toolbar (3 buttons) */
+  .nu-toolbar { display:inline-flex; align-items:center; gap:6px; margin-left:auto; flex-wrap:wrap; }
+  .nu-tb-btn { display:inline-flex; align-items:center; gap:5px; padding:5px 11px; background:#fff; border:1px solid #d4d7db; border-radius:8px; font-size:13px; cursor:pointer; color:#1f2933; transition:all .15s; line-height:1.4; }
+  .nu-tb-btn:hover { background:#e6f1f7; border-color:#1d6f9b; color:#1d6f9b; }
+  .nu-tb-btn .nu-tb-icon { font-size:14px; }
+  .nu-tb-btn.nu-tb-user { font-weight:600; }
+  .nu-tb-btn.nu-tb-user .nu-tb-dot { width:7px; height:7px; border-radius:50%; background:#2f9e44; margin-right:1px; }
+  .nu-tb-btn.nu-tb-clear { color:#c92a2a; }
+  .nu-tb-btn.nu-tb-clear:hover { background:#ffe3e3; border-color:#c92a2a; color:#c92a2a; }
+  /* Generic modal (shared between 3) */
+  .nu-md-bg { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:9999; padding:20px; }
+  .nu-md-bg.show { display:flex; }
+  .nu-md { background:#fff; border-radius:12px; padding:22px; max-width:560px; width:100%; max-height:85vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,.18); }
+  .nu-md h3 { margin:0 0 6px; font-size:17px; }
+  .nu-md .nu-md-sub { color:#666; font-size:13px; margin-bottom:14px; line-height:1.6; }
+  .nu-md .nu-md-list { list-style:none; padding:0; margin:0 0 12px; max-height:240px; overflow-y:auto; }
+  .nu-md .nu-md-item { display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #e4e7eb; border-radius:8px; margin-bottom:6px; flex-wrap:wrap; }
+  .nu-md .nu-md-item.active { background:#f0f9ff; border-color:#1d6f9b; }
+  .nu-md .nu-md-item .nu-md-iname { flex:1; font-weight:600; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .nu-md .nu-md-item .nu-md-idate { font-size:11px; color:#888; min-width:90px; text-align:right; }
+  .nu-md .nu-md-item button { padding:4px 10px; font-size:12px; border:1px solid #d4d7db; background:#fff; border-radius:6px; cursor:pointer; }
+  .nu-md .nu-md-item button:hover { background:#f1f3f5; }
+  .nu-md .nu-md-item button.nu-md-del { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-md .nu-md-item button.nu-md-del:hover { background:#ffe3e3; }
+  .nu-md .nu-md-item button:disabled { opacity:.45; cursor:not-allowed; }
+  .nu-md .nu-md-add { display:flex; gap:6px; margin-top:8px; }
+  .nu-md .nu-md-add input { flex:1; padding:8px 10px; border:1px solid #d4d7db; border-radius:6px; font-size:14px; }
+  .nu-md .nu-md-add button { padding:8px 14px; background:#1d6f9b; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer; font-weight:600; }
+  .nu-md .nu-md-tip { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:8px 10px; font-size:12px; color:#666; margin-top:10px; line-height:1.6; }
+  .nu-md .nu-md-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:6px 0; }
+  .nu-md .nu-md-section { margin-top:14px; padding-top:14px; border-top:1px solid #e4e7eb; }
+  .nu-md .nu-md-section.danger { border-top:2px solid #ffe3e3; }
+  .nu-md .nu-md-section.danger > .nu-md-title { color:#c92a2a; font-weight:700; font-size:13px; margin-bottom:6px; }
+  .nu-md .nu-md-title { font-size:13px; font-weight:600; color:#1f2933; margin-bottom:6px; }
+  .nu-md .nu-md-actions { margin-top:14px; text-align:right; }
+  .nu-md .nu-md-actions button { padding:8px 14px; border:1px solid #d4d7db; background:#fff; border-radius:6px; font-size:13px; cursor:pointer; }
+  .nu-md .nu-md-btn-primary { background:#1d6f9b !important; color:#fff !important; border-color:#1d6f9b !important; font-weight:600; }
+  .nu-md .nu-md-btn-success { background:#2f9e44 !important; color:#fff !important; border-color:#2f9e44 !important; font-weight:600; }
+  .nu-md .nu-md-btn-danger  { background:#c92a2a !important; color:#fff !important; border-color:#c92a2a !important; font-weight:600; }
+  .nu-md .nu-md-btn-outline-danger { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-md .nu-md-btn-outline-danger:hover { background:#ffe3e3; }
+
 </style>
 </head>
 <body>
@@ -162,7 +231,19 @@
     </div>
     <div class="progress" id="progress"></div>
   </div>
-</header>
+
+
+<div class="nu-toolbar">
+<button class="nu-tb-btn nu-tb-user" id="nuTbUser" type="button" title="切換／管理使用者">
+  <span class="nu-tb-dot"></span><span id="nuTbUserName">預設使用者</span><span style="font-size:9px;opacity:.6;">▼</span>
+</button>
+<button class="nu-tb-btn" id="nuTbIO" type="button" title="匯入／匯出 JSON 備份">
+  <span class="nu-tb-icon">💾</span>匯入／匯出
+</button>
+<button class="nu-tb-btn nu-tb-clear" id="nuTbClear" type="button" title="清除紀錄（無法復原）">
+  <span class="nu-tb-icon">🗑</span>清除
+</button>
+</div></header>
 
 <div class="layout">
   <aside class="sidebar">
@@ -175,7 +256,8 @@
     </div>
     <button id="resetBtn" class="btn danger" style="margin-top:12px;width:100%;font-size:13px;">重置本卷作答</button>
     <button id="summaryBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px;">查看本卷總結</button>
-    <button id="exportBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px;">📤 匯出結果…</button>
+    <button id="exportBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px;">📤 匯入／匯出本卷</button>
+    <button id="clearMarksOnlyBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px; color:#c92a2a; border-color:#ffc9c9;">🔖 清除本卷標記</button>
   </aside>
 
   <main class="main" id="main"></main>
@@ -185,7 +267,7 @@
 
 <div class="modal-bg" id="exportModal" role="dialog" aria-modal="true">
   <div class="modal-card">
-    <h3>匯出測驗結果</h3>
+    <h3>匯入／匯出本卷</h3>
     <div class="modal-sub" id="exportSub">本卷：第一次 (114020)</div>
     <div class="opt-row" id="exportOpts">
       <button class="exp-opt" data-filter="all">📄 全部題目（含詳解） <span class="count" id="cntAll"></span></button>
@@ -202,6 +284,121 @@
 </div>
 
 <script>
+
+/* ===== Nephron 多人使用者系統 (NU) ===== */
+const NU = {
+  ck() { return localStorage.getItem("nephron::current_user") || "default"; },
+  list() {
+    try {
+      let l = JSON.parse(localStorage.getItem("nephron::users") || "[]");
+      if (!l.length) {
+        l = [{ uid: "default", name: "預設使用者", createdAt: new Date().toISOString().slice(0,10), star: true }];
+        localStorage.setItem("nephron::users", JSON.stringify(l));
+      }
+      return l;
+    } catch(e) { return [{ uid: "default", name: "預設使用者", createdAt: "", star: true }]; }
+  },
+  cur() { const id = NU.ck(); return NU.list().find(u => u.uid === id) || NU.list()[0]; },
+  use(uid) { localStorage.setItem("nephron::current_user", uid); },
+  add(name) {
+    if (!name.trim()) return null;
+    const l = NU.list();
+    const uid = "u_" + Date.now().toString(36) + Math.floor(Math.random()*1000).toString(36);
+    l.push({ uid, name: name.trim(), createdAt: new Date().toISOString().slice(0,10), star: false });
+    localStorage.setItem("nephron::users", JSON.stringify(l));
+    return uid;
+  },
+  rename(uid, newName) {
+    const l = NU.list();
+    const u = l.find(x => x.uid === uid);
+    if (u && newName.trim()) { u.name = newName.trim(); localStorage.setItem("nephron::users", JSON.stringify(l)); return true; }
+    return false;
+  },
+  del(uid) {
+    if (uid === "default") return false;
+    const l = NU.list().filter(x => x.uid !== uid);
+    localStorage.setItem("nephron::users", JSON.stringify(l));
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.includes("::u::" + uid)) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    if (NU.ck() === uid) localStorage.setItem("nephron::current_user", "default");
+    return true;
+  },
+  exportAll() {
+    const obj = { app: "nephron-pt-quiz", version: 1, exportedAt: new Date().toISOString(),
+                  users: NU.list(), currentUser: NU.ck(), data: {} };
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (!k) continue;
+      if (k.startsWith("nephron_") || k.startsWith("nephron::")) obj.data[k] = localStorage.getItem(k);
+    }
+    return obj;
+  },
+  importAll(obj, mode) {
+    if (!obj || !obj.data || obj.app !== "nephron-pt-quiz") throw new Error("無效的備份檔（找不到 nephron-pt-quiz 標記）");
+    mode = mode || "replace";
+    if (mode === "replace") {
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && (k.startsWith("nephron_") || k.startsWith("nephron::"))) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+    }
+    if (obj.users) localStorage.setItem("nephron::users", JSON.stringify(obj.users));
+    for (const k in obj.data) localStorage.setItem(k, obj.data[k]);
+    if (obj.currentUser) localStorage.setItem("nephron::current_user", obj.currentUser);
+    return Object.keys(obj.data).length;
+  },
+  wipeAllProgress() {
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith("nephron_")) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    return toDel.length;
+  },
+  wipeAll() {
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && (k.startsWith("nephron_") || k.startsWith("nephron::"))) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    return toDel.length;
+  }
+};
+(function migrate() {
+  if (NU.ck() !== "default") return;
+  const oldKeys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith("nephron_") && !k.includes("::u::")) oldKeys.push(k);
+  }
+  oldKeys.forEach(k => {
+    const v = localStorage.getItem(k);
+    const newK = k + "::u::default";
+    if (v !== null && localStorage.getItem(newK) === null) localStorage.setItem(newK, v);
+  });
+})();
+(function migrateDefaultName() {
+  try {
+    const raw = localStorage.getItem("nephron::users");
+    if (!raw) return;
+    const arr = JSON.parse(raw);
+    let changed = false;
+    for (const u of arr) {
+      if (u.uid === "default" && u.name === "預設") { u.name = "預設使用者"; changed = true; }
+    }
+    if (changed) localStorage.setItem("nephron::users", JSON.stringify(arr));
+  } catch(e) {}
+})();
+function _userKey(baseKey) { return baseKey + "::u::" + NU.ck(); }
+
 const DATA = {"Q1": {"label": "第一次", "questions": [{"n": 1, "stem": "下列何者不被C7神經根所支配？", "options": {"A": "前鋸肌（serratus anterior）", "B": "胸大肌（pectoralis major）", "C": "闊背肌（latissimus dorsi）", "D": "菱形肌（rhomboid）"}, "images": [], "answer": "D", "explanation": "答案：D。菱形肌（rhomboid）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 2, "stem": "下列何者不是胸廓出口症候群（thoracic outlet syndrome）的症狀？", "options": {"A": "前斜角肌症狀（anterior scalenus syndrome）", "B": "頸肋症狀（cervical rib syndrome）", "C": "肋鎖症狀（costoclavicular space syndrome）", "D": "過多肩內轉症狀（hyper-medial-rotation syndrome）"}, "images": [], "answer": "D", "explanation": "答案：D。過多肩內轉症狀（hyper-medial-rotation syndrome）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 3, "stem": "當針對神經張力異常的患者進行神經鬆動術時，倘若治療手法依序為腕伸直（wrist extension）與前臂旋後（forearm\nsupination）、肘屈曲（elbow flexion）、之後壓低肩膀（shoulder girdle depression）、進行肩外轉與外展（shoulder\nexternal rotation and abduction）、然後令病患頸側彎至對側（contralateral cervical side flexion）。此手法主要是治療下列那\n條神經？", "options": {"A": "正中神經（median nerve）", "B": "橈神經（radial nerve）", "C": "尺神經（ulnar nerve）", "D": "胸長神經（long thoracic nerve）"}, "images": [], "answer": "C", "explanation": "答案：C。尺神經（ulnar nerve）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 4, "stem": "維持上頸椎穩定，下列那一條韌帶最不重要？", "options": {"A": "頂韌帶（apical ligament）", "B": "橫韌帶（transverse ligament）", "C": "翼狀韌帶（alar ligament)", "D": "方形韌帶（quadrate ligament）"}, "images": [], "answer": "D", "explanation": "答案：D。方形韌帶（quadrate ligament）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 5, "stem": "下列何者為頸部揮鞭症候群（Whiplash Syndrome）亞急性期治療中，恢復正常頸椎前凸弧度（lordosis）之較佳訓練方式？", "options": {"A": "訓練時強調被動擺位", "B": "加強多裂肌（multifidus）之肌力訓練", "C": "加強牽拉頸長肌（longus colli），達到放鬆肌肉效果", "D": "應避開有氧運動，因為部分頸部肌肉也是呼吸輔助肌"}, "images": [], "answer": "B", "explanation": "答案：B。加強多裂肌（multifidus）之肌力訓練—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 6, "stem": "下列有關使用壓力回饋測試儀（pressure biofeedback unit）來執行顱頸屈曲測試（craniocervical flexion test）之敘述，何者\n錯誤？", "options": {"A": "受測者採平躺、雙腳屈膝（crook lying）姿勢", "B": "壓力回饋測試儀需置於頸椎下段（lower cervical region），且需均勻充氣", "C": "壓力回饋測試儀先充氣至20毫米汞柱", "D": "此測試重點在於測頸椎動作控制能力，而不是測肌力"}, "images": [], "answer": "B", "explanation": "答案：B。壓力回饋測試儀需置於頸椎下段（lower cervical region），且需均勻充氣—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 7, "stem": "下列何者最不受舌骨（hyoid）相關結構之影響？", "options": {"A": "下頜骨動作", "B": "臉部表情", "C": "吞嚥", "D": "發音"}, "images": [], "answer": "B", "explanation": "答案：B。臉部表情—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 8, "stem": "下列有關頸椎構造的敘述，何者正確？", "options": {"A": "枕骨（occiput）向左側做側彎（sidebending）動作時，會使軸椎（axis）立即產生向右側旋轉動作", "B": "椎動脈（vertebral artery）的阻塞會造成大腦血流減少，但不會造成腦幹血流減少", "C": "頸椎之小面關節走向與額面（frontal plane）成30度角，所以不利於做頸椎旋轉動作", "D": "頸椎之小面關節（facet joint）是個滑囊關節（synovial joint）"}, "images": [], "answer": "D", "explanation": "答案：D。頸椎之小面關節（facet joint）是個滑囊關節（synovial joint）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 9, "stem": "下列有關肌力失衡與低頭垂肩站姿（slouched posture）的敘述，何者錯誤？", "options": {"A": "此姿勢與膕旁肌（hamstrings）縮短相關", "B": "此姿勢與髂腰肌（iliopsoas）處於被拉長且無力相關", "C": "此姿勢與臀中肌後側部分（posterior portion of the gluteus medius）處於被拉長且無力相關", "D": "下肢代償作用可包括髖部伸直、股骨內轉、膝關節過度伸直（genu recurvatum）、膝內翻（genu varum）、外翻足（pes valgus）"}, "images": [], "answer": "C", "explanation": "答案：C。此姿勢與臀中肌後側部分（posterior portion of the gluteus medius）處於被拉長且無力相關—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 10, "stem": "下背部與右腳疼痛的患者作直膝抬腿（straight leg raise）測試時，左側抬到 50 度時即在右腳產生神經根疼痛（radicular\npain），測試其右側也在右腳產生神經根疼痛，則最有可能是：", "options": {"A": "在右腰神經根內緣，有相當大的椎間盤突出", "B": "兩側坐骨神經都有損傷", "C": "有脊柱側彎現象", "D": "背部兩側肌肉張力太強、對兩側神經根都造成壓迫"}, "images": [], "answer": "A", "explanation": "答案：A。在右腰神經根內緣，有相當大的椎間盤突出—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 11, "stem": "一位75歲老太太接受全髖關節置換術，有關其術後一週內的注意事項，下列敘述何者錯誤？", "options": {"A": "可逐步增加髖關節屈曲角度至90度", "B": "不宜交叉雙腿", "C": "不宜蹲下", "D": "針對同時接受轉子切開手術（trochanteric osteotomy）者，應及早於術後以阻力運動加強髖外展肌群"}, "images": [], "answer": "D", "explanation": "答案：D。針對同時接受轉子切開手術（trochanteric osteotomy）者，應及早於術後以阻力運動加強髖外展肌群—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 12, "stem": "下列有關髖關節Thomas測試的敘述，何者錯誤？", "options": {"A": "可用來測試髖屈肌的柔軟度", "B": "懸出床緣的受測下肢，其髖部處於0度伸直時，若膝關節缺乏足夠的彎曲，最可能是股中間肌（vastus intermedius）太緊", "C": "一般而言，在髖部處於0度伸直時，懸出床緣的受測下肢之膝關節可彎曲70到90度", "D": "若懸出床緣的受測下肢，其膝關節具有足夠的彎曲但髖部無法維持0度伸直而出現彎曲，這代表髂腰肌（iliopsoas）太緊"}, "images": [], "answer": "B", "explanation": "答案：B。懸出床緣的受測下肢，其髖部處於0度伸直時，若膝關節缺乏足夠的彎曲，最可能是股中間肌（vastus intermedius）太緊—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 13, "stem": "有腰椎滑脫（spondylolisthesis）現象者易出現下列那些臨床徵兆？①腰弓（lordosis）過大  ②階梯畸形（step deformity）\n③Trendelenburg步態  ④膕旁肌太緊", "options": {"A": "僅①②③", "B": "僅①②④", "C": "僅①③", "D": "僅②④"}, "images": [], "answer": "B", "explanation": "答案：B。僅①②④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 14, "stem": "右側後上腸骨棘（posterior superior iliac spine）內緣的疼痛，最可能源自那些組織？", "options": {"A": "右側伸背肌、右側腹肌、右側薦髂關節（sacroiliac joint）", "B": "右側腰椎神經根、右側薦髂關節（sacroiliac joint）", "C": "右側腰方肌（quadratus lumborum）、右側坐骨神經", "D": "右側胸背肌膜、右側梨狀肌、右側脛神經"}, "images": [], "answer": "B", "explanation": "答案：B。右側腰椎神經根、右側薦髂關節（sacroiliac joint）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 15, "stem": "下列有關脊椎骨質疏鬆（osteoporosis）的敘述，何者錯誤？", "options": {"A": "可歸為代謝性骨骼疾病", "B": "若造成前椎骨壓迫性骨折（anterior compression fracture），日常生活動作應儘量避免脊椎屈曲", "C": "與骨質疏鬆相關之椎骨塌陷最常出現在胸椎與上腰椎", "D": "脊椎骨質疏鬆患者應避免做軀幹後伸運動，以免壓迫神經根"}, "images": [], "answer": "D", "explanation": "答案：D。脊椎骨質疏鬆患者應避免做軀幹後伸運動，以免壓迫神經根—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 16, "stem": "進行特定腰椎扭轉測試（specific lumbar spine torsion test）時，下列敘述何者正確？", "options": {"A": "側臥右側，治療師手握患者左手臂向上與向前拉起，直到特定測試腰椎椎節產生移動", "B": "側臥右側，治療師手握患者右手臂向上與向前拉起，直到特定測試腰椎椎節產生移動", "C": "俯臥，治療師手握患者左手臂向上與向前拉起，直到特定測試腰椎椎節產生移動", "D": "仰臥，治療師手握患者右手臂向上與向前拉起，直到特定測試腰椎椎節產生移動"}, "images": [], "answer": "B", "explanation": "答案：B。側臥右側，治療師手握患者右手臂向上與向前拉起，直到特定測試腰椎椎節產生移動—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 17, "stem": "在步態週期之承重反應期（loading response）時，若出現上身向後傾、腰椎前凸，則下列那條肌肉最可能有問題？", "options": {"A": "臀大肌", "B": "臀中肌", "C": "腰大肌", "D": "內收長肌"}, "images": [], "answer": "A", "explanation": "答案：A。臀大肌—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 18, "stem": "下列有關slipped capital femoral epiphysis與坐骨滑囊炎（ischial bursitis）鑑別診斷之敘述，何者正確？", "options": {"A": "病史：前者多為急性並伴有創傷史；後者多為慢性且不具創傷史", "B": "被動關節動作：前者呈現noncapsular pattern；後者呈現capsular pattern", "C": "理學檢查：前者 Trendelenburg’s 測試為陰性；後者Trendelenburg’s 測試為陽性", "D": "前者可由X光影像觀察出變化；後者則無法由X光影像觀察出變化"}, "images": [], "answer": "D", "explanation": "答案：D。前者可由X光影像觀察出變化；後者則無法由X光影像觀察出變化—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 19, "stem": "關於腹肌之收縮作用，下列何者錯誤？", "options": {"A": "右側腹外斜肌（external oblique）與左側腹內斜肌（internal oblique）共同的作用會造成身體屈曲與向左旋轉", "B": "右側腹外斜肌（external oblique）與右側腹內斜肌（internal oblique）共同的作用會造成向右側彎", "C": "腹直肌收縮可幫助肋骨之固定，以避免橫膈在呼吸時將肋骨上拉", "D": "腹橫肌（transverse abdominus）在軀幹伸直與屈曲都會收縮，屬於穩定脊椎之姿勢性肌肉（postural muscle）"}, "images": [], "answer": "C", "explanation": "答案：C。腹直肌收縮可幫助肋骨之固定，以避免橫膈在呼吸時將肋骨上拉—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 20, "stem": "髖關節轉子間骨折接受手術處理後，若要由部分承重狀態逐步增加至完全承重時，下列那一髖關節肌群之肌力最為重要？", "options": {"A": "屈曲肌群", "B": "伸直肌群", "C": "外展肌群", "D": "內收肌群"}, "images": [], "answer": "C", "explanation": "答案：C。外展肌群—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 21, "stem": "下列何者不能用來做神經動力學測試（neurodynamic test）？", "options": {"A": "俯臥彎膝測試（prone knee bending test）", "B": "直膝抬腿測試（straight leg raise test）", "C": "駝背測試（slump test）", "D": "臀部現象測試（sign of the buttock）"}, "images": [], "answer": "D", "explanation": "答案：D。臀部現象測試（sign of the buttock）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 22, "stem": "下列下背痛相關狀況中，何者最不適合接受腰椎伸直動作治療？", "options": {"A": "椎間盤向後突出（disc protrusion）", "B": "僵直性脊椎炎（ankylosing spondylitis）", "C": "會陰部附近麻木、感覺遲鈍", "D": "因平背（flat back）不良姿勢造成背痛之患者"}, "images": [], "answer": "C", "explanation": "答案：C。會陰部附近麻木、感覺遲鈍—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 23, "stem": "下列有關股骨頭（femoral head）血液供應之敘述，何者錯誤？", "options": {"A": "主要是由來自股骨頸（femoral neck）的血管供應", "B": "Legg-Calve-Perthes Disease可能伴隨股骨頭缺血性壞死", "C": "股骨頸（femoral neck）骨折可能會損害到股骨頭的血液供應", "D": "髖關節囊內壓力增加有利於股骨頭之血液供應"}, "images": [], "answer": "D", "explanation": "答案：D。髖關節囊內壓力增加有利於股骨頭之血液供應—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 24, "stem": "下列何種症狀最不常見於腰椎椎間盤突出之患者身上？", "options": {"A": "皮節（dermatome）感覺異常", "B": "直膝抬腿活動度減少", "C": "下肢靜脈曲張", "D": "相關之下肢肌肉深腱反射減弱"}, "images": [], "answer": "C", "explanation": "答案：C。下肢靜脈曲張—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 25, "stem": "腳背感覺缺損的患者，若同時有足背屈、足內翻與足外翻無力的現象，則可懷疑是：", "options": {"A": "第五腰椎神經根損傷", "B": "第一薦椎神經根損傷", "C": "腓總神經損傷", "D": "脛神經損傷"}, "images": [], "answer": "C", "explanation": "答案：C。腓總神經損傷—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 26, "stem": "王先生因背痛而求診，初步檢查結果顯示其症狀發作不到16天、膝部以下沒有症狀、至少有一處腰椎呈現椎節活動度偏低\n（hypomobility）、而兩側髖關節之關節活動度都大於40°。根據近來學者Childs等人之實證醫學研究結果，王先生的治療計畫\n應如何安排？", "options": {"A": "不適合使用脊椎操作技術（spinal manipulation）", "B": "不適合進行脊椎穩定運動（stabilization exercise）", "C": "先進行脊椎穩定運動（stabilization exercise），再接受脊椎操作技術（spinal manipulation）治療效果較好", "D": "先進行脊椎操作技術（spinal manipulation），再接受脊椎穩定運動（stabilization exercise）效果較好"}, "images": [], "answer": "D", "explanation": "答案：D。先進行脊椎操作技術（spinal manipulation），再接受脊椎穩定運動（stabilization exercise）效果較好—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 27, "stem": "病人肩關節之肩峰下側有凹槽現象（sulcus sign），下列何者是最不可能產生的原因？", "options": {"A": "三角肌麻痺（paralysis）造成", "B": "盂肱關節前向脫位（dislocation）", "C": "中風後之盂肱關節半脫位（subluxation）", "D": "喙鎖韌帶（coracoclavicular ligament）斷裂"}, "images": [], "answer": "D", "explanation": "答案：D。喙鎖韌帶（coracoclavicular ligament）斷裂—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 28, "stem": "下列那些特殊測試可用來檢測肩胛穩定度（scapular stability）？①肩胛外滑測試（lateral scapular slide test） ②肩胛承重\n測試（scapular load test） ③牆面伏地挺身測試（wall pushup test） ④肩胛等長擠壓測試（scapular isometric pinch\ntest） ⑤肩胛內收測試（scapular retraction test）", "options": {"A": "僅①②③", "B": "僅①②④⑤", "C": "僅③④⑤", "D": "①②③④⑤"}, "images": [], "answer": "D", "explanation": "答案：D。①②③④⑤—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 29, "stem": "進行肩胛下肌回彈測試時（subscapularis spring-back test），患者的肩關節位置為何？", "options": {"A": "上臂於矢狀面屈曲90度、外轉", "B": "上臂於額狀面外展90度、內轉", "C": "上臂後伸、外轉，手掌貼腰", "D": "上臂後伸、內轉，手背貼腰"}, "images": [], "answer": "D", "explanation": "答案：D。上臂後伸、內轉，手背貼腰—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 30, "stem": "進行肩關節被動動作測試時，動作過程中並未感覺阻力，但病人堅持要治療師停止更進一步的動作，下列何種終末感覺（end\nfeel）較符合此敘述？", "options": {"A": "tissue approximation", "B": "capsular", "C": "springy block", "D": "empty"}, "images": [], "answer": "D", "explanation": "答案：D。empty—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 31, "stem": "下列何者較常為突發性肩關節損傷？", "options": {"A": "肩胛運動失衡（scapular dyskinesis）", "B": "肩胛上神經夾擠（suprascapular nerve entrapment）", "C": "胸廓出口症候群（thoracic outlet syndrome）", "D": "胸鎖關節扭傷（sternoclavicular joint sprains）"}, "images": [], "answer": "D", "explanation": "答案：D。胸鎖關節扭傷（sternoclavicular joint sprains）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 32, "stem": "下列有關肩黏連性關節囊炎（adhesive capsulitis）的敘述，那些正確？①絕大多數病患在一年內會自行恢復，因此等發作近\n一年尚未恢復再開始治療即可 ②急性期時，可以做等長肌力訓練以免因動作過大引起疼痛 ③病患在解凍期時，常常會有睡\n眠受到疼痛干擾的情況 ④受限角度最大的動作通常為肩外轉", "options": {"A": "僅①③", "B": "僅②④", "C": "僅①④", "D": "僅②③"}, "images": [], "answer": "B", "explanation": "答案：B。僅②④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 33, "stem": "根據Kaltenborn的觀念，對於肩關節屈曲（flexion）且內轉（internal rotation）活動度嚴重受限的患者，下列何種關節鬆動術\n（joint mobilization）最適用？", "options": {"A": "肱骨頭前向滑動（anterior glide）", "B": "肱骨頭後向滑動（posterior glide）", "C": "肩胛骨外向滑動（lateral glide）", "D": "肩胛骨尾向滑動（caudal glide）"}, "images": [], "answer": "B", "explanation": "答案：B。肱骨頭後向滑動（posterior glide）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 34, "stem": "在盂肱關節前側穩定手術（anterior glenohumeral stabilization）後六週內，肩關節應避免下列那些動作？", "options": {"A": "外展、屈曲、外轉", "B": "外轉、水平外展、伸直", "C": "外展、內轉、屈曲", "D": "水平內收、屈曲、內轉"}, "images": [], "answer": "B", "explanation": "答案：B。外轉、水平外展、伸直—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 35, "stem": "下列何種原因造成之肩夾擠症狀不屬於次發性肩夾擠症（secondary shoulder impingement）？", "options": {"A": "肩關節前向不穩（anterior instability）", "B": "肩關節活動度過大（hypermobility）", "C": "肩旋轉肌袖部分斷裂（rotator cuff partial tear）", "D": "肱骨頭向下半脫位（humeral head inferior subluxation）"}, "images": [], "answer": "C", "explanation": "答案：C。肩旋轉肌袖部分斷裂（rotator cuff partial tear）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 36, "stem": "使用腋下柺杖（axillary crutches）方式不正確，最容易造成那條神經的壓迫傷害？", "options": {"A": "肩胛下（subscapular）神經", "B": "背肩胛（dorsal scapular）神經", "C": "橈（radial）神經", "D": "尺（ulnar）神經"}, "images": [], "answer": "C", "explanation": "答案：C。橈（radial）神經—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 37, "stem": "治療一個冰凍肩的病人，當給予Kaltenborn Grade 3的關節鬆動術治療兩個星期後，肩關節疼痛未改善且活動度變差時，下列\n處置何者較為適宜？", "options": {"A": "繼續原治療", "B": "停止原治療，改用Kaltenborn Grade 2或Grade 1的關節鬆動術治療", "C": "停止原治療，改用Maitland Grade 4的關節鬆動術治療", "D": "停止原治療，改用Maitland Grade 5的關節矯正術治療"}, "images": [], "answer": "B", "explanation": "答案：B。停止原治療，改用Kaltenborn Grade 2或Grade 1的關節鬆動術治療—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 38, "stem": "下列有關手臂上舉過程中，肩胛骨向上旋轉（upward rotation）參與肌肉作用之敘述，何者錯誤？", "options": {"A": "初始肩胛骨向上旋轉動作僅由下斜方肌和前鋸肌作用", "B": "前鋸肌作用可同時產生肩胛骨後傾動作", "C": "針對前鋸肌而言，主要是其下側部分肌肉造成動作", "D": "超過90度手臂上舉動作由上下斜方肌和前鋸肌共同作用"}, "images": [], "answer": "A", "explanation": "答案：A。初始肩胛骨向上旋轉動作僅由下斜方肌和前鋸肌作用—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 39, "stem": "肩關節創傷型後向脫位（traumatic posterior shoulder dislocation）常發生於手臂擺在下列那個姿勢時？", "options": {"A": "屈曲、內收、內轉", "B": "屈曲、外展、外轉", "C": "過度伸直、外展、內轉", "D": "過度伸直、內收、內轉"}, "images": [], "answer": "A", "explanation": "答案：A。屈曲、內收、內轉—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 40, "stem": "評估靜態姿勢時，觀察患者發現其右側肩膀高於左側，則下列何者為較可能之原因？", "options": {"A": "右側上肢有神經張力過高問題", "B": "右側為其慣用手", "C": "右側之脊副神經（spinal accessory nerve）受損", "D": "不明原因之左側C型（left thoracic curve）脊柱側彎"}, "images": [], "answer": "A", "explanation": "答案：A。右側上肢有神經張力過高問題—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 41, "stem": "對於內側網球肘（medial tennis elbow），肌力訓練最重要的目標肌肉為何？", "options": {"A": "伸肘肌", "B": "屈肘肌", "C": "伸腕肌", "D": "屈腕肌"}, "images": [], "answer": "D", "explanation": "答案：D。屈腕肌—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 42, "stem": "下列那些組織可能壓迫到正中神經或其分支？①旋前圓肌 ②屈指肌 ③lacertus fibrosus ④伸指肌", "options": {"A": "僅①②④", "B": "僅②③④", "C": "僅①③④", "D": "僅①②③"}, "images": [], "answer": "D", "explanation": "答案：D。僅①②③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 43, "stem": "表層橈神經卡壓（superficial radial nerve entrapment）現象與下列何者相似？", "options": {"A": "狄魁氏疾病（de Quervain’s disease）", "B": "肱骨外上髁炎（lateral epicondylitis）", "C": "高爾夫球肘", "D": "後骨間神經症候群（posterior interosseous nerve syndrome）"}, "images": [], "answer": "A", "explanation": "答案：A。狄魁氏疾病（de Quervain’s disease）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 44, "stem": "有關施行關節固定術（arthrodesis）時，各關節固定的位置，下列何者較恰當？", "options": {"A": "掌指關節－屈曲 20 度", "B": "腕關節－屈曲", "C": "肘關節－伸直", "D": "肩關節－外展 90 度"}, "images": [], "answer": "A", "explanation": "答案：A。掌指關節－屈曲 20 度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 45, "stem": "手指受傷的變形種類中，下列何者屬於手指屈肌肌腱的問題？", "options": {"A": "Boutonniere deformity", "B": "槌狀指（mallet finger）", "C": "棒球指（baseball finger）", "D": "扳機指（trigger finger）"}, "images": [], "answer": "D", "explanation": "答案：D。扳機指（trigger finger）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 46, "stem": "根據學者 Wilk 等人所強調的觀念，針對投擲類運動員應加強訓練下列那一條肌肉，以避免在投擲最後階段出現肘關節過度伸\n直？", "options": {"A": "肱肌", "B": "肱三頭肌", "C": "肱二頭肌", "D": "肱橈肌"}, "images": [], "answer": "C", "explanation": "答案：C。肱二頭肌—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 47, "stem": "下列有關上肢 reflex sympathetic dystrophy 的敘述，何者錯誤？", "options": {"A": "柯雷氏骨折（Colles' fracture）之後可能併發此問題", "B": "屬於 complex regional pain syndrome 的一種", "C": "如果肩關節受影響，其活動度受限情形為非關節囊型式（noncapsular pattern）", "D": "臨床特徵包括痛覺過敏（hyperalgesia）或手腕關節囊緊繃"}, "images": [], "answer": "C", "explanation": "答案：C。如果肩關節受影響，其活動度受限情形為非關節囊型式（noncapsular pattern）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 48, "stem": "下列有關周邊神經與特殊測試或現象的組合，何者錯誤？", "options": {"A": "尺神經－Wartenberg’s sign", "B": "尺神經－Froment’s sign", "C": "正中神經－Phalen’s test", "D": "橈神經－Prayer test"}, "images": [], "answer": "D", "explanation": "答案：D。橈神經－Prayer test—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 49, "stem": "有關膝半月板修補（meniscus repair）手術，接受周圍修補（peripheral repair）手術者與接受中間修補（central repair）手術\n者所需復健時程之比較，下列敘述何者正確？", "options": {"A": "前者需要較長的復健療程", "B": "後者需要較長的復健療程", "C": "兩者需要的復健療程長短差不多", "D": "兩者需要的復健療程長短難以比較"}, "images": [], "answer": "B", "explanation": "答案：B。後者需要較長的復健療程—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 50, "stem": "王先生騎摩托車上班時，出車禍使得膝部受傷，後來發現向後跑時有膝部不穩的現象，則最可能是下列何種組織受傷？", "options": {"A": "膝內副韌帶", "B": "膝外副韌帶", "C": "膝前十字韌帶", "D": "膝後十字韌帶"}, "images": [], "answer": "D", "explanation": "答案：D。膝後十字韌帶—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 51, "stem": "欲提高中老年人膝前十字韌帶損傷之運動治療效果，下列敘述何者正確？", "options": {"A": "只須特別強調膕旁肌的肌力訓練", "B": "只須特別強調股四頭肌的肌力訓練", "C": "膕旁肌與股四頭肌之肌力訓練均須強調", "D": "中老年人之訓練計畫與年輕人完全相同"}, "images": [], "answer": "C", "explanation": "答案：C。膕旁肌與股四頭肌之肌力訓練均須強調—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 52, "stem": "全人工膝關節置換術分為骨泥式與無骨泥式兩種，若比較兩者術後復健進度，下列敘述何者正確？", "options": {"A": "無骨泥式所需之固定治療期間較長", "B": "無骨泥式所需之固定治療期間較短", "C": "兩種型式所需之固定治療期間相仿", "D": "兩種型式所需之固定治療期間無法比較"}, "images": [], "answer": "A", "explanation": "答案：A。無骨泥式所需之固定治療期間較長—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 53, "stem": "Q角度的量測是以髕骨中心點，向上與向下分別與那兩個結構相連？", "options": {"A": "髂嵴（iliac crest）與腓骨頭", "B": "髂嵴（iliac crest）與脛骨突（tibial tuberosity）", "C": "前上髂骨棘（ASIS）與脛骨內側關節線", "D": "前上髂骨棘（ASIS）與脛骨突（tibial tuberosity）"}, "images": [], "answer": "D", "explanation": "答案：D。前上髂骨棘（ASIS）與脛骨突（tibial tuberosity）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 54, "stem": "下列關於脛骨近端骨切除術（proximal tibial osteotomy）效果與適應症的敘述，何者錯誤？", "options": {"A": "讓股脛骨之間壓力重新平均分布", "B": "降低股脛關節在承載重量時的疼痛", "C": "適用於 Kellgren-Lawrence 第四級的膝骨性關節炎患者", "D": "延緩接受全膝關節置換術的時間"}, "images": [], "answer": "C", "explanation": "答案：C。適用於 Kellgren-Lawrence 第四級的膝骨性關節炎患者—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 55, "stem": "距下關節過度外翻（excessive subtalar pronation）合併脛骨和股骨過度內轉的步態，最可能引發下列那種膝關節的問題？", "options": {"A": "股二頭肌拉傷（biceps femoris strains）", "B": "鵝足肌腱炎（pes anserinus tendinitis）", "C": "後十字韌帶拉傷（posterior cruciate ligament sprains）", "D": "髕骨軌跡不正常（patellar mal-tracking）"}, "images": [], "answer": "D", "explanation": "答案：D。髕骨軌跡不正常（patellar mal-tracking）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 56, "stem": "下列關於接受內側髕股骨韌帶重建（medial patellofemoral ligament reconstruction）術後復健計畫應考量之事項，何者錯誤？", "options": {"A": "強化股內斜肌（vastus medialis obliquus）肌力", "B": "維持髕骨活動程度", "C": "強化腓腸肌（gastrocnemius）肌力", "D": "2 週內應達到膝關節完全屈曲活動度"}, "images": [], "answer": "D", "explanation": "答案：D。2 週內應達到膝關節完全屈曲活動度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 57, "stem": "關於一般急性膝韌帶斷裂的臨床表徵，下列敘述何者正確？", "options": {"A": "疼痛會佈滿整個膝關節，患者不易指出痛點", "B": "韌帶若是完全斷裂，可能不會感覺到疼痛", "C": "若是關節囊也有破裂，腫脹會十分嚴重", "D": "腫脹若是在數小時後慢慢地產生，代表有更多的關節內組織受到傷害"}, "images": [], "answer": "B", "explanation": "答案：B。韌帶若是完全斷裂，可能不會感覺到疼痛—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 58, "stem": "欲以蹲姿誘發膕旁肌收縮時，利用下列那個姿勢可以得到最佳的效果？", "options": {"A": "雙腳蹲姿", "B": "單腳蹲姿", "C": "蹲姿伴隨下肢外轉", "D": "駝背蹲姿"}, "images": [], "answer": "B", "explanation": "答案：B。單腳蹲姿—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 59, "stem": "有關膝後十字韌帶損傷（posterior cruciate ligament injury）患者，其初期承重（weight bearing）限制，下列處置何者較適\n宜？", "options": {"A": "未接受手術治療之輕度損傷患者，承重時不需穿戴膝關節護具（knee brace）", "B": "未接受手術治療之輕度損傷患者，承重時需要穿戴膝關節護具（knee brace），活動範圍限制在膝屈曲 0～60度", "C": "未接受手術治療之重度損傷患者，承重時需要穿戴膝關節護具（knee brace），活動範圍限制在膝屈曲 15～60度", "D": "經過手術治療之重度損傷患者，承重時需要穿戴膝關節護具（knee brace），活動範圍限制在膝屈曲 15～60度"}, "images": [], "answer": "B", "explanation": "答案：B。未接受手術治療之輕度損傷患者，承重時需要穿戴膝關節護具（knee brace），活動範圍限制在膝屈曲 0～60度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 60, "stem": "下列何者與膝外翻（genu valgum）現象無關？", "options": {"A": "扁平足（pes planus）", "B": "脛骨外扭（lateral tibial torsion）", "C": "過度髖內收（excessive hip adduction）", "D": "同側髖外轉（ipsilateral hip lateral rotation）"}, "images": [], "answer": "D", "explanation": "答案：D。同側髖外轉（ipsilateral hip lateral rotation）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 61, "stem": "檢查膝痛患者時，發現在膝關節伸直時髕骨前下方有腫脹，但彎曲時兩側或膝膕窩（popliteal fossa）較腫，其最可能是下列\n何種病症？", "options": {"A": "脛股關節滑液囊炎（tibiofemoral synovitis）", "B": "髕骨下滑囊炎（infrapatellar bursitis）", "C": "鵝足肌腱滑囊炎（anserine bursitis）", "D": "髕骨肌腱炎（patellar tendonitis）"}, "images": [], "answer": "A", "explanation": "答案：A。脛股關節滑液囊炎（tibiofemoral synovitis）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 62, "stem": "針對一位受傷的籃球選手做測試，在他膝彎曲 25 度下，可將其脛骨向前拉約 10 mm時，則懷疑下列那一組織有損傷？", "options": {"A": "前十字韌帶之前外束（anterolateral bundle）", "B": "前十字韌帶之前內束（anteromedial bundle）", "C": "前十字韌帶之後外束（posterolateral bundle）", "D": "前十字韌帶之後內束（posteromedial bundle）"}, "images": [], "answer": "#", "explanation": "本題公告一律給分（答案不限）。題幹：針對一位受傷的籃球選手做測試，在他膝彎曲 25 度下，可將其脛骨向前拉約 10 mm時，則懷疑下列那一組織有損傷？…可能因題意不清、選項皆有爭議或圖表不明確等原因，考選部裁定一律給分。"}, {"n": 63, "stem": "距骨下關節之正中位置（Subtalar Neutral Position）為從最大內翻位置往中間移動，其移動幅度為內翻及外翻活動度總合之多\n少比例？", "options": {"A": "2/3", "B": "1/3", "C": "4/5", "D": "1/2"}, "images": [], "answer": "A", "explanation": "答案：A。2/3—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 64, "stem": "脛前肌（tibialis anterior）及脛後肌（tibialis posterior）分別由下列那些神經所支配？", "options": {"A": "淺層腓神經及脛神經", "B": "深層腓神經及脛神經", "C": "脛神經及淺層腓神經", "D": "脛神經及深層腓神經"}, "images": [], "answer": "B", "explanation": "答案：B。深層腓神經及脛神經—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 65, "stem": "菲斯線（Feiss line）是指下列那些骨頭會在一條線上？", "options": {"A": "內踝（medial malleolus）、跟骨（calcaneus）、第一蹠骨頭（metatarsal head）", "B": "外踝（lateral malleolus）、跟骨（calcaneus）、第五蹠骨頭（metatarsal head）", "C": "內踝（medial malleolus）、舟狀骨（navicular）、第一蹠骨頭（metatarsal head）", "D": "外踝（lateral malleolus）、舟狀骨（navicular）、第五蹠骨頭（metatarsal head）"}, "images": [], "answer": "C", "explanation": "答案：C。內踝（medial malleolus）、舟狀骨（navicular）、第一蹠骨頭（metatarsal head）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 66, "stem": "下列有關小腿肌肉間隔區症候群（compartment syndrome）之特徵，何者較不常出現？", "options": {"A": "疼痛感在運動時增加", "B": "觸壓痛通常是輕度", "C": "跛行", "D": "肌肉萎縮"}, "images": [], "answer": "D", "explanation": "答案：D。肌肉萎縮—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 67, "stem": "從病人正後方觀察時，明顯看到右腳外側腳趾（too-many-toes sign），則可能是因下列何者所造成的？", "options": {"A": "脛骨外轉，腳後跟內翻（varus），前腳掌外展（abducted）", "B": "脛骨外轉，腳後跟外翻（valgus），前腳掌外展（abducted）", "C": "脛骨內轉，腳後跟外翻（valgus），前腳掌內收（adducted）", "D": "脛骨內轉，腳後跟內翻（varus），前腳掌內收（adducted）"}, "images": [], "answer": "B", "explanation": "答案：B。脛骨外轉，腳後跟外翻（valgus），前腳掌外展（abducted）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 68, "stem": "有關足部關節及韌帶之敘述，下列何者錯誤？", "options": {"A": "跟骰關節（calcaneocuboid joint）和距舟關節（talonavicular joint）共同形成 Chopart’s 關節", "B": "彈簧韌帶（spring ligament）是從跟骨載距突（sustentaculum tali）到楔狀骨（cuneiform）", "C": "跗蹠關節（tarsometatarsal joint）又稱為 Lisfranc’s 關節", "D": "足底長韌帶（long plantar ligament）和足底短韌帶（short plantar ligament）是穩定外側縱足弓的重要構造"}, "images": [], "answer": "B", "explanation": "答案：B。彈簧韌帶（spring ligament）是從跟骨載距突（sustentaculum tali）到楔狀骨（cuneiform）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 69, "stem": "一位22歲的足球員抱怨在踢球時有踝關節後內側的明顯疼痛，且大腳趾的抗阻力屈曲測試有明顯疼痛。則下列何者是最不可能\n的原因？", "options": {"A": "跗三角骨（os trigonum）骨折", "B": "屈拇長肌（flexor hallucis longus）受到夾擠（impingement）", "C": "後內側shin splints", "D": "距骨後突（posterior process of talus）過大造成軟組織夾擠"}, "images": [], "answer": "#", "explanation": "本題公告一律給分（答案不限）。題幹：一位22歲的足球員抱怨在踢球時有踝關節後內側的明顯疼痛，且大腳趾的抗阻力屈曲測試有明顯疼痛。則下列何者是最不可能 的原因…可能因題意不清、選項皆有爭議或圖表不明確等原因，考選部裁定一律給分。"}, {"n": 70, "stem": "單獨的中足（midfoot）撕裂型骨折（avulsion fracture）在臨床上較少發生，但若發生，主要出現的部位為：", "options": {"A": "舟狀骨突（navicular tuberosity）", "B": "骰骨（cuboid）", "C": "楔狀骨（cuneiform）", "D": "距骨（talus）"}, "images": [], "answer": "A", "explanation": "答案：A。舟狀骨突（navicular tuberosity）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 71, "stem": "肌肉組織受傷後，為了恢復其功能與關節活動度，給予的運動設計先後順序應：", "options": {"A": "被動關節活動運動 → 主動關節活動運動 → 輔助性主動關節活動運動", "B": "被動關節活動運動 → 輔助性主動關節活動運動 → 主動關節活動運動", "C": "輔助性主動關節活動運動 → 被動關節活動運動 → 主動關節活動運動", "D": "輔助性主動關節活動運動 → 主動關節活動運動 → 被動關節活動運動"}, "images": [], "answer": "B", "explanation": "答案：B。被動關節活動運動 → 輔助性主動關節活動運動 → 主動關節活動運動—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 72, "stem": "有關腹直肌分離（diastasis recti）的敘述，下列何者錯誤？", "options": {"A": "腹直肌分離只發生在懷孕的女性", "B": "腹直肌分離可發生在肚臍或肚臍的上方或下方，但發生在肚臍下方較少見", "C": "腹直肌分離可能發生在分娩過程，尤其是第二產程", "D": "懷孕前有較佳的腹直肌肌力，可降低發生腹直肌分離的機率"}, "images": [], "answer": "A", "explanation": "答案：A。腹直肌分離只發生在懷孕的女性—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 73, "stem": "有關膝上截肢及膝下截肢病人之敘述，下列何者錯誤？", "options": {"A": "膝上截肢病人穿戴義肢時的主要承重處在坐骨粗隆，所以評估時要檢查坐骨粗隆及周圍的軟組織", "B": "膝下截肢病人穿戴義肢時的主要承重處在髕骨韌帶，所以評估時要檢查髕骨韌帶及周圍的軟組織", "C": "膝上截肢病人容易有髖關節屈曲（flexion）及內收（adduction）的攣縮（contracture）", "D": "膝下截肢病人容易有髖關節屈曲（flexion）及膝關節屈曲的攣縮（contracture）"}, "images": [], "answer": "C", "explanation": "答案：C。膝上截肢病人容易有髖關節屈曲（flexion）及內收（adduction）的攣縮（contracture）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 74, "stem": "受傷的運動員出現下列那些狀況時，應優先懷疑可能為頸椎傷害？", "options": {"A": "頭痛、過度換氣", "B": "頭暈、兩腳抽筋", "C": "呼吸困難、頭部位置不對稱", "D": "胸口腫脹、四肢酸痛"}, "images": [], "answer": "C", "explanation": "答案：C。呼吸困難、頭部位置不對稱—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 75, "stem": "下列那些狀況可能造成淋巴水腫？①淋巴結發炎 ②淋巴系統先天畸形 ③淋巴結摘除 ④淋巴管或血管纖維化", "options": {"A": "僅①③④", "B": "僅①②③", "C": "僅②③④", "D": "①②③④"}, "images": [], "answer": "D", "explanation": "答案：D。①②③④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 76, "stem": "有關乳癌患者上肢淋巴水腫的預防，下列敘述那些正確？①搭飛機時要穿戴壓力袖套 ②手術側不可打針，量血壓則不必限制\n③做家事時應戴手套以防手部受傷 ④做運動時不可戴壓力袖套，以免阻礙淋巴回流", "options": {"A": "僅①②③", "B": "僅①③", "C": "僅②④", "D": "僅①③④"}, "images": [], "answer": "B", "explanation": "答案：B。僅①③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 77, "stem": "下列有關關節固定術（arthrodesis）的敘述，何者正確？", "options": {"A": "術後關節只須固定不動 72 小時", "B": "手術後固定的石膏應隨時可拆下來做運動", "C": "手術後走路載重以病患能忍受的重量越大越好", "D": "多數併有神經病變的疼痛關節，會考慮施行關節固定術"}, "images": [], "answer": "D", "explanation": "答案：D。多數併有神經病變的疼痛關節，會考慮施行關節固定術—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 78, "stem": "班卡特氏傷害（Bankart lesion）是指肩盂（glenoid）上的盂唇（labrum）的那一方位受傷？", "options": {"A": "前上緣", "B": "前下緣", "C": "後上緣", "D": "後下緣"}, "images": [], "answer": "B", "explanation": "答案：B。前下緣—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 79, "stem": "造成骨盆底肌功能不良（pelvic floor dysfunction）的危險因子，不包含：", "options": {"A": "陰道生產", "B": "催產素（oxytocin）的使用", "C": "分娩過程中的第二階段太過快速", "D": "長期便秘"}, "images": [], "answer": "C", "explanation": "答案：C。分娩過程中的第二階段太過快速—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 80, "stem": "下列有關截肢患者殘肢疼痛（stump pain）的敘述，何者錯誤？", "options": {"A": "通常是因為心理因素造成", "B": "可能因為穿戴的義肢不合適所造成", "C": "可能因為在截肢過程導致周圍神經受傷造成", "D": "通常在初期會相當疼痛，但相對於幻肢痛（phantom pain）會較快減輕或消失"}, "images": [], "answer": "A", "explanation": "答案：A。通常是因為心理因素造成—此選項為正確敘述，依物理治療學相關知識為標準答案。"}]}, "Q2": {"label": "第二次", "questions": [{"n": 1, "stem": "有關頸椎相關解剖位置由前至後之排列，下列敘述何者正確？", "options": {"A": "前枕骨寰椎膜（anterior atlanto-occipital membrane）－後枕骨寰椎膜（posterior atlanto-occipital membrane）－覆膜（tectorial membrane）", "B": "前枕骨寰椎膜（anterior atlanto-occipital membrane）－覆膜（tectorial membrane）－後枕骨寰椎膜 （posterior atlanto-occipital membrane）", "C": "橫韌帶（transverse ligament）－前枕骨寰椎膜（anterior atlanto-occipital membrane）－後枕骨寰椎膜 （posterior atlanto-occipital membrane）", "D": "前枕骨寰椎膜（anterior atlanto-occipital membrane）－後枕骨寰椎膜（posterior atlanto-occipital membrane）－橫韌帶（transverse ligament）"}, "images": [], "answer": "B", "explanation": "答案：B。前枕骨寰椎膜（anterior atlanto-occipital membrane）－覆膜（tectorial membrane）－後枕骨寰椎膜 （poste—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 2, "stem": "下列何者不是頸因性頭痛之主要癥候？", "options": {"A": "枕骨下（suboccipital）部位有感覺異常", "B": "不正常的頭頸姿勢", "C": "單側頭痛且會換邊", "D": "頭痛會因頸部動作改變而變化"}, "images": [], "answer": "C", "explanation": "答案：C。單側頭痛且會換邊—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 3, "stem": "頸部的多裂肌（multifidus）做單邊收縮時，理論上可產生下列何種頸椎的動作？", "options": {"A": "頸椎側彎至同側及旋轉至同側", "B": "頸椎側彎至同側及旋轉至對側", "C": "後伸頸椎及旋轉至同側", "D": "後伸頸椎及旋轉至對側"}, "images": [], "answer": "B", "explanation": "答案：B。頸椎側彎至同側及旋轉至對側—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 4, "stem": "下列何者為造成胸廓出口症候群（thoracic outlet syndrome）的可能成因？①胸大肌過度發達 ②鎖骨骨折\n③前斜角肌或中斜角肌發炎腫脹", "options": {"A": "僅①②", "B": "僅①③", "C": "①②③", "D": "僅②③"}, "images": [], "answer": "D", "explanation": "答案：D。僅②③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 5, "stem": "針對頸椎深層肌肉功能評估，下列何者正確？", "options": {"A": "可用頸椎壓力回饋儀（pressure biofeedback unit）放置於額頭測量", "B": "頸長肌（longus colli）是頸椎深層肌肉之一，作用是頸椎後仰", "C": "利用頸椎壓力回饋儀（pressure biofeedback unit）訓練時，可逐步增加壓力", "D": "頸長肌（longus colli）疲勞常是用來解釋急性頸椎痛的重要假說之一"}, "images": [], "answer": "C", "explanation": "答案：C。利用頸椎壓力回饋儀（pressure biofeedback unit）訓練時，可逐步增加壓力—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 6, "stem": "有關馬鞭式傷害（Whiplash injury）之敘述，下列何者錯誤？", "options": {"A": "亞急性期通常維持2至10星期，胸鎖乳突肌（sternocleidomastoid）軟組織鬆動術是治療重點之一", "B": "慢性期少有腫脹情形，但常有前位頭部（forward head）現象", "C": "加強深層肌肉動作控制是慢性期治療重點之一", "D": "加強關節活動度是急性期治療重點"}, "images": [], "answer": "D", "explanation": "答案：D。加強關節活動度是急性期治療重點—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 7, "stem": "一個案有明顯前位頭部（forward head）的姿勢，仰躺測試時他無法做到主動頭部前屈（head flexion）的動\n作；在被動動作中，他的頭部前屈有大約5度的角度，但可以感受到軟組織明顯的阻力，根據以上測試，下列\n敘述何者正確？", "options": {"A": "豎脊肌（erector spinae）較緊，胸鎖乳突肌（sternocleidomastoid）無力", "B": "枕骨下肌（suboccipital muscles）較緊，頭長肌（longus capitis）與頸長肌（longus colli）無力", "C": "頭夾肌（splenius capitis）與頸夾肌（splenius cervicis）較緊，胸鎖乳突肌（sternocleidomastoid）無力", "D": "豎脊肌（erector spinae）較緊，舌骨下肌（infrahyoid）無力"}, "images": [], "answer": "B", "explanation": "答案：B。枕骨下肌（suboccipital muscles）較緊，頭長肌（longus capitis）與頸長肌（longus colli）無力—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 8, "stem": "頸椎軟組織損傷的急性期，在保護期時進行反向肌肉作用（reverse muscle action）運動以維持頸部穩定功\n能，可進行之動作不包括下列何者？", "options": {"A": "肩胛骨上提（elevation）", "B": "肩胛骨降下（depression）", "C": "肩關節外展（abduction）", "D": "頸部側彎 （lateral flexion）"}, "images": [], "answer": "D", "explanation": "答案：D。頸部側彎 （lateral flexion）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 9, "stem": "患者為右邊椎間孔狹窄壓迫第五頸神經根，會引起症狀和緩解症狀之頸椎動作依序為何？", "options": {"A": "向前彎曲、向後仰", "B": "向右側彎、向右旋轉", "C": "向後仰、向右側彎", "D": "向後仰、向前彎曲"}, "images": [], "answer": "D", "explanation": "答案：D。向後仰、向前彎曲—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 10, "stem": "一位有右側C5～6小面關節夾擠的患者，治療師在做頸椎右側的象限測試（quadrant test）時，過程中患者最\n有可能出現的不適感為何？", "options": {"A": "右側頸椎疼痛", "B": "左側上斜方肌緊繃", "C": "疼痛傳到到雙肩", "D": "轉移痛傳到左側肩胛骨中段位置"}, "images": [], "answer": "A", "explanation": "答案：A。右側頸椎疼痛—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 11, "stem": "下列各項下背痛原因與其列出之典型檢查結果，何者最有可能？", "options": {"A": "椎間盤突出：背痛突然發生（acute onset），站立時疼痛增加，坐著時疼痛減緩", "B": "肌肉拉傷（strain）：背痛突然發生（acute onset），站立時疼痛增加，坐著時疼痛減緩", "C": "關節炎（osteoarthritis）：背痛逐漸發生（insidious onset），站立時疼痛減緩，坐著時疼痛增加", "D": "脊椎狹窄（spinal stenosis）：背痛逐漸發生（insidious onset），站立時疼痛減緩，坐著時疼痛增加"}, "images": [], "answer": "B", "explanation": "答案：B。肌肉拉傷（strain）：背痛突然發生（acute onset），站立時疼痛增加，坐著時疼痛減緩—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 12, "stem": "骨盆交叉症候群（pelvic crossed syndrome）與下列何者最不相關？", "options": {"A": "過緊的豎脊肌（erector spinae）", "B": "過緊的髂腰肌（iliopsoas）", "C": "過緊的臀大肌（gluteus maximus）", "D": "過緊的膕旁肌（hamstrings）"}, "images": [], "answer": "C", "explanation": "答案：C。過緊的臀大肌（gluteus maximus）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 13, "stem": "正常的腹橫肌（transversus abdominis）可在軀幹進行屈曲動作時，藉著下列何種收縮類型來協助維持軀幹\n的動態平衡？", "options": {"A": "向心收縮", "B": "離心收縮", "C": "等長收縮", "D": "等速收縮"}, "images": [], "answer": "C", "explanation": "答案：C。等長收縮—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 14, "stem": "關於腰椎相關肌肉收縮之評估，下列敘述何者錯誤？", "options": {"A": "腹橫肌的收縮是在鈎臥姿（hooked lying）下，感受患者在髂前上棘（ASIS）之內側下方有明顯鼓起", "B": "多裂肌的評估是在趴姿或側臥姿，感受患者腰椎棘突兩側肌肉之收縮情況", "C": "外側腹肌的評估是在俯臥姿勢下，將壓力感測器置於患者腹下，再施行縮腹並以壓力值變化不超過10 mmHg為原則", "D": "腰方肌的評估是在側橋（side-bridge）姿勢下，以單側肘及腳足側支撐，出力讓全身中線保持在同一直線上"}, "images": [], "answer": "A", "explanation": "答案：A。腹橫肌的收縮是在鈎臥姿（hooked lying）下，感受患者在髂前上棘（ASIS）之內側下方有明顯鼓起—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 15, "stem": "當第四、五節腰椎間盤向後外側突出並壓迫神經根時，下列那一條肌肉力量最容易受影響？", "options": {"A": "臀大肌（gluteus maximus） 趾長肌（extensor hallucis longus）", "B": "伸", "C": "腓腸肌（gastrocnemius）", "D": "股二頭肌（biceps femoris）"}, "images": [], "answer": "B", "explanation": "答案：B。伸—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 16, "stem": "背痛患者主訴其疼痛集中在下背部，無法伸直及旋轉軀幹，彎曲身體可使症狀紓解；神經學檢查並未發現異\n常，最可能的問題為下列何者？", "options": {"A": "腰椎小面關節夾擠（facet joint impingement）", "B": "腰椎間盤突出（disc herniation）", "C": "僵直性脊椎炎（ankylosing spondylitis）", "D": "腰椎神經根受壓迫（nerve root irritation）"}, "images": [], "answer": "A", "explanation": "答案：A。腰椎小面關節夾擠（facet joint impingement）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 17, "stem": "下背痛患者若是下背部呈現梯狀變形（step deformity），下列何種測試最不可能產生陽性反應？", "options": {"A": "重複執行屈體前彎（repeated forward bending of the trunk）", "B": "單腳站姿下軀幹後仰（one-leg standing lumbar extension）", "C": "大腿後肌群（hamstrings）長度測試", "D": "股神經張力測試（femoral nerve tension test）"}, "images": [], "answer": "D", "explanation": "答案：D。股神經張力測試（femoral nerve tension test）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 18, "stem": "以趴姿失穩測試（prone segmental instability test）檢查下背痛患者時，檢查者在棘突（spinous process）施\n予由後向前的壓力，則下列何者為陽性測試反應？", "options": {"A": "檢查者將患者下肢抬高後，會使背痛加劇", "B": "檢查者將患者下肢抬高後，會使背痛緩解", "C": "患者主動將雙腳抬離地面後，會使背痛緩解", "D": "患者主動將雙腳抬離地面後，會使背痛加劇"}, "images": [], "answer": "C", "explanation": "答案：C。患者主動將雙腳抬離地面後，會使背痛緩解—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 19, "stem": "下列有關教導急性期下背痛病人擺位方式之敘述，何者最不適當？", "options": {"A": "建議無承重導向（non-weight bearing bias）的病人躺在躺椅上以減輕脊椎負擔", "B": "建議屈曲導向（flexion bias）的病人在久站時，將一腳踩在小凳子上，以緩解背部壓力", "C": "建議伸直導向（extension bias）的病人平躺時，在膝關節下放枕頭，協助背部放鬆", "D": "建議伸直導向（extension bias）的病人於坐姿時，可在下背部橫放毛巾捲，以幫助腰椎維持前凸 （lordosis）姿勢"}, "images": [], "answer": "C", "explanation": "答案：C。建議伸直導向（extension bias）的病人平躺時，在膝關節下放枕頭，協助背部放鬆—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 20, "stem": "一患者被診斷有腰椎關節退化（lumbar spondylosis），但無合併椎間盤突出，在左側腰椎第5節神經根有壓\n迫的情況。則下列何者是最有可能壓迫此神經根的結構？", "options": {"A": "棘上韌帶（supraspinous ligament）", "B": "黃韌帶（ligamentum flavum）", "C": "前縱韌帶（anterior longitudinal ligament）", "D": "棘間韌帶（interspinous ligament）"}, "images": [], "answer": "B", "explanation": "答案：B。黃韌帶（ligamentum flavum）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 21, "stem": "在負荷（load）不高的情況時，椎間盤主要由下列那一個構造吸收外力？", "options": {"A": "環狀纖維（annulus fibrosus）", "B": "髓核（nucleus pulposus）", "C": "終板（end-plate）", "D": "椎間孔（intervertebral foramen）"}, "images": [], "answer": "B", "explanation": "答案：B。髓核（nucleus pulposus）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 22, "stem": "下列有關腰椎間盤脫垂（disk prolapse）之敘述，何者正確？", "options": {"A": "腰椎間盤脫垂容易發生的年齡為20～45歲", "B": "女性比男性容易發生腰椎間盤脫垂", "C": "腰椎間盤脫垂最常發生在腰椎第2節與第3節之間", "D": "長期從事腰椎伸直（extension）的動作容易發生腰椎間盤脫垂"}, "images": [], "answer": "A", "explanation": "答案：A。腰椎間盤脫垂容易發生的年齡為20～45歲—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 23, "stem": "檢視腰椎X光影像時，看到蘇格蘭狗斷頭（Scottie dog decapitated）的骨骼異常現象，這是代表下列那個構\n造異常？", "options": {"A": "椎體骨折（fractured vertebral body）", "B": "椎間盤脫垂（disk prolapse）", "C": "關節突間部骨折（fractured pars interarticularis）", "D": "前縱韌帶鈣化（ossified anterior longitudinal ligament）"}, "images": [], "answer": "C", "explanation": "答案：C。關節突間部骨折（fractured pars interarticularis）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 24, "stem": "採用肌肉能量技術（muscle energy technique）治療髂骨後旋轉失能（iliac posterior rotation\ndysfunction），常利用下列那一肌肉收縮？", "options": {"A": "梨狀肌（piriformis）", "B": "股直肌（rectus femoris）", "C": "臀大肌（gluteus maximus）", "D": "多裂肌（multifidus）"}, "images": [], "answer": "B", "explanation": "答案：B。股直肌（rectus femoris）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 25, "stem": "觸診 下顎的喙狀突（coronoid process）時若會疼痛，代表咀嚼肌中的那一條肌肉過度使用？", "options": {"A": "內翼肌（medial pterygoid）", "B": "咬肌（masseter）", "C": "外翼肌（lateral pterygoid）", "D": "顳肌（temporalis）"}, "images": [], "answer": "D", "explanation": "答案：D。顳肌（temporalis）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 26, "stem": "針對胸椎症狀敘述，下列何者錯誤？", "options": {"A": "胸椎第5到7節是小面關節痛（apophyseal joint pain）好發的位置", "B": "胸椎第8到10節是胸肋關節問題（rib articulation problem）好發的位置", "C": "下胸椎是胸椎中僵硬部位，痛常集中於胸椎第11節並發生臨床症狀", "D": "若胸椎發生椎間盤突出問題，常發生於下胸椎和胸腰椎連接位置"}, "images": [], "answer": "C", "explanation": "答案：C。下胸椎是胸椎中僵硬部位，痛常集中於胸椎第11節並發生臨床症狀—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 27, "stem": "有關髂腹股溝神經（ilioinguinal nerve），下列敘述那些正確？①支配大腿前上方之L1皮節區域 ②支配大腿\n前內側之L2皮節區域 ③容易被腰大肌（psoas major）所夾擠 ④容易被腹外斜肌（external obliquus）所\n夾擠", "options": {"A": "僅①③", "B": "僅②③", "C": "僅①④", "D": "僅②④"}, "images": [], "answer": "C", "explanation": "答案：C。僅①④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 28, "stem": "下列關於骨盆的動作測試之敘述，何者正確？", "options": {"A": "重點在於觀察雙側骨盆動作是否對稱，而非活動大小", "B": "患者俯臥做髖關節主動伸直動作時，檢查者一手在薦椎，另一手在髂後上棘（PSIS），正常情況下，髂後上 棘會向下及向外移動", "C": "患者側躺，檢查者一手在髂骨（ilium）前方向前推，另一手在髂骨後方向後拉，如果移動較少，則表示髂骨 位置偏向後旋轉", "D": "患者仰臥，檢查者雙手交叉施壓於兩側髂前上棘（ASIS），往下且往外推，是用以測試是否有薦髂後長韌帶 （long posterior sacroiliac ligament）損傷"}, "images": [], "answer": "A", "explanation": "答案：A。重點在於觀察雙側骨盆動作是否對稱，而非活動大小—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 29, "stem": "下列有關顳頜關節動作時發生喀啦（click）聲響之敘述，何者錯誤？", "options": {"A": "有磨牙（bruxism）習慣者所發生的喀啦聲，大多因為上關節腔發生黏連", "B": "正常的顳頜關節在活動時應不會發生喀啦聲", "C": "若為交互喀啦聲（reciprocal click），則張嘴時的聲響是因為關節盤的脫位，而閉嘴時的聲響是因為關節盤 的復位", "D": "張嘴晚期和閉嘴早期發生交互喀啦聲的失能情況，比張嘴早期和閉嘴晚期發生交互喀啦聲較為嚴重"}, "images": [], "answer": "C", "explanation": "答案：C。若為交互喀啦聲（reciprocal click），則張嘴時的聲響是因為關節盤的脫位，而閉嘴時的聲響是因為關節盤 的復位—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 30, "stem": "以治療球進行胸椎穩定訓練時，有關俯臥在球上的訓練方式，下列敘述何者錯誤？", "options": {"A": "強調對於脊椎伸肌肌力的訓練，特別是頭部後仰的動作", "B": "對於腹部肌肉的訓練有助於脊椎的穩定", "C": "可用於強調髖關節屈曲肌與內收肌的訓練", "D": "以上肢支撐於地面，可訓練肩帶（shoulder girdle）穩定"}, "images": [], "answer": "A", "explanation": "答案：A。強調對於脊椎伸肌肌力的訓練，特別是頭部後仰的動作—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 31, "stem": "關於原發性冰凍肩，下列敘述何者正確？", "options": {"A": "也可稱為肩黏連性滑囊炎（adhesive bursitis）", "B": "發生於肩關節長期固定之後", "C": "肩內轉動作的喪失通常是最顯著的", "D": "當手臂上抬時常會觀察到反向的（reverse）肩胛肱骨節律"}, "images": [], "answer": "D", "explanation": "答案：D。當手臂上抬時常會觀察到反向的（reverse）肩胛肱骨節律—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 32, "stem": "若患者平躺雙手置於身體兩側時，發現有一側的肩膀無法平貼於床面，此現象表示那一肌肉的長度可能是縮\n短的？", "options": {"A": "胸小肌（pectoralis minor）", "B": "胸大肌（pectoralis major）", "C": "菱形肌（rhomboids）", "D": "上斜方肌（upper trapezius）"}, "images": [], "answer": "A", "explanation": "答案：A。胸小肌（pectoralis minor）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 33, "stem": "下列何種治療最適用於急性期冰凍肩病人？", "options": {"A": "以軀幹帶動手臂之鐘擺運動，不用重量", "B": "以軀幹帶動手臂之鐘擺運動，手握啞鈴且重量越重越好", "C": "肩部主動作鐘擺運動，不用重量", "D": "肩部主動作鐘擺運動，加上啞鈴重量"}, "images": [], "answer": "A", "explanation": "答案：A。以軀幹帶動手臂之鐘擺運動，不用重量—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 34, "stem": "下列何者不是造成原發性肩關節夾擠症候群的原因？", "options": {"A": "異常的肩胛胸廓關節動作", "B": "肩峰鎖骨關節下骨刺", "C": "旋轉肌群肌腱退化", "D": "鈎狀肩峰（hooked acromion）"}, "images": [], "answer": "A", "explanation": "答案：A。異常的肩胛胸廓關節動作—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 35, "stem": "伏地挺身訓練之「上臂前撐（push up plus）」階段，能徵召下列那條肌肉最多的肌纖維參與收縮？", "options": {"A": "棘上肌（supraspinatus）", "B": "肱二頭肌（biceps）", "C": "前鋸肌（serratus anterior）", "D": "中斜方肌（middle trapezius）"}, "images": [], "answer": "C", "explanation": "答案：C。前鋸肌（serratus anterior）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 36, "stem": "將病人肩關節置於前屈、內轉、內收的位置時，病患出現驚恐表情，則可使用下列何者進一步檢測其問題？", "options": {"A": "後拉測試（posterior drawer test）", "B": "普羅茲曼測試（Protzman test）", "C": "尼爾測試（Neer test）", "D": "洛克伍德測試（Rockwood test）"}, "images": [], "answer": "#", "explanation": "本題公告一律給分（答案不限）。題幹：將病人肩關節置於前屈、內轉、內收的位置時，病患出現驚恐表情，則可使用下列何者進一步檢測其問題？…可能因題意不清、選項皆有爭議或圖表不明確等原因，考選部裁定一律給分。"}, {"n": 37, "stem": "有關肩帶（shoulder girdle）梯狀變形（step deformity）與凹槽變形（sulcus deformity）之敘述，下列何者\n錯誤？", "options": {"A": "兩者皆為關節不穩所造成變形", "B": "關節多方向不穩或神經損傷常有梯狀變形", "C": "凹槽變形常伴隨出現三角肌（deltoid）平坦的外觀", "D": "手臂水平內收時，梯狀變形會加劇"}, "images": [], "answer": "#", "explanation": "本題公告一律給分（答案不限）。題幹：有關肩帶（shoulder girdle）梯狀變形（step deformity）與凹槽變形（sulcus deform…可能因題意不清、選項皆有爭議或圖表不明確等原因，考選部裁定一律給分。"}, {"n": 38, "stem": "患者肩關節於主動及被動活動時沒有角度限制但有肩疼痛，影像X光或超音波檢查皆正常，下列何者是治療師\n下一步應有之考量？", "options": {"A": "執行降臂測試（drop arm test）以評估肩旋轉肌受傷問題", "B": "執行肩關節囊活動度測試（joint capsule mobility test）以評估冰凍肩問題", "C": "執行肩驚恐測試（apprehension test）以評估肩關節不穩定問題", "D": "應不是肩關節問題，需評估頸椎問題"}, "images": [], "answer": "C", "explanation": "答案：C。執行肩驚恐測試（apprehension test）以評估肩關節不穩定問題—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 39, "stem": "下列有關病患因前鋸肌無力導致之肩胛骨動作障礙類型，何者錯誤？", "options": {"A": "肩胛骨過度上抬（elevation）", "B": "肩胛骨翼狀聳出（winging）", "C": "肩胛骨下角向外移", "D": "肩胛骨動態翼狀聳出"}, "images": [], "answer": "C", "explanation": "答案：C。肩胛骨下角向外移—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 40, "stem": "有關原發性肩夾擠症候群物理治療之敘述，下列何者正確？", "options": {"A": "肌力訓練是主要目標，不宜施行盂肱關節鬆動術", "B": "肩胛穩定訓練相當重要，但須先訓練盂肱關節肌肉群後才能開始練習", "C": "應利用被動牽張（stretch）運動以恢復肩胛下轉（downward rotation）活動度", "D": "常需做盂肱關節外轉的阻力訓練以恢復肩旋轉肌群之肌力"}, "images": [], "answer": "D", "explanation": "答案：D。常需做盂肱關節外轉的阻力訓練以恢復肩旋轉肌群之肌力—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 41, "stem": "在治療急性胸廓出口症候群患者時，為避免臂神經叢受到壓迫或牽張（stretch），應建議其上肢擺位方式為\n下列何者？", "options": {"A": "將肩胛骨擺在外展及提高（elevated）姿勢，手擺在對側肩部上", "B": "將肩胛骨擺在外展及提高（elevated）姿勢，手擺在同側腰上", "C": "將肩胛骨擺在外展及下降（depressed）姿勢，手擺在手臂外展的姿勢", "D": "將肩胛骨擺在外展及下降（depressed）姿勢，手擺在手臂外展及手腕伸直的姿勢"}, "images": [], "answer": "A", "explanation": "答案：A。將肩胛骨擺在外展及提高（elevated）姿勢，手擺在對側肩部上—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 42, "stem": "有關肩旋轉肌群肌腱炎之急性期治療，下列敘述那些正確？①做重複次數少之最大等長運動 ②要多提重物\n達到肌力訓練的效果 ③上肢運動可在肩胛平面（scapular plane）上作無痛範圍的外展動作", "options": {"A": "僅①", "B": "僅②③", "C": "僅③", "D": "僅①③"}, "images": [], "answer": "C", "explanation": "答案：C。僅③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 43, "stem": "一位木工師傅，慣用右手，常用鐵鎚，被診斷為肱骨外上髁炎（lateral epicondylitis）。在回復到功能期的治\n療階段，下列那一種增強式運動（plyometric exercise）最適合？", "options": {"A": "病患雙手舉高過頭，運用腕關節動作將網球從右手擲向左手，左手接到後將網球擲向右手，右手接住網球", "B": "病患的右手運用腕關節動作將網球丟擲向牆面，待網球回彈時接住", "C": "病患在右肘彎曲和右前臂旋前（pronated）姿勢下，右手握網球拍（球拍面與地板平行），網球落到拍面， 運用腕關節動作將網球彈回空中", "D": "病患在右肘彎曲和右前臂旋後（supinated）姿勢下，右手運用腕關節動作將網球往上丟擲，待網球落下時 接住"}, "images": [], "answer": "C", "explanation": "答案：C。病患在右肘彎曲和右前臂旋前（pronated）姿勢下，右手握網球拍（球拍面與地板平行），網球落到拍面， 運用腕關節動作將網球彈回空中—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 44, "stem": "以動態關節鬆動術（mobilization with movement）治療肱骨外上髁炎時，物理治療師一手固定肱骨遠端，另\n一手在前臂近端施行向外滑動（lateral glide）時，病患應在無痛程度內，配合做下列那一動作？", "options": {"A": "肘屈曲", "B": "肘伸直", "C": "重複手指外展內收", "D": "重複擠壓球"}, "images": [], "answer": "D", "explanation": "答案：D。重複擠壓球—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 45, "stem": "棒球投手向物理治療師抱怨肘內側痛，沒有跌倒病史。下列何者最不可能誘發症狀？", "options": {"A": "尺神經神經動力學測試（ulnar nerve neurodynamic test）", "B": "肘屈曲測試（elbow flexion test）", "C": "肘外翻應力測試（valgus stress test）", "D": "肘後外側旋轉驚恐測試（posterolateral rotary apprehension test）"}, "images": [], "answer": "D", "explanation": "答案：D。肘後外側旋轉驚恐測試（posterolateral rotary apprehension test）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 46, "stem": "關於肘隧道症候群的敘述，下列何者錯誤？", "options": {"A": "旋前圓肌（pronator teres）的肥大可能會壓迫到尺神經", "B": "過多的肘關節屈曲動作或肘關節長時間處於屈曲位置，會引發症狀", "C": "病患常主訴會有手部尺側1/3以及第5指全部與第4指尺側位置的疼痛或感覺異常", "D": "瓦登貝格徵候（Wartenberg's sign）可能為陽性"}, "images": [], "answer": "A", "explanation": "答案：A。旋前圓肌（pronator teres）的肥大可能會壓迫到尺神經—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 47, "stem": "病患的手指呈現近端指間關節屈曲、遠端指間關節和掌指關節伸直。最可能下列那一手部構造斷裂？", "options": {"A": "A1滑輪系統（pulley system）", "B": "掌板（volar plate）", "C": "伸肌頂罩（extensor hood）之中央肌腱", "D": "伸肌肌腱於遠端指骨附著處"}, "images": [], "answer": "C", "explanation": "答案：C。伸肌頂罩（extensor hood）之中央肌腱—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 48, "stem": "有關蓋恩氏通道症候群（Guyon's canal syndrome）的敘述，下列何者錯誤？", "options": {"A": "又稱為手握把麻痺（handlebar palsy），常見於單車運動選手", "B": "神經在豆狀骨（pisiform）與鈎狀骨（hamate）間的通道受到壓迫", "C": "可能會有手部尺側1/3以及第5指全部與第4指尺側位置的疼痛或感覺異常", "D": "大魚際隆起（thenar eminence）可能會喪失運動功能、無力萎縮"}, "images": [], "answer": "D", "explanation": "答案：D。大魚際隆起（thenar eminence）可能會喪失運動功能、無力萎縮—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 49, "stem": "有關神經損傷與相關特徵或測試之配對組合，下列那些正確？①正中神經－猿猴手（ape hand） ②橈神經\n－江川徵象（Egawa sign） ③橈神經－爪型手（claw hand） ④正中神經－法倫測試（Phalen's test）\n⑤尺神經－佛羅蒙特徵象（Froment's sign）", "options": {"A": "僅①③④", "B": "僅②③⑤", "C": "僅①④⑤", "D": "僅②③④"}, "images": [], "answer": "C", "explanation": "答案：C。僅①④⑤—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 50, "stem": "給予腕隧道症候群病患治療時，常包含下列那些項目？①正中神經滑動運動 ②尺神經滑動運動 ③屈指肌\n群肌腱滑動運動 ④伸指肌群肌腱滑動運動 ⑤將大拇指往橈側外展及伸直方向牽張（stretch） ⑥將大拇\n指往屈曲方向牽張", "options": {"A": "僅①③⑤", "B": "僅②④⑥", "C": "僅①④⑤", "D": "僅①③⑥"}, "images": [], "answer": "A", "explanation": "答案：A。僅①③⑤—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 51, "stem": "梨狀肌等髖外轉短肌群緊繃，容易伴隨下列那些問題？①平背姿勢 ②搖擺背姿勢（sway back posture）\n③坐骨神經夾擠 ④閉孔神經（obturator nerve）夾擠 ⑤股骨髖臼夾擠症候群（femoroacetabular\nimpingement syndrome） ⑥股骨前滑症候群（femoral anterior glide syndrome）", "options": {"A": "僅①③⑤", "B": "僅③④⑥", "C": "僅①④⑤", "D": "僅②③⑥"}, "images": [], "answer": "D", "explanation": "答案：D。僅②③⑥—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 52, "stem": "患者在髖關節的主動動作測試中，在完全屈曲、內收和內轉動作中均出現鼠蹊部尖銳的疼痛，可能是下列何\n種髖關節問題？", "options": {"A": "髖前夾擠現象", "B": "髖關節半脫位", "C": "梨狀肌症候群", "D": "髖內收肌攣縮"}, "images": [], "answer": "A", "explanation": "答案：A。髖前夾擠現象—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 53, "stem": "觸診時，如果發現股骨大轉子在Nelaton's line之上，則表示可能是下列何種狀況？", "options": {"A": "髖外翻（coxa valga）", "B": "髖內翻（coxa vara）", "C": "髖前傾（anteversion）", "D": "髖後傾（retroversion）"}, "images": [], "answer": "B", "explanation": "答案：B。髖內翻（coxa vara）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 54, "stem": "有關髖關節的內部彈響（internal snapping）症狀，下列敘述何者正確？", "options": {"A": "可在髖關節的外側觸摸到彈響", "B": "可能是髂腰肌肌腱滑過股骨小轉子的摩擦聲", "C": "在髖內轉的姿勢下做髖屈曲與伸直的動作時，可產生此症狀", "D": "可能是髖關節內部有鬆脫小體（loose bodies）所導致"}, "images": [], "answer": "B", "explanation": "答案：B。可能是髂腰肌肌腱滑過股骨小轉子的摩擦聲—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 55, "stem": "有關髖關節囊拉傷的敘述，下列何者錯誤？", "options": {"A": "大部分發生在承重時，髖關節突然做扭轉的動作", "B": "典型疼痛的位置是在髖關節前方與腹股溝處", "C": "通常造成髖屈曲與髖外轉的動作受限", "D": "可能會改變腰椎骨盆節律（lumbopelvic rhythm），使腰椎過度活動"}, "images": [], "answer": "C", "explanation": "答案：C。通常造成髖屈曲與髖外轉的動作受限—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 56, "stem": "下列那一項不是主要針對髕股關節疼痛症候群（patellofemoral pain syndrome）的物理治療？", "options": {"A": "配合髕骨貼紮進行股四頭肌訓練", "B": "髖外展肌與外轉肌的肌力訓練", "C": "針對髕骨肌腱做深層摩擦按摩", "D": "髂脛束與膕旁肌的牽張（stretching）運動"}, "images": [], "answer": "C", "explanation": "答案：C。針對髕骨肌腱做深層摩擦按摩—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 57, "stem": "下列何者是測試髂脛束摩擦症候群（iliotibial band friction syndrome）的特殊測試？", "options": {"A": "諾寶氏壓迫測試（Noble compression test）", "B": "克拉克氏測試（Clarke's sign）", "C": "湯普森測試（Thompson test）", "D": "猶肯測試（Yocum test）"}, "images": [], "answer": "A", "explanation": "答案：A。諾寶氏壓迫測試（Noble compression test）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 58, "stem": "有關膝關節退化性關節炎的敘述，下列何者錯誤？", "options": {"A": "X光檢查會顯示關節腔狹窄或骨刺形成", "B": "通常有膝外翻（genu valgum）或股骨外轉現象", "C": "主訴通常為疼痛，其來源可能是肌肉、關節囊或靜脈", "D": "平均每減少10％體重，可能改善50％膝關節症狀"}, "images": [], "answer": "B", "explanation": "答案：B。通常有膝外翻（genu valgum）或股骨外轉現象—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 59, "stem": "髕骨的奇小面（odd facet）通常是最先開始軟化或退化的部位，下列有關其原因的敘述何者錯誤？", "options": {"A": "該部位是日常膝關節活動中，最常與股骨髁間溝互相接觸的地方", "B": "該部位的軟骨下骨（subchondral bone）結構較其他髕骨關節面鬆軟", "C": "該部位的骨小樑（trabecular bone）易因過多的壓力而產生細微骨折（microfracturing）", "D": "在奇小面與內關節面（medial facet）之間易形成剪力（shear stress）"}, "images": [], "answer": "A", "explanation": "答案：A。該部位是日常膝關節活動中，最常與股骨髁間溝互相接觸的地方—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 60, "stem": "有關髕股關節疼痛症候群的敘述，下列何者錯誤？", "options": {"A": "疼痛是逐漸產生的", "B": "因是髕骨被過度向外拉，所以疼痛經常是發生在膝關節外側", "C": "患者長時間維持屈膝的坐姿比走路和跑步更為不舒服", "D": "當增加關節壓力時，會使疼痛更加惡化，如下樓梯"}, "images": [], "answer": "B", "explanation": "答案：B。因是髕骨被過度向外拉，所以疼痛經常是發生在膝關節外側—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 61, "stem": "有關膝前十字韌帶受傷或重建後的物理治療，下列何者正確？①手術前，協助病人降低受傷後的膝關節炎症\n狀最重要，所以不宜給病人關節活動度運動 ②手術前，協助病人恢復膝關節活動度是相當重要的 ③受傷\n後越早進行手術越好，膝關節較不會出現纖維化現象 ④手術後，應盡早達到被動膝關節完全伸直，且能自\n主維持角度，如此可以預防關節纖維化", "options": {"A": "僅①③", "B": "僅①③④", "C": "僅②④", "D": "僅②③④"}, "images": [], "answer": "C", "explanation": "答案：C。僅②④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 62, "stem": "一位14歲女孩抱怨近兩週有氧運動後，髕骨下方出現疼痛。經檢查後發現其Q角度比較大，髕骨下方有壓痛點\n及輕微的雙膝腫脹。物理治療介入應強調下列何者？", "options": {"A": "股內斜肌（vastus medialis obliquus）肌力訓練", "B": "增加髕骨向外側滑動軌跡", "C": "股外側肌（vastus lateralis）肌力訓練", "D": "膕旁肌（hamstrings）肌力訓練"}, "images": [], "answer": "A", "explanation": "答案：A。股內斜肌（vastus medialis obliquus）肌力訓練—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 63, "stem": "一患者股四頭肌無力（MMT：4/5）且下樓梯有困難，為了增加其股四頭肌的功能性肌力，下列何者為最適當\n的介入方式？", "options": {"A": "等速肌力訓練，設定在36度／秒", "B": "漸進式阻力訓練，70% 1RM，每組10下，共3組", "C": "由深蹲慢慢漸進至弓箭步", "D": "最大等長收縮運動，在45～90度的膝伸直"}, "images": [], "answer": "C", "explanation": "答案：C。由深蹲慢慢漸進至弓箭步—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 64, "stem": "一患者因膝前十字韌帶受傷導致膝關節無力，檢查發現股四頭肌（quadriceps）徒手肌力測試級數為2/5、疼\n痛指數為5/10、主動膝伸直時有過度的脛骨滑動，欲利用電刺激以增加股四頭肌肌力和膝關節穩定度，下列何\n者為較佳設計？", "options": {"A": "只刺激股四頭肌", "B": "只刺激膕旁肌（hamstrings）", "C": "在刺激股四頭肌收縮前先刺激膕旁肌（hamstrings）", "D": "在刺激膕旁肌（hamstrings）收縮前先刺激股四頭肌"}, "images": [], "answer": "C", "explanation": "答案：C。在刺激股四頭肌收縮前先刺激膕旁肌（hamstrings）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 65, "stem": "有關踝關節評估的敘述，下列何者錯誤？", "options": {"A": "前距腓韌帶（anterior talofibular ligament）扭傷時，壓痛點會接近腓骨前側下方", "B": "跟腓韌帶（calcaneofibular ligament）扭傷時，壓痛點會接近腓骨外側踝尖端（tip of lateral malleolus）", "C": "前拉測試（anterior drawer test）常用來評估踝關節不穩的情形", "D": "前拉測試（anterior drawer test）主要用來評估跟腓韌帶（calcaneofibular ligament）是否有斷裂"}, "images": [], "answer": "D", "explanation": "答案：D。前拉測試（anterior drawer test）主要用來評估跟腓韌帶（calcaneofibular ligament）是否有斷裂—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 66, "stem": "有關脛腓聯合（syndesmosis）損傷之敘述，下列何者錯誤？", "options": {"A": "通常因足部踩地時伴隨脛骨的轉動而發生", "B": "通常在下肢承重或足部推進（push-off）動作時，疼痛會加劇", "C": "其疼痛及壓痛點主要在下脛腓聯合的前側", "D": "此損傷恢復通常較外側踝關節扭傷快"}, "images": [], "answer": "D", "explanation": "答案：D。此損傷恢復通常較外側踝關節扭傷快—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 67, "stem": "關於脛後肌肌腱失能（posterior tibial tendon insufficiency）的臨床分類，下列何者錯誤？", "options": {"A": "第一期在站立時，通常有正常的足部排列", "B": "第一期的疼痛常常瀰漫整個足底", "C": "第二期開始出現後足外翻（hindfoot valgus）變形", "D": "第三期通常會觀察到前足旋後（supination）變形"}, "images": [], "answer": "B", "explanation": "答案：B。第一期的疼痛常常瀰漫整個足底—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 68, "stem": "有關脛骨應力性骨折（stress fracture）的敘述，下列何者錯誤？", "options": {"A": "通常是周遭的肌肉以及骨頭本身疲勞所造成", "B": "通常和骨頭附近的肌肉反覆收縮有關", "C": "可能會出現陽性的敲擊測試（percussion test）結果", "D": "使用超音波治療可立即降低疼痛"}, "images": [], "answer": "D", "explanation": "答案：D。使用超音波治療可立即降低疼痛—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 69, "stem": "在承重狀況下做踝關節蹠屈（plantar flexion）的主動動作測試時，觀察腳跟的動作，正常的動作為何？此動\n作與那條肌肉的功能最相關？", "options": {"A": "內翻，比目魚肌（soleus）", "B": "內翻，脛後肌（tibialis posterior）", "C": "外翻，腓骨長肌（peroneus longus）", "D": "外翻，屈趾長肌（flexor digitorum longus）"}, "images": [], "answer": "B", "explanation": "答案：B。內翻，脛後肌（tibialis posterior）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 70, "stem": "有關摩頓氏神經瘤（Morton's neuroma）的敘述，下列何者錯誤？", "options": {"A": "好發在前足部蹠骨頭間", "B": "症狀包括尖銳痛、灼熱感和感覺缺失", "C": "易造成tailor's bunion", "D": "應避免穿高跟鞋或較緊的鞋"}, "images": [], "answer": "C", "explanation": "答案：C。易造成tailor's bunion—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 71, "stem": "一患者在非承重狀況下，經足部評估顯示有前足內翻（forefoot varus）問題，則於承重姿勢下，可能產生下\n列何種代償動作或姿勢？", "options": {"A": "距下關節旋後（supination）", "B": "脛骨外轉", "C": "大腳趾外翻（hallux valgus）", "D": "中跗關節旋後（midtarsal supination）"}, "images": [], "answer": "C", "explanation": "答案：C。大腳趾外翻（hallux valgus）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 72, "stem": "物理治療師為三天前打籃球時右腳踝關節外側扭傷且嚴重腫脹的30歲病患進行評估治療。下列那一項評估處\n置最不恰當？", "options": {"A": "觸診以確認疼痛、韌帶受傷部位、以及關節腫脹情形", "B": "評估受傷足踝關節主動活動情形，並教導簡單的足踝主動等長肌力運動", "C": "以踝關節前拉測試（anterior drawer test）確認受傷是否影響踝關節穩定度", "D": "以小腿擠壓測試（squeeze test of the leg）確認遠端脛腓韌帶聯合（distal tibiofibular syndesmosis）是否受 傷"}, "images": [], "answer": "C", "explanation": "答案：C。以踝關節前拉測試（anterior drawer test）確認受傷是否影響踝關節穩定度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 73, "stem": "一位45歲男性經左腳踝阿基里斯腱修補手術四週後，醫師叮囑病人可進行下肢部分承重的運動。下列何種活\n動／運動方式最不恰當？", "options": {"A": "雙腿平均承重，進行蹲踞運動（squatting exercise）", "B": "右手持單柺步行", "C": "雙腿腿部推蹬（bilateral leg press）", "D": "左腳單腳站立以訓練平衡及本體感覺時，輔以右大腳趾著地（toe touch）"}, "images": [], "answer": "D", "explanation": "答案：D。左腳單腳站立以訓練平衡及本體感覺時，輔以右大腳趾著地（toe touch）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 74, "stem": "物理治療師針對一位右足底疼痛的業餘長跑患者進行跑步動作評估，觀察發現病患右足在跑步中有過度外展\n（excessive foot abduction）的情形。下列何者最不可能與此現象有關？", "options": {"A": "踝關節背屈（dorsiflexion）角度受限", "B": "腓腸肌與比目魚肌肌力不足", "C": "髖外轉肌過緊", "D": "脛骨外轉角度過大"}, "images": [], "answer": "B", "explanation": "答案：B。腓腸肌與比目魚肌肌力不足—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 75, "stem": "截肢患者的殘餘肢若有明顯的萎縮將會影響義肢的穿戴，下列處置方式何者錯誤？", "options": {"A": "可修改義肢承筒", "B": "應先進行殘餘肢肌力訓練，等肌力完全回復後再穿戴義肢", "C": "可多加幾層襪子", "D": "可修改襯墊或內襯"}, "images": [], "answer": "B", "explanation": "答案：B。應先進行殘餘肢肌力訓練，等肌力完全回復後再穿戴義肢—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 76, "stem": "有關燒燙傷病人運動治療之敘述，下列何者正確？①尚未癒合的傷口，不可以做主動運動，只能做被動關節\n牽張運動 ②植皮手術3～5天後，植皮部位應從被動關節運動開始 ③尚未癒合的傷口做關節運動時，可配\n合止痛藥的用藥時間，以達最佳治療效果 ④已經癒合的傷口，可以在運動治療前先做蠟療或超音波，以增\n加關節運動的效果", "options": {"A": "僅①②", "B": "僅③④", "C": "僅②③④", "D": "①②③④"}, "images": [], "answer": "B", "explanation": "答案：B。僅③④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 77, "stem": "一孕婦抱怨骨盆後側，靠近腰薦椎有刺痛感，尤其久坐或是久站會疼痛，翻身與上下樓梯時也會不舒服，針\n對此問題，下列敘述何者正確？①可能是薦髂關節的問題 ②可能是第5腰椎小面關節卡住的問題 ③可進行\n最大強度的髖關節外展與後伸運動，以增進肌力、降低不適 ④避免不對稱的動作，例如單腳站或跨腳坐，\n減少不對稱的力量 ⑤可進行對稱性的McKenzie's運動以減輕不適 ⑥可使用拖帶或束腹來增加骨盆的支撐\n以降低不適", "options": {"A": "僅①③⑤", "B": "僅①④⑥", "C": "僅②③④", "D": "僅②⑤⑥"}, "images": [], "answer": "B", "explanation": "答案：B。僅①④⑥—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 78, "stem": "根據美國婦產科醫學會（American College Obstetrics and Gynecology）在2015年建議，下列那些現象出現\n是孕期中有氧運動的絕對禁忌？①限制性肺部疾病 ②於26週後有前置胎盤者 ③慢性支氣管炎 ④多胞胎\n（多於3胎）有早產危險 ⑤輕微貧血", "options": {"A": "僅①③④", "B": "僅①②⑤", "C": "僅②④⑤", "D": "僅①②④"}, "images": [], "answer": "D", "explanation": "答案：D。僅①②④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 79, "stem": "有關阻力運動對骨質疏鬆病人治療效果的敘述，下列何者正確？", "options": {"A": "足夠強度的阻力運動對骨質疏鬆病人全身的骨質密度都有維持或增加的效果", "B": "足夠強度的阻力運動對骨質疏鬆病人運動部位的骨質密度較有維持或增加的效果", "C": "足夠強度的阻力運動對青少年、健康成年人與停經婦女、骨質疏鬆患者都有全身的骨質密度增加的效果", "D": "阻力運動對骨質密度的治療效果遠小於負重運動，且負重運動還有平衡功能的訓練，所以對骨質疏鬆病人， 選擇負重運動比阻力運動更好"}, "images": [], "answer": "B", "explanation": "答案：B。足夠強度的阻力運動對骨質疏鬆病人運動部位的骨質密度較有維持或增加的效果—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 80, "stem": "有關低彈性繃帶（short-stretch bandage）的壓力大小，下列敘述何者錯誤？", "options": {"A": "壓力大小取決於繃帶覆蓋的層數", "B": "肢體末端纏繞時應加壓讓末端壓力高於近端壓力", "C": "繃帶的新舊程度會影響壓力大小", "D": "纏繞繃帶時不需在特定部位拉緊繃帶以達到加壓目的"}, "images": [], "answer": "B", "explanation": "答案：B。肢體末端纏繞時應加壓讓末端壓力高於近端壓力—此選項為正確敘述，依物理治療學相關知識為標準答案。"}]}};
 
 const state = {
@@ -429,10 +626,17 @@ document.querySelectorAll(".tab").forEach(t => {
 });
 $("#resetBtn").onclick = resetCurrent;
 $("#summaryBtn").onclick = () => { state.viewSummary = true; render(); };
+$("#clearMarksOnlyBtn").onclick = () => {
+  if (!confirm("確定清除本卷（" + DATA[state.paper].label + "）的所有 🔖 標記？\n（作答資料保留，其他卷的標記不動）\n此操作無法復原。")) return;
+  state.marks[state.paper] = {};
+  saveMarks();
+  alert("✓ 已清除本卷的所有標記。");
+  render();
+};
 
 
 // ===== Answer persistence (per-paper picks, saved to localStorage) =====
-const PICKS_STORAGE_KEY = "nephron_106_ortho_picks_v1";
+const PICKS_STORAGE_KEY = _userKey("nephron_106_ortho_picks_v1");
 const QUIZ_ID = "ortho_106";  // unique id used when broadcasting summary
 
 function loadPicks() {
@@ -452,6 +656,69 @@ function savePicks() {
 
 // Send a summary of progress to parent window if embedded in an iframe.
 // Used by the dashboard (index.html) to show progress bars.
+
+
+/* Auto-jump to specific question from URL hash (e.g. #paper=Q1&q=27) */
+function _autoJumpFromHash() {
+  try {
+    const h = location.hash || "";
+    if (!h.includes("paper=") && !h.includes("q=")) return;
+    const pm = h.match(/paper=(Q[12])/);
+    const qm = h.match(/[&?#]q=(\d+)/);
+    if (pm) {
+      const newPaper = pm[1];
+      if (DATA[newPaper]) {
+        state.paper = newPaper;
+        document.querySelectorAll(".tab").forEach(t => {
+          t.classList.toggle("active", t.getAttribute("data-tab") === newPaper);
+        });
+      }
+    }
+    if (qm) {
+      const qNum = parseInt(qm[1], 10);
+      const qs = DATA[state.paper].questions;
+      const idx = qs.findIndex(qq => qq.n === qNum);
+      if (idx >= 0) state.idx[state.paper] = idx;
+    }
+    state.viewSummary = false;
+    render();
+    /* Clear hash so refresh doesn't re-trigger */
+    history.replaceState(null, "", location.pathname + location.search);
+    /* Smooth scroll to question for visibility */
+    setTimeout(() => {
+      const main = document.getElementById("main");
+      if (main) main.scrollIntoView({behavior: "smooth", block: "start"});
+    }, 100);
+  } catch(e) {}
+}
+if (document.readyState !== "loading") setTimeout(_autoJumpFromHash, 200);
+else document.addEventListener("DOMContentLoaded", () => setTimeout(_autoJumpFromHash, 200));
+
+function broadcastFullData() {
+  if (typeof window === "undefined") return;
+  let target = null;
+  try { if (window.parent && window.parent !== window) target = window.parent; } catch(e){}
+  if (!target) return;
+  try {
+    const msg = { type: "quizData", quizId: QUIZ_ID, href: location.pathname, papers: {} };
+    for (const tag of ["Q1","Q2"]) {
+      const qs = DATA[tag].questions;
+      const paperLabel = DATA[tag].label;
+      const slim = qs.map(q => ({
+        n: q.n,
+        stem: q.stem,
+        options: q.options,
+        answer: q.answer,
+        explanation: q.explanation,
+        hasImages: !!(q.images && q.images.length > 0),
+        images: (q.images || []).slice()
+      }));
+      msg.papers[tag] = { label: paperLabel, questions: slim };
+    }
+    target.postMessage(msg, "*");
+  } catch (e) {}
+}
+
 function broadcastProgress() {
   if (typeof window === "undefined") return;
   let target = null;
@@ -483,7 +750,7 @@ function broadcastProgress() {
 state.picks = loadPicks();
 
 // ===== Bookmarks (per-paper question marks, persisted to localStorage) =====
-const MARKS_STORAGE_KEY = "nephron_106_ortho_marks_v1";
+const MARKS_STORAGE_KEY = _userKey("nephron_106_ortho_marks_v1");
 function loadMarks() {
   try {
     const s = localStorage.getItem(MARKS_STORAGE_KEY);
@@ -524,6 +791,19 @@ function _stamp() {
 }
 function _nowStr() { return new Date().toLocaleString("zh-TW", {hour12: false}); }
 
+function _filenameStamp() {
+  const d = new Date();
+  const p = n => String(n).padStart(2, "0");
+  return d.getFullYear() + "-" + p(d.getMonth()+1) + "-" + p(d.getDate()) + "_" + p(d.getHours()) + "-" + p(d.getMinutes());
+}
+function _safeFn(s) { return String(s).replace(/[\\/:*?"<>|]/g, "_").replace(/\s+/g, "_"); }
+function _promptFn(defaultName) {
+  const v = prompt("輸入匯出檔名（不含副檔名）：\n直接按確定即使用預設。", defaultName);
+  if (v === null) return null;
+  const t = v.trim();
+  return _safeFn(t || defaultName);
+}
+
 function _filterQs(paper, filter) {
   const qs = DATA[paper].questions;
   const picks = state.picks[paper];
@@ -562,7 +842,7 @@ function buildExportHTML(paper, filter) {
   const paperLabel = DATA[paper].label + (paper === "Q1" ? "（114020）" : "（114090）");
 
   const subjectTitle = "骨科疾病物理治療學 · 民國 106 年 · " + paperLabel;
-  const fileTitle = `骨科_106_${paperLabel.replace(/[（）]/g, "")}_${filterLabel}_${_stamp()}`;
+  const fileTitle = `${_filenameStamp()}_${(NU.cur().name || "user")}_骨科_106_${paperLabel.replace(/[（）]/g, "")}_${filterLabel}`;
 
   let body = "";
   for (const q of qs) {
@@ -712,19 +992,49 @@ ol.opts li.opt.errata { background: var(--yellow-soft); border-color: var(--yell
   </header>
   <main>${main}</main>
 </div>
+
+</div>
+
 </body>
 </html>`;
   return { html, fileTitle };
 }
 
 function downloadExport(filter) {
-  const { html, fileTitle } = buildExportHTML(state.paper, filter);
+  const built = buildExportHTML(state.paper, filter);
+  const html = built.html;
+  const fn = _promptFn(built.fileTitle);
+  if (!fn) return;
+  const fileTitle = fn;
   const blob = new Blob([html], { type: "text/html;charset=utf-8" });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url; a.download = fileTitle + ".html";
-  document.body.appendChild(a); a.click();
-  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 0);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const isAndroidWebView = /Android.*wv|Version\/.*Chrome\/[.0-9]+ Mobile/.test(navigator.userAgent) && !/Chrome\/[.0-9]+ (Mobile )?Safari/.test(navigator.userAgent);
+  // Try standard download flow first
+  try {
+    const a = document.createElement("a");
+    a.href = url; a.download = fileTitle + ".html";
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  } catch (err) { /* fallthrough */ }
+  // iOS Safari ignores the download attribute. Open the blob in a new tab so user can save via share sheet.
+  if (isIOS) {
+    setTimeout(() => {
+      const win = window.open(url, "_blank");
+      if (!win || win.closed) {
+        // Popup blocked - navigate current page instead
+        location.href = url;
+      }
+      alert("iOS 提示：\n剛開啟的頁面就是匯出結果。\n\n要儲存：\n1. 點下方「分享」按鈕（方框上箭頭）\n2. 選「儲存到檔案」或「Save to Files」\n\n或長按頁面 → 「儲存」即可。");
+    }, 100);
+  } else if (isAndroidWebView) {
+    setTimeout(() => {
+      alert("提示：若沒看到下載提示，請改用 Chrome / Firefox 等瀏覽器開啟此網頁再匯出。");
+    }, 200);
+  }
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
 }
 
 function showExportModal() {
@@ -766,6 +1076,309 @@ document.querySelectorAll("#exportOpts .exp-opt").forEach(btn => {
 render();
 // Broadcast initial state to parent (dashboard) if loaded as iframe
 broadcastProgress();
+broadcastFullData();
+
+
+function downloadJSONBackup() {
+  const obj = NU.exportAll();
+  const def = _filenameStamp() + "_" + (NU.cur().name || "user") + "_骨科_106";
+  const fn = _promptFn(def);
+  if (!fn) return;
+  const fileTitle = fn;
+  const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  try { const a = document.createElement("a"); a.href = url; a.download = fileTitle + ".json"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove(); } catch (e) {}
+  if (isIOS) {
+    setTimeout(() => {
+      const win = window.open(url, "_blank");
+      if (!win || win.closed) location.href = url;
+      alert("iOS：剛開啟的頁面就是 JSON 備份。\n按下方「分享」→「儲存到檔案」即可儲存。");
+    }, 100);
+  }
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+function importJSONBackupFromFile(file, scope) {
+  // scope: "this" = only current paper's keys, "all" = everything (true replace for both)
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const obj = JSON.parse(e.target.result);
+      if (!obj || !obj.data || obj.app !== "nephron-pt-quiz") throw new Error("無效的備份檔");
+      const picksBase = PICKS_STORAGE_KEY.split("::u::")[0];
+      const marksBase = MARKS_STORAGE_KEY.split("::u::")[0];
+      const cur = NU.ck();
+      const dataKeys = Object.keys(obj.data);
+      if (scope === "this") {
+        // Find this paper's data in backup (any user namespace)
+        let foundPicks = null, foundMarks = null;
+        for (const k of dataKeys) {
+          const baseK = k.split("::u::")[0];
+          if (baseK === picksBase) foundPicks = obj.data[k];
+          if (baseK === marksBase) foundMarks = obj.data[k];
+        }
+        if (foundPicks === null && foundMarks === null) {
+          alert("此備份檔不包含本卷的資料。"); return;
+        }
+        const msg = "還原本卷至備份狀態，匯入到目前使用者「" + NU.cur().name + "」。\n（若備份未含 picks/marks，現有同類別資料會被清除以還原為「未作答」狀態。）\n確定？";
+        if (!confirm(msg)) return;
+        // True replace: clear current user's keys for this subject, then set from backup if present
+        const picksKeyForCur = picksBase + "::u::" + cur;
+        const marksKeyForCur = marksBase + "::u::" + cur;
+        if (foundPicks !== null) localStorage.setItem(picksKeyForCur, foundPicks);
+        else localStorage.removeItem(picksKeyForCur);
+        if (foundMarks !== null) localStorage.setItem(marksKeyForCur, foundMarks);
+        else localStorage.removeItem(marksKeyForCur);
+        alert("✓ 本卷進度已還原。即將重新整理頁面。");
+      } else {
+        const userCount = obj.users ? obj.users.length : "?";
+        if (!confirm("還原「全部」資料：" + userCount + " 位使用者、" + dataKeys.length + " 筆 key。\n現有所有 nephron 資料將被「完全替換」為備份內容（未在備份中的會被清除）。\n確定？")) return;
+        const n = NU.importAll(obj, "replace");
+        alert("✓ 已還原 " + n + " 筆資料。即將重新整理頁面。");
+      }
+      location.reload();
+    } catch (err) { alert("匯入失敗：" + err.message); }
+  };
+  reader.readAsText(file);
+}
+(function() {
+  function inject() {
+    const opts = document.getElementById("exportOpts");
+    if (!opts || document.getElementById("expJsonBtn")) return;
+    const jsonBtn = document.createElement("button");
+    jsonBtn.className = "exp-opt"; jsonBtn.id = "expJsonBtn";
+    jsonBtn.innerHTML = '💾 進度備份 JSON（跨裝置同步用） <span class="count">全部使用者</span>';
+    jsonBtn.onclick = () => { downloadJSONBackup(); hideExportModal(); };
+    opts.appendChild(jsonBtn);
+    const importDiv = document.createElement("div");
+    importDiv.style.cssText = "margin-top:14px; padding-top:14px; border-top:1px solid var(--line);";
+    importDiv.innerHTML = '<div style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:6px;">從 JSON 還原進度</div>'
+      + '<div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">'
+      + '<input type="file" id="expImportFile" accept=".json,application/json" style="flex:1; min-width:160px; font-size:13px;" />'
+      + '<button id="expImportThis" style="padding:7px 14px; font-size:13px; background:var(--primary); color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:600;">📥 僅匯入本卷</button>'
+      + '<button id="expImportAll" style="padding:7px 14px; font-size:13px; background:#fff; color:var(--primary); border:1px solid var(--primary); border-radius:6px; cursor:pointer; font-weight:600;">📥 匯入全部</button>'
+      + '</div>'
+      + '<p style="font-size:12px; color:var(--ink-soft); margin:8px 0 0;">💡 「僅匯入本卷」只還原此測驗的 picks／marks（會匯入到目前使用者）。「匯入全部」會還原所有使用者與所有測驗。</p>';
+    opts.parentElement.insertBefore(importDiv, opts.nextSibling);
+    document.getElementById("expImportThis").onclick = () => {
+      const f = document.getElementById("expImportFile").files[0];
+      if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+      importJSONBackupFromFile(f, "this");
+    };
+    document.getElementById("expImportAll").onclick = () => {
+      const f = document.getElementById("expImportFile").files[0];
+      if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+      importJSONBackupFromFile(f, "all");
+    };
+  }
+  if (document.readyState !== "loading") setTimeout(inject, 0);
+  else document.addEventListener("DOMContentLoaded", inject);
+})();
+
+
+
+
+
+/* === Toolbar v2 wiring === */
+(function() {
+  function _esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  function refreshUserName() {
+    const e = document.getElementById("nuTbUserName"); if (e) e.textContent = NU.cur().name;
+    const c = document.getElementById("nuMdCurName"); if (c) c.textContent = NU.cur().name;
+    const c2 = document.getElementById("nuMdCurName2"); if (c2) c2.textContent = NU.cur().name;
+  }
+  function renderUserList() {
+    const list = document.getElementById("nuMdUserList"); if (!list) return;
+    const cur = NU.ck(); const users = NU.list();
+    list.innerHTML = users.map(u => {
+      const active = u.uid === cur;
+      const star = u.star ? "★ " : "";
+      return '<li class="nu-md-item' + (active ? ' active' : '') + '">'
+        + '<span class="nu-md-iname">' + star + _esc(u.name) + '</span>'
+        + '<span class="nu-md-idate">' + _esc(u.createdAt) + '</span>'
+        + '<button data-act="use" data-uid="' + u.uid + '"' + (active ? ' disabled' : '') + '>' + (active ? '使用中' : '切換') + '</button>'
+        + '<button data-act="rename" data-uid="' + u.uid + '">重新命名</button>'
+        + (u.uid === 'default' ? '' : '<button class="nu-md-del" data-act="del" data-uid="' + u.uid + '">刪除</button>')
+        + '</li>';
+    }).join('');
+    list.querySelectorAll('button').forEach(btn => {
+      btn.onclick = () => {
+        const act = btn.getAttribute('data-act'), uid = btn.getAttribute('data-uid');
+        if (act === 'use') {
+          NU.use(uid);
+          const newU = NU.list().find(x => x.uid === uid);
+          /* visual feedback before reload */
+          btn.textContent = '切換中…';
+          setTimeout(() => location.reload(), 80);
+        }
+        else if (act === 'rename') {
+          const u = NU.list().find(x => x.uid === uid);
+          const n = prompt('重新命名：', u ? u.name : '');
+          if (n) { NU.rename(uid, n); renderUserList(); refreshUserName(); }
+        } else if (act === 'del') {
+          const u = NU.list().find(x => x.uid === uid);
+          if (confirm('確定刪除「' + (u ? u.name : '') + '」？該使用者所有作答記錄將一併清除。')) {
+            NU.del(uid); renderUserList(); refreshUserName();
+            if (NU.ck() === 'default') location.reload();
+          }
+        }
+      };
+    });
+  }
+  function showMd(id) { if (id === 'nuMdUser') { renderUserList(); refreshUserName(); } document.getElementById(id).classList.add('show'); }
+  function hideMd(id) { const m = document.getElementById(id); if (m) m.classList.remove('show'); }
+  function wire() {
+    refreshUserName();
+    /* toolbar buttons */
+    const tbU = document.getElementById("nuTbUser");      if (tbU)  tbU.onclick  = () => showMd("nuMdUser");
+    const tbI = document.getElementById("nuTbIO");        if (tbI)  tbI.onclick  = () => showMd("nuMdIO");
+    const tbC = document.getElementById("nuTbClear");     if (tbC)  tbC.onclick  = () => showMd("nuMdClear");
+    /* close buttons */
+    document.querySelectorAll('[data-md-close]').forEach(b => b.onclick = () => hideMd(b.getAttribute('data-md-close')));
+    /* click outside to close */
+    document.querySelectorAll('.nu-md-bg').forEach(bg => bg.addEventListener('click', e => { if (e.target === bg) bg.classList.remove('show'); }));
+    /* user modal: add */
+    const addBtn = document.getElementById("nuMdAddBtn");
+    const newName = document.getElementById("nuMdNewName");
+    if (addBtn) addBtn.onclick = () => {
+      const v = newName.value.trim(); if (!v) { newName.focus(); return; }
+      NU.add(v); newName.value = ""; renderUserList(); refreshUserName();
+    };
+    if (newName) newName.addEventListener("keydown", e => { if (e.key === "Enter") addBtn.click(); });
+    /* IO modal: export */
+    const expBtn = document.getElementById("nuMdExpBtn");
+    if (expBtn) expBtn.onclick = () => { downloadJSONBackup(); hideMd("nuMdIO"); };
+    
+  /* Quiz: per-paper "this" import */
+  const impThis = document.getElementById("nuMdImpThis");
+  if (impThis) impThis.onclick = () => {
+    const f = document.getElementById("nuMdImpFile").files[0];
+    if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+    importJSONBackupFromFile(f, "this");
+  };
+  const impAll = document.getElementById("nuMdImpAll");
+  if (impAll) impAll.onclick = () => {
+    const f = document.getElementById("nuMdImpFile").files[0];
+    if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+    importJSONBackupFromFile(f, "all");
+  };
+    /* clear modal */
+    const clrCur = document.getElementById("nuMdClrCur");
+    if (clrCur) clrCur.onclick = () => {
+      const u = NU.cur();
+      if (!confirm('確定清除「' + u.name + '」的所有作答／標記？此操作無法復原。')) return;
+      const cur = NU.ck();
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith("nephron_") && k.endsWith("::u::" + cur)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除「' + u.name + '」的 ' + toDel.length + ' 筆紀錄。即將重新整理。');
+      location.reload();
+    };
+    const clrAllRec = document.getElementById("nuMdClrAllRec");
+    if (clrAllRec) clrAllRec.onclick = () => {
+      if (!confirm('確定清除「全部使用者」的所有作答／標記？\\n（使用者清單保留，僅清除作答資料）\\n此操作無法復原。')) return;
+      const n = NU.wipeAllProgress();
+      alert('✓ 已清除 ' + n + ' 筆紀錄。即將重新整理。');
+      location.reload();
+    };
+    const clrCurMarks = document.getElementById("nuMdClrCurMarks");
+    if (clrCurMarks) clrCurMarks.onclick = () => {
+      const u = NU.cur();
+      if (!confirm('確定清除「' + u.name + '」的所有 🔖 標記？\n（該使用者的作答資料保留，其他使用者完全不動）\n此操作無法復原。')) return;
+      const cur = NU.ck();
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && /^nephron_.*_marks_v1/.test(k) && k.endsWith('::u::' + cur)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除「' + u.name + '」的 ' + toDel.length + ' 個標記檔。即將重新整理。');
+      location.reload();
+    };
+    const clrAllMarks = document.getElementById("nuMdClrAllMarks");
+    if (clrAllMarks) clrAllMarks.onclick = () => {
+      if (!confirm('確定清除「全部使用者」的所有 🔖 標記？\n（作答資料保留）\n此操作無法復原。')) return;
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && /^nephron_.*_marks_v1/.test(k)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除 ' + toDel.length + ' 個標記檔。即將重新整理。');
+      location.reload();
+    };
+    const fullR = document.getElementById("nuMdFullReset");
+    if (fullR) fullR.onclick = () => {
+      if (!confirm('⚠️ 完全重置：刪除所有使用者、所有作答、所有標記。\\n回到全新狀態（只保留「預設」使用者）。\\n此操作無法復原，確定？')) return;
+      const n = NU.wipeAll();
+      alert('✓ 已重置 ' + n + ' 筆。即將重新整理。');
+      location.reload();
+    };
+  }
+  if (document.readyState !== "loading") setTimeout(wire, 0);
+  else document.addEventListener("DOMContentLoaded", wire);
+})();
+
+
 </script>
+
+
+
+<!-- nu modals -->
+<div class="nu-md-bg" id="nuMdUser" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>👤 使用者切換／管理</h3>
+    <div class="nu-md-sub">同一台裝置可建立多個使用者，作答進度互不干擾。<br><strong>切換使用者後會自動重新整理。</strong></div>
+    <ul class="nu-md-list" id="nuMdUserList"></ul>
+    <div class="nu-md-title">新增使用者</div>
+    <div class="nu-md-add">
+      <input type="text" id="nuMdNewName" placeholder="輸入名字…" maxlength="20" />
+      <button id="nuMdAddBtn" type="button">＋ 新增</button>
+    </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdUser" type="button">關閉</button></div>
+  </div>
+</div>
+<div class="nu-md-bg" id="nuMdIO" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>💾 匯入／匯出 JSON 備份</h3>
+    <div class="nu-md-sub">匯出 JSON 可在不同裝置間同步進度（含所有使用者與所有測驗）。</div>
+    <div class="nu-md-section">
+      <div class="nu-md-title">📤 匯出 JSON</div>
+      <button id="nuMdExpBtn" class="nu-md-btn-success" type="button" style="padding:7px 14px; font-size:13px; border-radius:6px; cursor:pointer;">💾 匯出全部 JSON</button>
+      <div class="nu-md-tip">含所有使用者、所有測驗的 picks／marks，可作為跨裝置同步的備份檔。iOS 會自動開新分頁，請用「分享 → 儲存到檔案」儲存。</div>
+    </div>
+    
+      <div class="nu-md-section">
+        <div class="nu-md-title">📥 從 JSON 還原進度</div>
+        <div class="nu-md-row">
+          <input type="file" id="nuMdImpFile" accept=".json,application/json" style="flex:1; min-width:160px; font-size:13px;" />
+        </div>
+        <div class="nu-md-row" style="gap:6px;">
+          <button id="nuMdImpThis" class="nu-md-btn-primary" type="button" style="padding:7px 12px; font-size:13px; border-radius:6px; cursor:pointer;">📥 僅匯入本卷</button>
+          <button id="nuMdImpAll" type="button" style="padding:7px 12px; font-size:13px; background:#fff; color:#1d6f9b; border:1px solid #1d6f9b; border-radius:6px; cursor:pointer; font-weight:600;">📥 匯入全部</button>
+        </div>
+        <div class="nu-md-tip">「僅匯入本卷」只還原此測驗的 picks／marks（會匯入到目前使用者，並把現有同類資料清空為「未作答」）。<br>「匯入全部」會還原所有使用者與所有測驗，未在備份中的資料會被清除（真正的「還原」語意）。</div>
+      </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdIO" type="button">關閉</button></div>
+  </div>
+</div>
+<div class="nu-md-bg" id="nuMdClear" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>🗑 清除紀錄</h3>
+    <div class="nu-md-sub" style="color:#c92a2a;"><strong>⚠️ 以下動作無法復原。</strong></div>
+    <div class="nu-md-row" style="flex-direction:column; align-items:stretch; gap:8px;">
+      <button id="nuMdClrCur" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🗑 清除「目前使用者」（<span id="nuMdCurName">預設使用者</span>）的所有紀錄<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除目前使用者的作答／標記，使用者本身保留</div></button>
+      <button id="nuMdClrAllRec" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🗑 清除「全部使用者」的所有紀錄<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">所有人的作答／標記都會清除，但使用者清單保留</div></button>
+      <button id="nuMdClrCurMarks" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🔖 清除「目前使用者」（<span id="nuMdCurName2">預設使用者</span>）的所有標記<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除目前使用者的書籤（🔖），作答資料保留</div></button>
+      <button id="nuMdClrAllMarks" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🔖 清除「全部使用者」的所有標記<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除所有人的書籤（🔖），作答資料保留</div></button>
+      <button id="nuMdFullReset" class="nu-md-btn-danger" type="button" style="padding:9px 14px; font-size:13px; border-radius:6px; cursor:pointer; text-align:left;">🔥 完全重置<div style="font-size:11px; color:rgba(255,255,255,.85); margin-top:2px; font-weight:normal;">連使用者清單一起刪除，回到全新狀態（只剩「預設」使用者）</div></button>
+    </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdClear" type="button">關閉</button></div>
+  </div>
+</div>
+
 </body>
 </html>
