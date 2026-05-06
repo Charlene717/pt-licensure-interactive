@@ -149,6 +149,75 @@
   .marked-badge { display: inline-block; padding: 1px 7px; border-radius: 999px; background: var(--yellow-soft); color: #6b4e00; font-size: 11px; border: 1px solid var(--yellow); margin-left: 4px; }
   .wrong-row.mk { border-color: var(--yellow); }
 
+
+  .nu-badge { display:inline-flex; align-items:center; gap:6px; padding:5px 10px; background:#fff; border:1px solid var(--line); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ink); margin-left:auto; transition:all .15s; }
+  .nu-badge:hover { background:var(--primary-soft); border-color:var(--primary); color:var(--primary); }
+  .nu-badge .nu-dot { width:8px; height:8px; border-radius:50%; background:var(--green); }
+  .nu-badge .nu-name { font-weight:600; }
+  .nu-modal-bg { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:9999; }
+  .nu-modal-bg.show { display:flex; }
+  .nu-modal { background:#fff; border-radius:12px; padding:24px; max-width:500px; width:92%; max-height:80vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,.18); }
+  .nu-modal h3 { margin:0 0 6px; font-size:17px; }
+  .nu-modal .nu-sub { color:#666; font-size:13px; margin-bottom:14px; }
+  .nu-modal .nu-list { list-style:none; padding:0; margin:0 0 12px; max-height:240px; overflow-y:auto; }
+  .nu-modal .nu-item { display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #e4e7eb; border-radius:8px; margin-bottom:6px; }
+  .nu-modal .nu-item.active { background:#f0f9ff; border-color:#1d6f9b; }
+  .nu-modal .nu-item .nu-iname { flex:1; font-weight:600; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .nu-modal .nu-item .nu-idate { font-size:11px; color:#888; min-width:90px; text-align:right; }
+  .nu-modal .nu-item button { padding:4px 10px; font-size:12px; border:1px solid #d4d7db; background:#fff; border-radius:6px; cursor:pointer; }
+  .nu-modal .nu-item button:hover { background:#f1f3f5; }
+  .nu-modal .nu-item button.nu-del { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-modal .nu-item button.nu-del:hover { background:#ffe3e3; }
+  .nu-modal .nu-item button:disabled { opacity:.45; cursor:not-allowed; }
+  .nu-modal .nu-add-row { display:flex; gap:6px; margin-top:8px; }
+  .nu-modal .nu-add-row input { flex:1; padding:8px 10px; border:1px solid #d4d7db; border-radius:6px; font-size:14px; }
+  .nu-modal .nu-add-row button { padding:8px 14px; background:#1d6f9b; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer; font-weight:600; }
+  .nu-modal .nu-tip { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:8px 10px; font-size:12px; color:#666; margin-top:10px; }
+  .nu-modal .nu-actions { margin-top:14px; text-align:right; }
+  .nu-modal .nu-actions button { padding:8px 14px; border:1px solid #d4d7db; background:#fff; border-radius:6px; font-size:13px; cursor:pointer; }
+
+  /* Top toolbar (3 buttons) */
+  .nu-toolbar { display:inline-flex; align-items:center; gap:6px; margin-left:auto; flex-wrap:wrap; }
+  .nu-tb-btn { display:inline-flex; align-items:center; gap:5px; padding:5px 11px; background:#fff; border:1px solid #d4d7db; border-radius:8px; font-size:13px; cursor:pointer; color:#1f2933; transition:all .15s; line-height:1.4; }
+  .nu-tb-btn:hover { background:#e6f1f7; border-color:#1d6f9b; color:#1d6f9b; }
+  .nu-tb-btn .nu-tb-icon { font-size:14px; }
+  .nu-tb-btn.nu-tb-user { font-weight:600; }
+  .nu-tb-btn.nu-tb-user .nu-tb-dot { width:7px; height:7px; border-radius:50%; background:#2f9e44; margin-right:1px; }
+  .nu-tb-btn.nu-tb-clear { color:#c92a2a; }
+  .nu-tb-btn.nu-tb-clear:hover { background:#ffe3e3; border-color:#c92a2a; color:#c92a2a; }
+  /* Generic modal (shared between 3) */
+  .nu-md-bg { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:9999; padding:20px; }
+  .nu-md-bg.show { display:flex; }
+  .nu-md { background:#fff; border-radius:12px; padding:22px; max-width:560px; width:100%; max-height:85vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,.18); }
+  .nu-md h3 { margin:0 0 6px; font-size:17px; }
+  .nu-md .nu-md-sub { color:#666; font-size:13px; margin-bottom:14px; line-height:1.6; }
+  .nu-md .nu-md-list { list-style:none; padding:0; margin:0 0 12px; max-height:240px; overflow-y:auto; }
+  .nu-md .nu-md-item { display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #e4e7eb; border-radius:8px; margin-bottom:6px; flex-wrap:wrap; }
+  .nu-md .nu-md-item.active { background:#f0f9ff; border-color:#1d6f9b; }
+  .nu-md .nu-md-item .nu-md-iname { flex:1; font-weight:600; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .nu-md .nu-md-item .nu-md-idate { font-size:11px; color:#888; min-width:90px; text-align:right; }
+  .nu-md .nu-md-item button { padding:4px 10px; font-size:12px; border:1px solid #d4d7db; background:#fff; border-radius:6px; cursor:pointer; }
+  .nu-md .nu-md-item button:hover { background:#f1f3f5; }
+  .nu-md .nu-md-item button.nu-md-del { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-md .nu-md-item button.nu-md-del:hover { background:#ffe3e3; }
+  .nu-md .nu-md-item button:disabled { opacity:.45; cursor:not-allowed; }
+  .nu-md .nu-md-add { display:flex; gap:6px; margin-top:8px; }
+  .nu-md .nu-md-add input { flex:1; padding:8px 10px; border:1px solid #d4d7db; border-radius:6px; font-size:14px; }
+  .nu-md .nu-md-add button { padding:8px 14px; background:#1d6f9b; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer; font-weight:600; }
+  .nu-md .nu-md-tip { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:8px 10px; font-size:12px; color:#666; margin-top:10px; line-height:1.6; }
+  .nu-md .nu-md-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:6px 0; }
+  .nu-md .nu-md-section { margin-top:14px; padding-top:14px; border-top:1px solid #e4e7eb; }
+  .nu-md .nu-md-section.danger { border-top:2px solid #ffe3e3; }
+  .nu-md .nu-md-section.danger > .nu-md-title { color:#c92a2a; font-weight:700; font-size:13px; margin-bottom:6px; }
+  .nu-md .nu-md-title { font-size:13px; font-weight:600; color:#1f2933; margin-bottom:6px; }
+  .nu-md .nu-md-actions { margin-top:14px; text-align:right; }
+  .nu-md .nu-md-actions button { padding:8px 14px; border:1px solid #d4d7db; background:#fff; border-radius:6px; font-size:13px; cursor:pointer; }
+  .nu-md .nu-md-btn-primary { background:#1d6f9b !important; color:#fff !important; border-color:#1d6f9b !important; font-weight:600; }
+  .nu-md .nu-md-btn-success { background:#2f9e44 !important; color:#fff !important; border-color:#2f9e44 !important; font-weight:600; }
+  .nu-md .nu-md-btn-danger  { background:#c92a2a !important; color:#fff !important; border-color:#c92a2a !important; font-weight:600; }
+  .nu-md .nu-md-btn-outline-danger { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-md .nu-md-btn-outline-danger:hover { background:#ffe3e3; }
+
 </style>
 </head>
 <body>
@@ -162,7 +231,19 @@
     </div>
     <div class="progress" id="progress"></div>
   </div>
-</header>
+
+
+<div class="nu-toolbar">
+<button class="nu-tb-btn nu-tb-user" id="nuTbUser" type="button" title="切換／管理使用者">
+  <span class="nu-tb-dot"></span><span id="nuTbUserName">預設使用者</span><span style="font-size:9px;opacity:.6;">▼</span>
+</button>
+<button class="nu-tb-btn" id="nuTbIO" type="button" title="匯入／匯出 JSON 備份">
+  <span class="nu-tb-icon">💾</span>匯入／匯出
+</button>
+<button class="nu-tb-btn nu-tb-clear" id="nuTbClear" type="button" title="清除紀錄（無法復原）">
+  <span class="nu-tb-icon">🗑</span>清除
+</button>
+</div></header>
 
 <div class="layout">
   <aside class="sidebar">
@@ -175,7 +256,8 @@
     </div>
     <button id="resetBtn" class="btn danger" style="margin-top:12px;width:100%;font-size:13px;">重置本卷作答</button>
     <button id="summaryBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px;">查看本卷總結</button>
-    <button id="exportBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px;">📤 匯出結果…</button>
+    <button id="exportBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px;">📤 匯入／匯出本卷</button>
+    <button id="clearMarksOnlyBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px; color:#c92a2a; border-color:#ffc9c9;">🔖 清除本卷標記</button>
   </aside>
 
   <main class="main" id="main"></main>
@@ -185,7 +267,7 @@
 
 <div class="modal-bg" id="exportModal" role="dialog" aria-modal="true">
   <div class="modal-card">
-    <h3>匯出測驗結果</h3>
+    <h3>匯入／匯出本卷</h3>
     <div class="modal-sub" id="exportSub">本卷：第一次 (114020)</div>
     <div class="opt-row" id="exportOpts">
       <button class="exp-opt" data-filter="all">📄 全部題目（含詳解） <span class="count" id="cntAll"></span></button>
@@ -202,6 +284,121 @@
 </div>
 
 <script>
+
+/* ===== Nephron 多人使用者系統 (NU) ===== */
+const NU = {
+  ck() { return localStorage.getItem("nephron::current_user") || "default"; },
+  list() {
+    try {
+      let l = JSON.parse(localStorage.getItem("nephron::users") || "[]");
+      if (!l.length) {
+        l = [{ uid: "default", name: "預設使用者", createdAt: new Date().toISOString().slice(0,10), star: true }];
+        localStorage.setItem("nephron::users", JSON.stringify(l));
+      }
+      return l;
+    } catch(e) { return [{ uid: "default", name: "預設使用者", createdAt: "", star: true }]; }
+  },
+  cur() { const id = NU.ck(); return NU.list().find(u => u.uid === id) || NU.list()[0]; },
+  use(uid) { localStorage.setItem("nephron::current_user", uid); },
+  add(name) {
+    if (!name.trim()) return null;
+    const l = NU.list();
+    const uid = "u_" + Date.now().toString(36) + Math.floor(Math.random()*1000).toString(36);
+    l.push({ uid, name: name.trim(), createdAt: new Date().toISOString().slice(0,10), star: false });
+    localStorage.setItem("nephron::users", JSON.stringify(l));
+    return uid;
+  },
+  rename(uid, newName) {
+    const l = NU.list();
+    const u = l.find(x => x.uid === uid);
+    if (u && newName.trim()) { u.name = newName.trim(); localStorage.setItem("nephron::users", JSON.stringify(l)); return true; }
+    return false;
+  },
+  del(uid) {
+    if (uid === "default") return false;
+    const l = NU.list().filter(x => x.uid !== uid);
+    localStorage.setItem("nephron::users", JSON.stringify(l));
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.includes("::u::" + uid)) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    if (NU.ck() === uid) localStorage.setItem("nephron::current_user", "default");
+    return true;
+  },
+  exportAll() {
+    const obj = { app: "nephron-pt-quiz", version: 1, exportedAt: new Date().toISOString(),
+                  users: NU.list(), currentUser: NU.ck(), data: {} };
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (!k) continue;
+      if (k.startsWith("nephron_") || k.startsWith("nephron::")) obj.data[k] = localStorage.getItem(k);
+    }
+    return obj;
+  },
+  importAll(obj, mode) {
+    if (!obj || !obj.data || obj.app !== "nephron-pt-quiz") throw new Error("無效的備份檔（找不到 nephron-pt-quiz 標記）");
+    mode = mode || "replace";
+    if (mode === "replace") {
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && (k.startsWith("nephron_") || k.startsWith("nephron::"))) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+    }
+    if (obj.users) localStorage.setItem("nephron::users", JSON.stringify(obj.users));
+    for (const k in obj.data) localStorage.setItem(k, obj.data[k]);
+    if (obj.currentUser) localStorage.setItem("nephron::current_user", obj.currentUser);
+    return Object.keys(obj.data).length;
+  },
+  wipeAllProgress() {
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith("nephron_")) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    return toDel.length;
+  },
+  wipeAll() {
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && (k.startsWith("nephron_") || k.startsWith("nephron::"))) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    return toDel.length;
+  }
+};
+(function migrate() {
+  if (NU.ck() !== "default") return;
+  const oldKeys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith("nephron_") && !k.includes("::u::")) oldKeys.push(k);
+  }
+  oldKeys.forEach(k => {
+    const v = localStorage.getItem(k);
+    const newK = k + "::u::default";
+    if (v !== null && localStorage.getItem(newK) === null) localStorage.setItem(newK, v);
+  });
+})();
+(function migrateDefaultName() {
+  try {
+    const raw = localStorage.getItem("nephron::users");
+    if (!raw) return;
+    const arr = JSON.parse(raw);
+    let changed = false;
+    for (const u of arr) {
+      if (u.uid === "default" && u.name === "預設") { u.name = "預設使用者"; changed = true; }
+    }
+    if (changed) localStorage.setItem("nephron::users", JSON.stringify(arr));
+  } catch(e) {}
+})();
+function _userKey(baseKey) { return baseKey + "::u::" + NU.ck(); }
+
 const DATA = {"Q1": {"label": "第一次", "questions": [{"n": 1, "stem": "60歲王先⽣抱怨頸部疼痛逐漸加重，坐姿檢查時發現後仰（extension）比前彎（flexion）痛，休息時疼痛會\n減緩，動作檢查沒有不穩定之症狀，請問他最可能有下列那個問題？", "options": {"A": "頸椎滑脫（spondylolisthesis）", "B": "頸椎狹窄（stenosis）", "C": "頸椎椎間盤突出（disc herniation）", "D": "頸部伸肌拉傷"}, "images": [], "answer": "B", "explanation": "答案：B。頸椎狹窄（stenosis）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 2, "stem": "有⼀病患在前天開⾞時，遭後⽅⾞輛快速衝撞，昨天開始有頸部疼痛與僵硬。就診後確定無骨折與神經⾎管傷\n害，下列何種處置⽬前不宜？", "options": {"A": "可使⽤軟式頸圈（soft cervical collar），以保護⽀持頭頸部及維持姿勢", "B": "可使⽤第⼀⾄第⼆級的關節鬆動術（joint mobilization with grade I-II），以減輕疼痛", "C": "可教導頸椎與胸椎及早進⾏屈曲與後伸之牽張（stretching）運動，以增加關節活動度", "D": "⿎勵病患儘量維持⽇常⽣活活動，將有助於預後"}, "images": [], "answer": "C", "explanation": "答案：C。可教導頸椎與胸椎及早進⾏屈曲與後伸之牽張（stretching）運動，以增加關節活動度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 3, "stem": "下列何者非椎動脈堵塞可能造成之症狀？", "options": {"A": "頭暈（dizziness）", "B": "發⾳困難（dysarthria）", "C": "外側延髓症候群（Wallenberg's syndrome）", "D": "盜汗（sweating）"}, "images": [], "answer": "D", "explanation": "答案：D。盜汗（sweating）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 4, "stem": "有關顱頸屈曲測試（craniocervical flexion test）的敘述，下列何者錯誤？①⽤以測試頸部深層伸肌群的肌⾁\n功能\n②患者仰躺，屈膝（crook lying）\n③頭部維持在正中位置，頸後墊著氣壓式壓⼒計，以20毫米汞柱\n為起始測試壓⼒\n④測試過程中執⾏抬頭動作，避免使⽤表層肌群，不可閉氣⽤⼒", "options": {"A": "僅①②", "B": "僅②③", "C": "僅①④", "D": "僅②④"}, "images": [], "answer": "C", "explanation": "答案：C。僅①④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 5, "stem": "有關評估頸椎肌⾁之敘述，下列何者正確？", "options": {"A": "頸椎深層肌⾁扮演穩定肌⾓⾊時，反應時間應夠⻑，肌耐⼒應夠久", "B": "慢性頸椎痛患者常有頸椎淺層肌⾁⽤⼒過度及深層肌⾁無⼒現象", "C": "頸椎深層肌⾁扮演穩定肌⾓⾊時，反應時間應夠短，爆發⼒應夠強", "D": "急性頸椎痛患者常有頸椎淺層肌⾁無⼒及深層肌⾁⽤⼒過度現象"}, "images": [], "answer": "B", "explanation": "答案：B。慢性頸椎痛患者常有頸椎淺層肌⾁⽤⼒過度及深層肌⾁無⼒現象—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 6, "stem": "頸椎活動度不正常的個案於仰躺時，接受第⼀與第⼆頸椎關節被動活動度評估，下列那⼀項是正確的測試⽅\n法？", "options": {"A": "將受測者的頸部完全伸展，比較左右兩側旋轉的⾓度", "B": "將受測者的頸部完全屈曲，比較左右兩側旋轉的⾓度", "C": "將受測者的頸部完全側彎⾄任⼀邊，比較向左與向右旋轉⾓度的差異", "D": "將受測者的頸部完全旋轉⾄任⼀邊，比較向左與向右側彎⾓度的差異"}, "images": [], "answer": "B", "explanation": "答案：B。將受測者的頸部完全屈曲，比較左右兩側旋轉的⾓度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 7, "stem": "觀察頸椎後側時，上頸椎處有⼀往後隆起類似階梯的結構，且Sharp-Purser test發現有頸椎不穩定的現象，最\n可能是發⽣下列那⼀種狀況？", "options": {"A": "頸椎棘突骨折", "B": "枕骨向前滑脫", "C": "第⼀頸椎向前滑脫", "D": "第⼆頸椎向前滑脫"}, "images": [], "answer": "C", "explanation": "答案：C。第⼀頸椎向前滑脫—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 8, "stem": "有關頸椎運動覺訓練（kinesthetic training），下列敘述何者正確？", "options": {"A": "可⽤點頭運動訓練安全的脊椎動作", "B": "應強調機械反射性的肌⼒訓練", "C": "儘量不要讓個案感受到錯誤姿勢所產⽣的症狀改變", "D": "須同時使⽤頸圈"}, "images": [], "answer": "A", "explanation": "答案：A。可⽤點頭運動訓練安全的脊椎動作—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 9, "stem": "⼀位45歲男性患者抱怨右⼿⼿臂疼痛（如圖），從這個⾝體圖判斷，下列有關造成此疼痛區域的可能原因，\n何者可能性最低？", "options": {"A": "斜⾓肌（scalene）激痛點（trigger point）之牽連痛", "B": "橈神經（radial nerve）機械敏感（mechanosensitivity）過⾼", "C": "頸椎神經根病變（radiculopathy）", "D": "Wartenberg疾病／現象"}, "images": ["data:image/png;base64,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"], "answer": "D", "explanation": "答案：D。Wartenberg疾病／現象—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 10, "stem": "有關頸部神經學檢查之敘述，下列何者錯誤？", "options": {"A": "⼿指內收／外展動作是第1胸椎神經根之肌節（myotome）", "B": "⼩指區域為第8頸椎神經根之⽪節（dermatome）", "C": "三頭肌（triceps）深腱反射是測試第7頸椎神經根", "D": "頸部側彎動作是第2頸椎神經根之肌節（myotome）"}, "images": [], "answer": "D", "explanation": "答案：D。頸部側彎動作是第2頸椎神經根之肌節（myotome）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 11, "stem": "相對於站姿時，下列那項活動對於L3椎間盤內壓增加之比例最⼤？", "options": {"A": "⾛路", "B": "⼤笑", "C": "腰椎旋轉", "D": "腰椎側彎"}, "images": [], "answer": "B", "explanation": "答案：B。⼤笑—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 12, "stem": "有關腰椎⼩⾯關節之滑液囊半⽉軟骨夾擠（impacted synovial meniscoid）的敘述，下列何者錯誤？", "options": {"A": "此類病患的主訴為背部鎖住且不敢動彈", "B": "較常發⽣於腰椎活動度過⼩的中年女性", "C": "進⾏⾝體檢查時可發現病患兩邊的脊側肌（paraspinal muscles）有不對稱的肌⾁痙攣", "D": "通常不會有神經症狀"}, "images": [], "answer": "B", "explanation": "答案：B。較常發⽣於腰椎活動度過⼩的中年女性—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 13, "stem": "續發性背痛（secondary backache）患者中常⾒的交感神經現象，包含下列那些臨床表現？①⽪膚或肌⾁會\n有痛覺過敏情形\n②肌⾁張⼒降低\n③易起雞⽪疙瘩或有局部⽪膚之營養變化\n④可歸因於背根神經結損\n傷\n⑤其體表症狀符合神經⽀配分布狀態", "options": {"A": "僅①③④", "B": "僅②④⑤", "C": "僅②③④", "D": "僅①③⑤"}, "images": [], "answer": "A", "explanation": "答案：A。僅①③④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 14, "stem": "影響下背痛的姿勢或動作因素中，下列敘述何者最不適當？", "options": {"A": "源⾃於⼩⾯關節的腰痛，通常會因坐下⽽緩解，⾛路則會加重其症狀", "B": "椎間盤後環狀纖維（annulus fibrosus）撕裂之患者，可因坐下休息明顯減輕其症狀", "C": "⾝體前彎的動作過程中，會出現疼痛弧（painful arc），可能為椎間盤突出造成", "D": "由坐站起時，會先增加疼痛，⾄站直時疼痛則減輕，可能為韌帶不穩定問題"}, "images": [], "answer": "B", "explanation": "答案：B。椎間盤後環狀纖維（annulus fibrosus）撕裂之患者，可因坐下休息明顯減輕其症狀—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 15, "stem": "下列何種測試為陽性反應時，會讓你懷疑下背痛患者的腰椎間盤突出是在神經根的內側？①單腳站姿下，軀\n幹後仰測試引發症狀\n②站姿下，軀幹側彎⾄健側引發症狀\n③仰臥時，主動直膝抬腿（active SLR）測試\n時腰⼸拱起\n④仰臥時，於健側進⾏被動直膝抬腿測試會引發症狀", "options": {"A": "僅①②", "B": "僅③④", "C": "僅①③", "D": "僅②④"}, "images": [], "answer": "D", "explanation": "答案：D。僅②④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 16, "stem": "如何教導背痛患者⾃我矯正「向右偏移」（right lateral shift）的姿勢？①右肩靠牆、左⼿將左側骨盆向右推\n②左肩靠牆、右⼿將右側骨盆向左推\n③右⼿將右側胸廓向左推、左⼿將左側骨盆向右推\n④左⼿將左側\n胸廓向右推、右⼿將右側骨盆向左推", "options": {"A": "僅①③", "B": "僅②④", "C": "僅①④", "D": "僅②③"}, "images": [], "answer": "A", "explanation": "答案：A。僅①③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 17, "stem": "有關腰椎核⼼穩定訓練的概念，下列敘述何者錯誤？", "options": {"A": "對於脊椎開⼑後的病⼈，尤其是後開⽅式的病⼈，不適宜進⾏核⼼穩定訓練", "B": "髖關節／骨盆帶（hip/pelvic girdle）肌⾁是重要的核⼼穩定肌群", "C": "軀幹與骨盆的核⼼穩定是完成所有肢體動作之基礎", "D": "⽀撐腹腔穩定性的肌⾁群包括橫膈、腹橫肌、多裂肌與骨盆底肌"}, "images": [], "answer": "A", "explanation": "答案：A。對於脊椎開⼑後的病⼈，尤其是後開⽅式的病⼈，不適宜進⾏核⼼穩定訓練—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 18, "stem": "下列有關輕微脊椎滑脫（spondylolisthesis）保守治療之敘述，何者正確？", "options": {"A": "通常會建議病⼈穿戴護腰以限制腰椎前彎與旋轉的動作", "B": "可包括脊椎穩定運動、腹肌訓練、腰⽅肌與腰豎脊肌等速肌⼒訓練等", "C": "膕旁肌的牽張（stretching）運動非常重要，因為膕旁肌太緊會造成骨盆前傾，使腰椎的穩定性變差", "D": "應教育病⼈避免反覆性過度的後仰與旋轉動作，以免病情惡化"}, "images": [], "answer": "D", "explanation": "答案：D。應教育病⼈避免反覆性過度的後仰與旋轉動作，以免病情惡化—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 19, "stem": "有關急性期背痛病⼈運動治療的敘述，下列何者錯誤？", "options": {"A": "當病⼈出現鞍部⿇⽊（saddle anesthesia）現象時，可能是椎間盤壓迫神經，要做脊椎伸直運動，以減少 椎間盤向後外側脫垂，降低神經壓⼒", "B": "當脊椎伸直運動可以減緩病⼈的症狀時，在急性期應避免脊椎屈曲的運動", "C": "當沒有任何動作或姿勢可減緩或讓疼痛向⼼集中化（centralization），則不宜給予脊椎伸直運動", "D": "病⼈呈現極度疼痛且全⾝僵硬、不願意動時，則不宜給予脊椎伸直運動"}, "images": [], "answer": "A", "explanation": "答案：A。當病⼈出現鞍部⿇⽊（saddle anesthesia）現象時，可能是椎間盤壓迫神經，要做脊椎伸直運動，以減少 椎間盤向後外側脫垂，降低神經壓⼒—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 20, "stem": "下列那些腰椎組織受傷會產⽣radicular pain？", "options": {"A": "脊椎韌帶", "B": "⼩⾯關節與周圍的關節囊", "C": "脊椎神經與脊椎神經根", "D": "腰椎肌⾁與肌膜"}, "images": [], "answer": "C", "explanation": "答案：C。脊椎神經與脊椎神經根—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 21, "stem": "下列何種運動最適合骨質疏鬆且已發⽣腰椎前部壓迫性骨折半年之患者？", "options": {"A": "仰臥起坐運動", "B": "合併軀幹旋轉運動及軀幹屈曲運動", "C": "軀幹屈曲運動", "D": "軀幹伸直運動"}, "images": [], "answer": "D", "explanation": "答案：D。軀幹伸直運動—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 22, "stem": "⼀舉重選⼿抱怨伸直腰椎時有明顯的下背疼痛，久站、快⾛或把物體舉⾼過肩時症狀都會加劇。檢查發現其\n腰椎棘突（spinous process）有壓痛出現，且在四⾜跪姿下，患者做骨盆前傾的動作會讓症狀加劇，後傾時\n會減輕。相較之下，下列何種治療最適合緩解此患者的症狀？", "options": {"A": "腰椎核⼼穩定運動", "B": "機械牽引", "C": "腰椎後伸運動", "D": "膕旁肌牽張(stretching)運動"}, "images": [], "answer": "A", "explanation": "答案：A。腰椎核⼼穩定運動—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 23, "stem": "脊柱功能性單元（functional spinal unit）⼜稱做動作節段（motion segment），其組成不包括下列何者？", "options": {"A": "脊椎骨（vertebrae）", "B": "韌帶（ligament）", "C": "肌⾁（muscle）", "D": "椎間盤（intervertebral disk）"}, "images": [], "answer": "C", "explanation": "答案：C。肌⾁（muscle）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 24, "stem": "當⼀位病患抱怨下背痛時，其治療師懷疑是薦髂關節損傷。下列那⼀測試最適合？", "options": {"A": "Thigh thrust test", "B": "Clarke's sign", "C": "Ober's test", "D": "Thompson's test"}, "images": [], "answer": "A", "explanation": "答案：A。Thigh thrust test—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 25, "stem": "在薦髂關節的觸診中，下列何者出現表⽰髂骨（ilium）向上移動（upslip）？", "options": {"A": "該側髂前上棘（ASIS）和髂後上棘（PSIS）都低於對側", "B": "該側髂前上棘（ASIS）和髂後上棘（PSIS）都⾼於對側", "C": "該側髂前上棘（ASIS）較對側低，該側髂後上棘（PSIS）對側⾼", "D": "該側髂前上棘（ASIS）較對側⾼，該側髂後上棘（PSIS）對側低"}, "images": [], "answer": "B", "explanation": "答案：B。該側髂前上棘（ASIS）和髂後上棘（PSIS）都⾼於對側—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 26, "stem": "下列有關顳頜關節的動作敘述，何者正確？", "options": {"A": "關節的主動動作是向前和稍微向內", "B": "上下排牙齒的接觸最多時，稱為中央咬合（centric occlusion）", "C": "關節動作的第⼀階段主要是發⽣在上關節腔的轉動（rotation）", "D": "關節動作的第⼆階段主要是下頜骨（mandible）在不動的關節盤（disc）上做前向滑⾏（anterior translation）"}, "images": [], "answer": "B", "explanation": "答案：B。上下排牙齒的接觸最多時，稱為中央咬合（centric occlusion）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 27, "stem": "當顳頜關節障礙患者張嘴時，下頜偏向左側⽽產⽣類似C形之軌跡（C-type curve）時，下列敘述何者錯誤？", "options": {"A": "左側的關節為低活動度（hypomobility）", "B": "可能是患側的嚼肌（masseter）、翼狀肌（pterygoid）痙攣", "C": "關節側向動作（lateral movement）向右側的程度會降低", "D": "右側的關節盤向前脫位（anterior displacement），且無法復位"}, "images": [], "answer": "D", "explanation": "答案：D。右側的關節盤向前脫位（anterior displacement），且無法復位—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 28, "stem": "針對原發性胸椎脊柱側彎的矯正，下列敘述何者錯誤？", "options": {"A": "個案於坐姿可以將脊柱凹側⼿部抬⾼進⾏牽張", "B": "進⾏肩胛骨的核⼼穩定訓練有助於側彎的矯正", "C": "個案側躺在脊柱凹側，將肩膀與骨盆下壓⾄床⾯有助於脊柱伸直", "D": "進⾏腹外斜肌訓練有助於側彎的矯正"}, "images": [], "answer": "C", "explanation": "答案：C。個案側躺在脊柱凹側，將肩膀與骨盆下壓⾄床⾯有助於脊柱伸直—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 29, "stem": "有關針對胸椎進⾏的垂直牽引測試（vertical traction test），下列敘述何者正確？", "options": {"A": "受測者仰臥，雙⼿交叉置於胸前", "B": "測試者半蹲在受測者的疼痛側，雙⼿環抱前後肋骨，以緩緩站起的⽅式進⾏牽引", "C": "如果是縱韌帶受傷，此牽引的動作通常會減緩個案的疼痛症狀", "D": "如果是⼩⾯關節的急性發炎，此牽引的動作通常會引發個案的疼痛症狀"}, "images": [], "answer": "D", "explanation": "答案：D。如果是⼩⾯關節的急性發炎，此牽引的動作通常會引發個案的疼痛症狀—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 30, "stem": "有關胸椎⼩⾯關節（facet joint）的結構與活動特性，下列敘述何者錯誤？", "options": {"A": "第2⾄第11節胸椎的上關節突的⼩⾯關節（facet joint）朝向後且有⼀些朝外側", "B": "胸椎關節的休息姿勢是胸椎位在屈曲與後伸的動作中間", "C": "胸椎關節的閉鎖位置（close packed position）是胸椎往同⼀⽅向旋轉與側彎到底", "D": "胸椎關節的關節囊受限模式（capsular pattern）是旋轉與側彎動作限制較其他動作多，且兩個動作的限制 程度接近"}, "images": [], "answer": "C", "explanation": "答案：C。胸椎關節的閉鎖位置（close packed position）是胸椎往同⼀⽅向旋轉與側彎到底—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 31, "stem": "下列何者最適合⽤於改善病患在⼿臂上舉時，所出現的肩胛骨過度上抬現象？", "options": {"A": "病患⾃⾏練習肩胛下壓", "B": "病患練習肩胛下壓，治療師同時在肘部給予往上的阻⼒", "C": "治療師給予下斜⽅肌（lower trapezius）觸覺指引，病患應於肩胛上旋時，專注於避免肩胛上抬", "D": "治療師給予菱形肌（rhomboids）觸覺指引，病患應於肩胛下旋時，專注於避免肩胛上抬"}, "images": [], "answer": "C", "explanation": "答案：C。治療師給予下斜⽅肌（lower trapezius）觸覺指引，病患應於肩胛上旋時，專注於避免肩胛上抬—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 32, "stem": "物理治療師請病患將⼿貼在背後腰部，然後將⼿慢慢抬離背部，但病患無法將⼿抬離背部，這表⽰下列那⼀\n肌⾁損傷？", "options": {"A": "棘上肌", "B": "棘下肌", "C": "肩胛下肌", "D": "⼩圓肌"}, "images": [], "answer": "C", "explanation": "答案：C。肩胛下肌—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 33, "stem": "針對旋轉袖肌肌腱炎（rotator cuff tendinitis）的運動訓練，下列運動的進階順序，何者較適當？①⼿臂在肩\n胛平⾯外展30～45度且⼿肘屈曲90度時，利⽤彈⼒帶為阻⼒做肩內外轉的動作\n②雙⼿在胸前接拋3～5磅\n的治療球\n③站姿肩外轉的姿勢下做肩胛⾯的外展(scaption)\n④站姿⼿臂⾃然下垂且⼿肘屈曲90度，進⾏\n肩內外轉的等⻑收縮", "options": {"A": "②①④③", "B": "③④①②", "C": "④①③②", "D": "④③②①"}, "images": [], "answer": "C", "explanation": "答案：C。④①③②—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 34, "stem": "臂無⼒症候群（dead arm syndrome）的患者，在下列那個肩部動作下，比較會突然感覺上肢疼痛與無⼒？", "options": {"A": "極端的外展與內轉", "B": "極端的外展與外轉", "C": "正中的外展與內轉", "D": "正中的外展與外轉"}, "images": [], "answer": "B", "explanation": "答案：B。極端的外展與外轉—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 35, "stem": "下列有關患者疼痛表現之敘述，何者錯誤？", "options": {"A": "胸廓出⼝症候群常在頸肩部有深層的、惱⼈的及牙痛般的疼痛", "B": "急性鈣化性肩肌腱炎通常是灼痛、燃燒似的疼痛", "C": "頸神經根疼痛患者通常⼿舉起⾼過頭部時，症狀會加劇", "D": "肩峰鎖骨關節疼痛患者在肩外展⼤於90度時，疼痛更明顯"}, "images": [], "answer": "C", "explanation": "答案：C。頸神經根疼痛患者通常⼿舉起⾼過頭部時，症狀會加劇—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 36, "stem": "站姿下，前位頭部（forward head）以及胸椎駝背（thoracic kyphosis）常伴隨錯誤的肩胛姿勢，造成肱骨\n相對於肩胛骨會處於何種位置？①屈曲\n②伸直\n③外展\n④內收\n⑤內轉\n⑥外轉", "options": {"A": "僅②④", "B": "僅①⑤", "C": "僅④⑥", "D": "僅③⑤"}, "images": [], "answer": "D", "explanation": "答案：D。僅③⑤—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 37, "stem": "病⼈之下盂肱韌帶（inferior glenohumeral ligament）之前帶及前側肩關節囊過緊時，下列何者是其肩關節動\n作受限⽅式？", "options": {"A": "在肩外展⾓度0度時，肩關節外轉受限", "B": "在肩外展⾓度90度時，肩關節外轉受限", "C": "在肩外展⾓度0度時，肩關節內轉受限", "D": "在肩外展⾓度90度時，肩關節內轉受限"}, "images": [], "answer": "B", "explanation": "答案：B。在肩外展⾓度90度時，肩關節外轉受限—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 38, "stem": "下列肩部病變與特殊測試之組合，何者正確？", "options": {"A": "肱⼆頭肌斷裂－空罐測試（empty can test）", "B": "肩夾擠症候群－驚恐測試（apprehension test）", "C": "肩旋轉肌斷裂－前抽拉測試（anterior drawer test）", "D": "喙鎖韌帶斷裂－梯狀變形（step deformity）"}, "images": [], "answer": "D", "explanation": "答案：D。喙鎖韌帶斷裂－梯狀變形（step deformity）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 39, "stem": "有關訓練肩胛骨控制之肌⼒⽅式，何者錯誤？", "options": {"A": "划船運動可訓練提肩胛肌和菱形肌", "B": "坐姿時，⼿掌向下且⼿肘⽤⼒伸直讓⾝體上撐運動主要訓練闊背肌", "C": "加強伏地起⾝運動（push-up with a plus）主要訓練胸⼩肌", "D": "聳肩運動可訓練上斜⽅肌"}, "images": [], "answer": "C", "explanation": "答案：C。加強伏地起⾝運動（push-up with a plus）主要訓練胸⼩肌—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 40, "stem": "施⾏肩關節前向不穩之驚恐與復位測試（apprehension and relocation test）時，將肘屈曲90度、肩關節外\n展90度再外轉後，下列敘述何者正確？", "options": {"A": "若患者出現恐懼警戒神情，可再將肱骨頭向前推，如恐懼消失，則測試結果為陽性，可能為盂肱關節脫位 或半脫位", "B": "若患者出現恐懼警戒神情，可再將肱骨頭向後推，如恐懼消失，但出現疼痛，則測試結果為陽性，可能為 盂肱關節脫位或半脫位", "C": "若患者出現盂肱關節疼痛，可再將肱骨頭向後推，如疼痛消失，則測試結果為陽性，可能為盂肱關節不穩 定伴有次發性夾擠症候群", "D": "若患者出現盂肱關節疼痛，可再將肱骨頭向後推，如疼痛感覺未受影響，則測試結果為陽性，可能為盂肱 關節後內側夾擠"}, "images": [], "answer": "C", "explanation": "答案：C。若患者出現盂肱關節疼痛，可再將肱骨頭向後推，如疼痛消失，則測試結果為陽性，可能為盂肱關節不穩 定伴有次發性夾擠症候群—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 41, "stem": "有關肩關節特殊測試及其測試肌⾁之配對，下列何者正確？", "options": {"A": "磨損徵象（abrasion sign）－肱⼆頭肌", "B": "Ludington⽒測試－棘下肌", "C": "降臂（drop-arm）測試－旋轉肌群", "D": "號⼿徵象（hornblower's sign）－肩胛下肌"}, "images": [], "answer": "C", "explanation": "答案：C。降臂（drop-arm）測試－旋轉肌群—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 42, "stem": "有關冰凍肩患者的物理治療，下列敘述何者正確？", "options": {"A": "牽張（stretching）運動是最主要的治療，在⾼應激性（high irritability）期即須開始", "B": "不需進⾏阻⼒式肌⼒訓練，尤其在低應激性（low irritability）期，因為疼痛緩解後肌⼒⾃然會恢復", "C": "即使在⾼應激性（high irritability）期，也可施⾏關節鬆動術，以減輕疼痛", "D": "需加強肩胛聳肩練習，以避免併發肩夾擠症候群"}, "images": [], "answer": "C", "explanation": "答案：C。即使在⾼應激性（high irritability）期，也可施⾏關節鬆動術，以減輕疼痛—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 43, "stem": "躺在床上講電話時，左⼿持⼿機放在左⽿邊，左上臂垂放在床上，前述動作類似下列那條神經之動⼒學檢\n查？", "options": {"A": "正中神經", "B": "橈神經", "C": "尺神經", "D": "肌⽪神經"}, "images": [], "answer": "C", "explanation": "答案：C。尺神經—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 44, "stem": "肘關節的三合體傷害（terrible triad），是指肱尺骨關節後向脫⾅時，同時出現下列那些骨折？①肱骨髁間\n骨折\n②橈骨頭部骨折\n③肱骨⼩頭骨折（capitellar fracture）\n④橈骨冠狀⾯骨折", "options": {"A": "僅①②", "B": "僅②③", "C": "僅③④", "D": "僅②④"}, "images": [], "answer": "D", "explanation": "答案：D。僅②④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 45, "stem": "有關Mill's測試之敘述，下列何者正確？", "options": {"A": "屬於主動動作檢查", "B": "檢查者將受測者前臂旋前（pronation），⼿腕完全屈曲，⼿肘伸直", "C": "若本測試結果為陽性，Cozen's 測試結果應為陰性", "D": "若本測試結果為陽性，代表有肘內上髁炎"}, "images": [], "answer": "B", "explanation": "答案：B。檢查者將受測者前臂旋前（pronation），⼿腕完全屈曲，⼿肘伸直—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 46, "stem": "肘外翻伸直過度負荷症候群（valgus extension overload syndrome） 多發⽣於投擲過程中的那個時期？", "options": {"A": "揮臂（cocking）期與加速早期（early acceleration）", "B": "減速（deceleration）期", "C": "準備動作（winding up）", "D": "隨轉動作（follow through）"}, "images": [], "answer": "A", "explanation": "答案：A。揮臂（cocking）期與加速早期（early acceleration）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 47, "stem": "病患的右⼿⼿指肌腱受損，受傷前的⼯作內容包括檢視鳳梨酥和放入盒內。病患以右⼿拿起鳳梨酥，檢視鳳\n梨酥完整性後，左⼿接過鳳梨酥並且放入盒⼦裡。配合病患⼯作需求，下列那⼀⼿部功能測試最適合？", "options": {"A": "Purdue pegboard test", "B": "Minnesota rate of manipulation test", "C": "Grip strength", "D": "Moberg's pickup test"}, "images": [], "answer": "B", "explanation": "答案：B。Minnesota rate of manipulation test—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 48, "stem": "下列那⼀構造不屬於腕部三⾓纖維軟骨複合體（triangular fibrocartilage complex, TFCC）？", "options": {"A": "掌側及背側的橈尺韌帶", "B": "橈側伸腕⻑肌", "C": "三⾓纖維軟骨", "D": "腕尺側副韌帶"}, "images": [], "answer": "B", "explanation": "答案：B。橈側伸腕⻑肌—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 49, "stem": "病患抱怨⼿腕橈側與⼤拇指橈側疼痛，經物理治療評估結果：①⼤拇指主動外展與伸直：疼痛\n②⼤拇指被\n動外展與伸直：不會疼痛\n③⼤拇指外展與伸直阻⼒測試：陰性\n④芬克斯坦測試（Finkelstein's test）：\n陰性。下列何者最有可能發⽣？", "options": {"A": "狄魁文⽒症候群（de Quervain's  syndrome）", "B": "外展拇短肌和伸拇⻑肌肌腱炎", "C": "獵場看守員⼤拇指（gamekeeper's thumb）", "D": "⼤拇指腕掌關節（carpometacarpal joint）之初期退化性關節炎"}, "images": [], "answer": "D", "explanation": "答案：D。⼤拇指腕掌關節（carpometacarpal joint）之初期退化性關節炎—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 50, "stem": "病患在⼀次滑雪運動中跌倒且⼿部著地，之後開始⼤拇指掌指關節疼痛，且感到⼤拇指抓捏（pinch）無⼒與\n不穩。下列敘述何者錯誤？", "options": {"A": "有可能是拇指掌指關節之尺側韌帶（ulnar collateral ligament）扭傷或是撕裂性骨折（avulsion fracture）", "B": "將病患⼤拇指握在伸直位置，由尺側給予掌指關節外翻⼒量（valgus stress），若外翻⾓度⼤於30～35 度，則可能尺側與副側韌帶（ulnar collateral ligament and accessory collateral ligament）皆完全斷裂", "C": "將病患⼤拇指握在伸直位置，給予掌指關節外翻⼒量（valgus stress），僅會測試到尺側韌帶（ulnar collateral ligament）穩定性，不會測到副側韌帶（accessory collateral ligament）", "D": "若韌帶完全斷裂且關節不穩定，則可以建議⼿術治療"}, "images": [], "answer": "C", "explanation": "答案：C。將病患⼤拇指握在伸直位置，給予掌指關節外翻⼒量（valgus stress），僅會測試到尺側韌帶（ulnar collateral ligament）穩定性，不—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 51, "stem": "當步態站立期呈現過多髖內轉現象時，其可能造成的原因為何？①股骨頭過度前傾（anteversion）\n②股\n骨頭過度後傾（retroversion）\n③髖內轉肌無⼒\n④髖外轉肌無⼒", "options": {"A": "僅①③", "B": "僅②④", "C": "僅①④", "D": "僅②③"}, "images": [], "answer": "C", "explanation": "答案：C。僅①④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 52, "stem": "下肢疼痛的患者喜歡將右腳跨到左腳前交叉站立，此時兩側骨盆看起來等⾼；當患者雙腳平⾏姿勢下右側骨\n盆明顯較⾼，此現象最可能與下列何種問題相關？①右側骨盆前傾\n②左側骨盆前傾\n③右側髖內收肌攣\n縮④左側髖內收肌攣縮", "options": {"A": "僅①③", "B": "僅④", "C": "僅③", "D": "僅②④"}, "images": [], "answer": "B", "explanation": "答案：B。僅④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 53, "stem": "下列何者不是造成髖關節彈響症候群（snapping syndrome）的原因？", "options": {"A": "髂腰肌（iliopsoas）肌腱過緊與⼩轉⼦摩擦", "B": "髂股韌帶（iliofemoral ligament）在股骨頭上滑動", "C": "關節腔內有鬆脫⼩體", "D": "梨狀肌（piriformis）肌腱在坐骨粗隆上摩擦"}, "images": [], "answer": "D", "explanation": "答案：D。梨狀肌（piriformis）肌腱在坐骨粗隆上摩擦—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 54, "stem": "仰躺時，做主動直膝抬腿動作時，若導致腰椎過度前凸（lordosis），則下列何者是可能的原因？", "options": {"A": "髂腰肌無⼒", "B": "腹直肌無⼒", "C": "腰⽅肌太緊", "D": "膕旁肌太緊"}, "images": [], "answer": "B", "explanation": "答案：B。腹直肌無⼒—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 55, "stem": "髖關節囊拉傷後，⻑期容易造成骨盆前傾，因此應針對下列那⼀肌⾁進⾏肌⼒訓練？", "options": {"A": "腹外斜肌", "B": "髂腰肌", "C": "內收⼤肌", "D": "闊筋膜張肌"}, "images": [], "answer": "A", "explanation": "答案：A。腹外斜肌—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 56, "stem": "關於使⽤膕旁肌腱或髕骨肌腱進⾏前⼗字韌帶重建術之比較，下列敘述何者正確？", "options": {"A": "使⽤膕旁肌腱重建者，較容易出現前膝疼痛", "B": "使⽤髕骨肌腱重建者，不易出現膝伸直機轉失能", "C": "使⽤髕骨肌腱重建者，植入組織需較⻑時間才能癒合", "D": "不論使⽤何種植入物皆可能出現膝關節活動度不⾜"}, "images": [], "answer": "D", "explanation": "答案：D。不論使⽤何種植入物皆可能出現膝關節活動度不⾜—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 57, "stem": "下列何者並不會造成膝關節Q⾓度過⼤？", "options": {"A": "股骨過度前傾（anteversion）", "B": "脛骨過度內轉（internal rotation）", "C": "膝關節過度外翻（valgum）", "D": "⾜部過度旋前（pronation）"}, "images": [], "answer": "B", "explanation": "答案：B。脛骨過度內轉（internal rotation）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 58, "stem": "有關膝半⽉板破裂後物理治療的敘述，下列何者錯誤？", "options": {"A": "早期開始運動，可以改善受傷後軟骨萎縮的問題", "B": "為避免影響半⽉板癒合，不論開⼑與否，受傷後早期都要先限制關節活動度", "C": "受傷或術後早期，要限制病⼈做深蹲的動作，以避免加重對半⽉板軟骨的壓迫", "D": "接受過半⽉板部分切除術，在控制疼痛與腫脹之下，術後可立即進⾏負重⾏⾛及全範圍膝關節運動與肌⼒ 訓練"}, "images": [], "answer": "B", "explanation": "答案：B。為避免影響半⽉板癒合，不論開⼑與否，受傷後早期都要先限制關節活動度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 59, "stem": "有關「跳躍膝」之敘述，下列何者錯誤？①是膝伸肌過度使⽤症候群的⼀種，好發於籃球員、排球員與⽥徑\n運動選⼿\n②若因阿基⾥斯肌腱太緊，造成踝關節背屈（dorsiflexion）⾓度不⾜，會加重髕骨肌腱的負荷，\n加重跳躍膝的症狀\n③不宜使⽤離⼼收縮的運動模式，以免造成更多負擔", "options": {"A": "僅①②", "B": "僅②③", "C": "僅③", "D": "僅②"}, "images": [], "answer": "C", "explanation": "答案：C。僅③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 60, "stem": "有關髕骨動作軌跡障礙的敘述，下列何者錯誤？", "options": {"A": "膝關節完全伸直時，髕骨的穩定性主要靠股內側肌收縮的⼒量來平衡髕骨外移的拉⼒", "B": "因疼痛會對肌⾁產⽣抑制作⽤，所以應避免上下階梯等關節承重的訓練⽅式，以免產⽣疼痛", "C": "貼紮或膝關節護具合併膝關節的運動訓練，可以協助髕骨較正確的移動軌跡，減少髕骨關節⾯的壓⼒，避 免疼痛的發⽣", "D": "進⾏直膝抬腿運動前，先做股四頭肌定位收縮（quadriceps setting），可以提⾼股內側肌的收縮"}, "images": [], "answer": "B", "explanation": "答案：B。因疼痛會對肌⾁產⽣抑制作⽤，所以應避免上下階梯等關節承重的訓練⽅式，以免產⽣疼痛—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 61, "stem": "45歲略胖的男性機⾞快遞送貨員，沒有外傷史，X光檢查無異常，除了抱怨右腳跨坐機⾞的瞬間，左膝疼\n痛，沒有膝關節僵硬及其他疼痛等症狀，且⾛路、上下樓梯或者蹲下都沒有問題。下列敘述何者最不可能？", "options": {"A": "因為右腳跨機⾞的瞬間，左膝關節疼痛發⽣應該與過度負重有關", "B": "略胖的男性快遞送貨員，常搬重物上下樓梯，應已出現退化性膝關節炎的現象", "C": "病⼈只有45歲且沒有外傷史，⼜沒有抱怨早晨關節僵硬、上下階梯或者蹲姿時膝關節症狀，所以無法判斷 為退化性關節炎", "D": "單腳承受體重時（再加上機⾞與貨物的重量），若左腿臀中肌肌⼒不⾜，且髂脛束緊縮，則可能引起膝關 節疼痛"}, "images": [], "answer": "B", "explanation": "答案：B。略胖的男性快遞送貨員，常搬重物上下樓梯，應已出現退化性膝關節炎的現象—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 62, "stem": "⼀患者在滑直排輪時左膝突然劇痛，治療師評估時執⾏McMurray測試和Lachman測試，結果皆為陽性，下\n列何種膝關節組織最不可能受傷？", "options": {"A": "內側半⽉軟骨（medial meniscus）", "B": "前⼗字韌帶（anterior cruciate ligament）", "C": "外側副韌帶（lateral collateral ligament）", "D": "內側副韌帶（medial collateral ligament）"}, "images": [], "answer": "C", "explanation": "答案：C。外側副韌帶（lateral collateral ligament）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 63, "stem": "⼀名30歲的男性經常從事⻑跑運動，抱怨下坡跑步或⾛路時膝關節疼痛特別明顯。檢查發現在10～20度膝屈\n曲⾓度下，給予膝屈曲肌⼒檢查會引發症狀，在膝膕窩外側最為明顯；但在膝屈曲60～90度間進⾏膝屈曲肌\n⼒測試則無疼痛產⽣。根據上述病史與檢查結果，最可能是下列何種問題？", "options": {"A": "股四頭肌挫傷（contusion）", "B": "髂脛束摩擦症候群（iliotibial band friction syndrome）", "C": "膕肌（popliteus）拉傷", "D": "鵝掌肌腱炎"}, "images": [], "answer": "C", "explanation": "答案：C。膕肌（popliteus）拉傷—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 64, "stem": "對於被診斷為右膝髂脛束摩擦症候群（iliotibial band friction syndrome）的45歲⻑跑男性患者，下列何種處\n理⽅式最不恰當？", "options": {"A": "症狀消失前避免跑步及避免膝關節⼤範圍之彎曲伸直運動", "B": "進⾏髖屈肌、股直肌及髂脛束的牽張（stretching）運動", "C": "加強臀部肌群的肌⼒訓練", "D": "訓練時，上坡跑步較下坡跑步傷害⼩，公路跑步較泥⼟路⾯更好"}, "images": [], "answer": "D", "explanation": "答案：D。訓練時，上坡跑步較下坡跑步傷害⼩，公路跑步較泥⼟路⾯更好—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 65, "stem": "有關阿基⾥斯腱肌腱炎的處置，下列何者錯誤？", "options": {"A": "可針對阿基⾥斯腱做深層摩擦按摩", "B": "可針對後⼩腿肌群做拉筋", "C": "可短期使⽤⾜跟墊（heel lift）", "D": "應避免使⽤超⾳波治療"}, "images": [], "answer": "D", "explanation": "答案：D。應避免使⽤超⾳波治療—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 66, "stem": "站立姿勢下，雙腳不移動且軀幹轉向左側時，有關右⾜動作的敘述，下列何者正確？", "options": {"A": "距下關節產⽣的動作為旋後（supination）", "B": "跟骨同時產⽣背屈、外展與外翻的複合動作", "C": "此時可允許中跗關節（midtarsal joint）較⼤的動作", "D": "內縱⾜⼸⾼度增加"}, "images": [], "answer": "C", "explanation": "答案：C。此時可允許中跗關節（midtarsal joint）較⼤的動作—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 67, "stem": "有關腔室症候群（compartment syndrome）之敘述，下列何者錯誤？", "options": {"A": "在短時間內進⾏運動或⼯作時，使⽤同⼀肌群所引起", "B": "前腔室症候群最為常⾒，⼜稱為脛部疼痛（shin splint）", "C": "內腔室包含腓腸肌與比⽬⿂肌", "D": "避免使⽤冰按摩與運動按摩等⽅式來消腫"}, "images": [], "answer": "C", "explanation": "答案：C。內腔室包含腓腸肌與比⽬⿂肌—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 68, "stem": "下列何者可以避免踝關節及⾜部的過度內翻（inversion）？①前距腓韌帶（anterior talofibular ligament）\n②三⾓韌帶（deltoid ligament）\n③第三腓骨肌\n④脛後肌（tibialis posterior）", "options": {"A": "僅①③", "B": "僅①④", "C": "僅②③", "D": "僅②④"}, "images": [], "answer": "A", "explanation": "答案：A。僅①③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 69, "stem": "有關⾜部的特殊測試，下列敘述何者錯誤？", "options": {"A": "法斯線（Feiss' line）為內踝下緣與第⼀蹠骨頭部中⼼點的連線", "B": "太多腳趾現象（too many toes sign）可能與腓骨⻑肌（peroneus longus）無⼒有關", "C": "湯普森測試（Thompson's test）是捏按腓腸肌（gastrocnemius）肌腹以判斷跟腱是否斷裂", "D": "前拉測試（anterior drawer test）主要是檢查前距腓韌帶（anterior talofibular ligament）是否受傷"}, "images": [], "answer": "B", "explanation": "答案：B。太多腳趾現象（too many toes sign）可能與腓骨⻑肌（peroneus longus）無⼒有關—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 70, "stem": "有關下肢疲勞性骨折之敘述，下列何者正確？", "options": {"A": "通常疼痛是間歇性的，和活動程度無關", "B": "休息時疼痛加劇", "C": "由外⼒引起，和肌⾁收縮無關", "D": "相對於上肢，下肢疲勞性骨折發⽣率較⾼"}, "images": [], "answer": "D", "explanation": "答案：D。相對於上肢，下肢疲勞性骨折發⽣率較⾼—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 71, "stem": "為維持正常步⾏及下樓梯，踝背屈（dorsiflexion）⾄少需要多少⾓度？", "options": {"A": "正常步⾏10度及下樓梯20度", "B": "正常步⾏10度及下樓梯10度", "C": "正常步⾏20度及下樓梯20度", "D": "正常步⾏20度及下樓梯30度"}, "images": [], "answer": "A", "explanation": "答案：A。正常步⾏10度及下樓梯20度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 72, "stem": "下列何者是⾼位腳踝扭傷（high ankle injury）之主要測試項⽬？①⼩腿擠壓測試（squeeze test of the\nleg）\n②交腿測試（crossed-leg test）\n③⼩腿外轉壓⼒測試（external rotation stress test）", "options": {"A": "僅①②", "B": "僅③", "C": "①②③", "D": "僅②③"}, "images": [], "answer": "C", "explanation": "答案：C。①②③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 73, "stem": "有關跟腱修復後之物理治療，下列何者正確？", "options": {"A": "修復⼿術後2週內，可以部分載重訓練", "B": "修復⼿術後2到4週間，可以完全載重訓練", "C": "修復⼿術12週後，從事⾼強度運動時，可使⽤護具或貼布予以輔助", "D": "功能性護具需要維持6個⽉以上，以避免再受傷"}, "images": [], "answer": "C", "explanation": "答案：C。修復⼿術12週後，從事⾼強度運動時，可使⽤護具或貼布予以輔助—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 74, "stem": "20歲女性外側⾜踝扭傷3個⽉後，物理治療評估發現病患踝關節背屈（dorsiflexion）⾓度為5度，蹠屈⾓度為\n40度。針對改善踝關節活動⾓度，下列何種處置最不恰當？", "options": {"A": "加強訓練腓腸肌（gastrocnemius）向⼼與離⼼收縮的控制功能", "B": "給予阿基⾥斯腱伸展運動", "C": "施以遠端與近端脛腓關節鬆動術以增加此⼆關節於⽮狀⾯的關節⾯活動", "D": "給予踝關節鬆動術以增加距骨（talus）相對於脛骨的向後滑動"}, "images": [], "answer": "A", "explanation": "答案：A。加強訓練腓腸肌（gastrocnemius）向⼼與離⼼收縮的控制功能—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 75, "stem": "有關下肢截肢病⼈的關節攣縮，下列敘述何者錯誤？", "options": {"A": "可能是擺位姿勢不當所造成", "B": "可能是病⼈不配合穿戴訓練型義肢或常規義肢所造成", "C": "常會觀察到病⼈在脫掉義肢後，有髖關節和膝關節屈曲的現象", "D": "可能是殘餘肢末端襪套厚度不當所造成"}, "images": [], "answer": "D", "explanation": "答案：D。可能是殘餘肢末端襪套厚度不當所造成—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 76, "stem": "燒燙傷1週內的住院患者，發炎期介入的⼀般原則，下列何者錯誤？", "options": {"A": "若患側會有嚴重的疼痛與腫脹，僅以副⽊擺位即可達到預防攣縮的⽬標", "B": "若患側會有嚴重的疼痛與腫脹，進⾏主動性協助運動是相當重要的", "C": "只要病⼈情況允許，應積極⿎勵病患儘快下床⾏⾛", "D": "治療師可利⽤傷⼝換藥的時間，進⾏關節運動訓練"}, "images": [], "answer": "A", "explanation": "答案：A。若患側會有嚴重的疼痛與腫脹，僅以副⽊擺位即可達到預防攣縮的⽬標—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 77, "stem": "有關骨盆底肌功能不全的治療，下列敘述何者錯誤？", "options": {"A": "可使⽤視覺或聽覺的⽣理回饋協助肌⾁正確收縮", "B": "只⽤⼝頭衛教易造成膀胱壓⼒上升", "C": "讓病⼈先了解骨盆底肌的功能和肌⾁⾛向有助於訓練", "D": "初期訓練時，應以訓練骨盆底肌及臀部相關肌⾁的共同收縮為⽬標"}, "images": [], "answer": "D", "explanation": "答案：D。初期訓練時，應以訓練骨盆底肌及臀部相關肌⾁的共同收縮為⽬標—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 78, "stem": "下列何者與骨盆底肌收縮活動有關？①⽀撐骨盆腔內的器官\n②脊椎穩定\n③承受腹內壓", "options": {"A": "僅①②", "B": "僅①③", "C": "僅②③", "D": "①②③"}, "images": [], "answer": "D", "explanation": "答案：D。①②③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 79, "stem": "指導孕婦做運動時，下列敘述何者正確？", "options": {"A": "任何部位只要出現⼀點疼痛感，就要⾺上停⽌並尋求醫師協助", "B": "為了避免壓到腹腔的⾎管，仰臥時最好在孕婦左臀部下墊個⼩枕頭", "C": "懷孕12週之後不要持續仰臥超過5分鐘，因為仰臥時⼦宮容易壓迫靜脈", "D": "⽣產時須有⾜夠肌⼒與肌耐⼒，所以應給予⼤量阻⼒運動"}, "images": [], "answer": "C", "explanation": "答案：C。懷孕12週之後不要持續仰臥超過5分鐘，因為仰臥時⼦宮容易壓迫靜脈—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 80, "stem": "壓陷性淋巴⽔腫的分期3+代表下列何者意義？", "options": {"A": "輕度壓陷，約15秒內恢復正常", "B": "較深的壓陷，約30秒內恢復正常", "C": "壓陷超過30秒恢復正常", "D": "壓陷超過60秒恢復正常"}, "images": [], "answer": "B", "explanation": "答案：B。較深的壓陷，約30秒內恢復正常—此選項為正確敘述，依物理治療學相關知識為標準答案。"}]}, "Q2": {"label": "第二次", "questions": [{"n": 1, "stem": "下列那一條肌肉收縮無法讓頸椎旋轉到同側？", "options": {"A": "提肩胛肌（levator scapulae）", "B": "頸夾肌（splenius cervicis）", "C": "前斜角肌（anterior scalenus）", "D": "頸半棘肌（semispinalis cervicis）"}, "images": [], "answer": "#", "explanation": "本題公告一律給分（答案不限）。題幹：下列那一條肌肉收縮無法讓頸椎旋轉到同側？…可能因題意不清、選項皆有爭議或圖表不明確等原因，考選部裁定一律給分。"}, {"n": 2, "stem": "有關神經根（nerve root）－皮節（dermatome）－肌節（myotome）動作之分布，下列配對何者正確？①C4－\n②C5－上臂前外側－肩外展\n③C7－中指－肘屈曲\n④C8－小指－拇指伸直\n鎖骨區域－聳肩", "options": {"A": "①②③④", "B": "僅②④", "C": "僅①②④", "D": "僅①③"}, "images": [], "answer": "C", "explanation": "答案：C。僅①②④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 3, "stem": "關於頸部肌肉可依其所在部位之深淺與前後來作為功能性之區分，外頭直肌（rectus capitis lateralis）是屬於下\n列那個類別？", "options": {"A": "淺層前方肌肉", "B": "深層前方肌肉", "C": "淺層後方肌肉", "D": "深層後方肌肉"}, "images": [], "answer": "B", "explanation": "答案：B。深層前方肌肉—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 4, "stem": "評估一位起床後出現下頸部疼痛之病患，發現：①頸部前彎時，角度正常且不痛\n②頸部後仰時，角度較小\n③頭向右轉或右側彎時，角度正常且不痛\n④頭向左轉或左側彎時，角度較小且左下頸部\n且左下頸部疼痛\n⑤所有阻力測試皆不痛。下列何者為最有可能的問題？\n疼痛", "options": {"A": "右邊小面關節無法向上滑動", "B": "右邊小面關節無法向下滑動", "C": "左邊小面關節無法向上滑動", "D": "左邊小面關節無法向下滑動"}, "images": [], "answer": "D", "explanation": "答案：D。左邊小面關節無法向下滑動—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 5, "stem": "一位60歲病患抱怨上臂感覺異常，評估後發現：①頸部活動度下降\n②頸椎壓迫測試為陽性\n③無明顯上肢\n④肱二頭肌深腱反射為1+\n⑤霍夫曼徵象（Hoffman sign）為陰性\n⑥正中神經之上臂神經動力\n肌力下降\n學測試可以誘發出症狀。其診斷最有可能為下列何者？", "options": {"A": "頸椎神經根病變（cervical radiculopathy）", "B": "正中神經在上臂中段受到壓迫（median nerve entrapment）", "C": "頸髓病變（cervical myelopathy）", "D": "胸廓出口症候群（thoracic outlet syndrome）"}, "images": [], "answer": "A", "explanation": "答案：A。頸椎神經根病變（cervical radiculopathy）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 6, "stem": "一名患者主訴其有頸部區域疼痛而難以入眠，經常有眩暈耳鳴及視力模糊情況發生，進一步評估發現其上肢有\n無力麻痺且感覺異常情形，頸部的活動度亦明顯受限。以上症狀與下列何診斷最相關？", "options": {"A": "頸部馬鞭式傷害（whiplash injury）", "B": "頸椎神經根病變（cervical radiculopathy）", "C": "頸椎退化（spondylosis）", "D": "頸因性頭痛（cervicogenic headache）"}, "images": [], "answer": "A", "explanation": "答案：A。頸部馬鞭式傷害（whiplash injury）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 7, "stem": "有關頸椎神經動力學中的肩外展測試（shoulder abduction test）之敘述，下列何者正確？①用於檢查神經根病\n②患者仰躺或坐著，由治療師執行或患者主動將手臂抬高，使\n變的症狀，尤其是頸椎第六或第七節神經根\n③陽性反應被稱為Bikele’s sign\n前臂或手部放於頭頂", "options": {"A": "僅②", "B": "①②③", "C": "僅②③", "D": "僅①②"}, "images": [], "answer": "A", "explanation": "答案：A。僅②—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 8, "stem": "對於頸因性頭痛的運動介入，下列何者正確？", "options": {"A": "應強調枕骨下肌（suboccipital muscles）之爆發力訓練", "B": "應訓練頸深屈肌的肌耐力，以加強頭部屈曲動作之控制", "C": "應訓練胸小肌及上斜方肌肌耐力，以改善胸廓的控制", "D": "應強調胸鎖乳突肌之肌力訓練"}, "images": [], "answer": "B", "explanation": "答案：B。應訓練頸深屈肌的肌耐力，以加強頭部屈曲動作之控制—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 9, "stem": "下列何肌肉痙攣可使患者出現前位頭部（forward head）、下巴前突（chin-out）的姿勢？", "options": {"A": "枕骨下肌群（suboccipital muscles）", "B": "提肩胛肌（levator scapulae）", "C": "胸鎖乳突肌（sternocleidomastoid muscles）", "D": "上斜方肌（upper trapezius）"}, "images": [], "answer": "C", "explanation": "答案：C。胸鎖乳突肌（sternocleidomastoid muscles）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 10, "stem": "頸椎中央管狹窄（central stenosis）與下列那些韌帶變化有關？①後縱韌帶鈣化\n②黃韌帶增厚且失去彈性\n③棘突間韌帶（interspinous liagment）增厚", "options": {"A": "僅①②", "B": "僅②③", "C": "僅①③", "D": "①②③"}, "images": [], "answer": "A", "explanation": "答案：A。僅①②—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 11, "stem": "根據Nachemson等人於1976年之研究，下列活動影響腰部椎間盤內壓由大至小之排序，何者正確？", "options": {"A": "提重物20公斤再前彎＞直膝仰臥起坐＞咳嗽＞屈膝仰臥起坐", "B": "提重物20公斤再前彎＞咳嗽＞屈膝仰臥起坐＞站立", "C": "提重物20公斤再前彎＞屈膝仰臥起坐＞直膝仰臥起坐＞咳嗽", "D": "咳嗽＞提重物20公斤再前彎＞屈膝仰臥起坐＞站立"}, "images": [], "answer": "C", "explanation": "答案：C。提重物20公斤再前彎＞屈膝仰臥起坐＞直膝仰臥起坐＞咳嗽—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 12, "stem": "下列那個腰部肌肉對於提供腰椎椎節間穩定度的貢獻最少？", "options": {"A": "腹直肌（rectus abdominis）", "B": "多裂肌（multifidus）", "C": "腹外斜肌（external oblique）", "D": "腹內斜肌（internal oblique）"}, "images": [], "answer": "A", "explanation": "答案：A。腹直肌（rectus abdominis）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 13, "stem": "關於正常薦椎傾斜角度（sacral inclination angle）以及其所衍生之剪力大小之敘述，下列何者正確？", "options": {"A": "正常的薦椎傾斜角度約為30度，衍生之剪力大小約為其承受體重之30%", "B": "正常的薦椎傾斜角度約為30度，衍生之剪力大小約為其承受體重之50%", "C": "正常的薦椎傾斜角度約為40度，衍生之剪力大小約為其承受體重之80%", "D": "正常的薦椎傾斜角度約為40度，衍生之剪力大小約為其承受體重之120%"}, "images": [], "answer": "B", "explanation": "答案：B。正常的薦椎傾斜角度約為30度，衍生之剪力大小約為其承受體重之50%—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 14, "stem": "Robin McKenzie之下背痛分類系統是屬於下列那一類的分組模式？", "options": {"A": "患者反應模式（patient-response model）", "B": "預後指標模式（prognostic index model）", "C": "狀態指標模式（status index model）", "D": "脊椎穩定指標模式（spinal stability index model）"}, "images": [], "answer": "A", "explanation": "答案：A。患者反應模式（patient-response model）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 15, "stem": "關於椎間盤厚度相對於椎體高度的比值之敘述，下列何者錯誤？", "options": {"A": "此比值愈大，椎間的活動度愈高", "B": "在頸椎的比值約2：5", "C": "在胸椎的比值約1：5", "D": "在腰椎的比值約3：5"}, "images": [], "answer": "D", "explanation": "答案：D。在腰椎的比值約3：5—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 16, "stem": "關於腰椎神經支配的感覺評估，下列敘述何者錯誤？", "options": {"A": "L4支配大腳趾內側感覺", "B": "L5支配第二腳趾背側", "C": "S1支配內踝以下部位", "D": "S4支配肛門周邊部位"}, "images": [], "answer": "C", "explanation": "答案：C。S1支配內踝以下部位—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 17, "stem": "以橫向力道將俯臥病患第4節腰椎的棘突（spinous process）推向左側時，所產生的動作為何？①第3椎節對第\n②第3椎節對第4椎節向右旋轉\n③第4椎節對第5椎節向左旋轉\n④第4椎節對第5椎節向右\n4椎節向左旋轉\n⑤右側第3、4椎節間的小面關節打開\n⑥左側第3、4椎節間的小面關節打開\n⑦右側第4、5椎節間的\n旋轉\n⑧左側第4、5椎節間的小面關節閉合\n小面關節閉合", "options": {"A": "僅①④⑥⑧", "B": "僅②③⑤⑦", "C": "僅①③⑥⑦", "D": "僅②④⑤⑧"}, "images": [], "answer": "A", "explanation": "答案：A。僅①④⑥⑧—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 18, "stem": "有關下背痛患者脊椎穩定運動訓練，下列敘述何者正確？", "options": {"A": "主要目的是減少脊椎整體之關節活動度", "B": "主要目的是增強豎脊肌（erector spinae）之肌力", "C": "可增進脊椎於中立區（neutral zone）之動作控制能力", "D": "可增加腹直肌之柔軟度"}, "images": [], "answer": "C", "explanation": "答案：C。可增進脊椎於中立區（neutral zone）之動作控制能力—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 19, "stem": "下列有關腰多裂肌（multifidus）的敘述，何者錯誤？", "options": {"A": "與身體其他骨骼肌相比，有較多比例的第一型肌纖維組成", "B": "深層的多裂肌處於最好的生物力學位置，是產生脊椎後伸動作最主要的肌肉", "C": "是控制脊椎在「中立區」（neutral zone）最重要的肌肉組織", "D": "檢測與訓練腰多裂肌收縮時，觸摸與口令之引導很重要，如 : 「請將我手指下的肌肉鼓起來，但保持骨盆與 脊椎不能動。」"}, "images": [], "answer": "B", "explanation": "答案：B。深層的多裂肌處於最好的生物力學位置，是產生脊椎後伸動作最主要的肌肉—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 20, "stem": "已經治療過一段時間的背痛病人，若出現下列那些紅旗警訊時，建議將病人轉介醫師做進一步檢查？①50歲\n男性，早上起床要彎腰拿東西時，一彎腰突然出現閃電狀的疼痛從臀部傳到小腿，所以整天只敢保持直挺的\n②55歲男性，沒有中風或其他已知的神經系統相關病史，但是病人抱怨最近有肌肉緊繃感，走路速度\n姿勢\n③60歲女性，抱怨最近晚上睡覺時，會因為痛而醒來，且醒來\n變慢，也較容易跌倒，足踝反射有增強現象\n後也因疼痛而無法再入睡", "options": {"A": "①②③", "B": "僅①③", "C": "僅②③", "D": "僅①②"}, "images": [], "answer": "C", "explanation": "答案：C。僅②③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 21, "stem": "腰椎椎間盤突出患者接受非手術治療，下列何者為有利之預後因子？", "options": {"A": "對側之直膝抬腿測試為陽性反應", "B": "患者積極參與執行運動", "C": "執行軀幹向後伸直時，會誘發原有的腳痛", "D": "影像醫學顯示伴隨椎管狹窄"}, "images": [], "answer": "B", "explanation": "答案：B。患者積極參與執行運動—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 22, "stem": "使用壓力生物回饋儀（StabilizerTM Pressure Bio-Feedback unit）執行腰椎合併下肢負重（limb loading）的穩定\n訓練，下列敘述何者正確？", "options": {"A": "將壓力生物回饋儀充氣到20 mmHg", "B": "患者仰躺，回饋儀置於腰部下方，強調訓練背伸直肌群", "C": "訓練肌耐力時，需要增加下肢負荷，從膝部伸直抬腿45度，增加負荷至下肢彎曲舉到髖關節彎曲90度", "D": "患者需要將脊椎置於中立姿勢，執行腹部穩定內縮的動作（drawing-in maneuver）"}, "images": [], "answer": "D", "explanation": "答案：D。患者需要將脊椎置於中立姿勢，執行腹部穩定內縮的動作（drawing-in maneuver）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 23, "stem": "下列有關座椅調整方式，何者最能減輕坐姿時的腰椎壓迫力？", "options": {"A": "使用4公分高的軟坐墊", "B": "增加座板和背靠間的角度至100度", "C": "移除座椅扶手", "D": "移除座椅背靠"}, "images": [], "answer": "B", "explanation": "答案：B。增加座板和背靠間的角度至100度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 24, "stem": "物理治療師利用肌肉能量技術（muscle energy technique）治療薦骨反屈傷害（counternutated sacrum\nlesion）。病患坐著，物理治療師的一手放在病人軀幹，另一手放在病人下列的那一部位？", "options": {"A": "薦骨基部（base of sacrum）", "B": "薦骨下外角（inferior lateral angle of sacrum）", "C": "髂後上棘（posterior superior iliac spine）", "D": "坐骨粗隆（ischial tuberosity）"}, "images": [], "answer": "A", "explanation": "答案：A。薦骨基部（base of sacrum）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 25, "stem": "在正常行走過程中，下列何者不是骨盆的正常動作型式？", "options": {"A": "薦骨前扭轉（sacral anterior torsion）", "B": "薦骨後扭轉（sacral posterior torsion）", "C": "髂骨前旋轉（iliac anterior rotation）", "D": "髂骨後旋轉（iliac posterior rotation）"}, "images": [], "answer": "B", "explanation": "答案：B。薦骨後扭轉（sacral posterior torsion）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 26, "stem": "當病人有開口限制，治療師執行鬆動術技巧時應將病人下顎如何移動？", "options": {"A": "向下", "B": "向後", "C": "向上", "D": "向右"}, "images": [], "answer": "A", "explanation": "答案：A。向下—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 27, "stem": "為訓練正常張嘴動作，可讓舌頭頂住上顎（hard palate），同時將下頜骨（mandible）保持於下列那個位置？", "options": {"A": "後移位置（retruded position）", "B": "突出位置（protruded position）", "C": "外側位置（lateral position）", "D": "內側位置（medial position）"}, "images": [], "answer": "A", "explanation": "答案：A。後移位置（retruded position）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 28, "stem": "脊柱側彎之椎體旋轉程度，可從X光影像觀察下列那一結構的相對位置得知？", "options": {"A": "椎間盤（intervertebral disc）", "B": "椎板（lamina）", "C": "椎弓根（pedicle）", "D": "小面關節（facet joint）"}, "images": [], "answer": "C", "explanation": "答案：C。椎弓根（pedicle）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 29, "stem": "針對胸椎進行駝背測試（slump test）檢查是否有硬脊髓膜（dura）症狀時，下列敘述何者錯誤？", "options": {"A": "採坐姿，雙手支撐於身體背後或放在腰後", "B": "胸椎最常見疼痛位置在於第8節與第9節附近", "C": "將胸椎擺放於屈曲位置後即引發劇烈疼痛，則可確認為胸椎硬脊髓膜的問題", "D": "於測試的最後階段，是藉由觀察頭部及頸椎的後伸是否可減緩症狀，來確認有無硬脊髓膜的問題"}, "images": [], "answer": "C", "explanation": "答案：C。將胸椎擺放於屈曲位置後即引發劇烈疼痛，則可確認為胸椎硬脊髓膜的問題—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 30, "stem": "以治療球進行胸椎穩定訓練時，仰躺在球上的訓練方式，下列敘述何者錯誤？", "options": {"A": "可以橋式（bridging）進行訓練", "B": "可訓練臀部肌肉對於骨盆的穩定作用", "C": "頭頸躺在治療球上，以雙手撐地做橋式動作，可增加闊背肌（latissimus dorsi）的參與", "D": "與俯臥於球上相比，較可藉由上肢承重，訓練肩帶（shoulder girdle）的穩定度"}, "images": [], "answer": "D", "explanation": "答案：D。與俯臥於球上相比，較可藉由上肢承重，訓練肩帶（shoulder girdle）的穩定度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 31, "stem": "當患者做手臂抬高（elevation）動作時，疑似因為夾擠而有疼痛症狀，欲使用動態關節鬆動術（mobilization\nwith movement）的技巧以改善盂肱關節的移動軌跡時，通常施加於肱骨頭的滑動（glide）方向為何？", "options": {"A": "後內向", "B": "後外向", "C": "前內向", "D": "前外向"}, "images": [], "answer": "B", "explanation": "答案：B。後外向—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 32, "stem": "為增加冰凍肩病人之肩外展活動度，應考慮下列那些關節鬆動術？①肱骨頭向上滑動\n②肱骨頭向下滑動\n③鎖骨內側向上滑動\n④鎖骨內側向下滑動", "options": {"A": "僅①③", "B": "僅②④", "C": "僅①④", "D": "僅②③"}, "images": [], "answer": "B", "explanation": "答案：B。僅②④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 33, "stem": "依據滑液關節（synovial joints）的分類，肩峰鎖骨關節屬於下列何者？", "options": {"A": "平面關節（plane joint）", "B": "屈戌關節（hinge joint）", "C": "樞軸關節（pivot joint）", "D": "雙軸髁形關節（condyloid joint）"}, "images": [], "answer": "A", "explanation": "答案：A。平面關節（plane joint）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 34, "stem": "下列何者是脊椎與肱骨間完成手臂後伸（extension）、內收（adduction）與內轉（internal rotation）最重要的\n肌肉？", "options": {"A": "斜方肌", "B": "前鋸肌", "C": "肩胛下肌", "D": "闊背肌"}, "images": [], "answer": "D", "explanation": "答案：D。闊背肌—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 35, "stem": "下列何者無法測試肩關節後向不穩？", "options": {"A": "諾伍德測試（Norwood stress test）", "B": "推拉測試（push-pull test）", "C": "彌尼阿希測試（Miniaci test）", "D": "普羅茲曼測試（Protzman test）"}, "images": [], "answer": "D", "explanation": "答案：D。普羅茲曼測試（Protzman test）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 36, "stem": "肩盂唇受損的理學檢查中，下列何種測試有中度到強度的研究證據支持用於臨床測試？", "options": {"A": "喀啦聲測試（clunk test）", "B": "擠壓轉動測試（compression rotation test）", "C": "O'Brien主動擠壓測試（active compression test）", "D": "向前滑動測試（anterior slide test）"}, "images": [], "answer": "C", "explanation": "答案：C。O'Brien主動擠壓測試（active compression test）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 37, "stem": "肩關節後側關節囊緊和下列何動作受限最有關？", "options": {"A": "後伸", "B": "外展", "C": "外轉", "D": "內轉"}, "images": [], "answer": "D", "explanation": "答案：D。內轉—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 38, "stem": "下列那條神經損傷對於盂肱關節穩定度較無直接影響？", "options": {"A": "上肩胛神經（suprascapular nerve）", "B": "腋神經（axillary nerve）", "C": "背肩胛神經（dorsal scapular nerve）", "D": "下肩胛神經（subscapular nerve）"}, "images": [], "answer": "C", "explanation": "答案：C。背肩胛神經（dorsal scapular nerve）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 39, "stem": "下列何者為原發性肩夾擠症之原因？", "options": {"A": "姿勢不良，如懶散的姿勢", "B": "肩部肌肉疲勞", "C": "鈎狀肩峰", "D": "肩關節囊過緊"}, "images": [], "answer": "C", "explanation": "答案：C。鈎狀肩峰—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 40, "stem": "從後方觀察患者，若發現其肩胛翼狀聳出（scapular winging）現象，再請其做肩屈曲動作時，肩胛內緣明顯\n突起且下角朝內轉，下列敘述何者正確？", "options": {"A": "可能為上斜方肌無力所導致", "B": "可能為前鋸肌無力所導致", "C": "可能有背肩胛神經（dorsal scapular nerve）損傷", "D": "可能有脊副神經（spinal accessory nerve）損傷"}, "images": [], "answer": "B", "explanation": "答案：B。可能為前鋸肌無力所導致—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 41, "stem": "有關檢查肩關節旋轉主動活動度之敘述，下列何者正確？", "options": {"A": "須將肩關節置於外展45度進行檢查，才能減少肩胛骨代償動作", "B": "患者若有肩內轉受限，可能以肩胛骨前突（protraction）或肩胛翼狀聳出（winging）代償", "C": "須注意比較肩內外轉角度，棒球投手的慣用手常出現內轉角度超過正常值，而外轉角度不足", "D": "若左右手之肩內轉角度相差超過10度，即會導致角度不足側之肩部不穩定"}, "images": [], "answer": "B", "explanation": "答案：B。患者若有肩內轉受限，可能以肩胛骨前突（protraction）或肩胛翼狀聳出（winging）代償—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 42, "stem": "有關肩關節特殊檢查之內轉肌力測試（internal rotation resistance strength test, IRRST）之敘述，下列何者正\n確？", "options": {"A": "在尼爾氏夾擠測試（Neer impingement test）結果為陰性後，需做此測試", "B": "檢查者比較肩內外轉等長收縮之肌力大小，如外轉肌力小於內轉肌，則有原發性肩峰下夾擠", "C": "檢查肩內外轉肌等長收縮之肌力，如外轉肌力正常，內轉肌力弱，則有肩內部夾擠", "D": "檢查肩內外轉肌等長收縮之肌力，如內轉肌力正常，外轉肌力弱，則為陰性，確認該患者無夾擠症候群"}, "images": [], "answer": "C", "explanation": "答案：C。檢查肩內外轉肌等長收縮之肌力，如外轉肌力正常，內轉肌力弱，則有肩內部夾擠—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 43, "stem": "有關前骨間神經（anterior interosseous nerve）夾擠症候群，下列那一功能最不受影響？", "options": {"A": "前臂旋前（pronation）", "B": "腕關節橈側偏移", "C": "指尖抓握（tip-to-tip pinch）", "D": "手指屈曲"}, "images": [], "answer": "B", "explanation": "答案：B。腕關節橈側偏移—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 44, "stem": "病患抱怨前臂旋前及旋後活動受限，下列那一關節最不可能影響前臂旋轉活動度？", "options": {"A": "ulnohumeral joint", "B": "radiohumeral joint", "C": "radioulnar joint", "D": "ulnomeniscocarpal joint"}, "images": [], "answer": "A", "explanation": "答案：A。ulnohumeral joint—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 45, "stem": "少棒投手過度練習投擲，於肘關節最易產生傷害之組織不包括下列何者？", "options": {"A": "尺側副韌帶（ulnar collateral ligament）", "B": "肱骨小頭（capitellum）", "C": "肱骨滑車（trochlea）", "D": "肱骨內上髁生長板（medial epicondylar apophysis）"}, "images": [], "answer": "C", "explanation": "答案：C。肱骨滑車（trochlea）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 46, "stem": "對於手肘脫臼復位後的物理治療，下列何者正確？", "options": {"A": "要立即執行被動的活動，才會有較好的預後", "B": "復位後約7天內需以副木固定肘關節於屈曲90度位置", "C": "初期應先著重於增加肘關節伸直活動度", "D": "復位後，訓練肌力比訓練關節活動度重要"}, "images": [], "answer": "B", "explanation": "答案：B。復位後約7天內需以副木固定肘關節於屈曲90度位置—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 47, "stem": "有關腕關節動作，下列敘述何者錯誤？", "options": {"A": "橈側偏移主要發生在橈腕關節（radiocarpal joint）", "B": "尺側偏移主要發生在橈腕關節（radiocarpal joint）", "C": "腕關節伸直時，大部分的動作發生在橈腕關節（radiocarpal joint）", "D": "腕關節屈曲時，大部分的動作發生在中腕關節（midcarpal joint）"}, "images": [], "answer": "A", "explanation": "答案：A。橈側偏移主要發生在橈腕關節（radiocarpal joint）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 48, "stem": "有關手部的蓋恩氏通道（Guyon's canal）之敘述，下列何者錯誤？", "options": {"A": "此通道由豆狀骨以及鈎狀骨兩骨形成", "B": "若長距離騎腳踏車腕部易壓迫到此通道", "C": "若通過其間的神經受壓迫，則第5指與第4指尺側一半背面的感覺會出現異常", "D": "由於壓迫到神經淺枝，不會有肌肉動作功能喪失的問題"}, "images": [], "answer": "D", "explanation": "答案：D。由於壓迫到神經淺枝，不會有肌肉動作功能喪失的問題—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 49, "stem": "有關手部及手指變形與產生原因之配對，下列何者正確？①鈕扣孔式變形－伸肌頂罩之中央肌鍵延伸斷裂\n②伸肌過緊－伸指共肌在近端指間\n（boutonniere deformity - central tendinous slip of extensor hood rupture）\n關節近端沾黏（extensor plus - adhesion of extensor digitorum communis tendon proximal to proximal\n③槌狀指－伸指肌肌腱在中節指骨斷裂（mallet finger - rupture of the extensor tendon at\ninterphalangeal joint）\n④扳機指－屈指肌肌腱腱鞘肥厚（trigger finger - thickening of flexor tendon sheath）\nmiddle phalanx）", "options": {"A": "僅①②", "B": "僅③④", "C": "僅②③", "D": "僅①④"}, "images": [], "answer": "D", "explanation": "答案：D。僅①④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 50, "stem": "為確認患者有無尺神經麻痺問題，治療師執行測試時要求病人用大拇指和食指用力夾住一張紙，不讓治療師\n抽出，下列敘述何者正確？", "options": {"A": "只要病人可夾住紙張不被抽出，即代表尺神經正常", "B": "此測試是反應尺神經控制屈拇指長肌（flexor pollicis longus）收縮能力", "C": "此測試稱為揑握測試（pinch test）", "D": "若病人以大拇指彎曲方式夾住紙張，是屈拇指長肌（flexor pollicis longus）收縮造成"}, "images": [], "answer": "D", "explanation": "答案：D。若病人以大拇指彎曲方式夾住紙張，是屈拇指長肌（flexor pollicis longus）收縮造成—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 51, "stem": "芭蕾舞者主訴鼠蹊部疼痛，檢查發現髖伸直角度過大、髖屈曲時伴隨髖內轉動作且股骨頭並未向後移動；依\n此問題推測其髖關節可能會有那些肌群較為無力？①髂腰肌\n②闊筋膜張肌\n③臀中肌後側肌纖維\n④臀\n⑤大腿後肌群（hamstrings）\n大肌", "options": {"A": "僅①②③", "B": "僅④⑤", "C": "僅①③④", "D": "僅②⑤"}, "images": [], "answer": "C", "explanation": "答案：C。僅①③④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 52, "stem": "當患者在仰躺姿勢下，執行髖關節外展的主動動作測試，出現對側髂前上棘（ASIS）先移動的現象，表示是\n下列何種情況？", "options": {"A": "髖外展攣縮（contracture）", "B": "髖內收攣縮（contracture）", "C": "髖屈曲攣縮（contracture）", "D": "髖伸直攣縮（contracture）"}, "images": [], "answer": "B", "explanation": "答案：B。髖內收攣縮（contracture）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 53, "stem": "有關髖關節在步態週期中的功能，下列何者正確？", "options": {"A": "髖屈肌於站立初期（initial stance）控制髖關節伸直動作", "B": "若有髖伸肌攣縮，可能在擺盪末期（terminal swing）出現髖關節動作範圍減少的現象", "C": "髖關節外展肌在同側下肢擺盪時，控制骨盆側傾（lateral tilt）動作", "D": "若有髖屈肌功能喪失，可能在承重反應期（loading response）出現軀幹向後傾斜"}, "images": [], "answer": "B", "explanation": "答案：B。若有髖伸肌攣縮，可能在擺盪末期（terminal swing）出現髖關節動作範圍減少的現象—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 54, "stem": "若發生股骨轉子滑囊炎（trochanteric bursitis），下列那一動作常會引發疼痛？", "options": {"A": "髖外展的等長收縮運動", "B": "髖內收的等長收縮運動", "C": "髖屈曲的等長收縮運動", "D": "髖內轉的等長收縮運動"}, "images": [], "answer": "A", "explanation": "答案：A。髖外展的等長收縮運動—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 55, "stem": "有關股骨前滑症候群（femoral anterior glide syndromes）之敘述，下列何者正確？", "options": {"A": "是指髖伸直時，股骨向前滑動不足", "B": "經常在腹股溝的位置發生疼痛", "C": "經常伴隨髖外轉", "D": "髖關節前側的軟組織過度緊縮"}, "images": [], "answer": "B", "explanation": "答案：B。經常在腹股溝的位置發生疼痛—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 56, "stem": "有關膝後十字韌帶損傷，下列敘述何者正確？", "options": {"A": "膝關節屈曲30度時執行後向抽拉測試（posterior drawer test）的敏感度最高", "B": "可使前向抽拉測試（anterior drawer test）呈現假陽性，而誤判為膝前十字韌帶受傷", "C": "常伴隨膝關節後內側構造的傷害，造成同時有膝外翻（valgus）與內轉的不穩定", "D": "無論是否接受重建手術，通常其復健過程會比對應的膝前十字韌帶損傷更積極"}, "images": [], "answer": "B", "explanation": "答案：B。可使前向抽拉測試（anterior drawer test）呈現假陽性，而誤判為膝前十字韌帶受傷—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 57, "stem": "下列日常生活動作中，髕骨之負荷由小至大排列為何？①走路\n②下樓梯\n③上樓梯\n④蹲姿", "options": {"A": "①②③④", "B": "①③②④", "C": "③①②④", "D": "④①③②"}, "images": [], "answer": "B", "explanation": "答案：B。①③②④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 58, "stem": "一個24歲男性患者主訴右膝關節線有中度疼痛，關節水腫，膝關節無法完全伸直，被動伸直膝關節有彈簧般\n的終末感覺（springy end-feel），其問題最有可能來自下列何種病症？", "options": {"A": "膝前十字韌帶損傷", "B": "髕股關節疼痛症候群", "C": "膝半月板損傷", "D": "退化性膝關節炎"}, "images": [], "answer": "C", "explanation": "答案：C。膝半月板損傷—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 59, "stem": "下列那些是髕股關節功能障礙的促病因子（contributing factor）？①髕骨過高（patella alta） ②過大膝外翻\n（excessive genu valgum）③過大的脛骨扭轉（excessive tibial torsion）", "options": {"A": "①②③", "B": "僅①②", "C": "僅①③", "D": "僅②③"}, "images": [], "answer": "A", "explanation": "答案：A。①②③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 60, "stem": "當膕旁肌（hamstrings）太緊且踝關節背屈（dorsiflexion）活動度不足時，下列那一動作會伴隨發生，而導致\n膝關節動態Q角度（dynamic Q-angle）增加？", "options": {"A": "股骨前傾（anteversion）", "B": "膝外翻", "C": "脛骨外轉", "D": "足部旋前（pronation）"}, "images": [], "answer": "D", "explanation": "答案：D。足部旋前（pronation）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 61, "stem": "膝前十字韌帶重建手術後，強調給予病人加速型復健計畫，通常在幾週內須恢復膝關節完全伸直的活動度？", "options": {"A": "1～3週", "B": "4～6週", "C": "7～9週", "D": "10～12週"}, "images": [], "answer": "A", "explanation": "答案：A。1～3週—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 62, "stem": "膝外翻－脛骨外轉（valgus-external rotation）是接觸性運動中最常見的一種傷害機轉，較不會造成下列那一膝\n關節組織的損傷？", "options": {"A": "後內側關節囊", "B": "內側副韌帶", "C": "前十字韌帶", "D": "外側半月板"}, "images": [], "answer": "D", "explanation": "答案：D。外側半月板—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 63, "stem": "針對以髕骨韌帶自體移植之膝前十字韌帶重建術後10天的病患，下列那項運動最適合？", "options": {"A": "角速度每秒30度之膝關節等速肌力訓練", "B": "單側腿部推蹬（unilateral leg press）", "C": "雙腿小蹲踞（mini-squats）運動", "D": "坐在N-K椅上，執行主動膝關節阻力伸直運動"}, "images": [], "answer": "C", "explanation": "答案：C。雙腿小蹲踞（mini-squats）運動—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 64, "stem": "進行Lachman test時，應將病人腿部放在下列那個膝屈曲角度最為適當？", "options": {"A": "20～30度", "B": "40～50度", "C": "60～70度", "D": "80～90度"}, "images": [], "answer": "A", "explanation": "答案：A。20～30度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 65, "stem": "有關足底筋膜炎的敘述，下列何者錯誤？", "options": {"A": "皆為慢性病因造成", "B": "過多的足部旋前（pronation）是造成足底筋膜炎的機械因子之一", "C": "高足弓容易造成足底筋膜繃緊，因此也容易形成足底筋膜炎", "D": "較容易發生在長時間站立或長時間行走的人"}, "images": [], "answer": "A", "explanation": "答案：A。皆為慢性病因造成—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 66, "stem": "有關足部腳趾變形的敘述，下列何者錯誤？", "options": {"A": "爪狀趾（claw toe）通常和高弓足有關", "B": "鎚狀趾（hammer toe）的蹠趾關節會過度伸直", "C": "木槌趾（mallet toe）有遠端趾間關節的屈曲變形", "D": "裁縫趾囊炎（tailor's bunion）是指第四趾頭受到過多的壓力而變形"}, "images": [], "answer": "D", "explanation": "答案：D。裁縫趾囊炎（tailor's bunion）是指第四趾頭受到過多的壓力而變形—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 67, "stem": "若一個人在不承重狀況下的足弓為正常，但在自然站立下距骨頭（talar head）的內側突出明顯大於外側，下\n列敘述何者正確？", "options": {"A": "此人的足型為內翻足（supinated foot），亦可稱為功能性高弓足", "B": "有可能是前足內翻（forefoot varus）或後足內翻（rearfoot varus）的代償方式", "C": "在坐姿不承重狀況下，舟狀骨粗隆（navicular tubercle）會在法斯線（Feiss' line）的上方", "D": "若以舟狀骨滑落測試（navicular drop test）評估，舟狀骨滑落值正常應在4～6 mm之間"}, "images": [], "answer": "B", "explanation": "答案：B。有可能是前足內翻（forefoot varus）或後足內翻（rearfoot varus）的代償方式—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 68, "stem": "有關高弓足的敘述，下列何者正確？", "options": {"A": "較低弓足常見", "B": "足部變得較為柔軟，但適應力較差", "C": "結構性高弓足在不承重的狀況下，外觀與常人相似", "D": "通常是非進行性的，且可經由輔具或手術矯治"}, "images": [], "answer": "D", "explanation": "答案：D。通常是非進行性的，且可經由輔具或手術矯治—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 69, "stem": "摩頓氏神經瘤（Morton's neuroma）臨床上表徵常與下列何種疾病混淆？", "options": {"A": "蹠骨（metatarsal）的應力性骨折", "B": "小趾滑液囊腫（bunion）", "C": "足底筋膜炎", "D": "跗骨隧道症候群（tarsal tunnel syndrome）"}, "images": [], "answer": "A", "explanation": "答案：A。蹠骨（metatarsal）的應力性骨折—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 70, "stem": "病人因小腿骨折而接受手術治療，術後發現走路時有垂足（drop foot）現象，下列敘述何者正確？", "options": {"A": "淺腓神經（superficial peroneal nerve）受到壓迫並導致脛前肌（tibialis anterior）肌力受損", "B": "淺腓神經（superficial peroneal nerve）受到壓迫並導致腓骨長肌（peroneus longus）肌力受損", "C": "深腓神經（deep peroneal nerve）受到壓迫並導致脛前肌（tibialis anterior）肌力受損", "D": "深腓神經（deep peroneal nerve）受到壓迫並導致腓骨長肌（peroneus longus）肌力受損"}, "images": [], "answer": "C", "explanation": "答案：C。深腓神經（deep peroneal nerve）受到壓迫並導致脛前肌（tibialis anterior）肌力受損—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 71, "stem": "有關扁平足之評估，下列敘述何者正確？", "options": {"A": "判斷舟狀骨（navicular）於脛骨內踝和第一蹠骨頭部連線之相對位置", "B": "判斷脛骨內踝於舟狀骨（navicular）和第一蹠骨頭部連線之相對位置", "C": "判斷第一蹠骨頭部於舟狀骨（navicular）和脛骨內踝連線之相對位置", "D": "判斷跟骨於舟狀骨（navicular）和脛骨內踝連線之相對位置"}, "images": [], "answer": "A", "explanation": "答案：A。判斷舟狀骨（navicular）於脛骨內踝和第一蹠骨頭部連線之相對位置—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 72, "stem": "有關選擇鞋子的檢測要點，下列何者正確？", "options": {"A": "鞋長需與足部剛好合腳貼齊", "B": "內折線（medial metatarsal break）需與蹠跟距（distance from heel to ball of foot）一致", "C": "堅實的護跟（counter）是為了限制舟狀骨（navicular）動作，提高穩定", "D": "鞋寬應比腳寬窄一些，較為穩定"}, "images": [], "answer": "B", "explanation": "答案：B。內折線（medial metatarsal break）需與蹠跟距（distance from heel to ball of foot）一致—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 73, "stem": "有關跗骨隧道症候群（tarsal tunnel syndrome）的敘述，下列何者正確？", "options": {"A": "腳踝被動動作測試不會出現疼痛", "B": "足部阻力等長動作測試結果正常", "C": "疼痛部位為腳跟內側和縱足弓內側", "D": "疼痛在早晨時較為嚴重"}, "images": [], "answer": "C", "explanation": "答案：C。疼痛部位為腳跟內側和縱足弓內側—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 74, "stem": "下列關於職業運動員外側足踝扭傷急性期的處理，何者最不恰當？", "options": {"A": "急性保護期可經由適當的貼紮與冷療減輕疼痛與腫脹", "B": "允許病患在可忍受的情況下，進行部分承重或是完全承重練習", "C": "應開始站立於BAPS板上，進行腳踝平衡本體感覺訓練", "D": "以上肢運動器或固定式腳踏車訓練維持心肺功能"}, "images": [], "answer": "C", "explanation": "答案：C。應開始站立於BAPS板上，進行腳踝平衡本體感覺訓練—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 75, "stem": "患者接受左側脛骨截肢後，抱怨腳背和大腳趾常有麻木感，讓他感覺非常不舒服。此不舒服的來源可能來自\n包裹殘肢時，對下列那條神經產生壓迫？", "options": {"A": "腓腸神經（sural nerve）", "B": "內側跟骨神經（medial calcaneal nerve）", "C": "脛神經（tibial nerve）", "D": "腓總神經（common peroneal nerve）"}, "images": [], "answer": "D", "explanation": "答案：D。腓總神經（common peroneal nerve）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 76, "stem": "燒燙傷治療的最大目標是預防疤痕組織攣縮，可以透過下列那些方法達到此目的？①矽膠片（silicone gel\n②疤痕組織按摩\n③適當的運動\nsheets）", "options": {"A": "僅②③", "B": "僅①②", "C": "僅①③", "D": "①②③"}, "images": [], "answer": "D", "explanation": "答案：D。①②③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 77, "stem": "有關骨盆底肌運動的敘述，下列何者錯誤？", "options": {"A": "訓練前應排空膀胱", "B": "進行骨盆底肌運動可快速收縮放鬆，每回進行15～20次左右後，應有適當的休息", "C": "進行骨盆底肌收縮放鬆（contract-relax）訓練時，收縮時間越長且放鬆時間越短越好", "D": "骨盆底肌運動可在站姿或仰臥姿下進行"}, "images": [], "answer": "C", "explanation": "答案：C。進行骨盆底肌收縮放鬆（contract-relax）訓練時，收縮時間越長且放鬆時間越短越好—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 78, "stem": "有關產前運動計畫與處方，下列敘述何者錯誤？", "options": {"A": "應考慮孕婦體能狀況、孕期與運動種類做決定，但最好每週至少3次", "B": "可根據孕婦年紀，直接用最大心跳保留（heart rate reserve）以估算運動強度", "C": "可用說話測試（talk test）決定運動強度，即運動過程中可以舒服地說話", "D": "避免高跌倒風險與身體碰撞的運動種類"}, "images": [], "answer": "B", "explanation": "答案：B。可根據孕婦年紀，直接用最大心跳保留（heart rate reserve）以估算運動強度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 79, "stem": "有關骨質疏鬆病人治療介入的敘述，下列何者錯誤？", "options": {"A": "病人會因為前彎動作導致胸腰椎的壓迫性骨折，所以教導正確搬重物的方式很重要", "B": "加強訓練肩胛穩定運動有助於病人姿勢控制，可降低胸椎後凸（kyphosis）", "C": "要加強平衡訓練、肌力與負重運動", "D": "首重預防跌倒，所以不建議進行快走運動"}, "images": [], "answer": "D", "explanation": "答案：D。首重預防跌倒，所以不建議進行快走運動—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 80, "stem": "依據國際淋巴學學會的分類，自發不可逆的淋巴水腫被定義為下列那一期？", "options": {"A": "臨床前期", "B": "第一期", "C": "第二期", "D": "第三期"}, "images": [], "answer": "C", "explanation": "答案：C。第二期—此選項為正確敘述，依物理治療學相關知識為標準答案。"}]}};
 
 const state = {
@@ -429,10 +626,17 @@ document.querySelectorAll(".tab").forEach(t => {
 });
 $("#resetBtn").onclick = resetCurrent;
 $("#summaryBtn").onclick = () => { state.viewSummary = true; render(); };
+$("#clearMarksOnlyBtn").onclick = () => {
+  if (!confirm("確定清除本卷（" + DATA[state.paper].label + "）的所有 🔖 標記？\n（作答資料保留，其他卷的標記不動）\n此操作無法復原。")) return;
+  state.marks[state.paper] = {};
+  saveMarks();
+  alert("✓ 已清除本卷的所有標記。");
+  render();
+};
 
 
 // ===== Answer persistence (per-paper picks, saved to localStorage) =====
-const PICKS_STORAGE_KEY = "nephron_108_ortho_picks_v1";
+const PICKS_STORAGE_KEY = _userKey("nephron_108_ortho_picks_v1");
 const QUIZ_ID = "ortho_108";  // unique id used when broadcasting summary
 
 function loadPicks() {
@@ -452,6 +656,69 @@ function savePicks() {
 
 // Send a summary of progress to parent window if embedded in an iframe.
 // Used by the dashboard (index.html) to show progress bars.
+
+
+/* Auto-jump to specific question from URL hash (e.g. #paper=Q1&q=27) */
+function _autoJumpFromHash() {
+  try {
+    const h = location.hash || "";
+    if (!h.includes("paper=") && !h.includes("q=")) return;
+    const pm = h.match(/paper=(Q[12])/);
+    const qm = h.match(/[&?#]q=(\d+)/);
+    if (pm) {
+      const newPaper = pm[1];
+      if (DATA[newPaper]) {
+        state.paper = newPaper;
+        document.querySelectorAll(".tab").forEach(t => {
+          t.classList.toggle("active", t.getAttribute("data-tab") === newPaper);
+        });
+      }
+    }
+    if (qm) {
+      const qNum = parseInt(qm[1], 10);
+      const qs = DATA[state.paper].questions;
+      const idx = qs.findIndex(qq => qq.n === qNum);
+      if (idx >= 0) state.idx[state.paper] = idx;
+    }
+    state.viewSummary = false;
+    render();
+    /* Clear hash so refresh doesn't re-trigger */
+    history.replaceState(null, "", location.pathname + location.search);
+    /* Smooth scroll to question for visibility */
+    setTimeout(() => {
+      const main = document.getElementById("main");
+      if (main) main.scrollIntoView({behavior: "smooth", block: "start"});
+    }, 100);
+  } catch(e) {}
+}
+if (document.readyState !== "loading") setTimeout(_autoJumpFromHash, 200);
+else document.addEventListener("DOMContentLoaded", () => setTimeout(_autoJumpFromHash, 200));
+
+function broadcastFullData() {
+  if (typeof window === "undefined") return;
+  let target = null;
+  try { if (window.parent && window.parent !== window) target = window.parent; } catch(e){}
+  if (!target) return;
+  try {
+    const msg = { type: "quizData", quizId: QUIZ_ID, href: location.pathname, papers: {} };
+    for (const tag of ["Q1","Q2"]) {
+      const qs = DATA[tag].questions;
+      const paperLabel = DATA[tag].label;
+      const slim = qs.map(q => ({
+        n: q.n,
+        stem: q.stem,
+        options: q.options,
+        answer: q.answer,
+        explanation: q.explanation,
+        hasImages: !!(q.images && q.images.length > 0),
+        images: (q.images || []).slice()
+      }));
+      msg.papers[tag] = { label: paperLabel, questions: slim };
+    }
+    target.postMessage(msg, "*");
+  } catch (e) {}
+}
+
 function broadcastProgress() {
   if (typeof window === "undefined") return;
   let target = null;
@@ -483,7 +750,7 @@ function broadcastProgress() {
 state.picks = loadPicks();
 
 // ===== Bookmarks (per-paper question marks, persisted to localStorage) =====
-const MARKS_STORAGE_KEY = "nephron_108_ortho_marks_v1";
+const MARKS_STORAGE_KEY = _userKey("nephron_108_ortho_marks_v1");
 function loadMarks() {
   try {
     const s = localStorage.getItem(MARKS_STORAGE_KEY);
@@ -524,6 +791,19 @@ function _stamp() {
 }
 function _nowStr() { return new Date().toLocaleString("zh-TW", {hour12: false}); }
 
+function _filenameStamp() {
+  const d = new Date();
+  const p = n => String(n).padStart(2, "0");
+  return d.getFullYear() + "-" + p(d.getMonth()+1) + "-" + p(d.getDate()) + "_" + p(d.getHours()) + "-" + p(d.getMinutes());
+}
+function _safeFn(s) { return String(s).replace(/[\\/:*?"<>|]/g, "_").replace(/\s+/g, "_"); }
+function _promptFn(defaultName) {
+  const v = prompt("輸入匯出檔名（不含副檔名）：\n直接按確定即使用預設。", defaultName);
+  if (v === null) return null;
+  const t = v.trim();
+  return _safeFn(t || defaultName);
+}
+
 function _filterQs(paper, filter) {
   const qs = DATA[paper].questions;
   const picks = state.picks[paper];
@@ -562,7 +842,7 @@ function buildExportHTML(paper, filter) {
   const paperLabel = DATA[paper].label + (paper === "Q1" ? "（114020）" : "（114090）");
 
   const subjectTitle = "骨科疾病物理治療學 · 民國 108 年 · " + paperLabel;
-  const fileTitle = `骨科_108_${paperLabel.replace(/[（）]/g, "")}_${filterLabel}_${_stamp()}`;
+  const fileTitle = `${_filenameStamp()}_${(NU.cur().name || "user")}_骨科_108_${paperLabel.replace(/[（）]/g, "")}_${filterLabel}`;
 
   let body = "";
   for (const q of qs) {
@@ -712,19 +992,49 @@ ol.opts li.opt.errata { background: var(--yellow-soft); border-color: var(--yell
   </header>
   <main>${main}</main>
 </div>
+
+</div>
+
 </body>
 </html>`;
   return { html, fileTitle };
 }
 
 function downloadExport(filter) {
-  const { html, fileTitle } = buildExportHTML(state.paper, filter);
+  const built = buildExportHTML(state.paper, filter);
+  const html = built.html;
+  const fn = _promptFn(built.fileTitle);
+  if (!fn) return;
+  const fileTitle = fn;
   const blob = new Blob([html], { type: "text/html;charset=utf-8" });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url; a.download = fileTitle + ".html";
-  document.body.appendChild(a); a.click();
-  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 0);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const isAndroidWebView = /Android.*wv|Version\/.*Chrome\/[.0-9]+ Mobile/.test(navigator.userAgent) && !/Chrome\/[.0-9]+ (Mobile )?Safari/.test(navigator.userAgent);
+  // Try standard download flow first
+  try {
+    const a = document.createElement("a");
+    a.href = url; a.download = fileTitle + ".html";
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  } catch (err) { /* fallthrough */ }
+  // iOS Safari ignores the download attribute. Open the blob in a new tab so user can save via share sheet.
+  if (isIOS) {
+    setTimeout(() => {
+      const win = window.open(url, "_blank");
+      if (!win || win.closed) {
+        // Popup blocked - navigate current page instead
+        location.href = url;
+      }
+      alert("iOS 提示：\n剛開啟的頁面就是匯出結果。\n\n要儲存：\n1. 點下方「分享」按鈕（方框上箭頭）\n2. 選「儲存到檔案」或「Save to Files」\n\n或長按頁面 → 「儲存」即可。");
+    }, 100);
+  } else if (isAndroidWebView) {
+    setTimeout(() => {
+      alert("提示：若沒看到下載提示，請改用 Chrome / Firefox 等瀏覽器開啟此網頁再匯出。");
+    }, 200);
+  }
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
 }
 
 function showExportModal() {
@@ -766,6 +1076,309 @@ document.querySelectorAll("#exportOpts .exp-opt").forEach(btn => {
 render();
 // Broadcast initial state to parent (dashboard) if loaded as iframe
 broadcastProgress();
+broadcastFullData();
+
+
+function downloadJSONBackup() {
+  const obj = NU.exportAll();
+  const def = _filenameStamp() + "_" + (NU.cur().name || "user") + "_骨科_108";
+  const fn = _promptFn(def);
+  if (!fn) return;
+  const fileTitle = fn;
+  const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  try { const a = document.createElement("a"); a.href = url; a.download = fileTitle + ".json"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove(); } catch (e) {}
+  if (isIOS) {
+    setTimeout(() => {
+      const win = window.open(url, "_blank");
+      if (!win || win.closed) location.href = url;
+      alert("iOS：剛開啟的頁面就是 JSON 備份。\n按下方「分享」→「儲存到檔案」即可儲存。");
+    }, 100);
+  }
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+function importJSONBackupFromFile(file, scope) {
+  // scope: "this" = only current paper's keys, "all" = everything (true replace for both)
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const obj = JSON.parse(e.target.result);
+      if (!obj || !obj.data || obj.app !== "nephron-pt-quiz") throw new Error("無效的備份檔");
+      const picksBase = PICKS_STORAGE_KEY.split("::u::")[0];
+      const marksBase = MARKS_STORAGE_KEY.split("::u::")[0];
+      const cur = NU.ck();
+      const dataKeys = Object.keys(obj.data);
+      if (scope === "this") {
+        // Find this paper's data in backup (any user namespace)
+        let foundPicks = null, foundMarks = null;
+        for (const k of dataKeys) {
+          const baseK = k.split("::u::")[0];
+          if (baseK === picksBase) foundPicks = obj.data[k];
+          if (baseK === marksBase) foundMarks = obj.data[k];
+        }
+        if (foundPicks === null && foundMarks === null) {
+          alert("此備份檔不包含本卷的資料。"); return;
+        }
+        const msg = "還原本卷至備份狀態，匯入到目前使用者「" + NU.cur().name + "」。\n（若備份未含 picks/marks，現有同類別資料會被清除以還原為「未作答」狀態。）\n確定？";
+        if (!confirm(msg)) return;
+        // True replace: clear current user's keys for this subject, then set from backup if present
+        const picksKeyForCur = picksBase + "::u::" + cur;
+        const marksKeyForCur = marksBase + "::u::" + cur;
+        if (foundPicks !== null) localStorage.setItem(picksKeyForCur, foundPicks);
+        else localStorage.removeItem(picksKeyForCur);
+        if (foundMarks !== null) localStorage.setItem(marksKeyForCur, foundMarks);
+        else localStorage.removeItem(marksKeyForCur);
+        alert("✓ 本卷進度已還原。即將重新整理頁面。");
+      } else {
+        const userCount = obj.users ? obj.users.length : "?";
+        if (!confirm("還原「全部」資料：" + userCount + " 位使用者、" + dataKeys.length + " 筆 key。\n現有所有 nephron 資料將被「完全替換」為備份內容（未在備份中的會被清除）。\n確定？")) return;
+        const n = NU.importAll(obj, "replace");
+        alert("✓ 已還原 " + n + " 筆資料。即將重新整理頁面。");
+      }
+      location.reload();
+    } catch (err) { alert("匯入失敗：" + err.message); }
+  };
+  reader.readAsText(file);
+}
+(function() {
+  function inject() {
+    const opts = document.getElementById("exportOpts");
+    if (!opts || document.getElementById("expJsonBtn")) return;
+    const jsonBtn = document.createElement("button");
+    jsonBtn.className = "exp-opt"; jsonBtn.id = "expJsonBtn";
+    jsonBtn.innerHTML = '💾 進度備份 JSON（跨裝置同步用） <span class="count">全部使用者</span>';
+    jsonBtn.onclick = () => { downloadJSONBackup(); hideExportModal(); };
+    opts.appendChild(jsonBtn);
+    const importDiv = document.createElement("div");
+    importDiv.style.cssText = "margin-top:14px; padding-top:14px; border-top:1px solid var(--line);";
+    importDiv.innerHTML = '<div style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:6px;">從 JSON 還原進度</div>'
+      + '<div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">'
+      + '<input type="file" id="expImportFile" accept=".json,application/json" style="flex:1; min-width:160px; font-size:13px;" />'
+      + '<button id="expImportThis" style="padding:7px 14px; font-size:13px; background:var(--primary); color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:600;">📥 僅匯入本卷</button>'
+      + '<button id="expImportAll" style="padding:7px 14px; font-size:13px; background:#fff; color:var(--primary); border:1px solid var(--primary); border-radius:6px; cursor:pointer; font-weight:600;">📥 匯入全部</button>'
+      + '</div>'
+      + '<p style="font-size:12px; color:var(--ink-soft); margin:8px 0 0;">💡 「僅匯入本卷」只還原此測驗的 picks／marks（會匯入到目前使用者）。「匯入全部」會還原所有使用者與所有測驗。</p>';
+    opts.parentElement.insertBefore(importDiv, opts.nextSibling);
+    document.getElementById("expImportThis").onclick = () => {
+      const f = document.getElementById("expImportFile").files[0];
+      if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+      importJSONBackupFromFile(f, "this");
+    };
+    document.getElementById("expImportAll").onclick = () => {
+      const f = document.getElementById("expImportFile").files[0];
+      if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+      importJSONBackupFromFile(f, "all");
+    };
+  }
+  if (document.readyState !== "loading") setTimeout(inject, 0);
+  else document.addEventListener("DOMContentLoaded", inject);
+})();
+
+
+
+
+
+/* === Toolbar v2 wiring === */
+(function() {
+  function _esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  function refreshUserName() {
+    const e = document.getElementById("nuTbUserName"); if (e) e.textContent = NU.cur().name;
+    const c = document.getElementById("nuMdCurName"); if (c) c.textContent = NU.cur().name;
+    const c2 = document.getElementById("nuMdCurName2"); if (c2) c2.textContent = NU.cur().name;
+  }
+  function renderUserList() {
+    const list = document.getElementById("nuMdUserList"); if (!list) return;
+    const cur = NU.ck(); const users = NU.list();
+    list.innerHTML = users.map(u => {
+      const active = u.uid === cur;
+      const star = u.star ? "★ " : "";
+      return '<li class="nu-md-item' + (active ? ' active' : '') + '">'
+        + '<span class="nu-md-iname">' + star + _esc(u.name) + '</span>'
+        + '<span class="nu-md-idate">' + _esc(u.createdAt) + '</span>'
+        + '<button data-act="use" data-uid="' + u.uid + '"' + (active ? ' disabled' : '') + '>' + (active ? '使用中' : '切換') + '</button>'
+        + '<button data-act="rename" data-uid="' + u.uid + '">重新命名</button>'
+        + (u.uid === 'default' ? '' : '<button class="nu-md-del" data-act="del" data-uid="' + u.uid + '">刪除</button>')
+        + '</li>';
+    }).join('');
+    list.querySelectorAll('button').forEach(btn => {
+      btn.onclick = () => {
+        const act = btn.getAttribute('data-act'), uid = btn.getAttribute('data-uid');
+        if (act === 'use') {
+          NU.use(uid);
+          const newU = NU.list().find(x => x.uid === uid);
+          /* visual feedback before reload */
+          btn.textContent = '切換中…';
+          setTimeout(() => location.reload(), 80);
+        }
+        else if (act === 'rename') {
+          const u = NU.list().find(x => x.uid === uid);
+          const n = prompt('重新命名：', u ? u.name : '');
+          if (n) { NU.rename(uid, n); renderUserList(); refreshUserName(); }
+        } else if (act === 'del') {
+          const u = NU.list().find(x => x.uid === uid);
+          if (confirm('確定刪除「' + (u ? u.name : '') + '」？該使用者所有作答記錄將一併清除。')) {
+            NU.del(uid); renderUserList(); refreshUserName();
+            if (NU.ck() === 'default') location.reload();
+          }
+        }
+      };
+    });
+  }
+  function showMd(id) { if (id === 'nuMdUser') { renderUserList(); refreshUserName(); } document.getElementById(id).classList.add('show'); }
+  function hideMd(id) { const m = document.getElementById(id); if (m) m.classList.remove('show'); }
+  function wire() {
+    refreshUserName();
+    /* toolbar buttons */
+    const tbU = document.getElementById("nuTbUser");      if (tbU)  tbU.onclick  = () => showMd("nuMdUser");
+    const tbI = document.getElementById("nuTbIO");        if (tbI)  tbI.onclick  = () => showMd("nuMdIO");
+    const tbC = document.getElementById("nuTbClear");     if (tbC)  tbC.onclick  = () => showMd("nuMdClear");
+    /* close buttons */
+    document.querySelectorAll('[data-md-close]').forEach(b => b.onclick = () => hideMd(b.getAttribute('data-md-close')));
+    /* click outside to close */
+    document.querySelectorAll('.nu-md-bg').forEach(bg => bg.addEventListener('click', e => { if (e.target === bg) bg.classList.remove('show'); }));
+    /* user modal: add */
+    const addBtn = document.getElementById("nuMdAddBtn");
+    const newName = document.getElementById("nuMdNewName");
+    if (addBtn) addBtn.onclick = () => {
+      const v = newName.value.trim(); if (!v) { newName.focus(); return; }
+      NU.add(v); newName.value = ""; renderUserList(); refreshUserName();
+    };
+    if (newName) newName.addEventListener("keydown", e => { if (e.key === "Enter") addBtn.click(); });
+    /* IO modal: export */
+    const expBtn = document.getElementById("nuMdExpBtn");
+    if (expBtn) expBtn.onclick = () => { downloadJSONBackup(); hideMd("nuMdIO"); };
+    
+  /* Quiz: per-paper "this" import */
+  const impThis = document.getElementById("nuMdImpThis");
+  if (impThis) impThis.onclick = () => {
+    const f = document.getElementById("nuMdImpFile").files[0];
+    if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+    importJSONBackupFromFile(f, "this");
+  };
+  const impAll = document.getElementById("nuMdImpAll");
+  if (impAll) impAll.onclick = () => {
+    const f = document.getElementById("nuMdImpFile").files[0];
+    if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+    importJSONBackupFromFile(f, "all");
+  };
+    /* clear modal */
+    const clrCur = document.getElementById("nuMdClrCur");
+    if (clrCur) clrCur.onclick = () => {
+      const u = NU.cur();
+      if (!confirm('確定清除「' + u.name + '」的所有作答／標記？此操作無法復原。')) return;
+      const cur = NU.ck();
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith("nephron_") && k.endsWith("::u::" + cur)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除「' + u.name + '」的 ' + toDel.length + ' 筆紀錄。即將重新整理。');
+      location.reload();
+    };
+    const clrAllRec = document.getElementById("nuMdClrAllRec");
+    if (clrAllRec) clrAllRec.onclick = () => {
+      if (!confirm('確定清除「全部使用者」的所有作答／標記？\\n（使用者清單保留，僅清除作答資料）\\n此操作無法復原。')) return;
+      const n = NU.wipeAllProgress();
+      alert('✓ 已清除 ' + n + ' 筆紀錄。即將重新整理。');
+      location.reload();
+    };
+    const clrCurMarks = document.getElementById("nuMdClrCurMarks");
+    if (clrCurMarks) clrCurMarks.onclick = () => {
+      const u = NU.cur();
+      if (!confirm('確定清除「' + u.name + '」的所有 🔖 標記？\n（該使用者的作答資料保留，其他使用者完全不動）\n此操作無法復原。')) return;
+      const cur = NU.ck();
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && /^nephron_.*_marks_v1/.test(k) && k.endsWith('::u::' + cur)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除「' + u.name + '」的 ' + toDel.length + ' 個標記檔。即將重新整理。');
+      location.reload();
+    };
+    const clrAllMarks = document.getElementById("nuMdClrAllMarks");
+    if (clrAllMarks) clrAllMarks.onclick = () => {
+      if (!confirm('確定清除「全部使用者」的所有 🔖 標記？\n（作答資料保留）\n此操作無法復原。')) return;
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && /^nephron_.*_marks_v1/.test(k)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除 ' + toDel.length + ' 個標記檔。即將重新整理。');
+      location.reload();
+    };
+    const fullR = document.getElementById("nuMdFullReset");
+    if (fullR) fullR.onclick = () => {
+      if (!confirm('⚠️ 完全重置：刪除所有使用者、所有作答、所有標記。\\n回到全新狀態（只保留「預設」使用者）。\\n此操作無法復原，確定？')) return;
+      const n = NU.wipeAll();
+      alert('✓ 已重置 ' + n + ' 筆。即將重新整理。');
+      location.reload();
+    };
+  }
+  if (document.readyState !== "loading") setTimeout(wire, 0);
+  else document.addEventListener("DOMContentLoaded", wire);
+})();
+
+
 </script>
+
+
+
+<!-- nu modals -->
+<div class="nu-md-bg" id="nuMdUser" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>👤 使用者切換／管理</h3>
+    <div class="nu-md-sub">同一台裝置可建立多個使用者，作答進度互不干擾。<br><strong>切換使用者後會自動重新整理。</strong></div>
+    <ul class="nu-md-list" id="nuMdUserList"></ul>
+    <div class="nu-md-title">新增使用者</div>
+    <div class="nu-md-add">
+      <input type="text" id="nuMdNewName" placeholder="輸入名字…" maxlength="20" />
+      <button id="nuMdAddBtn" type="button">＋ 新增</button>
+    </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdUser" type="button">關閉</button></div>
+  </div>
+</div>
+<div class="nu-md-bg" id="nuMdIO" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>💾 匯入／匯出 JSON 備份</h3>
+    <div class="nu-md-sub">匯出 JSON 可在不同裝置間同步進度（含所有使用者與所有測驗）。</div>
+    <div class="nu-md-section">
+      <div class="nu-md-title">📤 匯出 JSON</div>
+      <button id="nuMdExpBtn" class="nu-md-btn-success" type="button" style="padding:7px 14px; font-size:13px; border-radius:6px; cursor:pointer;">💾 匯出全部 JSON</button>
+      <div class="nu-md-tip">含所有使用者、所有測驗的 picks／marks，可作為跨裝置同步的備份檔。iOS 會自動開新分頁，請用「分享 → 儲存到檔案」儲存。</div>
+    </div>
+    
+      <div class="nu-md-section">
+        <div class="nu-md-title">📥 從 JSON 還原進度</div>
+        <div class="nu-md-row">
+          <input type="file" id="nuMdImpFile" accept=".json,application/json" style="flex:1; min-width:160px; font-size:13px;" />
+        </div>
+        <div class="nu-md-row" style="gap:6px;">
+          <button id="nuMdImpThis" class="nu-md-btn-primary" type="button" style="padding:7px 12px; font-size:13px; border-radius:6px; cursor:pointer;">📥 僅匯入本卷</button>
+          <button id="nuMdImpAll" type="button" style="padding:7px 12px; font-size:13px; background:#fff; color:#1d6f9b; border:1px solid #1d6f9b; border-radius:6px; cursor:pointer; font-weight:600;">📥 匯入全部</button>
+        </div>
+        <div class="nu-md-tip">「僅匯入本卷」只還原此測驗的 picks／marks（會匯入到目前使用者，並把現有同類資料清空為「未作答」）。<br>「匯入全部」會還原所有使用者與所有測驗，未在備份中的資料會被清除（真正的「還原」語意）。</div>
+      </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdIO" type="button">關閉</button></div>
+  </div>
+</div>
+<div class="nu-md-bg" id="nuMdClear" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>🗑 清除紀錄</h3>
+    <div class="nu-md-sub" style="color:#c92a2a;"><strong>⚠️ 以下動作無法復原。</strong></div>
+    <div class="nu-md-row" style="flex-direction:column; align-items:stretch; gap:8px;">
+      <button id="nuMdClrCur" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🗑 清除「目前使用者」（<span id="nuMdCurName">預設使用者</span>）的所有紀錄<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除目前使用者的作答／標記，使用者本身保留</div></button>
+      <button id="nuMdClrAllRec" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🗑 清除「全部使用者」的所有紀錄<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">所有人的作答／標記都會清除，但使用者清單保留</div></button>
+      <button id="nuMdClrCurMarks" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🔖 清除「目前使用者」（<span id="nuMdCurName2">預設使用者</span>）的所有標記<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除目前使用者的書籤（🔖），作答資料保留</div></button>
+      <button id="nuMdClrAllMarks" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🔖 清除「全部使用者」的所有標記<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除所有人的書籤（🔖），作答資料保留</div></button>
+      <button id="nuMdFullReset" class="nu-md-btn-danger" type="button" style="padding:9px 14px; font-size:13px; border-radius:6px; cursor:pointer; text-align:left;">🔥 完全重置<div style="font-size:11px; color:rgba(255,255,255,.85); margin-top:2px; font-weight:normal;">連使用者清單一起刪除，回到全新狀態（只剩「預設」使用者）</div></button>
+    </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdClear" type="button">關閉</button></div>
+  </div>
+</div>
+
 </body>
 </html>
