@@ -149,6 +149,75 @@
   .marked-badge { display: inline-block; padding: 1px 7px; border-radius: 999px; background: var(--yellow-soft); color: #6b4e00; font-size: 11px; border: 1px solid var(--yellow); margin-left: 4px; }
   .wrong-row.mk { border-color: var(--yellow); }
 
+
+  .nu-badge { display:inline-flex; align-items:center; gap:6px; padding:5px 10px; background:#fff; border:1px solid var(--line); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ink); margin-left:auto; transition:all .15s; }
+  .nu-badge:hover { background:var(--primary-soft); border-color:var(--primary); color:var(--primary); }
+  .nu-badge .nu-dot { width:8px; height:8px; border-radius:50%; background:var(--green); }
+  .nu-badge .nu-name { font-weight:600; }
+  .nu-modal-bg { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:9999; }
+  .nu-modal-bg.show { display:flex; }
+  .nu-modal { background:#fff; border-radius:12px; padding:24px; max-width:500px; width:92%; max-height:80vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,.18); }
+  .nu-modal h3 { margin:0 0 6px; font-size:17px; }
+  .nu-modal .nu-sub { color:#666; font-size:13px; margin-bottom:14px; }
+  .nu-modal .nu-list { list-style:none; padding:0; margin:0 0 12px; max-height:240px; overflow-y:auto; }
+  .nu-modal .nu-item { display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #e4e7eb; border-radius:8px; margin-bottom:6px; }
+  .nu-modal .nu-item.active { background:#f0f9ff; border-color:#1d6f9b; }
+  .nu-modal .nu-item .nu-iname { flex:1; font-weight:600; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .nu-modal .nu-item .nu-idate { font-size:11px; color:#888; min-width:90px; text-align:right; }
+  .nu-modal .nu-item button { padding:4px 10px; font-size:12px; border:1px solid #d4d7db; background:#fff; border-radius:6px; cursor:pointer; }
+  .nu-modal .nu-item button:hover { background:#f1f3f5; }
+  .nu-modal .nu-item button.nu-del { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-modal .nu-item button.nu-del:hover { background:#ffe3e3; }
+  .nu-modal .nu-item button:disabled { opacity:.45; cursor:not-allowed; }
+  .nu-modal .nu-add-row { display:flex; gap:6px; margin-top:8px; }
+  .nu-modal .nu-add-row input { flex:1; padding:8px 10px; border:1px solid #d4d7db; border-radius:6px; font-size:14px; }
+  .nu-modal .nu-add-row button { padding:8px 14px; background:#1d6f9b; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer; font-weight:600; }
+  .nu-modal .nu-tip { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:8px 10px; font-size:12px; color:#666; margin-top:10px; }
+  .nu-modal .nu-actions { margin-top:14px; text-align:right; }
+  .nu-modal .nu-actions button { padding:8px 14px; border:1px solid #d4d7db; background:#fff; border-radius:6px; font-size:13px; cursor:pointer; }
+
+  /* Top toolbar (3 buttons) */
+  .nu-toolbar { display:inline-flex; align-items:center; gap:6px; margin-left:auto; flex-wrap:wrap; }
+  .nu-tb-btn { display:inline-flex; align-items:center; gap:5px; padding:5px 11px; background:#fff; border:1px solid #d4d7db; border-radius:8px; font-size:13px; cursor:pointer; color:#1f2933; transition:all .15s; line-height:1.4; }
+  .nu-tb-btn:hover { background:#e6f1f7; border-color:#1d6f9b; color:#1d6f9b; }
+  .nu-tb-btn .nu-tb-icon { font-size:14px; }
+  .nu-tb-btn.nu-tb-user { font-weight:600; }
+  .nu-tb-btn.nu-tb-user .nu-tb-dot { width:7px; height:7px; border-radius:50%; background:#2f9e44; margin-right:1px; }
+  .nu-tb-btn.nu-tb-clear { color:#c92a2a; }
+  .nu-tb-btn.nu-tb-clear:hover { background:#ffe3e3; border-color:#c92a2a; color:#c92a2a; }
+  /* Generic modal (shared between 3) */
+  .nu-md-bg { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:9999; padding:20px; }
+  .nu-md-bg.show { display:flex; }
+  .nu-md { background:#fff; border-radius:12px; padding:22px; max-width:560px; width:100%; max-height:85vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,.18); }
+  .nu-md h3 { margin:0 0 6px; font-size:17px; }
+  .nu-md .nu-md-sub { color:#666; font-size:13px; margin-bottom:14px; line-height:1.6; }
+  .nu-md .nu-md-list { list-style:none; padding:0; margin:0 0 12px; max-height:240px; overflow-y:auto; }
+  .nu-md .nu-md-item { display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #e4e7eb; border-radius:8px; margin-bottom:6px; flex-wrap:wrap; }
+  .nu-md .nu-md-item.active { background:#f0f9ff; border-color:#1d6f9b; }
+  .nu-md .nu-md-item .nu-md-iname { flex:1; font-weight:600; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .nu-md .nu-md-item .nu-md-idate { font-size:11px; color:#888; min-width:90px; text-align:right; }
+  .nu-md .nu-md-item button { padding:4px 10px; font-size:12px; border:1px solid #d4d7db; background:#fff; border-radius:6px; cursor:pointer; }
+  .nu-md .nu-md-item button:hover { background:#f1f3f5; }
+  .nu-md .nu-md-item button.nu-md-del { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-md .nu-md-item button.nu-md-del:hover { background:#ffe3e3; }
+  .nu-md .nu-md-item button:disabled { opacity:.45; cursor:not-allowed; }
+  .nu-md .nu-md-add { display:flex; gap:6px; margin-top:8px; }
+  .nu-md .nu-md-add input { flex:1; padding:8px 10px; border:1px solid #d4d7db; border-radius:6px; font-size:14px; }
+  .nu-md .nu-md-add button { padding:8px 14px; background:#1d6f9b; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer; font-weight:600; }
+  .nu-md .nu-md-tip { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:8px 10px; font-size:12px; color:#666; margin-top:10px; line-height:1.6; }
+  .nu-md .nu-md-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:6px 0; }
+  .nu-md .nu-md-section { margin-top:14px; padding-top:14px; border-top:1px solid #e4e7eb; }
+  .nu-md .nu-md-section.danger { border-top:2px solid #ffe3e3; }
+  .nu-md .nu-md-section.danger > .nu-md-title { color:#c92a2a; font-weight:700; font-size:13px; margin-bottom:6px; }
+  .nu-md .nu-md-title { font-size:13px; font-weight:600; color:#1f2933; margin-bottom:6px; }
+  .nu-md .nu-md-actions { margin-top:14px; text-align:right; }
+  .nu-md .nu-md-actions button { padding:8px 14px; border:1px solid #d4d7db; background:#fff; border-radius:6px; font-size:13px; cursor:pointer; }
+  .nu-md .nu-md-btn-primary { background:#1d6f9b !important; color:#fff !important; border-color:#1d6f9b !important; font-weight:600; }
+  .nu-md .nu-md-btn-success { background:#2f9e44 !important; color:#fff !important; border-color:#2f9e44 !important; font-weight:600; }
+  .nu-md .nu-md-btn-danger  { background:#c92a2a !important; color:#fff !important; border-color:#c92a2a !important; font-weight:600; }
+  .nu-md .nu-md-btn-outline-danger { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-md .nu-md-btn-outline-danger:hover { background:#ffe3e3; }
+
 </style>
 </head>
 <body>
@@ -162,7 +231,19 @@
     </div>
     <div class="progress" id="progress"></div>
   </div>
-</header>
+
+
+<div class="nu-toolbar">
+<button class="nu-tb-btn nu-tb-user" id="nuTbUser" type="button" title="切換／管理使用者">
+  <span class="nu-tb-dot"></span><span id="nuTbUserName">預設使用者</span><span style="font-size:9px;opacity:.6;">▼</span>
+</button>
+<button class="nu-tb-btn" id="nuTbIO" type="button" title="匯入／匯出 JSON 備份">
+  <span class="nu-tb-icon">💾</span>匯入／匯出
+</button>
+<button class="nu-tb-btn nu-tb-clear" id="nuTbClear" type="button" title="清除紀錄（無法復原）">
+  <span class="nu-tb-icon">🗑</span>清除
+</button>
+</div></header>
 
 <div class="layout">
   <aside class="sidebar">
@@ -175,7 +256,8 @@
     </div>
     <button id="resetBtn" class="btn danger" style="margin-top:12px;width:100%;font-size:13px;">重置本卷作答</button>
     <button id="summaryBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px;">查看本卷總結</button>
-    <button id="exportBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px;">📤 匯出結果…</button>
+    <button id="exportBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px;">📤 匯入／匯出本卷</button>
+    <button id="clearMarksOnlyBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px; color:#c92a2a; border-color:#ffc9c9;">🔖 清除本卷標記</button>
   </aside>
 
   <main class="main" id="main"></main>
@@ -185,7 +267,7 @@
 
 <div class="modal-bg" id="exportModal" role="dialog" aria-modal="true">
   <div class="modal-card">
-    <h3>匯出測驗結果</h3>
+    <h3>匯入／匯出本卷</h3>
     <div class="modal-sub" id="exportSub">本卷：第一次 (114020)</div>
     <div class="opt-row" id="exportOpts">
       <button class="exp-opt" data-filter="all">📄 全部題目（含詳解） <span class="count" id="cntAll"></span></button>
@@ -202,6 +284,121 @@
 </div>
 
 <script>
+
+/* ===== Nephron 多人使用者系統 (NU) ===== */
+const NU = {
+  ck() { return localStorage.getItem("nephron::current_user") || "default"; },
+  list() {
+    try {
+      let l = JSON.parse(localStorage.getItem("nephron::users") || "[]");
+      if (!l.length) {
+        l = [{ uid: "default", name: "預設使用者", createdAt: new Date().toISOString().slice(0,10), star: true }];
+        localStorage.setItem("nephron::users", JSON.stringify(l));
+      }
+      return l;
+    } catch(e) { return [{ uid: "default", name: "預設使用者", createdAt: "", star: true }]; }
+  },
+  cur() { const id = NU.ck(); return NU.list().find(u => u.uid === id) || NU.list()[0]; },
+  use(uid) { localStorage.setItem("nephron::current_user", uid); },
+  add(name) {
+    if (!name.trim()) return null;
+    const l = NU.list();
+    const uid = "u_" + Date.now().toString(36) + Math.floor(Math.random()*1000).toString(36);
+    l.push({ uid, name: name.trim(), createdAt: new Date().toISOString().slice(0,10), star: false });
+    localStorage.setItem("nephron::users", JSON.stringify(l));
+    return uid;
+  },
+  rename(uid, newName) {
+    const l = NU.list();
+    const u = l.find(x => x.uid === uid);
+    if (u && newName.trim()) { u.name = newName.trim(); localStorage.setItem("nephron::users", JSON.stringify(l)); return true; }
+    return false;
+  },
+  del(uid) {
+    if (uid === "default") return false;
+    const l = NU.list().filter(x => x.uid !== uid);
+    localStorage.setItem("nephron::users", JSON.stringify(l));
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.includes("::u::" + uid)) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    if (NU.ck() === uid) localStorage.setItem("nephron::current_user", "default");
+    return true;
+  },
+  exportAll() {
+    const obj = { app: "nephron-pt-quiz", version: 1, exportedAt: new Date().toISOString(),
+                  users: NU.list(), currentUser: NU.ck(), data: {} };
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (!k) continue;
+      if (k.startsWith("nephron_") || k.startsWith("nephron::")) obj.data[k] = localStorage.getItem(k);
+    }
+    return obj;
+  },
+  importAll(obj, mode) {
+    if (!obj || !obj.data || obj.app !== "nephron-pt-quiz") throw new Error("無效的備份檔（找不到 nephron-pt-quiz 標記）");
+    mode = mode || "replace";
+    if (mode === "replace") {
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && (k.startsWith("nephron_") || k.startsWith("nephron::"))) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+    }
+    if (obj.users) localStorage.setItem("nephron::users", JSON.stringify(obj.users));
+    for (const k in obj.data) localStorage.setItem(k, obj.data[k]);
+    if (obj.currentUser) localStorage.setItem("nephron::current_user", obj.currentUser);
+    return Object.keys(obj.data).length;
+  },
+  wipeAllProgress() {
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith("nephron_")) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    return toDel.length;
+  },
+  wipeAll() {
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && (k.startsWith("nephron_") || k.startsWith("nephron::"))) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    return toDel.length;
+  }
+};
+(function migrate() {
+  if (NU.ck() !== "default") return;
+  const oldKeys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith("nephron_") && !k.includes("::u::")) oldKeys.push(k);
+  }
+  oldKeys.forEach(k => {
+    const v = localStorage.getItem(k);
+    const newK = k + "::u::default";
+    if (v !== null && localStorage.getItem(newK) === null) localStorage.setItem(newK, v);
+  });
+})();
+(function migrateDefaultName() {
+  try {
+    const raw = localStorage.getItem("nephron::users");
+    if (!raw) return;
+    const arr = JSON.parse(raw);
+    let changed = false;
+    for (const u of arr) {
+      if (u.uid === "default" && u.name === "預設") { u.name = "預設使用者"; changed = true; }
+    }
+    if (changed) localStorage.setItem("nephron::users", JSON.stringify(arr));
+  } catch(e) {}
+})();
+function _userKey(baseKey) { return baseKey + "::u::" + NU.ck(); }
+
 const DATA = {"Q1": {"label": "第一次", "questions": [{"n": 1, "stem": "當關閉容量（closing volume）接近或大於功能性肺餘容積時表示：", "options": {"A": "吸入之氣體主要分布在上肺，但因灌流量在下肺較多，故造成換氣灌流不平衡（ mismatch）", "B": "吸入之氣體主要分布在下肺，但因灌流量在上肺較多，故造成換氣灌流不平衡（ mismatch）", "C": "吸入之氣體主要分布在上肺，但因灌流量在上肺較多，故造成換氣灌流較平衡（ match）", "D": "吸入之氣體主要分布在下肺，但因灌流量在下肺較多，故造成換氣灌流較平衡（ match）"}, "images": [], "answer": "A", "explanation": "答案：A。吸入之氣體主要分布在上肺，但因灌流量在下肺較多，故造成換氣灌流不平衡（ mismatch）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 2, "stem": "有關健康人運動時解剖死腔對潮氣量比值，下列敘述何者正確？", "options": {"A": "約為 0.5", "B": "較安靜狀態增加", "C": "較安靜狀態減少", "D": "與安靜時相同"}, "images": [], "answer": "C", "explanation": "答案：C。較安靜狀態減少—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 3, "stem": "下列敘述何者不是慢性心衰竭之表徵？", "options": {"A": "運動高血壓", "B": "呼吸困難", "C": "S3心音", "D": "下肢水腫"}, "images": [], "answer": "A", "explanation": "答案：A。運動高血壓—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 4, "stem": "糖尿病前期（pre-diabetes）是指患者的空腹血糖值介於何範圍？", "options": {"A": "大於90 mg/dL，小於106 mg/dL", "B": "大於90 mg/dL，小於116 mg/dL", "C": "大於100 mg/dL，小於126 mg/dL", "D": "大於120 mg/dL，小於136 mg/dL"}, "images": [], "answer": "C", "explanation": "答案：C。大於100 mg/dL，小於126 mg/dL—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 5, "stem": "下列敘述何種血液中的離子濃度升高會使血壓上升？", "options": {"A": "鉀", "B": "鈉", "C": "磷", "D": "鈣"}, "images": [], "answer": "B", "explanation": "答案：B。鈉—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 6, "stem": "臨床上常利用心率與下列敘述何種參數來計算心肌攝氧量指標？", "options": {"A": "脈壓", "B": "收縮壓", "C": "舒張壓", "D": "平均血壓"}, "images": [], "answer": "B", "explanation": "答案：B。收縮壓—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 7, "stem": "一位氣喘病人，因為車禍造成肋骨骨折，胸口疼痛、呼吸困難、FEV1=43%預期值、\nFVC=58%預期值、FEV1 / FVC=62%，請問這屬於下列何種肺疾病？", "options": {"A": "限制型", "B": "阻塞型", "C": "限制合併阻塞型", "D": "肺心症"}, "images": [], "answer": "C", "explanation": "答案：C。限制合併阻塞型—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 8, "stem": "病人在評估時呈現呼吸困難、尖銳性胸痛，且胸縱膈偏移。這個病人最可能是：", "options": {"A": "氣胸", "B": "肺炎", "C": "慢性支氣管炎", "D": "肺部腫瘤"}, "images": [], "answer": "A", "explanation": "答案：A。氣胸—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 9, "stem": "肺部手術後常見的併發症，包括：①肺塌陷 ②心跳過慢 ③傷口疼痛 ④皮下氣腫", "options": {"A": "僅②③④", "B": "僅①②③", "C": "僅①③④", "D": "僅①②④"}, "images": [], "answer": "C", "explanation": "答案：C。僅①③④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 10, "stem": "有關叩診（percussion），下列敘述何者正確？①敲擊肋骨可以用來區辨肺實質密度的變化\n②通常以慣用手的中指進行敲擊 ③有肺葉塌陷時，敲擊聲會出現較大且長的回音 ④叩診\n橫膈肌位移（excursion）正常約為3-5公分", "options": {"A": "僅①③", "B": "僅①②④", "C": "僅②③④", "D": "僅②④"}, "images": [], "answer": "D", "explanation": "答案：D。僅②④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 11, "stem": "因緊張而導致過度換氣之呼吸型態最類似於：", "options": {"A": "陳施氏呼吸（Cheyne-Stokes breathing）", "B": "克什摩呼吸（Kussmaul breathing）", "C": "拜歐特呼吸（Biot’s breathing）", "D": "門檻式呼吸（Doorstop breathing）"}, "images": [], "answer": "B", "explanation": "答案：B。克什摩呼吸（Kussmaul breathing）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 12, "stem": "心臟復健第一階段的成效評估不包括下列何者？", "options": {"A": "最大運動能力", "B": "執行自我照顧能力", "C": "需要協助或監視以執行活動的程度", "D": "二級預防的能力"}, "images": [], "answer": "A", "explanation": "答案：A。最大運動能力—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 13, "stem": "王先生在 6 天前急性心肌梗塞，住院治療後情況已經穩定。目前照會物理治療師幫王先生測\n試其活動功能，結果發現王先生在一般家事活動上容易引起疲倦、心悸、呼吸困難及心絞\n痛。則王先生運動耐力約為多少METs？", "options": {"A": "6～10", "B": "4～6", "C": "2～3", "D": "＜2"}, "images": [], "answer": "B", "explanation": "答案：B。4～6—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 14, "stem": "根據美國心臟學會建議，冠狀動脈和其他血管病患二級預防之指引，下列敘述那些錯誤？①\n心臟衰竭或腎臟功能不足者，血壓控制＜130/80 mmHg ②脂肪控制之主要目標三酸甘油酯\n（TG）＜50 mg/dL ③體重控制建議BMI為18.5～24.9 kg/m2 ④ HbAlc介於8～10%", "options": {"A": "僅①④", "B": "僅②③", "C": "僅①②④", "D": "僅②③④"}, "images": [], "answer": "C", "explanation": "答案：C。僅①②④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 15, "stem": "病人在運動後覺得很累、很喘、有流汗情形，運動量讓病人感到吃力，其自覺用力係數\n（RPE）應為多少？", "options": {"A": "11", "B": "13", "C": "15", "D": "17"}, "images": [], "answer": "C", "explanation": "答案：C。15—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 16, "stem": "有關心臟疾病患者在出院前進行低限運動測試（low-level exercise test），下列敘述何者錯\n誤？", "options": {"A": "以年齡預估最大心率90%為協助篩檢出高危險群患者之條件", "B": "提供居家活動是否安全之訊息", "C": "提供運動治療處方設定之參考", "D": "評估藥物控制病情之安全與成效"}, "images": [], "answer": "A", "explanation": "答案：A。以年齡預估最大心率90%為協助篩檢出高危險群患者之條件—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 17, "stem": "對於心肌梗塞病患之第一期心臟復健，由平躺坐起來的變化，下列敘述何者正確？", "options": {"A": "增加中央靜脈壓", "B": "增加肺血管充血", "C": "增加靜脈引流", "D": "減輕呼吸困難之症狀"}, "images": [], "answer": "D", "explanation": "答案：D。減輕呼吸困難之症狀—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 18, "stem": "30歲吳先生從事有氧運動訓練時，下列那兩種運動強度不相當？", "options": {"A": "50%最大心率，與40%最大攝氧量", "B": "70%最大心率，與自覺用力係數12～13", "C": "85%最大攝氧量與自覺用力係數14", "D": "60%心率儲備量與60%最大攝氧量"}, "images": [], "answer": "C", "explanation": "答案：C。85%最大攝氧量與自覺用力係數14—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 19, "stem": "一位患者的病歷診斷為 xenograft failure s/p MVR & TVP，其術後第二天之 CO（cardiac\noutput）：4.2 L/min，CI（cardiac index）：2.02 L/min/m2，下列敘述何者正確？", "options": {"A": "患者之前曾接受生物瓣膜置換", "B": "患者主要接受三尖瓣膜置換", "C": "患者此次接受兩個瓣膜置換手術", "D": "CI是利用CO除以身高（公尺）平方"}, "images": [], "answer": "A", "explanation": "答案：A。患者之前曾接受生物瓣膜置換—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 20, "stem": "對慢性心臟病患為期三個月的耐力訓練後，下列敘述何者將會增加？", "options": {"A": "休息時的心率", "B": "最大運動量時的動靜脈氧差（a-v O2 difference）", "C": "中低強度運動時的心率", "D": "休息時的心跳壓力乘積（rate-pressure product）"}, "images": [], "answer": "B", "explanation": "答案：B。最大運動量時的動靜脈氧差（a-v O2 difference）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 21, "stem": "李先生於 2 個月前發生心肌梗塞，因長時間臥床缺乏活動，關於其可能產生之不良生理效\n應，下列敘述何者正確？①降低胰島素阻力  ②增加活動時心跳  ③血液體積上升  ④降低休\n息時心搏量", "options": {"A": "僅①②", "B": "僅②④", "C": "僅①③④", "D": "僅②③④"}, "images": [], "answer": "B", "explanation": "答案：B。僅②④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 22, "stem": "48 歲病患接受心肺運動測試後，得知最大心率（HRmax）為 160 bpm，而休息心率為 80\nbpm，達到無氧閾值時心率約為 135 bpm，就設定運動處方時，有氧訓練之熱身期之適當心\n率強度約為：", "options": {"A": "90～100bpm", "B": "105～120bpm", "C": "125～135bpm", "D": "140～150bpm"}, "images": [], "answer": "B", "explanation": "答案：B。105～120bpm—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 23, "stem": "陳先生於接受冠狀動脈繞道手術（CABG）後，接受第二期的心臟復健，下列運動處方之訓\n練強度，何者較有心血管系統正面效果？①最大攝氧量的30%   ②最大心率的70%   ③心率\n貯存量的60%加上休息心率   ④無氧閾值界限", "options": {"A": "僅①②", "B": "僅①③④", "C": "僅②③④", "D": "①②③④"}, "images": [], "answer": "C", "explanation": "答案：C。僅②③④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 24, "stem": "肺癌患者左側全肺葉切除，且因病灶的侵犯及粘黏進行部分心包膜切除，下列有關術後物理\n治療的敘述何者錯誤？", "options": {"A": "進行扣擊時，可以一手扶住患者傷口，以減輕其疼痛", "B": "宜加強腹式橫膈呼吸", "C": "要引流右側痰液可側躺在患側（左下右上）", "D": "引流瓶內看到大量氣泡時，宜暫停所有深呼吸運動治療"}, "images": [], "answer": "C", "explanation": "答案：C。要引流右側痰液可側躺在患側（左下右上）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 25, "stem": "有關指導患者從事噴霧治療之重點，下列敘述何者錯誤？", "options": {"A": "吐氣後，以口做最大吸氣", "B": "吸氣速度要快速", "C": "吸氣後屏住呼吸數秒", "D": "施用時患者可成 90度直立坐姿"}, "images": [], "answer": "B", "explanation": "答案：B。吸氣速度要快速—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 26, "stem": "慢性阻塞性肺部疾病患者在運動過程中，於下列何情況時應考慮給予氧氣？", "options": {"A": "PaO2小於或等於88 mmHg，血氧飽和度小於55%", "B": "PaO2小於或等於88 mmHg，血氧飽和度小於88%", "C": "PaO2小於或等於55 mmHg，血氧飽和度小於88%", "D": "PaO2小於或等於55 mmHg，血氧飽和度小於55%"}, "images": [], "answer": "#", "explanation": "本題公告一律給分（答案不限）。題幹：慢性阻塞性肺部疾病患者在運動過程中，於下列何情況時應考慮給予氧氣？…可能因題意不清、選項皆有爭議或圖表不明確等原因，考選部裁定一律給分。"}, {"n": 27, "stem": "下列敘述那些疾病會出現限制型肺部功能障礙（restrictive lung dysfunction）？ ①肌萎縮\n側索硬化症（amyotrophic lateral sclerosis） ②肺氣腫 ③T5完全性脊髓損傷 ④類肉瘤病\n（Sarcoidosis）⑤肋膜膿胸（pleural empyema）", "options": {"A": "僅②④⑤", "B": "僅①③④", "C": "僅①③④⑤", "D": "僅③④⑤"}, "images": [], "answer": "C", "explanation": "答案：C。僅①③④⑤—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 28, "stem": "評估脊髓損傷患者的呼吸型態的結果，下列配對何者最不可能發生？", "options": {"A": "高頸髓損傷患者：三分頸部、一分橫膈的呼吸方式", "B": "低頸髓損傷：四分橫膈的呼吸方式", "C": "中胸髓損傷：一分橫膈、三分胸式的呼吸方式", "D": "低胸髓損傷：二分橫膈、二分胸式的呼吸方式"}, "images": [], "answer": "C", "explanation": "答案：C。中胸髓損傷：一分橫膈、三分胸式的呼吸方式—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 29, "stem": "下列那些是新生兒進行頭高腳低（Trendelenburg position）姿位引流的絕對禁忌症？ ①急\n性心肺衰竭   ②Grade I腦室內出血（intraventricular hemorrhage）   ③近期內接受過氣管\n食道廔管修補手術（tracheoesophageal fistula repair）   ④開放性動脈導管 (Patent\nDuctusArteriosus)", "options": {"A": "僅①③④", "B": "僅②③④", "C": "僅①③", "D": "僅①②④"}, "images": [], "answer": "#", "explanation": "本題公告一律給分（答案不限）。題幹：下列那些是新生兒進行頭高腳低（Trendelenburg position）姿位引流的絕對禁忌症？ ①急 性心肺衰竭  …可能因題意不清、選項皆有爭議或圖表不明確等原因，考選部裁定一律給分。"}, {"n": 30, "stem": "關於下肢動脈功能不全引起的動脈瘡，下列敘述何者錯誤？", "options": {"A": "潰瘍常發生在足踝外側", "B": "傷口缺乏肉芽組織", "C": "傷口外圍有黑色壞死皮膚", "D": "架高下肢可減低痠疼感"}, "images": [], "answer": "D", "explanation": "答案：D。架高下肢可減低痠疼感—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 31, "stem": "下肢中重度動脈阻塞的患者不適合採用下列敘述何者運動型態？", "options": {"A": "登山", "B": "走路", "C": "游泳", "D": "固定式腳踏車"}, "images": [], "answer": "A", "explanation": "答案：A。登山—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 32, "stem": "下列有關下肢慢性動脈與靜脈病變之敘述，何者錯誤？", "options": {"A": "步行對兩者皆屬合適的運動治療型態", "B": "兩者皆可藉由反應性充血時間進行評估", "C": "下肢的被動運動也可預防靜脈血栓的發生", "D": "兩者早期發炎時，運動皆會產生疼痛加劇現象"}, "images": [], "answer": "B", "explanation": "答案：B。兩者皆可藉由反應性充血時間進行評估—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 33, "stem": "心臟移植病患的運動處方，有關訓練強度的考量，下列敘述何者較不恰當？", "options": {"A": "自覺用力係數", "B": "攝氧量", "C": "心率", "D": "瓦特數"}, "images": [], "answer": "C", "explanation": "答案：C。心率—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 34, "stem": "下列有關無氧閾值的敘述，何者正確？", "options": {"A": "乳酸超過 3 mM時，稱為乳酸閾", "B": "抽血測量乳酸值增高，也稱為換氣閾", "C": "超過無氧閾值表示乳酸增加，重碳酸鹽下降", "D": "超過無氧閾值時，呼吸頻率變化不大"}, "images": [], "answer": "C", "explanation": "答案：C。超過無氧閾值表示乳酸增加，重碳酸鹽下降—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 35, "stem": "下列何種非侵入性機械換氣輔助方式，可以引入藥物及用以促進咳嗽？", "options": {"A": "連續氣道正壓（CPAP）", "B": "呼氣末正壓（PEEP）", "C": "間歇式正壓呼吸（IPPB）", "D": "雙相正壓（BiPAP）"}, "images": [], "answer": "C", "explanation": "答案：C。間歇式正壓呼吸（IPPB）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 36, "stem": "有關T5完全性脊髓損傷的患者之肺部功能及其表現與正常人相比，下列敘述那些正確？①呼\n氣儲備容積下降 ②肺餘容積下降 ③肺餘容積上升 ④直立時橫膈休息位置較高 ⑤直立\n時橫膈休息位置較低", "options": {"A": "僅①③⑤", "B": "僅③④", "C": "僅①②⑤", "D": "僅①②④"}, "images": [], "answer": "A", "explanation": "答案：A。僅①③⑤—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 37, "stem": "下列有關老年人的運動訓練計畫之敘述，何者錯誤？", "options": {"A": "訓練目標是提升極限運動的能力", "B": "計畫需考慮個別差異", "C": "以較低量開始，進展通常較年輕人為慢", "D": "以增加運動頻率代償較低的運動強度"}, "images": [], "answer": "A", "explanation": "答案：A。訓練目標是提升極限運動的能力—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 38, "stem": "治療肥胖的運動處方，下列敘述何者正確？", "options": {"A": "在熱量消耗效果上，阻力型運動比有氧運動更好", "B": "在相同的熱量消耗下，快走比散步的效果更好", "C": "兒童及青少年肥胖的建議量是每天 60 分鐘的高強度運動及減少上網的時間", "D": "每週至少有 150 分鐘的中強度運動量可有長期維持體重的效果"}, "images": [], "answer": "C", "explanation": "答案：C。兒童及青少年肥胖的建議量是每天 60 分鐘的高強度運動及減少上網的時間—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 39, "stem": "根據美國運動醫學會對一般健康成人運動量的建議，下列敘述何者正確？", "options": {"A": "每週 5 天、每天至少 30 分鐘的中度有氧運動，或每週 3 天、每天至少 20 分鐘的高強度運 動，再加上每週 2 次肌力訓練", "B": "每週 5 天、每天至少 60 分鐘的中度有氧運動，或每週 3 天、每天至少 30 分鐘的高強度運 動，再加上每週 1 次肌力訓練", "C": "每週 3 天、每天至少 30 分鐘的中度有氧運動，或每週 5 天、每天至少 20 分鐘的高強度 運動，再加上每週 2 次肌力訓練", "D": "每週 3 天、每天至少 60 分鐘的中度有氧運動，或每週 5 天、每天至少 30 分鐘的高強度 運動，再加上每週 1 次肌力訓練"}, "images": [], "answer": "A", "explanation": "答案：A。每週 5 天、每天至少 30 分鐘的中度有氧運動，或每週 3 天、每天至少 20 分鐘的高強度運 動，再加上每週 2 次肌力訓練—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 40, "stem": "承上題，針對大於 65 歲之老年族群的身體活動建議與上述一般成年人有所不同，下列敘述\n何者正確？", "options": {"A": "老年族群建議增加平衡運動與柔軟度運動", "B": "老年族群因心血管因素不建議從事阻力訓練", "C": "老年族群若有慢性疾病則不建議從事一般身體活動", "D": "老年族群從事低強度運動即可，不須達到目標心率"}, "images": [], "answer": "A", "explanation": "答案：A。老年族群建議增加平衡運動與柔軟度運動—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 41, "stem": "評估一個發展遲緩兒童之訊息處理與學習能力時，根據「訊息處理理論」，下列敘述何者錯\n誤？", "options": {"A": "學習初期，大部分的任務一開始的認知運思多，也會占據很多容量。在有限容量假設下， 可處理之訊息量較少且速度較慢", "B": "與學習初期相比，在學習後期，進行同樣的任務，所需的心智努力會較少，占用較少容 量，因而留下較多的容量來進行其他運思。在有限容量假設下，可處理之訊息量較多且速 度較快", "C": "長期儲存的容量可由記憶廣度（memory span）來測試", "D": "選擇性知覺（selective perception）屬於感覺紀錄器（sensory register）功能之一"}, "images": [], "answer": "C", "explanation": "答案：C。長期儲存的容量可由記憶廣度（memory span）來測試—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 42, "stem": "根據協同理論（synactive theory），嬰兒出現手指緊握的現象，是由那個系統所發出的窘迫\n訊息（distress sign）？", "options": {"A": "生理（physiological）", "B": "動作（motor）", "C": "行為（behavioral）", "D": "注意力互動（attention/interaction）"}, "images": [], "answer": "B", "explanation": "答案：B。動作（motor）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 43, "stem": "根據動作學習理論，下列有關動作學習的敘述，何者正確？", "options": {"A": "連續性任務（continuous task）沒有回饋修正效果", "B": "在動作學習之語言－認知期，以開放性任務（open task）訓練效果較好", "C": "在動作學習之語言－認知期，段落（blocked）訓練比隨機（random）訓練之立即學習效 果差", "D": "就成人簡單動作之長期學習效果，隨機（random）訓練比段落（blocked）訓練好"}, "images": [], "answer": "D", "explanation": "答案：D。就成人簡單動作之長期學習效果，隨機（random）訓練比段落（blocked）訓練好—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 44, "stem": "依據動態系統理論（Dynamical Systems Theory），當一個發展遲緩兒童在某一動作發展之\n轉換階段（transitional phases）或不穩定期，是治療介入之最好時機，這是指下列何者？", "options": {"A": "下一個動作發展里程碑階段", "B": "兒童執行該動作有情緒不穩定現象", "C": "兒童有時會出現但不會穩定表現之動作行為", "D": "在兒童生理年齡應有之動作行為"}, "images": [], "answer": "C", "explanation": "答案：C。兒童有時會出現但不會穩定表現之動作行為—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 45, "stem": "皮亞傑之發展階段論中提到兒童認知發展之階段順序，下列敘述何者正確？  ①形式運思期\n②感覺動作期  ③具體運思期   ④前運思期", "options": {"A": "①②④③", "B": "②①③④", "C": "②④③①", "D": "③②④①"}, "images": [], "answer": "C", "explanation": "答案：C。②④③①—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 46, "stem": "下列兒童動作表現，若依照平均出現年齡，何者是較高的發展能力？", "options": {"A": "單腳站 2 秒", "B": "單腳向前連續跳 3 步（hopping）", "C": "雙腳向前連續跳 3 步（jumping）", "D": "雙腳交替向前跳 3 步（skipping）"}, "images": [], "answer": "D", "explanation": "答案：D。雙腳交替向前跳 3 步（skipping）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 47, "stem": "根據美國小兒神經科醫學會於西元2003年提出「全面發展遲緩兒童（Children with Global\nDevelopmental Delay）」的評估指引中指出，下列敘述何者不是必要的？", "options": {"A": "詳細詢問病史與發展史", "B": "照會聽力與視力篩檢", "C": "對遲緩兒童進行腦波檢查", "D": "對遲緩兒童的家庭進行評估"}, "images": [], "answer": "C", "explanation": "答案：C。對遲緩兒童進行腦波檢查—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 48, "stem": "若全班的身高呈現常態分布，則身高位於平均數的人，其身高的百分位等級（percentile\nrank）為何？", "options": {"A": "第 100", "B": "第 75", "C": "第 50", "D": "第 25"}, "images": [], "answer": "C", "explanation": "答案：C。第 50—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 49, "stem": "與成人相比，一名 3 歲兒童在運動時心肺功能變項之反應性，下列敘述何者正確？", "options": {"A": "兒童有較高的血中乳酸量", "B": "兒童有較低的血紅素濃度", "C": "兒童有較低的心率", "D": "兒童有較高的心搏量"}, "images": [], "answer": "B", "explanation": "答案：B。兒童有較低的血紅素濃度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 50, "stem": "下列那一項評估測驗工具最適用於篩檢發展性協調障礙兒童？", "options": {"A": "皮巴迪動作發展量表（Peabody Development Motor Scales）", "B": "兒童動作ABC量表（Movement Assessment Battery for Children）", "C": "早期介入評估量表（Early Intervention Developmental Profile）", "D": "粗大動作功能量表（Gross Motor Function Measure）"}, "images": [], "answer": "B", "explanation": "答案：B。兒童動作ABC量表（Movement Assessment Battery for Children）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 51, "stem": "下列有關接受者作業特性曲線（Receiver operating characteristics curve，簡稱ROC曲線）\n之敘述，何者正確？", "options": {"A": "由無數切截點值求出的無數對（1－敏感度）和特異度作圖構成曲線", "B": "ROC曲線下面積可視為測驗之敏感度", "C": "可由ROC曲線找出最佳切截點", "D": "根據最佳切截點之（敏感度）／（1－特異度）公式可算出陰性概率比"}, "images": [], "answer": "C", "explanation": "答案：C。可由ROC曲線找出最佳切截點—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 52, "stem": "對於一位 17 歲腦性麻痺青少年的粗大動作分類系統，下列敘述何者錯誤？", "options": {"A": "階級 I，可在室外和社區中獨立行走，可以跑步和跳躍", "B": "階級 II，大部分環境可以獨立步行", "C": "階級 III，必須使用電動輪椅移動", "D": "階級 IV，在室外和社區中可能需要他人協助移位"}, "images": [], "answer": "C", "explanation": "答案：C。階級 III，必須使用電動輪椅移動—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 53, "stem": "湯瑪士氏測試（Thomas test）可用於檢查兒童的肌肉攣縮程度，此方法主要是測量下列何\n者？", "options": {"A": "髖關節屈曲肌", "B": "髖關節伸直肌", "C": "膝關節屈曲肌", "D": "膝關節伸直肌"}, "images": [], "answer": "A", "explanation": "答案：A。髖關節屈曲肌—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 54, "stem": "關於兒童膕角度量測方法（亦稱為被動膝蓋伸直測試，popliteal angle），下列敘述何者正\n確？", "options": {"A": "孩童平躺，髖關節彎曲 90 度，並將膝關節慢慢伸直", "B": "孩童平躺，髖關節完全彎曲，並將膝關節慢慢伸直", "C": "孩童平躺，髖關節彎曲 90 度，並將膝關節慢慢彎曲", "D": "孩童平躺，髖關節完全彎曲，並將膝關節慢慢彎曲"}, "images": [], "answer": "A", "explanation": "答案：A。孩童平躺，髖關節彎曲 90 度，並將膝關節慢慢伸直—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 55, "stem": "一位 3 歲成骨不全症（osteogenesis imperfecta）的男孩，當出現下列何種症狀時，最可能\n有骨折發生？", "options": {"A": "感覺喪失", "B": "紅腫熱痛", "C": "皮膚先變白，再變紫，最後發紅", "D": "該部位流汗異常"}, "images": [], "answer": "B", "explanation": "答案：B。紅腫熱痛—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 56, "stem": "下列有關頭部外傷兒童急性期擺位的原則，何者最適當？", "options": {"A": "儘量採側姿，因較不易受原始反射的影響", "B": "儘量採仰姿，因較有利於胃腸道功能", "C": "儘量採俯姿，因生命跡象較不受影響", "D": "儘量採 90 度直立坐姿，因較有利於頸部控制"}, "images": [], "answer": "A", "explanation": "答案：A。儘量採側姿，因較不易受原始反射的影響—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 57, "stem": "下列有關唐氏症兒童的先天性心臟病之敘述，何者錯誤？", "options": {"A": "約有 4 成的唐氏症兒童有此疾病", "B": "此疾病較常為心室中隔（ventriculoseptal defect）或房室通道缺損（atrioventricular canal defects）", "C": "此先天性心臟病大部分可以接受手術治療", "D": "在先天性心臟病治癒前，不可以接受物理治療"}, "images": [], "answer": "D", "explanation": "答案：D。在先天性心臟病治癒前，不可以接受物理治療—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 58, "stem": "對於患有脊髓膜膨出（myelomeningocele）的新生兒應避免下列何種擺位方法？", "options": {"A": "俯臥", "B": "仰臥", "C": "側臥", "D": "半側臥"}, "images": [], "answer": "B", "explanation": "答案：B。仰臥—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 59, "stem": "高危險嬰兒在新生兒加護病房中的正確擺位原則為：", "options": {"A": "頸部放在後伸姿勢，以利呼吸通暢", "B": "下肢維持伸直，以利未來載重站立", "C": "軀幹及四肢擺在屈曲的姿勢，以增加屈曲張力", "D": "平躺時頭部儘量水平，以增加頭部血流供應"}, "images": [], "answer": "C", "explanation": "答案：C。軀幹及四肢擺在屈曲的姿勢，以增加屈曲張力—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 60, "stem": "下列敘述何者是極低體重（出生體重低於1500公克）早產兒常見的臨床問題？", "options": {"A": "性染色體異常", "B": "發展性髖部發育障礙", "C": "先天性肢體缺損", "D": "呼吸窘迫症"}, "images": [], "answer": "D", "explanation": "答案：D。呼吸窘迫症—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 61, "stem": "一般正常兒童，約在幾歲時可觀察到在站姿時足弓開始形成？", "options": {"A": "2", "B": "4", "C": "7", "D": "10"}, "images": [], "answer": "B", "explanation": "答案：B。4—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 62, "stem": "針對先天性髖關節脫臼（congenital hip dysplasia and dislocation）的患童，下列敘述何者\n錯誤？", "options": {"A": "大多數在出生時就可以檢測出來", "B": "不需要做處理，隨年齡會慢慢變好", "C": "可以用巴羅氏測試（Barlow maneuver）檢測股骨頭是否滑出髖臼外", "D": "成因有許多可能，包含基因或在子宮內的環境"}, "images": [], "answer": "B", "explanation": "答案：B。不需要做處理，隨年齡會慢慢變好—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 63, "stem": "一位腦性麻痺兒童走路呈現屈膝步態（crouch gait），其膝踝足關節活動度不受限，也無變\n形，則下列何種支架最合適？", "options": {"A": "動態式踝足支架（dynamic ankle-foot orthosis）", "B": "固定式踝足支架（solid ankle-foot orthosis）", "C": "地面反作用力式踝足支架（floor reaction orthosis）", "D": "踝上式支架（supramalleolar orthosis）"}, "images": [], "answer": "C", "explanation": "答案：C。地面反作用力式踝足支架（floor reaction orthosis）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 64, "stem": "一位 8 歲腦性麻痺兒童有髖關節脫臼情形，針對下列何種肌肉進行肌腱手術最適合？", "options": {"A": "髖內收肌", "B": "髖外展肌", "C": "比目魚肌", "D": "腓腸肌"}, "images": [], "answer": "A", "explanation": "答案：A。髖內收肌—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 65, "stem": "下列敘述何者較不屬於腦性麻痺患者的原發性機能障礙？", "options": {"A": "過高肌肉張力", "B": "本體感覺異常", "C": "關節攣縮", "D": "構音不全"}, "images": [], "answer": "C", "explanation": "答案：C。關節攣縮—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 66, "stem": "一位 5 歲腦性麻痺兒童在室內使用助行器行走，但在戶外長距離或不平路面則需他人協助，\n以粗大動作功能分類系統補充及修正版（GMFCS-E&R）評估，應屬何種等級？", "options": {"A": "V級", "B": "IV級", "C": "III級", "D": "II級"}, "images": [], "answer": "C", "explanation": "答案：C。III級—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 67, "stem": "要評估智能不足兒童之問題行為，以作為使用行為改變技術前後之成效比較時，需含幾個項\n目，其中不包括：", "options": {"A": "問題行為發生的頻率", "B": "問題行為嚴重度", "C": "專業人員本身或照顧者對問題行為的感受及容忍度", "D": "兒童照顧者之社經地位"}, "images": [], "answer": "D", "explanation": "答案：D。兒童照顧者之社經地位—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 68, "stem": "發展性協調障礙（developmental coordination disorder）兒童較不會出現下列那個問題？", "options": {"A": "有退縮傾向", "B": "容易焦慮", "C": "暴力傾向", "D": "容易自卑"}, "images": [], "answer": "C", "explanation": "答案：C。暴力傾向—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 69, "stem": "下列有關自閉症（Autism）兒童之敘述，何者正確？", "options": {"A": "主要是由於環境剝奪或主要照顧者教養方式不當所致", "B": "女多於男", "C": "通常不會有認知障礙", "D": "與人溝通有障礙"}, "images": [], "answer": "D", "explanation": "答案：D。與人溝通有障礙—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 70, "stem": "一位 12 歲四肢痙攣型腦性麻痺患童不一定有下列何種徵狀？", "options": {"A": "粗大動作和精細動作發展遲緩", "B": "異常的姿勢和張力", "C": "異常的平衡反應", "D": "智力障礙"}, "images": [], "answer": "D", "explanation": "答案：D。智力障礙—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 71, "stem": "患有脊髓畸形（myelodysplasia）兒童的引流管（shunt）失能，會出現那些狀況？①出現尿\n失禁或情況變嚴重 ②痙攣情況加劇 ③個性改變 ④活動力增加 ⑤容易叫起床", "options": {"A": "僅①②③", "B": "僅①③④", "C": "僅①④⑤", "D": "僅①③⑤"}, "images": [], "answer": "A", "explanation": "答案：A。僅①②③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 72, "stem": "下列有關提高腦性麻痺兒童肌力訓練效果的敘述，何者錯誤？", "options": {"A": "家長願意支持兒童和訓練計畫", "B": "兒童可以依要求一致地產生最大或接近最大力量", "C": "兒童對於訓練的活動有興趣", "D": "採用增加痙攣的肌力訓練模式"}, "images": [], "answer": "D", "explanation": "答案：D。採用增加痙攣的肌力訓練模式—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 73, "stem": "有關裘馨氏肌肉失養症（Duchenne Muscular Dystrophy），下列敘述何者錯誤？", "options": {"A": "是性聯隱性遺傳", "B": "早期症狀常為下肢肌肉無力", "C": "不會出現關節攣縮", "D": "多於一至四歲發病"}, "images": [], "answer": "C", "explanation": "答案：C。不會出現關節攣縮—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 74, "stem": "關於唐氏症，下列敘述何者錯誤？", "options": {"A": "成年個案有提早衰老", "B": "寰樞頸椎不穩定（atlantoaxial instability）", "C": "成年後，過度肥胖", "D": "女性個案停經期延後"}, "images": [], "answer": "D", "explanation": "答案：D。女性個案停經期延後—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 75, "stem": "依世界潮流，早期介入人員對於 0～2 歲特殊嬰幼兒的最佳模式稱為：", "options": {"A": "個別化父母服務計畫", "B": "個別化托育服務計畫", "C": "個別化教育服務計畫", "D": "個別化家庭服務計畫"}, "images": [], "answer": "D", "explanation": "答案：D。個別化家庭服務計畫—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 76, "stem": "下列關於物理治療師在早期療育中提供的服務方式，何者錯誤？", "options": {"A": "到宅療育", "B": "巡迴輔導", "C": "經濟支持", "D": "時段療育"}, "images": [], "answer": "C", "explanation": "答案：C。經濟支持—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 77, "stem": "依據西元2013年之特殊教育支援服務與專業團隊設置及實施辦法第4條，下列何者不屬於特\n殊教育相關專業人員？", "options": {"A": "專科醫師", "B": "物理治療師", "C": "物理治療生", "D": "臨床心理師"}, "images": [], "answer": "C", "explanation": "答案：C。物理治療生—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 78, "stem": "在兒童的早期療育服務中，專業間有良好合作關係的最明顯特徵為：", "options": {"A": "各專業可獨立訂定治療目標，不需要知道其他專業之目標", "B": "專業間可互相分享療育目標與進度", "C": "可隨意組成專業團隊的成員", "D": "只需一位專業人員與家長有良好之關係"}, "images": [], "answer": "B", "explanation": "答案：B。專業間可互相分享療育目標與進度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 79, "stem": "對於兒童物理治療師所參與之專業團隊服務模式，下列敘述何者錯誤？", "options": {"A": "多專業團隊模式強調各專業治療師各自進行兒童評估及家長面談", "B": "專業間團隊模式強調專業人員彼此分享各自所擬定之目標", "C": "跨專業團隊模式強調由一位直接服務提供者執行團隊擬定的計畫", "D": "跨專業團隊模式強調專業間要避免跨領域學習，以免妨礙各自專業的發展"}, "images": [], "answer": "D", "explanation": "答案：D。跨專業團隊模式強調專業間要避免跨領域學習，以免妨礙各自專業的發展—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 80, "stem": "下列那個作為不符合以家庭為中心的早期介入的中心思想？", "options": {"A": "與家長討論發展遲緩兒童家庭日常生活狀況，並教導家長如何利用家庭環境誘發兒童發展", "B": "早產兒出院前，讓主要照顧者了解嬰兒的發展狀況與注意事項", "C": "治療師與家長討論轉銜相關事宜", "D": "治療師獨自進行發展測驗後，即可著手治療"}, "images": [], "answer": "D", "explanation": "答案：D。治療師獨自進行發展測驗後，即可著手治療—此選項為正確敘述，依物理治療學相關知識為標準答案。"}]}, "Q2": {"label": "第二次", "questions": [{"n": 1, "stem": "關於正常人之平均換氣灌流的比值，下列敘述何者正確？", "options": {"A": "約為 1.5", "B": "約為 0.8", "C": "約為 0.5", "D": "約為 0.3"}, "images": [], "answer": "B", "explanation": "答案：B。約為 0.8—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 2, "stem": "老化是發生術後肺部併發症的危險因子之一，主要原因與老化會造成下列那些肺部構造及功能上的改變有關？①肺實質回彈性\n降低 ②肺泡－微血管接觸表面積降低 ③有效肺泡通氣上升", "options": {"A": "僅①②", "B": "僅②③", "C": "僅①③", "D": "①②③"}, "images": [], "answer": "A", "explanation": "答案：A。僅①②—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 3, "stem": "下列敘述何者為肺氣腫的肺功能表現？", "options": {"A": "RV及RV/TLC上升", "B": "ERV及TLC上升", "C": "RV及RV/TLC下降", "D": "FRC及TLC下降"}, "images": [], "answer": "A", "explanation": "答案：A。RV及RV/TLC上升—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 4, "stem": "下列敘述那些先天性心臟疾病的肺循環血流量是增加的？①心室中膈缺損 ②開放性動脈導管 ③主動脈狹窄 ④肺動脈閉鎖", "options": {"A": "僅①②", "B": "僅②③", "C": "僅③④", "D": "僅①④"}, "images": [], "answer": "A", "explanation": "答案：A。僅①②—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 5, "stem": "下列敘述何者會增加心收縮力？①腎上腺素增加 ②副交感神經興奮增加 ③毛地黃（Digitalis） ④回心血流增加", "options": {"A": "僅①②④", "B": "僅①③④", "C": "僅①②③", "D": "僅②③④"}, "images": [], "answer": "B", "explanation": "答案：B。僅①③④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 6, "stem": "下列敘述何者不會增加冠狀動脈血流？", "options": {"A": "舒張壓增高", "B": "冠狀動脈血管張力降低", "C": "心臟收縮期增長", "D": "左心室舒張末期壓力降低"}, "images": [], "answer": "C", "explanation": "答案：C。心臟收縮期增長—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 7, "stem": "人類胚胎約在幾週完成心臟的發展？", "options": {"A": "2週", "B": "4週", "C": "8週", "D": "12週"}, "images": [], "answer": "C", "explanation": "答案：C。8週—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 8, "stem": "下列有關脈動式血氧飽和監測（pulse O2 saturation, SpO2）的敘述，那些正確？①可用來作為動脈血中血紅素和氧結合情形\n的指標 ②第一秒用力呼氣量（forced expiratory volume in 1 second, FEV1）小於80%的患者都需持續監測 ③有慢性肺部疾\n病的患者其運動中SpO2宜保持在80% ④正常SpO2應大於95% ⑤氧合血紅素解離曲線斜率在SpO2＜95%以下會大幅上升", "options": {"A": "僅①②③", "B": "僅①③④", "C": "僅①④⑤", "D": "僅③④⑤"}, "images": [], "answer": "C", "explanation": "答案：C。僅①④⑤—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 9, "stem": "肺氣腫病人常會以上臂撐住且上半身前傾之姿勢，此姿勢有助於緩解呼吸困難的原因不包括：", "options": {"A": "提供吸氣副肌較佳收縮之機械效益", "B": "提供橫膈較佳活動度", "C": "擴大胸腔動作活動度以增加肺容積", "D": "減低呼吸時不正常之胸腹動作"}, "images": [], "answer": "C", "explanation": "答案：C。擴大胸腔動作活動度以增加肺容積—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 10, "stem": "如果正常呼吸次數為每分鐘40次，則他的年齡可能為下列何者？", "options": {"A": "3天", "B": "1歲", "C": "4歲", "D": "10歲"}, "images": [], "answer": "A", "explanation": "答案：A。3天—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 11, "stem": "下列有關動脈血液氣體分析的判讀，何者正確？①可作為判斷呼吸衰竭的參考指標 ②判讀第一步先由酸鹼值判斷血液的酸鹼\n狀態 ③血液中的二氧化碳分壓可用來判斷酸鹼值異常是否由呼吸系統引起 ④血液中的二氧化碳分壓大於40毫米汞柱可判斷\n有呼吸過快情形", "options": {"A": "僅①②③", "B": "僅①③④", "C": "僅①②", "D": "僅③④"}, "images": [], "answer": "A", "explanation": "答案：A。僅①②③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 12, "stem": "下列有關肺疾患者叩診的敘述，何者正確？①可用來區辨肺實質密度的變化 ②敲擊位置在肋間 ③可用來判斷橫膈肌的最大\n位移（excursion） ④正常橫膈肌位移應大於10公分", "options": {"A": "僅①②③", "B": "僅①③④", "C": "僅②③④", "D": "僅①②④"}, "images": [], "answer": "A", "explanation": "答案：A。僅①②③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 13, "stem": "王先生運動中發生心絞痛，當時之生理反應：心率100 bpm，收縮壓100 mmHg，舒張壓70 mmHg，呼吸速率26次/min，其心\n絞痛閾值為多少？", "options": {"A": "780", "B": "3,000", "C": "7,000", "D": "10,000"}, "images": [], "answer": "D", "explanation": "答案：D。10,000—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 14, "stem": "心外側壁（lateral wall）之心電圖反應，容易表現在下列那個導程？", "options": {"A": "V1", "B": "aVR", "C": "aVL", "D": "aVF"}, "images": [], "answer": "C", "explanation": "答案：C。aVL—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 15, "stem": "治療師為病患聽診時，只於心室收縮期時在右側第二肋間聽到心雜音，則病患為何種問題？", "options": {"A": "主動脈瓣狹窄", "B": "肺動脈瓣閉鎖不全", "C": "僧帽瓣狹窄", "D": "心包膜炎"}, "images": [], "answer": "A", "explanation": "答案：A。主動脈瓣狹窄—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 16, "stem": "有關冠狀動脈疾病患者，下列敘述何者錯誤？", "options": {"A": "冠狀動脈整型術後容易有血管再狹窄的問題", "B": "使用支架之冠狀動脈整型術患者的再阻塞率較單純採用氣球擴張術者為高", "C": "運動時血壓下降表示心臟收縮功能不佳", "D": "運動時引起呼吸困難的原因之一為左心室射出率過低"}, "images": [], "answer": "B", "explanation": "答案：B。使用支架之冠狀動脈整型術患者的再阻塞率較單純採用氣球擴張術者為高—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 17, "stem": "影響心臟病患之運動通氣效率（\nslope）的因素，下列敘述何者正確：①肺活量 ②動脈二氧化碳分壓 ③生理死\n腔／潮氣量比值 ④動脈氧分壓", "options": {"A": "僅①②", "B": "僅②③", "C": "僅③④", "D": "僅②③④"}, "images": [], "answer": "B", "explanation": "答案：B。僅②③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 18, "stem": "下列敘述那些情況為心肌梗塞病患開始運動訓練之禁忌？①二度的房室阻斷 ②休息時心電圖顯示 10～15 次心室早期收縮／\n分鐘（PVCs） ③休息時血糖 120 mg/dL ④兩天前曾出現穩定型心絞痛", "options": {"A": "僅①②", "B": "僅②③", "C": "僅①③④", "D": "僅②③④"}, "images": [], "answer": "A", "explanation": "答案：A。僅①②—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 19, "stem": "冠狀動脈繞道手術患者，目前已轉至普通病房中，發生下列那些症狀或徵象時，必須減少或停止運動？①心率上升 5 bpm ②\n收縮壓＞250 mmHg ③心室上心搏過速 ④舒張壓為125 mmHg", "options": {"A": "僅①②", "B": "僅①③④", "C": "僅②③④", "D": "①②③④"}, "images": [], "answer": "C", "explanation": "答案：C。僅②③④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 20, "stem": "一個體重約為 80 公斤的男性，執行約為 8 METs的固定式腳踏車活動，負荷為 150 瓦特，共計 50 分鐘，就其能量的消耗下列\n敘述何者正確？", "options": {"A": "每分鐘約消耗 4.2 卡", "B": "每分鐘約消耗 8.6 卡", "C": "50 分鐘的活動約共消耗 250 卡", "D": "50 分鐘的活動約共消耗 560 卡"}, "images": [], "answer": "D", "explanation": "答案：D。50 分鐘的活動約共消耗 560 卡—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 21, "stem": "在接受 12 週有氧運動訓練後，有關心血管系統反應的變化，下列敘述何者正確？①低限運動時心搏量不變   ②低限運動時動\n靜脈氧差下降   ③低限運動時收縮壓下降   ④低限運動時絕對攝氧量不變", "options": {"A": "僅①②", "B": "僅③④", "C": "僅①②③", "D": "僅②③④"}, "images": [], "answer": "B", "explanation": "答案：B。僅③④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 22, "stem": "根據美國心血管及肺部復健學會（AACVPR）之心臟復健住院病人，下列敘述何者不屬於禁忌症？", "options": {"A": "不穩定心絞痛（unstable angina）", "B": "姿勢性低血壓降 10 mmHg", "C": "動脈狹窄（aortic stenosis）", "D": "休息收縮血壓大於 200 mmHg"}, "images": [], "answer": "#", "explanation": "本題公告一律給分（答案不限）。題幹：根據美國心血管及肺部復健學會（AACVPR）之心臟復健住院病人，下列敘述何者不屬於禁忌症？…可能因題意不清、選項皆有爭議或圖表不明確等原因，考選部裁定一律給分。"}, {"n": 23, "stem": "胸腔手術後之肥胖患者的物理治療，下列敘述何者正確？①直立姿勢可降低呼吸功 ②擺在直立姿勢會增加腹部壓力 ③應加\n強呼吸運動以預防肺葉塌陷的併發症 ④直立姿勢會降低心率", "options": {"A": "僅①②④", "B": "僅①②", "C": "僅①③", "D": "僅①③④"}, "images": [], "answer": "C", "explanation": "答案：C。僅①③—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 24, "stem": "為一位在隔離室的開放性肺結核患者進行物理治療，進入隔離室前的準備順序應為何？①以消毒劑洗手 ②穿隔離衣 ③戴\nN95口罩 ④戴手套", "options": {"A": "①④③②", "B": "②①③④", "C": "①②③④", "D": "①③②④"}, "images": [], "answer": "C", "explanation": "答案：C。①②③④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 25, "stem": "台灣地區早產兒最常見的慢性呼吸系統疾病是：", "options": {"A": "氣喘（asthma）", "B": "囊狀纖維化（cystic fibrosis）", "C": "支氣管和肺的發育不良（bronchopulmonary dysplasia）", "D": "原發性氣胸（idiopathic pneumothorax）"}, "images": [], "answer": "C", "explanation": "答案：C。支氣管和肺的發育不良（bronchopulmonary dysplasia）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 26, "stem": "一名重度嚴重程度（FEV1為預測值之20% ）之肺氣腫患者，在運動訓練過程中給予非侵入性正壓呼吸（含氧氣給予）介入，\n預期的結果包括： ①可以增加吸氣肌在運動過程中之收縮能力 ②可以降低吸氣肌在運動過程中所需做的功 ③會增加吸氣\n肌在運動過程中所需做的功 ④可以改善身體氧合作用（oxygenation） ⑤會惡化身體氧合作用", "options": {"A": "僅①②④", "B": "僅①③⑤", "C": "僅②④", "D": "僅③⑤"}, "images": [], "answer": "C", "explanation": "答案：C。僅②④—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 27, "stem": "肺癌患者接受肺葉切除手術，術後肺功能受影響的程度由大到小的順序依序為：①肺切除術（pneumonectomy） ②楔狀切除\n術（wedge resection） ③肺葉切除術（lobectomy） ④節狀切除術（segmentectomy）", "options": {"A": "①②③④", "B": "①③④②", "C": "③①④②", "D": "①③②④"}, "images": [], "answer": "B", "explanation": "答案：B。①③④②—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 28, "stem": "一名 17 歲有氣喘病史的運動員，在 400 公尺跑步競賽前，預防性藥物的給予，下列敘述何者是最適當的策略？", "options": {"A": "比賽前 2 小時先給予短效吸入型乙二型交感神經興奮劑（β2-adrenergic receptor agonists）", "B": "比賽前 15～30 分鐘先給予短效吸入型乙二型交感神經興奮劑（β2-adrenergic receptor agonists）", "C": "比賽前 15～30 分鐘先給予長效吸入型類固醇（inhaled corticosteroids）", "D": "比賽前 2 小時先給予長效吸入型類固醇（inhaled corticosteroids）"}, "images": [], "answer": "B", "explanation": "答案：B。比賽前 15～30 分鐘先給予短效吸入型乙二型交感神經興奮劑（β2-adrenergic receptor agonists）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 29, "stem": "下列敘述何者不是周邊動脈阻塞疾病患者運動時易產生的現象？", "options": {"A": "無法配合供給患部運動肌肉足夠之需氧量而產生局部缺血現象", "B": "呼吸中樞易被刺激而產生呼吸短促的現象", "C": "患部肢體易產生過多的乳酸堆積", "D": "患部肢體易產生水腫、發紅的現象"}, "images": [], "answer": "D", "explanation": "答案：D。患部肢體易產生水腫、發紅的現象—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 30, "stem": "下列那些指標，代表周邊動脈中層有部分鈣化的現象？①ABI＞1.3 ②足踝血壓＞300 mmHg ③足踝血壓減去上臂血壓＜75\nmmHg", "options": {"A": "僅①", "B": "僅①②", "C": "僅①③", "D": "①②③"}, "images": [], "answer": "B", "explanation": "答案：B。僅①②—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 31, "stem": "凹陷超過 2 cm的壓陷型水腫（pitting edema），應記錄為：", "options": {"A": "1+", "B": "2+", "C": "3+", "D": "4+"}, "images": [], "answer": "D", "explanation": "答案：D。4+—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 32, "stem": "一位剛被診斷為急性血栓靜脈炎的患者，物理治療當天可進行那些處置？①患肢抬高 ②患肢休息 ③患肢被動關節運動 ④\n患肢主動關節運動", "options": {"A": "僅①②", "B": "僅①③", "C": "僅①④", "D": "僅③"}, "images": [], "answer": "A", "explanation": "答案：A。僅①②—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 33, "stem": "心肌梗塞病患早期的運動測試，若心搏速率無法隨運動量增加而明顯提升，代表：", "options": {"A": "心臟變速性功能不全（chronotropic incompetence）", "B": "不受乙型受器阻斷劑（beta blockers）的影響", "C": "正向之心收縮力效應（positive inotropic effect）", "D": "已達無氧閾值（anaerobic threshold）"}, "images": [], "answer": "A", "explanation": "答案：A。心臟變速性功能不全（chronotropic incompetence）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 34, "stem": "當運動強度增加時，健康成人何種生理值會下降？", "options": {"A": "攝氧量", "B": "總周邊血管阻力（total peripheral resistance）", "C": "心臟指數（cardiac index）", "D": "動靜脈氧差（a-v O2 difference）"}, "images": [], "answer": "B", "explanation": "答案：B。總周邊血管阻力（total peripheral resistance）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 35, "stem": "肺功能檢查，可幫助判斷心肺移植術後是否產生肺部排斥，下列參數中何者最為敏感？", "options": {"A": "潮氣量（tidal volume）", "B": "肺餘量（residual volume）", "C": "最大用力吐氣量（FVC）", "D": "最大呼氣中段流速（FEF25~75%）"}, "images": [], "answer": "D", "explanation": "答案：D。最大呼氣中段流速（FEF25~75%）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 36, "stem": "下列有關完全脊髓損傷患者的呼吸功能評估敘述，何者正確？", "options": {"A": "C6～C7病患的呼吸型態常是三分橫膈、一分胸部的方式", "B": "T2～T4病患可有效清除呼吸道的痰液", "C": "T7 病患平躺呼吸時上腹部會有完全移動（full excursion）", "D": "T5～T7慢性病患的肺活量顯著低於正常人"}, "images": [], "answer": "C", "explanation": "答案：C。T7 病患平躺呼吸時上腹部會有完全移動（full excursion）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 37, "stem": "下列有關代謝症候群病因機轉的敘述，何者正確？", "options": {"A": "屬於單一危險因子的疾病", "B": "高熱量飲食會增高胰島素的作用", "C": "低體能活動會降低胰島素的作用", "D": "脂肪組織不影響胰島素的作用"}, "images": [], "answer": "C", "explanation": "答案：C。低體能活動會降低胰島素的作用—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 38, "stem": "下列敘述何者不屬於有氧能力測試？", "options": {"A": "12 分鐘跑走測試", "B": "腳踏車最大攝氧量測試", "C": "腳踏車溫蓋特（Wingate）測試", "D": "登階測試"}, "images": [], "answer": "C", "explanation": "答案：C。腳踏車溫蓋特（Wingate）測試—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 39, "stem": "下列有關身體活動與健康相關名詞定義的敘述，何者正確？", "options": {"A": "運動是指有計畫、有目的、結構性，重複的身體活動", "B": "健康為單純沒有疾病的狀態", "C": "身體活動指參與運動競賽時的體能活動", "D": "體適能指肌肉收縮、消耗能量、產生活動的過程"}, "images": [], "answer": "A", "explanation": "答案：A。運動是指有計畫、有目的、結構性，重複的身體活動—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 40, "stem": "對高血壓患者的生活型態介入，下列敘述何者正確？", "options": {"A": "減重的目標為每月下降10公斤", "B": "選用高鉀鹽進行烹調", "C": "每週至少3次的規律有氧運動", "D": "有效降血壓的得舒飲食(DASH diet)強調含有 Omega-3脂肪酸的攝取"}, "images": [], "answer": "C", "explanation": "答案：C。每週至少3次的規律有氧運動—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 41, "stem": "在俯臥時，嬰孩可以以伸直的手臂撐起身體，若在此姿勢下隨韻律搖動身體，此嬰孩的動作是屬於路德（Rood）所提出的動\n作發展的四個階段中的那一個？", "options": {"A": "移動（mobility）", "B": "穩定（stability）", "C": "在穩定姿勢中有重心移動（mobility on stability）", "D": "技巧（skill）"}, "images": [], "answer": "C", "explanation": "答案：C。在穩定姿勢中有重心移動（mobility on stability）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 42, "stem": "根據動作學習理論，自動化階段與語言－認知階段相比，下列敘述何者正確？", "options": {"A": "動作的表現變異性比較大", "B": "動作的表現比較會受表現回饋的影響", "C": "動作的表現比較不會受同時從事另一項作業的影響", "D": "動作的表現比較難隨著環境調整"}, "images": [], "answer": "C", "explanation": "答案：C。動作的表現比較不會受同時從事另一項作業的影響—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 43, "stem": "下列有關將動態系統理論（Dynamical Systems Theory）應用於兒童動作訓練的敘述，何者錯誤？", "options": {"A": "動作發展完全是中樞神經系統成熟的結果", "B": "強調多樣性動作型態的引導與練習", "C": "動作發展是多重系統互動產生的結果", "D": "著重誘導兒童尋求解決問題的方法"}, "images": [], "answer": "A", "explanation": "答案：A。動作發展完全是中樞神經系統成熟的結果—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 44, "stem": "下列有關馬斯洛需求階層（Hierarchy of Needs）理論之敘述，何者錯誤？", "options": {"A": "個人若某些需求未能獲得最低的滿足，則受缺陷動機的支配，一心一意追求未滿足之需求，易有問題行為發生", "B": "人有一種積極追求成長的傾向，當低層次之需求得到滿足時，一種高層次新的需求便隨之出現", "C": "人類基本需求由下而上為尊重的需求、愛與隸屬的需求、自我實現的需求", "D": "人類基本需求由下而上為生理的需求、安全的需求、愛與隸屬的需求"}, "images": [], "answer": "C", "explanation": "答案：C。人類基本需求由下而上為尊重的需求、愛與隸屬的需求、自我實現的需求—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 45, "stem": "在兒童發展之知覺理論中所提到的「行動機會訊息」（affordance）是指：", "options": {"A": "訊息處理理論所提到的記憶及認知系統", "B": "個體完全依賴神經系統或感覺系統以掌控訊息", "C": "環境提供了與兒童適配的行動機會，兒童也以現有的動作能力主動探索", "D": "認知及動作能力成熟的兒童才能有效運用此訊息"}, "images": [], "answer": "C", "explanation": "答案：C。環境提供了與兒童適配的行動機會，兒童也以現有的動作能力主動探索—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 46, "stem": "下述何項行為相對之下是較大年齡才發展出來的？", "options": {"A": "兩手交換物體", "B": "以手拍擊並搖晃物體", "C": "兩手於中線一起握住物體", "D": "伸手找尋消失的物體"}, "images": [], "answer": "D", "explanation": "答案：D。伸手找尋消失的物體—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 47, "stem": "兒童玩扮家家酒是屬於何種遊戲方式？", "options": {"A": "練習性遊戲（sensorimotor practice play）", "B": "運動類遊戲（exercise play）", "C": "象徵性遊戲（symbolic play）", "D": "平行遊戲（parallel play）"}, "images": [], "answer": "C", "explanation": "答案：C。象徵性遊戲（symbolic play）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 48, "stem": "下列為 1 歲以下一般兒童操作物體之各項精細動作行為，依發展先後次序排列，其順序為何？①嘗試伸手欲抓取物體（try to\nreach） ②主動放開物體（voluntary release） ③看自己的手（hand regard） ④換手抓握（hand-to-hand transfer）", "options": {"A": "①②③④", "B": "①③②④", "C": "③①④②", "D": "③④①②"}, "images": [], "answer": "C", "explanation": "答案：C。③①④②—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 49, "stem": "發展測驗結果顯示某動作障礙幼兒之動作發展年齡（developmental age）為 6 個月，此代表：", "options": {"A": "該兒童之動作品質與 6 個月大嬰兒相當", "B": "該兒童之動作發展速度與 6 個月大嬰兒相當", "C": "該兒童在動作測驗能通過的項目內容與 6 個月大嬰兒相同", "D": "該兒童在動作測驗所得到的分數與 6 個月大嬰兒相當"}, "images": [], "answer": "D", "explanation": "答案：D。該兒童在動作測驗所得到的分數與 6 個月大嬰兒相當—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 50, "stem": "王小明就讀幼稚園中班，因為不愛活動、活動中又常跌倒，因此被轉介到兒童發展聯合評估中心，醫師排除了一些可能的神經\n系統疾病，接下來，應施予下列何種動作測驗最恰當？", "options": {"A": "兒童動作ABC量表（Movement Assessment Battery for Children）", "B": "早期介入發展量表（Early Intervention Developmental Profile ）", "C": "粗動作功能量表（Gross Motor Function Measure）", "D": "亞伯它嬰兒動作量表（Alberta Infant Motor Scale）"}, "images": [], "answer": "A", "explanation": "答案：A。兒童動作ABC量表（Movement Assessment Battery for Children）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 51, "stem": "一般足月出生的健康嬰兒之張力性迷路反射（tonic labyrinthine reflex），在幾個月大時會因被整合而不再明顯？", "options": {"A": "1～2", "B": "5～6", "C": "8～10", "D": "12～14"}, "images": [], "answer": "B", "explanation": "答案：B。5～6—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 52, "stem": "兒童發展測驗分數與其他黃金標準分數間之相關係數，可作為該發展測驗何種效度之證據？", "options": {"A": "表面效度", "B": "內容效度", "C": "效標關聯效度", "D": "建構效度"}, "images": [], "answer": "C", "explanation": "答案：C。效標關聯效度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 53, "stem": "新生兒與成人在口腔結構上的差異，以下敘述何者正確?", "options": {"A": "新生兒的舌頭體積占口腔的空間比例較小", "B": "新生兒的舌頭位於口腔較後面位置", "C": "新生兒的下顎骨與臉骨之比例較大", "D": "新生兒的會厭軟骨與軟顎較接近"}, "images": [], "answer": "D", "explanation": "答案：D。新生兒的會厭軟骨與軟顎較接近—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 54, "stem": "有關罹患單邊肺塌陷（atelectasis）嬰兒接受物理治療，下列敘述何者錯誤？", "options": {"A": "以叩擊協助痰液移動與排除", "B": "絕對不能用氣管內管抽吸分泌物，以免造成呼吸道受損", "C": "術後小範圍肺塌陷，可藉由深呼吸運動來改善", "D": "強調側臥於未塌陷側，以增進塌陷處肺之氣體交換"}, "images": [], "answer": "B", "explanation": "答案：B。絕對不能用氣管內管抽吸分泌物，以免造成呼吸道受損—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 55, "stem": "依據國際健康功能與身心障礙分類系統（ICF）評估腦部外傷兒童的功能與相關因素時，下列舉例何者錯誤？", "options": {"A": "身體功能與構造：評估認知功能", "B": "活動與參與：評估就學情況", "C": "環境因素：評估家庭的支持度", "D": "個人因素：評估肌力與關節活動度"}, "images": [], "answer": "D", "explanation": "答案：D。個人因素：評估肌力與關節活動度—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 56, "stem": "有關先天性肌肉斜頸症（congenital muscular torticollis）物理治療，下列何項錯誤？", "options": {"A": "牽拉胸索乳突肌（sternocleidomastoid muscle）", "B": "增加頸部的被動活動角度", "C": "增強頭頸中線兩側的不對稱性", "D": "增加頭頸部的姿勢穩定度"}, "images": [], "answer": "C", "explanation": "答案：C。增強頭頸中線兩側的不對稱性—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 57, "stem": "下列有關髖關節旋轉變形（hip rotational deformities）的敘述，何者錯誤？", "options": {"A": "可能是先天股骨頭前傾（anteversion），導致髖關節旋轉變形", "B": "是小於兩歲兒童外八步態最常見的原因", "C": "通常有全身性韌帶鬆弛現象", "D": "發生率女高於男"}, "images": [], "answer": "B", "explanation": "答案：B。是小於兩歲兒童外八步態最常見的原因—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 58, "stem": "下列有關下肢燒燙傷兒童行走訓練的敘述，何者錯誤？", "options": {"A": "若有嚴重的疼痛問題，可在練習前先服用止痛藥物", "B": "在訓練前可先對該下肢進行彈性繃帶包紮加壓", "C": "若有接受下肢的植皮，在植皮後馬上進行行走訓練，以避免傷疤軟組織攣縮", "D": "在行走訓練初期，兒童應先從坐在床沿練習下肢擺動開始"}, "images": [], "answer": "C", "explanation": "答案：C。若有接受下肢的植皮，在植皮後馬上進行行走訓練，以避免傷疤軟組織攣縮—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 59, "stem": "下列敘述何者是早產兒容易罹患痙攣性雙邊型腦性麻痺（spastic diplegic cerebral palsy）的原因？", "options": {"A": "腦室出血", "B": "腦室周邊白質軟化", "C": "基底核神經壞死", "D": "小腦神經壞死"}, "images": [], "answer": "B", "explanation": "答案：B。腦室周邊白質軟化—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 60, "stem": "對於躁動（agitated）階段的頭部外傷兒童，物理治療宜優先採取下列何種策略？", "options": {"A": "給予觸覺刺激計畫，每次 30 分鐘", "B": "給予聽覺、視覺刺激計畫，每次 20 分鐘", "C": "需強制約束，以免受傷", "D": "用兒童熟悉的活動，加強其參與及合作"}, "images": [], "answer": "D", "explanation": "答案：D。用兒童熟悉的活動，加強其參與及合作—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 61, "stem": "關於患有肺部併發症的早產兒之物理治療介入，下列敘述何者錯誤？", "options": {"A": "測量呼吸速率時應以 30 秒為單位", "B": "呼吸時鼻翼張大是呼吸窘迫的徵象", "C": "在無特別禁忌下，俯臥擺位較有助於氧氣交換", "D": "患有IV度腦室出血者應避免採用頭低腳高的擺位姿勢"}, "images": [], "answer": "A", "explanation": "答案：A。測量呼吸速率時應以 30 秒為單位—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 62, "stem": "下列有關脊柱側彎的敘述，何者錯誤？", "options": {"A": "可能導因於雙腿不等長或骨盆傾斜", "B": "可能導致脊椎椎體或肋骨出現旋轉，嚴重時會影響呼吸功能", "C": "非手術性的治療方法包含復健運動與背架的使用", "D": "大於 25 度的側彎一般需要手術矯正"}, "images": [], "answer": "D", "explanation": "答案：D。大於 25 度的側彎一般需要手術矯正—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 63, "stem": "下列敘述何者是因為乙醯膽鹼（acetylcholine）接受器被免疫系統破壞所造成？", "options": {"A": "裘馨氏肌肉失養症（Duchenne muscular dystrophy）", "B": "肢帶肌肉失養症（limb-girdle muscular dystrophy）", "C": "重症肌無力（myasthenia gravis）", "D": "先天性肌肉失養症（congenital muscular dystrophy）"}, "images": [], "answer": "C", "explanation": "答案：C。重症肌無力（myasthenia gravis）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 64, "stem": "癲癇病人大發作時之最佳立即處理方式為何？", "options": {"A": "儘量以外力制止病人之抽搐動作", "B": "到門外求救，並立即送醫院", "C": "大聲且大力搖動病人以叫醒病人", "D": "設法將病人頭部轉向側面，以免口水或嘔吐物誤入氣管"}, "images": [], "answer": "D", "explanation": "答案：D。設法將病人頭部轉向側面，以免口水或嘔吐物誤入氣管—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 65, "stem": "一位 5 歲重度痙攣型四肢腦性麻痺兒童，髖關節最可能發生下列何種情況？", "options": {"A": "脫臼／半脫位（dislocation/subluxation）", "B": "外展攣縮（abduction contracture）", "C": "伸直攣縮（extension contracture）", "D": "外轉變形（external rotation deformity）"}, "images": [], "answer": "A", "explanation": "答案：A。脫臼／半脫位（dislocation/subluxation）—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 66, "stem": "有關肌張力性肌肉失養症（myotonic dystrophy）之肌肉無力現象，下列敘述何者正確？", "options": {"A": "在疾病早期時，下肢中踝關節肌肉較先無力", "B": "在疾病早期時，下肢中髖關節肌肉較先無力", "C": "無論疾病早期或晚期，只有踝關節肌肉無力", "D": "無論疾病早期或晚期，只有髖關節肌肉無力"}, "images": [], "answer": "A", "explanation": "答案：A。在疾病早期時，下肢中踝關節肌肉較先無力—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 67, "stem": "下列何種類型的腦性麻痺兒童，達到獨立行走的預後機率相對較大？", "options": {"A": "痙攣型半邊麻痺", "B": "痙攣型雙邊麻痺", "C": "低張力四肢麻痺", "D": "僵直型四肢麻痺"}, "images": [], "answer": "A", "explanation": "答案：A。痙攣型半邊麻痺—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 68, "stem": "針對單純智能障礙兒童行走功能的預後，下列敘述何者錯誤？", "options": {"A": "唐氏症兒童比非唐氏症兒童較早達到獨立行走", "B": "會走路的比例相當高", "C": "重度兒童比輕中度兒童較晚達到獨立行走", "D": "使用臀部移位之兒童比用爬的兒童較晚達到獨立行走"}, "images": [], "answer": "A", "explanation": "答案：A。唐氏症兒童比非唐氏症兒童較早達到獨立行走—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 69, "stem": "有關發展性協調障礙（developmental coordination disorder）兒童之預後，下列敘述何者錯誤？", "options": {"A": "大部分的發展性協調障礙兒童，在長大後動作笨拙現象會消失", "B": "單純性的發展性協調障礙兒童，預後比合併注意力／動作控制／知覺障礙兒童好", "C": "在健康與體適能方面較同儕差", "D": "在生活自理方面較同儕差"}, "images": [], "answer": "A", "explanation": "答案：A。大部分的發展性協調障礙兒童，在長大後動作笨拙現象會消失—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 70, "stem": "下列有關成骨不全症（osteogenesis imperfecta）的敘述，何者錯誤？", "options": {"A": "易因為多發骨質疏鬆，而有多處重複骨折危險", "B": "因為膠原纖維形成有問題", "C": "韌帶較緊", "D": "合併有脊椎側彎"}, "images": [], "answer": "C", "explanation": "答案：C。韌帶較緊—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 71, "stem": "關於患有中重度痙攣型腦性麻痺青少年常見的續發性問題，下列敘述何者錯誤？", "options": {"A": "骨質疏鬆症", "B": "痙攣", "C": "體適能較差", "D": "疲勞"}, "images": [], "answer": "B", "explanation": "答案：B。痙攣—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 72, "stem": "有關痙攣型腦性麻痺的幼兒常見的原發性身體功能和結構問題，下列敘述何者錯誤？", "options": {"A": "較差的選擇性控制", "B": "肌肉無力", "C": "被動牽拉踝關節蹠屈肌時，阻力增加", "D": "關節攣縮"}, "images": [], "answer": "D", "explanation": "答案：D。關節攣縮—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 73, "stem": "有關裘馨氏肌肉失養症（Duchenne Muscular Dystrophy）的物理治療目標，下列敘述何者錯誤？", "options": {"A": "完全矯正畸形", "B": "延緩個案的動作能力及生活功能退化", "C": "增進或維持肺部功能", "D": "減緩疼痛"}, "images": [], "answer": "A", "explanation": "答案：A。完全矯正畸形—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 74, "stem": "3 個月大合併有先天斜頸的唐氏症幼兒的家長衛教，下列那一項應避免？", "options": {"A": "頸部被動牽拉運動", "B": "頸部主動關節運動", "C": "姿勢控制訓練", "D": "擺位"}, "images": [], "answer": "A", "explanation": "答案：A。頸部被動牽拉運動—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 75, "stem": "下列關於在學校系統中所謂的「最少限制的環境」（least restrictive environment）之意涵，何者錯誤？", "options": {"A": "兒童在學校中可得到需要的學習", "B": "提供的特殊教育及專業服務足以支持特殊學生能獲得學習", "C": "兒童在學校中得到最全面、無顧慮的自由", "D": "依據兒童的年齡及能力情況提供適合的教育"}, "images": [], "answer": "C", "explanation": "答案：C。兒童在學校中得到最全面、無顧慮的自由—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 76, "stem": "在學校中給予智能障礙學童治療時，下列何種介入策略不理想？", "options": {"A": "了解學童具有那些能力，並分析能力表現的過程", "B": "了解學童在不同環境情況下的能力表現", "C": "隔離式的治療以過濾環境的刺激", "D": "同時分析弱勢能力及優勢能力"}, "images": [], "answer": "C", "explanation": "答案：C。隔離式的治療以過濾環境的刺激—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 77, "stem": "專業人員在特教系統中，以諮詢方式的介入是一種比較有效率的資源利用方式，下列何種服務不屬於諮詢的範疇？", "options": {"A": "無障礙環境與設施的改進", "B": "教室座椅位置的調整", "C": "站立架之資訊提供", "D": "練習進出操場沙坑的技巧"}, "images": [], "answer": "D", "explanation": "答案：D。練習進出操場沙坑的技巧—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 78, "stem": "關於早期介入中的「以家庭為中心的服務模式」，下列敘述何者錯誤？", "options": {"A": "要將治療計畫融入日常生活中以利父母執行", "B": "治療人員必須每次在個案家中提供療育服務", "C": "必須考量居家環境的狀況", "D": "以增進家長的親職能力為主"}, "images": [], "answer": "B", "explanation": "答案：B。治療人員必須每次在個案家中提供療育服務—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 79, "stem": "下列那個作法，不符合早期介入要素（elements of early intervention）？", "options": {"A": "物理治療師與社工師、語言治療師、職能治療師組成團隊為家庭服務", "B": "於家庭訪談時，主動聆聽家長的問題", "C": "制訂個別化家庭服務方案時，在尚未提供相關資訊前，先要求家長做決定或選擇", "D": "治療師教導家長如何帶自家身心發展遲緩兒童去常去的公園草地上玩丟接球與互相踢球"}, "images": [], "answer": "C", "explanation": "答案：C。制訂個別化家庭服務方案時，在尚未提供相關資訊前，先要求家長做決定或選擇—此選項為正確敘述，依物理治療學相關知識為標準答案。"}, {"n": 80, "stem": "於早期療育中，為促進兒童全方位之功能，以下那項新技巧是家長最需要學習的？", "options": {"A": "賺錢職能", "B": "做家事", "C": "服務協調", "D": "提供專業知識"}, "images": [], "answer": "C", "explanation": "答案：C。服務協調—此選項為正確敘述，依物理治療學相關知識為標準答案。"}]}};
 
 const state = {
@@ -429,10 +626,17 @@ document.querySelectorAll(".tab").forEach(t => {
 });
 $("#resetBtn").onclick = resetCurrent;
 $("#summaryBtn").onclick = () => { state.viewSummary = true; render(); };
+$("#clearMarksOnlyBtn").onclick = () => {
+  if (!confirm("確定清除本卷（" + DATA[state.paper].label + "）的所有 🔖 標記？\n（作答資料保留，其他卷的標記不動）\n此操作無法復原。")) return;
+  state.marks[state.paper] = {};
+  saveMarks();
+  alert("✓ 已清除本卷的所有標記。");
+  render();
+};
 
 
 // ===== Answer persistence (per-paper picks, saved to localStorage) =====
-const PICKS_STORAGE_KEY = "nephron_105_cardio_picks_v1";
+const PICKS_STORAGE_KEY = _userKey("nephron_105_cardio_picks_v1");
 const QUIZ_ID = "cardio_105";  // unique id used when broadcasting summary
 
 function loadPicks() {
@@ -452,6 +656,69 @@ function savePicks() {
 
 // Send a summary of progress to parent window if embedded in an iframe.
 // Used by the dashboard (index.html) to show progress bars.
+
+
+/* Auto-jump to specific question from URL hash (e.g. #paper=Q1&q=27) */
+function _autoJumpFromHash() {
+  try {
+    const h = location.hash || "";
+    if (!h.includes("paper=") && !h.includes("q=")) return;
+    const pm = h.match(/paper=(Q[12])/);
+    const qm = h.match(/[&?#]q=(\d+)/);
+    if (pm) {
+      const newPaper = pm[1];
+      if (DATA[newPaper]) {
+        state.paper = newPaper;
+        document.querySelectorAll(".tab").forEach(t => {
+          t.classList.toggle("active", t.getAttribute("data-tab") === newPaper);
+        });
+      }
+    }
+    if (qm) {
+      const qNum = parseInt(qm[1], 10);
+      const qs = DATA[state.paper].questions;
+      const idx = qs.findIndex(qq => qq.n === qNum);
+      if (idx >= 0) state.idx[state.paper] = idx;
+    }
+    state.viewSummary = false;
+    render();
+    /* Clear hash so refresh doesn't re-trigger */
+    history.replaceState(null, "", location.pathname + location.search);
+    /* Smooth scroll to question for visibility */
+    setTimeout(() => {
+      const main = document.getElementById("main");
+      if (main) main.scrollIntoView({behavior: "smooth", block: "start"});
+    }, 100);
+  } catch(e) {}
+}
+if (document.readyState !== "loading") setTimeout(_autoJumpFromHash, 200);
+else document.addEventListener("DOMContentLoaded", () => setTimeout(_autoJumpFromHash, 200));
+
+function broadcastFullData() {
+  if (typeof window === "undefined") return;
+  let target = null;
+  try { if (window.parent && window.parent !== window) target = window.parent; } catch(e){}
+  if (!target) return;
+  try {
+    const msg = { type: "quizData", quizId: QUIZ_ID, href: location.pathname, papers: {} };
+    for (const tag of ["Q1","Q2"]) {
+      const qs = DATA[tag].questions;
+      const paperLabel = DATA[tag].label;
+      const slim = qs.map(q => ({
+        n: q.n,
+        stem: q.stem,
+        options: q.options,
+        answer: q.answer,
+        explanation: q.explanation,
+        hasImages: !!(q.images && q.images.length > 0),
+        images: (q.images || []).slice()
+      }));
+      msg.papers[tag] = { label: paperLabel, questions: slim };
+    }
+    target.postMessage(msg, "*");
+  } catch (e) {}
+}
+
 function broadcastProgress() {
   if (typeof window === "undefined") return;
   let target = null;
@@ -483,7 +750,7 @@ function broadcastProgress() {
 state.picks = loadPicks();
 
 // ===== Bookmarks (per-paper question marks, persisted to localStorage) =====
-const MARKS_STORAGE_KEY = "nephron_105_cardio_marks_v1";
+const MARKS_STORAGE_KEY = _userKey("nephron_105_cardio_marks_v1");
 function loadMarks() {
   try {
     const s = localStorage.getItem(MARKS_STORAGE_KEY);
@@ -524,6 +791,19 @@ function _stamp() {
 }
 function _nowStr() { return new Date().toLocaleString("zh-TW", {hour12: false}); }
 
+function _filenameStamp() {
+  const d = new Date();
+  const p = n => String(n).padStart(2, "0");
+  return d.getFullYear() + "-" + p(d.getMonth()+1) + "-" + p(d.getDate()) + "_" + p(d.getHours()) + "-" + p(d.getMinutes());
+}
+function _safeFn(s) { return String(s).replace(/[\\/:*?"<>|]/g, "_").replace(/\s+/g, "_"); }
+function _promptFn(defaultName) {
+  const v = prompt("輸入匯出檔名（不含副檔名）：\n直接按確定即使用預設。", defaultName);
+  if (v === null) return null;
+  const t = v.trim();
+  return _safeFn(t || defaultName);
+}
+
 function _filterQs(paper, filter) {
   const qs = DATA[paper].questions;
   const picks = state.picks[paper];
@@ -562,7 +842,7 @@ function buildExportHTML(paper, filter) {
   const paperLabel = DATA[paper].label + (paper === "Q1" ? "（114020）" : "（114090）");
 
   const subjectTitle = "心肺疾病與小兒疾病物理治療學 · 民國 105 年 · " + paperLabel;
-  const fileTitle = `心肺與小兒_105_${paperLabel.replace(/[（）]/g, "")}_${filterLabel}_${_stamp()}`;
+  const fileTitle = `${_filenameStamp()}_${(NU.cur().name || "user")}_心肺與小兒_105_${paperLabel.replace(/[（）]/g, "")}_${filterLabel}`;
 
   let body = "";
   for (const q of qs) {
@@ -712,19 +992,49 @@ ol.opts li.opt.errata { background: var(--yellow-soft); border-color: var(--yell
   </header>
   <main>${main}</main>
 </div>
+
+</div>
+
 </body>
 </html>`;
   return { html, fileTitle };
 }
 
 function downloadExport(filter) {
-  const { html, fileTitle } = buildExportHTML(state.paper, filter);
+  const built = buildExportHTML(state.paper, filter);
+  const html = built.html;
+  const fn = _promptFn(built.fileTitle);
+  if (!fn) return;
+  const fileTitle = fn;
   const blob = new Blob([html], { type: "text/html;charset=utf-8" });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url; a.download = fileTitle + ".html";
-  document.body.appendChild(a); a.click();
-  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 0);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const isAndroidWebView = /Android.*wv|Version\/.*Chrome\/[.0-9]+ Mobile/.test(navigator.userAgent) && !/Chrome\/[.0-9]+ (Mobile )?Safari/.test(navigator.userAgent);
+  // Try standard download flow first
+  try {
+    const a = document.createElement("a");
+    a.href = url; a.download = fileTitle + ".html";
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  } catch (err) { /* fallthrough */ }
+  // iOS Safari ignores the download attribute. Open the blob in a new tab so user can save via share sheet.
+  if (isIOS) {
+    setTimeout(() => {
+      const win = window.open(url, "_blank");
+      if (!win || win.closed) {
+        // Popup blocked - navigate current page instead
+        location.href = url;
+      }
+      alert("iOS 提示：\n剛開啟的頁面就是匯出結果。\n\n要儲存：\n1. 點下方「分享」按鈕（方框上箭頭）\n2. 選「儲存到檔案」或「Save to Files」\n\n或長按頁面 → 「儲存」即可。");
+    }, 100);
+  } else if (isAndroidWebView) {
+    setTimeout(() => {
+      alert("提示：若沒看到下載提示，請改用 Chrome / Firefox 等瀏覽器開啟此網頁再匯出。");
+    }, 200);
+  }
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
 }
 
 function showExportModal() {
@@ -766,6 +1076,309 @@ document.querySelectorAll("#exportOpts .exp-opt").forEach(btn => {
 render();
 // Broadcast initial state to parent (dashboard) if loaded as iframe
 broadcastProgress();
+broadcastFullData();
+
+
+function downloadJSONBackup() {
+  const obj = NU.exportAll();
+  const def = _filenameStamp() + "_" + (NU.cur().name || "user") + "_心肺與小兒_105";
+  const fn = _promptFn(def);
+  if (!fn) return;
+  const fileTitle = fn;
+  const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  try { const a = document.createElement("a"); a.href = url; a.download = fileTitle + ".json"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove(); } catch (e) {}
+  if (isIOS) {
+    setTimeout(() => {
+      const win = window.open(url, "_blank");
+      if (!win || win.closed) location.href = url;
+      alert("iOS：剛開啟的頁面就是 JSON 備份。\n按下方「分享」→「儲存到檔案」即可儲存。");
+    }, 100);
+  }
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+function importJSONBackupFromFile(file, scope) {
+  // scope: "this" = only current paper's keys, "all" = everything (true replace for both)
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const obj = JSON.parse(e.target.result);
+      if (!obj || !obj.data || obj.app !== "nephron-pt-quiz") throw new Error("無效的備份檔");
+      const picksBase = PICKS_STORAGE_KEY.split("::u::")[0];
+      const marksBase = MARKS_STORAGE_KEY.split("::u::")[0];
+      const cur = NU.ck();
+      const dataKeys = Object.keys(obj.data);
+      if (scope === "this") {
+        // Find this paper's data in backup (any user namespace)
+        let foundPicks = null, foundMarks = null;
+        for (const k of dataKeys) {
+          const baseK = k.split("::u::")[0];
+          if (baseK === picksBase) foundPicks = obj.data[k];
+          if (baseK === marksBase) foundMarks = obj.data[k];
+        }
+        if (foundPicks === null && foundMarks === null) {
+          alert("此備份檔不包含本卷的資料。"); return;
+        }
+        const msg = "還原本卷至備份狀態，匯入到目前使用者「" + NU.cur().name + "」。\n（若備份未含 picks/marks，現有同類別資料會被清除以還原為「未作答」狀態。）\n確定？";
+        if (!confirm(msg)) return;
+        // True replace: clear current user's keys for this subject, then set from backup if present
+        const picksKeyForCur = picksBase + "::u::" + cur;
+        const marksKeyForCur = marksBase + "::u::" + cur;
+        if (foundPicks !== null) localStorage.setItem(picksKeyForCur, foundPicks);
+        else localStorage.removeItem(picksKeyForCur);
+        if (foundMarks !== null) localStorage.setItem(marksKeyForCur, foundMarks);
+        else localStorage.removeItem(marksKeyForCur);
+        alert("✓ 本卷進度已還原。即將重新整理頁面。");
+      } else {
+        const userCount = obj.users ? obj.users.length : "?";
+        if (!confirm("還原「全部」資料：" + userCount + " 位使用者、" + dataKeys.length + " 筆 key。\n現有所有 nephron 資料將被「完全替換」為備份內容（未在備份中的會被清除）。\n確定？")) return;
+        const n = NU.importAll(obj, "replace");
+        alert("✓ 已還原 " + n + " 筆資料。即將重新整理頁面。");
+      }
+      location.reload();
+    } catch (err) { alert("匯入失敗：" + err.message); }
+  };
+  reader.readAsText(file);
+}
+(function() {
+  function inject() {
+    const opts = document.getElementById("exportOpts");
+    if (!opts || document.getElementById("expJsonBtn")) return;
+    const jsonBtn = document.createElement("button");
+    jsonBtn.className = "exp-opt"; jsonBtn.id = "expJsonBtn";
+    jsonBtn.innerHTML = '💾 進度備份 JSON（跨裝置同步用） <span class="count">全部使用者</span>';
+    jsonBtn.onclick = () => { downloadJSONBackup(); hideExportModal(); };
+    opts.appendChild(jsonBtn);
+    const importDiv = document.createElement("div");
+    importDiv.style.cssText = "margin-top:14px; padding-top:14px; border-top:1px solid var(--line);";
+    importDiv.innerHTML = '<div style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:6px;">從 JSON 還原進度</div>'
+      + '<div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">'
+      + '<input type="file" id="expImportFile" accept=".json,application/json" style="flex:1; min-width:160px; font-size:13px;" />'
+      + '<button id="expImportThis" style="padding:7px 14px; font-size:13px; background:var(--primary); color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:600;">📥 僅匯入本卷</button>'
+      + '<button id="expImportAll" style="padding:7px 14px; font-size:13px; background:#fff; color:var(--primary); border:1px solid var(--primary); border-radius:6px; cursor:pointer; font-weight:600;">📥 匯入全部</button>'
+      + '</div>'
+      + '<p style="font-size:12px; color:var(--ink-soft); margin:8px 0 0;">💡 「僅匯入本卷」只還原此測驗的 picks／marks（會匯入到目前使用者）。「匯入全部」會還原所有使用者與所有測驗。</p>';
+    opts.parentElement.insertBefore(importDiv, opts.nextSibling);
+    document.getElementById("expImportThis").onclick = () => {
+      const f = document.getElementById("expImportFile").files[0];
+      if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+      importJSONBackupFromFile(f, "this");
+    };
+    document.getElementById("expImportAll").onclick = () => {
+      const f = document.getElementById("expImportFile").files[0];
+      if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+      importJSONBackupFromFile(f, "all");
+    };
+  }
+  if (document.readyState !== "loading") setTimeout(inject, 0);
+  else document.addEventListener("DOMContentLoaded", inject);
+})();
+
+
+
+
+
+/* === Toolbar v2 wiring === */
+(function() {
+  function _esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  function refreshUserName() {
+    const e = document.getElementById("nuTbUserName"); if (e) e.textContent = NU.cur().name;
+    const c = document.getElementById("nuMdCurName"); if (c) c.textContent = NU.cur().name;
+    const c2 = document.getElementById("nuMdCurName2"); if (c2) c2.textContent = NU.cur().name;
+  }
+  function renderUserList() {
+    const list = document.getElementById("nuMdUserList"); if (!list) return;
+    const cur = NU.ck(); const users = NU.list();
+    list.innerHTML = users.map(u => {
+      const active = u.uid === cur;
+      const star = u.star ? "★ " : "";
+      return '<li class="nu-md-item' + (active ? ' active' : '') + '">'
+        + '<span class="nu-md-iname">' + star + _esc(u.name) + '</span>'
+        + '<span class="nu-md-idate">' + _esc(u.createdAt) + '</span>'
+        + '<button data-act="use" data-uid="' + u.uid + '"' + (active ? ' disabled' : '') + '>' + (active ? '使用中' : '切換') + '</button>'
+        + '<button data-act="rename" data-uid="' + u.uid + '">重新命名</button>'
+        + (u.uid === 'default' ? '' : '<button class="nu-md-del" data-act="del" data-uid="' + u.uid + '">刪除</button>')
+        + '</li>';
+    }).join('');
+    list.querySelectorAll('button').forEach(btn => {
+      btn.onclick = () => {
+        const act = btn.getAttribute('data-act'), uid = btn.getAttribute('data-uid');
+        if (act === 'use') {
+          NU.use(uid);
+          const newU = NU.list().find(x => x.uid === uid);
+          /* visual feedback before reload */
+          btn.textContent = '切換中…';
+          setTimeout(() => location.reload(), 80);
+        }
+        else if (act === 'rename') {
+          const u = NU.list().find(x => x.uid === uid);
+          const n = prompt('重新命名：', u ? u.name : '');
+          if (n) { NU.rename(uid, n); renderUserList(); refreshUserName(); }
+        } else if (act === 'del') {
+          const u = NU.list().find(x => x.uid === uid);
+          if (confirm('確定刪除「' + (u ? u.name : '') + '」？該使用者所有作答記錄將一併清除。')) {
+            NU.del(uid); renderUserList(); refreshUserName();
+            if (NU.ck() === 'default') location.reload();
+          }
+        }
+      };
+    });
+  }
+  function showMd(id) { if (id === 'nuMdUser') { renderUserList(); refreshUserName(); } document.getElementById(id).classList.add('show'); }
+  function hideMd(id) { const m = document.getElementById(id); if (m) m.classList.remove('show'); }
+  function wire() {
+    refreshUserName();
+    /* toolbar buttons */
+    const tbU = document.getElementById("nuTbUser");      if (tbU)  tbU.onclick  = () => showMd("nuMdUser");
+    const tbI = document.getElementById("nuTbIO");        if (tbI)  tbI.onclick  = () => showMd("nuMdIO");
+    const tbC = document.getElementById("nuTbClear");     if (tbC)  tbC.onclick  = () => showMd("nuMdClear");
+    /* close buttons */
+    document.querySelectorAll('[data-md-close]').forEach(b => b.onclick = () => hideMd(b.getAttribute('data-md-close')));
+    /* click outside to close */
+    document.querySelectorAll('.nu-md-bg').forEach(bg => bg.addEventListener('click', e => { if (e.target === bg) bg.classList.remove('show'); }));
+    /* user modal: add */
+    const addBtn = document.getElementById("nuMdAddBtn");
+    const newName = document.getElementById("nuMdNewName");
+    if (addBtn) addBtn.onclick = () => {
+      const v = newName.value.trim(); if (!v) { newName.focus(); return; }
+      NU.add(v); newName.value = ""; renderUserList(); refreshUserName();
+    };
+    if (newName) newName.addEventListener("keydown", e => { if (e.key === "Enter") addBtn.click(); });
+    /* IO modal: export */
+    const expBtn = document.getElementById("nuMdExpBtn");
+    if (expBtn) expBtn.onclick = () => { downloadJSONBackup(); hideMd("nuMdIO"); };
+    
+  /* Quiz: per-paper "this" import */
+  const impThis = document.getElementById("nuMdImpThis");
+  if (impThis) impThis.onclick = () => {
+    const f = document.getElementById("nuMdImpFile").files[0];
+    if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+    importJSONBackupFromFile(f, "this");
+  };
+  const impAll = document.getElementById("nuMdImpAll");
+  if (impAll) impAll.onclick = () => {
+    const f = document.getElementById("nuMdImpFile").files[0];
+    if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+    importJSONBackupFromFile(f, "all");
+  };
+    /* clear modal */
+    const clrCur = document.getElementById("nuMdClrCur");
+    if (clrCur) clrCur.onclick = () => {
+      const u = NU.cur();
+      if (!confirm('確定清除「' + u.name + '」的所有作答／標記？此操作無法復原。')) return;
+      const cur = NU.ck();
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith("nephron_") && k.endsWith("::u::" + cur)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除「' + u.name + '」的 ' + toDel.length + ' 筆紀錄。即將重新整理。');
+      location.reload();
+    };
+    const clrAllRec = document.getElementById("nuMdClrAllRec");
+    if (clrAllRec) clrAllRec.onclick = () => {
+      if (!confirm('確定清除「全部使用者」的所有作答／標記？\\n（使用者清單保留，僅清除作答資料）\\n此操作無法復原。')) return;
+      const n = NU.wipeAllProgress();
+      alert('✓ 已清除 ' + n + ' 筆紀錄。即將重新整理。');
+      location.reload();
+    };
+    const clrCurMarks = document.getElementById("nuMdClrCurMarks");
+    if (clrCurMarks) clrCurMarks.onclick = () => {
+      const u = NU.cur();
+      if (!confirm('確定清除「' + u.name + '」的所有 🔖 標記？\n（該使用者的作答資料保留，其他使用者完全不動）\n此操作無法復原。')) return;
+      const cur = NU.ck();
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && /^nephron_.*_marks_v1/.test(k) && k.endsWith('::u::' + cur)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除「' + u.name + '」的 ' + toDel.length + ' 個標記檔。即將重新整理。');
+      location.reload();
+    };
+    const clrAllMarks = document.getElementById("nuMdClrAllMarks");
+    if (clrAllMarks) clrAllMarks.onclick = () => {
+      if (!confirm('確定清除「全部使用者」的所有 🔖 標記？\n（作答資料保留）\n此操作無法復原。')) return;
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && /^nephron_.*_marks_v1/.test(k)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除 ' + toDel.length + ' 個標記檔。即將重新整理。');
+      location.reload();
+    };
+    const fullR = document.getElementById("nuMdFullReset");
+    if (fullR) fullR.onclick = () => {
+      if (!confirm('⚠️ 完全重置：刪除所有使用者、所有作答、所有標記。\\n回到全新狀態（只保留「預設」使用者）。\\n此操作無法復原，確定？')) return;
+      const n = NU.wipeAll();
+      alert('✓ 已重置 ' + n + ' 筆。即將重新整理。');
+      location.reload();
+    };
+  }
+  if (document.readyState !== "loading") setTimeout(wire, 0);
+  else document.addEventListener("DOMContentLoaded", wire);
+})();
+
+
 </script>
+
+
+
+<!-- nu modals -->
+<div class="nu-md-bg" id="nuMdUser" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>👤 使用者切換／管理</h3>
+    <div class="nu-md-sub">同一台裝置可建立多個使用者，作答進度互不干擾。<br><strong>切換使用者後會自動重新整理。</strong></div>
+    <ul class="nu-md-list" id="nuMdUserList"></ul>
+    <div class="nu-md-title">新增使用者</div>
+    <div class="nu-md-add">
+      <input type="text" id="nuMdNewName" placeholder="輸入名字…" maxlength="20" />
+      <button id="nuMdAddBtn" type="button">＋ 新增</button>
+    </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdUser" type="button">關閉</button></div>
+  </div>
+</div>
+<div class="nu-md-bg" id="nuMdIO" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>💾 匯入／匯出 JSON 備份</h3>
+    <div class="nu-md-sub">匯出 JSON 可在不同裝置間同步進度（含所有使用者與所有測驗）。</div>
+    <div class="nu-md-section">
+      <div class="nu-md-title">📤 匯出 JSON</div>
+      <button id="nuMdExpBtn" class="nu-md-btn-success" type="button" style="padding:7px 14px; font-size:13px; border-radius:6px; cursor:pointer;">💾 匯出全部 JSON</button>
+      <div class="nu-md-tip">含所有使用者、所有測驗的 picks／marks，可作為跨裝置同步的備份檔。iOS 會自動開新分頁，請用「分享 → 儲存到檔案」儲存。</div>
+    </div>
+    
+      <div class="nu-md-section">
+        <div class="nu-md-title">📥 從 JSON 還原進度</div>
+        <div class="nu-md-row">
+          <input type="file" id="nuMdImpFile" accept=".json,application/json" style="flex:1; min-width:160px; font-size:13px;" />
+        </div>
+        <div class="nu-md-row" style="gap:6px;">
+          <button id="nuMdImpThis" class="nu-md-btn-primary" type="button" style="padding:7px 12px; font-size:13px; border-radius:6px; cursor:pointer;">📥 僅匯入本卷</button>
+          <button id="nuMdImpAll" type="button" style="padding:7px 12px; font-size:13px; background:#fff; color:#1d6f9b; border:1px solid #1d6f9b; border-radius:6px; cursor:pointer; font-weight:600;">📥 匯入全部</button>
+        </div>
+        <div class="nu-md-tip">「僅匯入本卷」只還原此測驗的 picks／marks（會匯入到目前使用者，並把現有同類資料清空為「未作答」）。<br>「匯入全部」會還原所有使用者與所有測驗，未在備份中的資料會被清除（真正的「還原」語意）。</div>
+      </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdIO" type="button">關閉</button></div>
+  </div>
+</div>
+<div class="nu-md-bg" id="nuMdClear" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>🗑 清除紀錄</h3>
+    <div class="nu-md-sub" style="color:#c92a2a;"><strong>⚠️ 以下動作無法復原。</strong></div>
+    <div class="nu-md-row" style="flex-direction:column; align-items:stretch; gap:8px;">
+      <button id="nuMdClrCur" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🗑 清除「目前使用者」（<span id="nuMdCurName">預設使用者</span>）的所有紀錄<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除目前使用者的作答／標記，使用者本身保留</div></button>
+      <button id="nuMdClrAllRec" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🗑 清除「全部使用者」的所有紀錄<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">所有人的作答／標記都會清除，但使用者清單保留</div></button>
+      <button id="nuMdClrCurMarks" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🔖 清除「目前使用者」（<span id="nuMdCurName2">預設使用者</span>）的所有標記<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除目前使用者的書籤（🔖），作答資料保留</div></button>
+      <button id="nuMdClrAllMarks" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🔖 清除「全部使用者」的所有標記<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除所有人的書籤（🔖），作答資料保留</div></button>
+      <button id="nuMdFullReset" class="nu-md-btn-danger" type="button" style="padding:9px 14px; font-size:13px; border-radius:6px; cursor:pointer; text-align:left;">🔥 完全重置<div style="font-size:11px; color:rgba(255,255,255,.85); margin-top:2px; font-weight:normal;">連使用者清單一起刪除，回到全新狀態（只剩「預設」使用者）</div></button>
+    </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdClear" type="button">關閉</button></div>
+  </div>
+</div>
+
 </body>
 </html>
