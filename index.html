@@ -79,6 +79,171 @@
   .footer { color:var(--soft); font-size:12px; text-align:center; margin-top:24px; }
   .footer a { color:var(--primary); }
   .iframe-host { position:fixed; left:-9999px; top:-9999px; width:100px; height:100px; }
+
+  /* 使用者選擇 */
+  .nu-badge { display:inline-flex; align-items:center; gap:6px; padding:5px 10px; background:#fff; border:1px solid var(--line); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ink); transition:all .15s; }
+  .nu-badge:hover { background:var(--primary-soft); border-color:var(--primary); color:var(--primary); }
+  .nu-badge .nu-dot { width:8px; height:8px; border-radius:50%; background:var(--green); }
+  .nu-badge .nu-name { font-weight:600; }
+  .nu-modal-bg { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:9999; }
+  .nu-modal-bg.show { display:flex; }
+  .nu-modal { background:#fff; border-radius:12px; padding:24px; max-width:540px; width:92%; max-height:80vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,.18); }
+  .nu-modal h3 { margin:0 0 6px; font-size:17px; }
+  .nu-modal .nu-sub { color:#666; font-size:13px; margin-bottom:14px; }
+  .nu-modal .nu-list { list-style:none; padding:0; margin:0 0 12px; max-height:240px; overflow-y:auto; }
+  .nu-modal .nu-item { display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #e4e7eb; border-radius:8px; margin-bottom:6px; }
+  .nu-modal .nu-item.active { background:#f0f9ff; border-color:#1d6f9b; }
+  .nu-modal .nu-item .nu-iname { flex:1; font-weight:600; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .nu-modal .nu-item .nu-idate { font-size:11px; color:#888; min-width:90px; text-align:right; }
+  .nu-modal .nu-item button { padding:4px 10px; font-size:12px; border:1px solid #d4d7db; background:#fff; border-radius:6px; cursor:pointer; }
+  .nu-modal .nu-item button:hover { background:#f1f3f5; }
+  .nu-modal .nu-item button.nu-del { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-modal .nu-item button.nu-del:hover { background:#ffe3e3; }
+  .nu-modal .nu-item button:disabled { opacity:.45; cursor:not-allowed; }
+  .nu-modal .nu-add-row { display:flex; gap:6px; margin-top:8px; }
+  .nu-modal .nu-add-row input { flex:1; padding:8px 10px; border:1px solid #d4d7db; border-radius:6px; font-size:14px; }
+  .nu-modal .nu-add-row button { padding:8px 14px; background:#1d6f9b; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer; font-weight:600; }
+  .nu-modal .nu-tip { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:8px 10px; font-size:12px; color:#666; margin-top:10px; }
+  .nu-modal .nu-actions { margin-top:14px; text-align:right; display:flex; gap:8px; justify-content:space-between; }
+  .nu-modal .nu-actions button { padding:8px 14px; border:1px solid #d4d7db; background:#fff; border-radius:6px; font-size:13px; cursor:pointer; }
+  .nu-modal .nu-actions .nu-export { background:var(--primary); color:#fff; border-color:var(--primary); }
+  .nu-modal .nu-actions .nu-import { background:var(--green); color:#fff; border-color:var(--green); }
+
+  /* Top toolbar (3 buttons) */
+  .nu-toolbar { display:inline-flex; align-items:center; gap:6px; margin-left:auto; flex-wrap:wrap; }
+  .nu-tb-btn { display:inline-flex; align-items:center; gap:5px; padding:5px 11px; background:#fff; border:1px solid #d4d7db; border-radius:8px; font-size:13px; cursor:pointer; color:#1f2933; transition:all .15s; line-height:1.4; }
+  .nu-tb-btn:hover { background:#e6f1f7; border-color:#1d6f9b; color:#1d6f9b; }
+  .nu-tb-btn .nu-tb-icon { font-size:14px; }
+  .nu-tb-btn.nu-tb-user { font-weight:600; }
+  .nu-tb-btn.nu-tb-user .nu-tb-dot { width:7px; height:7px; border-radius:50%; background:#2f9e44; margin-right:1px; }
+  .nu-tb-btn.nu-tb-clear { color:#c92a2a; }
+  .nu-tb-btn.nu-tb-clear:hover { background:#ffe3e3; border-color:#c92a2a; color:#c92a2a; }
+  .rand-row { display:flex; gap:10px; flex-wrap:wrap; }
+  .rand-btn { flex:1; min-width:200px; display:flex; align-items:center; gap:10px; padding:12px 16px; background:#fff; border:1.5px solid var(--line); border-radius:10px; font-size:14px; cursor:pointer; transition:all .15s; color:var(--ink); }
+  .rand-btn:hover { background:var(--primary-soft); border-color:var(--primary); color:var(--primary); }
+  .rand-btn .rand-icon { font-size:18px; }
+  .rand-btn .rand-text { font-weight:600; flex:1; text-align:left; }
+  .rand-btn .rand-cnt { font-size:12px; color:var(--soft); padding:3px 9px; background:#f1f3f5; border-radius:999px; font-variant-numeric:tabular-nums; }
+  .rand-btn:hover .rand-cnt { background:#fff; color:var(--primary); }
+  .rand-btn-wrong .rand-cnt { background:#ffe3e3; color:#c92a2a; }
+  .rand-btn-marked .rand-cnt { background:#fff4c2; color:#a06a00; }
+  .rand-btn:disabled { opacity:.5; cursor:not-allowed; }
+  .rl-bg { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:9999; padding:20px; }
+  .rl-bg.show { display:flex; }
+  .rl-md { background:#fff; border-radius:12px; padding:22px; max-width:500px; width:100%; max-height:85vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,.18); }
+  .rl-md h3 { margin:0 0 6px; font-size:17px; }
+  .rl-sub { color:#666; font-size:13px; margin-bottom:14px; }
+  .rl-sec { margin-top:14px; }
+  .rl-title { font-size:13px; font-weight:600; margin-bottom:6px; }
+  .rl-select { width:100%; padding:9px; font-size:13px; border:1px solid var(--line); border-radius:6px; }
+  .rl-pills { display:flex; flex-wrap:wrap; gap:6px; }
+  .rl-pill { padding:7px 14px; font-size:13px; border:1px solid var(--line); background:#fff; border-radius:999px; cursor:pointer; }
+  .rl-pill.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+  .rl-pill:disabled { opacity:.4; cursor:not-allowed; }
+  .rl-input { width:100%; padding:9px; font-size:14px; border:1px solid var(--line); border-radius:6px; margin-top:6px; }
+  .rl-actions { margin-top:18px; display:flex; gap:8px; justify-content:flex-end; }
+  .rl-btn { padding:8px 18px; font-size:14px; border-radius:6px; cursor:pointer; border:1px solid; }
+  .rl-btn.primary { background:var(--primary); color:#fff; border-color:var(--primary); font-weight:600; }
+  .rl-btn.primary:disabled { background:#ccc; border-color:#ccc; cursor:not-allowed; }
+  .rl-btn.ghost { background:#fff; color:#333; border-color:var(--line); }
+  /* Random quiz overlay */
+  .rq-overlay { position:fixed; inset:0; background:#fff; z-index:9998; overflow:auto; }
+  .rq-header { position:sticky; top:0; background:#1d6f9b; color:#fff; padding:12px 20px; display:flex; align-items:center; gap:12px; box-shadow:0 2px 8px rgba(0,0,0,.15); z-index:10; }
+  .rq-title { font-weight:700; font-size:16px; }
+  .rq-progress { flex:1; text-align:center; font-size:14px; opacity:.95; }
+  .rq-exit { background:#fff; color:#1d6f9b; border:none; padding:7px 14px; border-radius:6px; font-size:13px; cursor:pointer; font-weight:600; }
+  .rq-exit:hover { background:#ffe3e3; color:#c92a2a; }
+  .rq-layout { max-width:1100px; margin:0 auto; padding:18px 18px 60px; display:flex; gap:18px; align-items:flex-start; }
+  .rq-sidebar { width:240px; flex-shrink:0; background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px; box-shadow:var(--shadow); position:sticky; top:60px; }
+  .rq-side-head { font-size:13px; color:var(--soft); margin-bottom:8px; }
+  .rq-num-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:5px; margin-bottom:10px; }
+  .rq-num-grid button { aspect-ratio:1; min-height:34px; padding:0; border-radius:6px; border:1px solid var(--line); background:#fff; font-size:13px; cursor:pointer; font-variant-numeric:tabular-nums; position:relative; }
+  .rq-num-grid button:hover { background:var(--primary-soft); border-color:var(--primary); }
+  .rq-num-grid button.cur { background:var(--primary); color:#fff; border-color:var(--primary); font-weight:700; }
+  .rq-num-grid button.right { background:var(--green-soft); border-color:var(--green); color:#0f7a30; }
+  .rq-num-grid button.right.cur { background:var(--green); color:#fff; }
+  .rq-num-grid button.wrong { background:var(--red-soft); border-color:var(--red); color:#c92a2a; }
+  .rq-num-grid button.wrong.cur { background:var(--red); color:#fff; }
+  .rq-num-grid button.marked::after { content:"★"; position:absolute; top:-3px; right:-3px; font-size:10px; color:#d9a700; text-shadow:0 0 2px #fff; }
+  .rq-side-legend { display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--soft); margin-bottom:12px; padding:8px 10px; background:var(--grey-soft); border-radius:6px; }
+  .rq-side-legend .dot { display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:5px; vertical-align:middle; border:1px solid var(--line); }
+  .rq-side-legend .dot.r { background:var(--green-soft); border-color:var(--green); }
+  .rq-side-legend .dot.w { background:var(--red-soft); border-color:var(--red); }
+  .rq-side-btn { width:100%; padding:9px 12px; font-size:13px; border:1px solid var(--line); background:#fff; border-radius:6px; cursor:pointer; margin-bottom:6px; text-align:left; }
+  .rq-side-btn:hover { background:var(--primary-soft); border-color:var(--primary); color:var(--primary); }
+  .rq-main { flex:1; min-width:0; }
+  .rq-card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:24px; box-shadow:var(--shadow); }
+  @media (max-width: 760px) {
+    .rq-layout { flex-direction:column; }
+    .rq-sidebar { width:auto; position:static; }
+  }
+  .rq-meta { display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; color:var(--soft); margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid var(--line); }
+  .rq-qnum { font-weight:700; color:var(--primary); font-size:16px; }
+  .rq-source { background:#e7f5ff; color:#1d6f9b; padding:2px 9px; border-radius:999px; font-size:12px; }
+  .rq-mark-btn { margin-left:auto; background:#fff; border:1px solid var(--line); padding:5px 12px; border-radius:6px; cursor:pointer; font-size:12px; }
+  .rq-mark-btn.marked { background:#fff4c2; border-color:#d9a700; color:#a06a00; font-weight:600; }
+  .rq-stem { font-size:16px; line-height:1.7; margin-bottom:18px; white-space:pre-wrap; }
+  .rq-img-notice { background:#fff8e1; border:1px solid #ffe082; padding:10px 14px; border-radius:8px; margin-bottom:14px; font-size:13px; color:#856404; }
+  .rq-img-notice a { color:#1d6f9b; font-weight:600; }
+  .rq-imgs { margin-bottom:14px; }
+  .rq-imgs .rq-img { display:block; max-width:100%; height:auto; margin:0 auto 8px; border:1px solid var(--line); border-radius:6px; background:#fff; }
+  .rq-img-link { font-size:12px; color:var(--soft); text-align:center; margin-top:4px; }
+  .rq-img-link a { color:var(--primary); }
+  .rq-opts { display:flex; flex-direction:column; gap:8px; }
+  .rq-opt { background:#fff; border:1.5px solid var(--line); padding:12px 14px; border-radius:8px; cursor:pointer; text-align:left; font-size:14px; line-height:1.6; transition:all .15s; }
+  .rq-opt:hover:not(:disabled) { border-color:var(--primary); background:var(--primary-soft); }
+  .rq-opt.selected { border-color:var(--primary); background:var(--primary-soft); }
+  .rq-opt.correct { border-color:var(--green); background:var(--green-soft); color:#0f7a30; font-weight:600; }
+  .rq-opt.wrong { border-color:var(--red); background:var(--red-soft); color:#c92a2a; }
+  .rq-opt:disabled { cursor:default; }
+  .rq-opt .opt-label { font-weight:700; margin-right:8px; }
+  .rq-verdict { margin-top:16px; padding:14px 18px; border-radius:8px; }
+  .rq-verdict.right { background:var(--green-soft); border:1px solid var(--green); color:#0f7a30; }
+  .rq-verdict.wrong { background:var(--red-soft); border:1px solid var(--red); color:#c92a2a; }
+  .rq-verdict.note { background:#fff8e1; border:1px solid #ffe082; color:#856404; }
+  .rq-verdict h4 { margin:0 0 6px; font-size:15px; }
+  .rq-verdict .expl { color:var(--ink); font-size:14px; line-height:1.7; white-space:pre-wrap; }
+  .rq-nav { display:flex; gap:10px; margin-top:18px; justify-content:space-between; }
+  .rq-btn { padding:10px 20px; border-radius:8px; font-size:14px; cursor:pointer; border:1px solid; }
+  .rq-btn.primary { background:var(--primary); color:#fff; border-color:var(--primary); font-weight:600; }
+  .rq-btn.ghost { background:#fff; color:var(--ink); border-color:var(--line); }
+  .rq-btn:disabled { opacity:.5; cursor:not-allowed; }
+  .rq-summary { padding:30px; text-align:center; }
+  .rq-summary h2 { margin:0 0 12px; font-size:22px; }
+  .rq-summary .stat-row { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin:18px 0; }
+  .rq-summary .stat-box { padding:14px 24px; background:var(--grey-soft); border-radius:10px; }
+  .rq-summary .stat-box .num { font-size:24px; font-weight:700; color:var(--primary); }
+  .rq-summary .stat-box .lbl { font-size:12px; color:var(--soft); margin-top:2px; }
+  /* Generic modal */
+  .nu-md-bg { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:9999; padding:20px; }
+  .nu-md-bg.show { display:flex; }
+  .nu-md { background:#fff; border-radius:12px; padding:22px; max-width:560px; width:100%; max-height:85vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,.18); }
+  .nu-md h3 { margin:0 0 6px; font-size:17px; }
+  .nu-md .nu-md-sub { color:#666; font-size:13px; margin-bottom:14px; line-height:1.6; }
+  .nu-md .nu-md-list { list-style:none; padding:0; margin:0 0 12px; max-height:240px; overflow-y:auto; }
+  .nu-md .nu-md-item { display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #e4e7eb; border-radius:8px; margin-bottom:6px; flex-wrap:wrap; }
+  .nu-md .nu-md-item.active { background:#f0f9ff; border-color:#1d6f9b; }
+  .nu-md .nu-md-item .nu-md-iname { flex:1; font-weight:600; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .nu-md .nu-md-item .nu-md-idate { font-size:11px; color:#888; min-width:90px; text-align:right; }
+  .nu-md .nu-md-item button { padding:4px 10px; font-size:12px; border:1px solid #d4d7db; background:#fff; border-radius:6px; cursor:pointer; }
+  .nu-md .nu-md-item button:hover { background:#f1f3f5; }
+  .nu-md .nu-md-item button.nu-md-del { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-md .nu-md-item button.nu-md-del:hover { background:#ffe3e3; }
+  .nu-md .nu-md-item button:disabled { opacity:.45; cursor:not-allowed; }
+  .nu-md .nu-md-add { display:flex; gap:6px; margin-top:8px; }
+  .nu-md .nu-md-add input { flex:1; padding:8px 10px; border:1px solid #d4d7db; border-radius:6px; font-size:14px; }
+  .nu-md .nu-md-add button { padding:8px 14px; background:#1d6f9b; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer; font-weight:600; }
+  .nu-md .nu-md-tip { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:8px 10px; font-size:12px; color:#666; margin-top:10px; line-height:1.6; }
+  .nu-md .nu-md-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:6px 0; }
+  .nu-md .nu-md-section { margin-top:14px; padding-top:14px; border-top:1px solid #e4e7eb; }
+  .nu-md .nu-md-title { font-size:13px; font-weight:600; color:#1f2933; margin-bottom:6px; }
+  .nu-md .nu-md-actions { margin-top:14px; text-align:right; }
+  .nu-md .nu-md-actions button { padding:8px 14px; border:1px solid #d4d7db; background:#fff; border-radius:6px; font-size:13px; cursor:pointer; }
+  .nu-md .nu-md-btn-success { background:#2f9e44 !important; color:#fff !important; border-color:#2f9e44 !important; font-weight:600; }
+  .nu-md .nu-md-btn-danger  { background:#c92a2a !important; color:#fff !important; border-color:#c92a2a !important; font-weight:600; }
+  .nu-md .nu-md-btn-primary { background:#1d6f9b !important; color:#fff !important; border-color:#1d6f9b !important; font-weight:600; }
+  .nu-md .nu-md-btn-outline-danger { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-md .nu-md-btn-outline-danger:hover { background:#ffe3e3; }
 </style>
 </head>
 <body>
@@ -86,10 +251,33 @@
   <div class="h-row">
     <h1>物理治療師國考 · 互動測驗</h1>
     <span class="sub">考選部 105 – 114 年歷屆試題</span>
-    <div class="stat">已建立 <strong>60</strong> / 60 卷 · 已完成 <strong id="completedCount">0</strong></div>
+    <div class="nu-toolbar"><button class="nu-tb-btn nu-tb-user" id="nuTbUser" type="button" title="切換／管理使用者"><span class="nu-tb-dot"></span><span id="nuTbUserName">預設使用者</span><span style="font-size:9px;opacity:.6;">▼</span></button><button class="nu-tb-btn" id="nuTbIO" type="button" title="匯入／匯出 JSON 備份"><span class="nu-tb-icon">💾</span>匯入／匯出</button><button class="nu-tb-btn nu-tb-clear" id="nuTbClear" type="button" title="清除紀錄（無法復原）"><span class="nu-tb-icon">🗑</span>清除</button></div><div class="stat">已建立 <strong>60</strong> / 60 卷 · 已完成 <strong id="completedCount">0</strong></div>
   </div>
 </header>
 <main>
+  <div class="panel">
+    <h2>🎲 隨機練習</h2>
+    <div class="desc">跨整套試題的隨機抽題練習。錯題／標記題的數據會自動聚合所有 60 卷。</div>
+    <div class="rand-row">
+      <button class="rand-btn rand-btn-all" id="randAll" type="button">
+        <span class="rand-icon">🎲</span>
+        <span class="rand-text">完全隨機練習</span>
+        <span class="rand-cnt" id="randAllCnt">0 題</span>
+      </button>
+      <button class="rand-btn rand-btn-wrong" id="randWrong" type="button">
+        <span class="rand-icon">❌</span>
+        <span class="rand-text">錯題隨機練習</span>
+        <span class="rand-cnt" id="randWrongCnt">0 題</span>
+      </button>
+      <button class="rand-btn rand-btn-marked" id="randMarked" type="button">
+        <span class="rand-icon">🔖</span>
+        <span class="rand-text">標記題隨機練習</span>
+        <span class="rand-cnt" id="randMarkedCnt">0 題</span>
+      </button>
+    </div>
+    <div class="desc" style="margin-top:10px; font-size:12px;">真正跨 60 卷打散抽題（不再以單卷為單位）。資料載入需要約 5–10 秒，請等待數字穩定後再點擊。</div>
+  </div>
+
   <div class="panel">
     <div class="global-prog" id="globalProg">
       <span class="gp-label">總體答題進度</span>
@@ -98,7 +286,7 @@
       <button class="gp-refresh" id="gpRefresh" title="重新讀取所有測驗的最新進度">🔄 重新整理</button>
     </div>
     <h2>科目年度矩陣</h2>
-    <div class="desc">點擊綠色「✓ 開始測驗」格子即可進入該年該科的互動測驗。已作答進度會在每格下方顯示。</div>
+    <div class="desc">點擊有顏色（藍／黃／綠）的格子即可進入該年該科的互動測驗。藍色＝尚未作答、黃色＝作答中、綠色＝已完成、灰色＝尚未製作（無法點擊）。已作答進度會在每格下方顯示。</div>
     <div class="matrix-wrap">
       <table class="matrix">
         <thead><tr><th class="ycol"></th><th class="scol" title="神經疾病物理治療學">神經</th><th class="scol" title="骨科疾病物理治療學">骨科</th><th class="scol" title="心肺疾病與小兒疾病物理治療學">心肺・小兒</th><th class="scol" title="物理治療基礎學">基礎</th><th class="scol" title="物理治療學概論">概論</th><th class="scol" title="物理治療技術學">技術</th></tr></thead>
@@ -129,8 +317,226 @@
   </div>
   <div class="footer">試題來源：考選部 · <a href="index.md">完整試題索引 (index.md)</a></div>
 </main>
+<div class="nu-md-bg" id="nuMdUser" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>👤 使用者切換／管理</h3>
+    <div class="nu-md-sub">同一台裝置可建立多個使用者，作答進度互不干擾。<br><strong>切換使用者後會自動重新整理。</strong></div>
+    <ul class="nu-md-list" id="nuMdUserList"></ul>
+    <div class="nu-md-title">新增使用者</div>
+    <div class="nu-md-add">
+      <input type="text" id="nuMdNewName" placeholder="輸入名字…" maxlength="20" />
+      <button id="nuMdAddBtn" type="button">＋ 新增</button>
+    </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdUser" type="button">關閉</button></div>
+  </div>
+</div>
+<div class="nu-md-bg" id="nuMdIO" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>💾 匯入／匯出 JSON 備份</h3>
+    <div class="nu-md-sub">JSON 可用於跨裝置同步進度。iOS 會自動開新分頁，請用「分享 → 儲存到檔案」儲存。匯出時會詢問檔名，預設為「日期時間_使用者」。</div>
+    <div class="nu-md-section">
+      <div class="nu-md-title">📤 匯出</div>
+      <div class="nu-md-row" style="flex-direction:column; align-items:stretch; gap:8px;">
+        <button id="nuMdExpAll" class="nu-md-btn-success" type="button" style="padding:9px 14px; font-size:13px; border-radius:6px; cursor:pointer;">📤 匯出全部使用者</button>
+        <div style="display:flex; gap:6px; align-items:center;">
+          <select id="nuMdExpUserSel" style="flex:1; padding:8px; font-size:13px; border:1px solid var(--line); border-radius:6px;"></select>
+          <button id="nuMdExpOne" class="nu-md-btn-success" type="button" style="padding:9px 14px; font-size:13px; border-radius:6px; cursor:pointer; white-space:nowrap;">👤 匯出單個使用者</button>
+        </div>
+      </div>
+      <div class="nu-md-tip">「匯出全部」含所有使用者與所有測驗。「匯出單個」只含選定的一位使用者。</div>
+    </div>
+    <div class="nu-md-section">
+      <div class="nu-md-title">📥 匯入</div>
+      <input type="file" id="nuMdImpFile" accept=".json,application/json" style="width:100%; font-size:13px; margin-bottom:8px;" />
+      <div class="nu-md-row" style="flex-direction:column; align-items:stretch; gap:8px;">
+        <button id="nuMdImpAll" class="nu-md-btn-primary" type="button" style="padding:9px 14px; font-size:13px; border-radius:6px; cursor:pointer;">📥 匯入全部使用者（完全取代）</button>
+        <div style="display:flex; gap:6px; align-items:center;">
+          <select id="nuMdImpUserSel" style="flex:1; padding:8px; font-size:13px; border:1px solid var(--line); border-radius:6px;"></select>
+          <button id="nuMdImpOne" class="nu-md-btn-primary" type="button" style="padding:9px 14px; font-size:13px; border-radius:6px; cursor:pointer; white-space:nowrap;">👤 匯入單個使用者</button>
+        </div>
+      </div>
+      <div class="nu-md-tip">「匯入全部」會完全取代本機所有資料。「匯入單個」適用於單一使用者備份檔（也支援從全部備份中只匯入一位），會取代選定使用者的資料，其他使用者保留。</div>
+    </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdIO" type="button">關閉</button></div>
+  </div>
+</div>
+<div class="nu-md-bg" id="nuMdClear" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>🗑 清除紀錄</h3>
+    <div class="nu-md-sub" style="color:#c92a2a;"><strong>⚠️ 以下動作無法復原。</strong></div>
+    <div class="nu-md-row" style="flex-direction:column; align-items:stretch; gap:8px;">
+      <button id="nuMdClrCur" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🗑 清除「目前使用者」（<span id="nuMdCurName">預設使用者</span>）的所有紀錄<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除目前使用者的作答／標記，使用者本身保留</div></button>
+      <button id="nuMdClrAllRec" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🗑 清除「全部使用者」的所有紀錄<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">所有人的作答／標記都會清除，但使用者清單保留</div></button>
+      <button id="nuMdClrCurMarks" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🔖 清除「目前使用者」（<span id="nuMdCurName2">預設使用者</span>）的所有標記<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除目前使用者的書籤（🔖），作答資料保留</div></button>
+      <button id="nuMdClrAllMarks" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🔖 清除「全部使用者」的所有標記<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除所有人的書籤（🔖），作答資料保留</div></button>
+      <button id="nuMdFullReset" class="nu-md-btn-danger" type="button" style="padding:9px 14px; font-size:13px; border-radius:6px; cursor:pointer; text-align:left;">🔥 完全重置<div style="font-size:11px; color:rgba(255,255,255,.85); margin-top:2px; font-weight:normal;">連使用者清單一起刪除，回到全新狀態（只剩「預設」使用者）</div></button>
+    </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdClear" type="button">關閉</button></div>
+  </div>
+</div>
+
+<div class="rl-bg" id="rlModal" role="dialog" aria-modal="true">
+  <div class="rl-md">
+    <h3 id="rlTitle">🎲 隨機練習</h3>
+    <div class="rl-sub" id="rlSub">— 題</div>
+    <div class="rl-sec">
+      <div class="rl-title">題數</div>
+      <div class="rl-pills">
+        <button class="rl-pill rl-cnt" data-n="10" type="button">10</button>
+        <button class="rl-pill rl-cnt" data-n="25" type="button">25</button>
+        <button class="rl-pill rl-cnt" data-n="50" type="button">50</button>
+        <button class="rl-pill rl-cnt" data-n="100" type="button">100</button>
+        <button class="rl-pill rl-cnt" data-n="all" id="rlCntAll" type="button">全部 (—)</button>
+      </div>
+      <input type="number" id="rlCount" min="1" value="10" class="rl-input" placeholder="或自訂題數" />
+    </div>
+    <div class="rl-actions">
+      <button class="rl-btn ghost" id="rlCancelBtn" type="button">取消</button>
+      <button class="rl-btn primary" id="rlStartBtn" type="button">開始隨機練習</button>
+    </div>
+  </div>
+</div>
+
+<!-- Random quiz overlay (full-screen) -->
+<div class="rq-overlay" id="rqOverlay" style="display:none;">
+  <div class="rq-header">
+    <button class="rq-exit" id="rqExitBtn" type="button">← 回首頁</button>
+    <div class="rq-title" id="rqTitle">🎲 隨機練習</div>
+    <div class="rq-progress" id="rqProgress">— / —</div>
+  </div>
+  <div class="rq-layout">
+    <aside class="rq-sidebar">
+      <div class="rq-side-head" id="rqSideHead">題號（共 — 題）· 已答 0</div>
+      <div class="rq-num-grid" id="rqNumGrid"></div>
+      <div class="rq-side-legend">
+        <span><i class="dot r"></i>答對</span>
+        <span><i class="dot w"></i>答錯</span>
+        <span style="color:#a06a00;">★ 已標記</span>
+      </div>
+      <button class="rq-side-btn" id="rqSummaryBtn" type="button">📊 查看本練習總結</button>
+      <button class="rq-side-btn" id="rqExportBtn" type="button">📤 匯出本練習成績</button>
+    </aside>
+    <div class="rq-main">
+      <div class="rq-card" id="rqCard"></div>
+      <div class="rq-nav">
+        <button class="rq-btn ghost" id="rqPrevBtn" type="button">← 上一題</button>
+        <button class="rq-btn primary" id="rqNextBtn" type="button">下一題 →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="iframe-host" id="iframeHost"></div>
 <script>
+
+/* ===== Multi-User System (NU) v2 ===== */
+const NU = {
+  ck() { return localStorage.getItem("nephron::current_user") || "default"; },
+  list() {
+    try {
+      let l = JSON.parse(localStorage.getItem("nephron::users") || "[]");
+      if (!l.length) {
+        l = [{ uid: "default", name: "預設使用者", createdAt: new Date().toISOString().slice(0,10), star: true }];
+        localStorage.setItem("nephron::users", JSON.stringify(l));
+      }
+      return l;
+    } catch(e) { return [{ uid: "default", name: "預設使用者", createdAt: "", star: true }]; }
+  },
+  cur() { const id = NU.ck(); return NU.list().find(u => u.uid === id) || NU.list()[0]; },
+  use(uid) { localStorage.setItem("nephron::current_user", uid); },
+  add(name) {
+    if (!name.trim()) return null;
+    const l = NU.list();
+    const uid = "u_" + Date.now().toString(36) + Math.floor(Math.random()*1000).toString(36);
+    l.push({ uid, name: name.trim(), createdAt: new Date().toISOString().slice(0,10), star: false });
+    localStorage.setItem("nephron::users", JSON.stringify(l));
+    return uid;
+  },
+  rename(uid, newName) {
+    const l = NU.list();
+    const u = l.find(x => x.uid === uid);
+    if (u && newName.trim()) { u.name = newName.trim(); localStorage.setItem("nephron::users", JSON.stringify(l)); return true; }
+    return false;
+  },
+  del(uid) {
+    if (uid === "default") return false;
+    const l = NU.list().filter(x => x.uid !== uid);
+    localStorage.setItem("nephron::users", JSON.stringify(l));
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.includes("::u::" + uid)) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    if (NU.ck() === uid) localStorage.setItem("nephron::current_user", "default");
+    return true;
+  },
+  exportAll() {
+    const obj = { app: "nephron-pt-quiz", version: 1, exportedAt: new Date().toISOString(),
+                   users: NU.list(), currentUser: NU.ck(), data: {} };
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (!k) continue;
+      if (k.startsWith("nephron_") || k.startsWith("nephron::")) obj.data[k] = localStorage.getItem(k);
+    }
+    return obj;
+  },
+  importAll(obj, mode) {
+    if (!obj || !obj.data || obj.app !== "nephron-pt-quiz") throw new Error("無效的備份檔（找不到 nephron-pt-quiz 標記）");
+    mode = mode || "replace";
+    if (mode === "replace") {
+      // Wipe all nephron data first so import is a true restore
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && (k.startsWith("nephron_") || k.startsWith("nephron::"))) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+    }
+    if (obj.users) localStorage.setItem("nephron::users", JSON.stringify(obj.users));
+    for (const k in obj.data) localStorage.setItem(k, obj.data[k]);
+    if (obj.currentUser) localStorage.setItem("nephron::current_user", obj.currentUser);
+    return Object.keys(obj.data).length;
+  },
+  /* Wipe all answer / mark data (but keep user list) */
+  wipeAllProgress() {
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith("nephron_")) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    return toDel.length;
+  },
+  /* Wipe everything: data + users + current_user */
+  wipeAll() {
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && (k.startsWith("nephron_") || k.startsWith("nephron::"))) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    return toDel.length;
+  }
+};
+
+(function migrateDefaultName() {
+  try {
+    const raw = localStorage.getItem("nephron::users");
+    if (!raw) return;
+    const arr = JSON.parse(raw);
+    let changed = false;
+    for (const u of arr) {
+      if (u.uid === "default" && u.name === "預設") { u.name = "預設使用者"; changed = true; }
+    }
+    if (changed) localStorage.setItem("nephron::users", JSON.stringify(arr));
+  } catch(e) {}
+})();
+function _esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+
+
+
 const PENDING = new Map();
 function readProgressFromQuiz(href) {
   return new Promise((resolve) => {
@@ -215,6 +621,818 @@ window.addEventListener("focus", () => {
     window._lastRefresh = Date.now(); refreshAllProgress();
   }
 });
+
+/* === Toolbar v2 wiring (dashboard) === */
+function _esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function refreshUserName() {
+  const e = document.getElementById("nuTbUserName"); if (e) e.textContent = NU.cur().name;
+  const c = document.getElementById("nuMdCurName"); if (c) c.textContent = NU.cur().name;
+  const c2 = document.getElementById("nuMdCurName2"); if (c2) c2.textContent = NU.cur().name;
+}
+function renderUserList() {
+  const list = document.getElementById("nuMdUserList"); if (!list) return;
+  const cur = NU.ck(); const users = NU.list();
+  list.innerHTML = users.map(u => {
+    const active = u.uid === cur;
+    const star = u.star ? "★ " : "";
+    return '<li class="nu-md-item' + (active ? ' active' : '') + '">'
+      + '<span class="nu-md-iname">' + star + _esc(u.name) + '</span>'
+      + '<span class="nu-md-idate">' + _esc(u.createdAt) + '</span>'
+      + '<button data-act="use" data-uid="' + u.uid + '"' + (active ? ' disabled' : '') + '>' + (active ? '使用中' : '切換') + '</button>'
+      + '<button data-act="rename" data-uid="' + u.uid + '">重新命名</button>'
+      + (u.uid === 'default' ? '' : '<button class="nu-md-del" data-act="del" data-uid="' + u.uid + '">刪除</button>')
+      + '</li>';
+  }).join('');
+  list.querySelectorAll('button').forEach(btn => {
+    btn.onclick = () => {
+      const act = btn.getAttribute('data-act'), uid = btn.getAttribute('data-uid');
+      if (act === 'use') { NU.use(uid); location.reload(); }
+      else if (act === 'rename') {
+        const u = NU.list().find(x => x.uid === uid);
+        const n = prompt('重新命名：', u ? u.name : '');
+        if (n) { NU.rename(uid, n); renderUserList(); refreshUserName(); }
+      } else if (act === 'del') {
+        const u = NU.list().find(x => x.uid === uid);
+        if (confirm('確定刪除「' + (u ? u.name : '') + '」？該使用者所有作答記錄將一併清除。')) {
+          NU.del(uid); renderUserList(); refreshUserName();
+          if (NU.ck() === 'default') location.reload();
+        }
+      }
+    };
+  });
+}
+function showMd(id) {
+  if (id === 'nuMdUser') { renderUserList(); refreshUserName(); }
+  if (id === 'nuMdIO') { if (typeof populateUserSelects === 'function') populateUserSelects(); }
+  if (id === 'nuMdClear') { refreshUserName(); }
+  document.getElementById(id).classList.add('show');
+}
+function hideMd(id) { const m = document.getElementById(id); if (m) m.classList.remove('show'); }
+function _filenameStamp() {
+  const d = new Date();
+  const p = n => String(n).padStart(2, '0');
+  return d.getFullYear() + '-' + p(d.getMonth()+1) + '-' + p(d.getDate()) + '_' + p(d.getHours()) + '-' + p(d.getMinutes());
+}
+function _safeFn(s) { return String(s).replace(/[\\\/:*?"<>|]/g, '_').replace(/\s+/g, '_'); }
+function _promptFn(defaultName) {
+  const v = prompt('輸入匯出檔名（不含 .json）：\n直接按確定即使用預設。', defaultName);
+  if (v === null) return null;
+  const t = v.trim();
+  return _safeFn(t || defaultName);
+}
+function downloadJSON(obj, fileTitle) {
+  const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  try { const a = document.createElement("a"); a.href = url; a.download = fileTitle + ".json"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove(); } catch (e) {}
+  if (isIOS) {
+    setTimeout(() => {
+      const win = window.open(url, "_blank");
+      if (!win || win.closed) location.href = url;
+      alert("iOS：剛開啟的頁面就是 JSON 備份。\n按下方「分享」→「儲存到檔案」即可儲存。");
+    }, 100);
+  }
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+function exportAllJSON() {
+  const def = _filenameStamp() + '_全部使用者';
+  const fn = _promptFn(def);
+  if (!fn) return;
+  downloadJSON(NU.exportAll(), fn);
+}
+function exportSingleUserJSON(uid) {
+  const u = NU.list().find(x => x.uid === uid);
+  if (!u) { alert('找不到使用者'); return; }
+  const all = NU.exportAll();
+  const data = {};
+  for (const k in all.data) {
+    if (k.startsWith('nephron::')) continue;
+    if (k.endsWith('::u::' + uid)) data[k] = all.data[k];
+  }
+  const obj = { app: 'nephron-pt-quiz', version: 1, bundleType: 'single-user',
+                exportedAt: new Date().toISOString(),
+                users: [u], currentUser: uid, data: data };
+  const def = _filenameStamp() + '_' + u.name;
+  const fn = _promptFn(def);
+  if (!fn) return;
+  downloadJSON(obj, fn);
+}
+function importJSONFromFile(file) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const obj = JSON.parse(e.target.result);
+      const userCount = obj.users ? obj.users.length : "?";
+      const dataKeys = obj.data ? Object.keys(obj.data) : [];
+      if (!confirm("還原「全部」資料：" + userCount + " 位使用者、" + dataKeys.length + " 筆 key。\n現有所有 nephron 資料將被「完全替換」為備份內容（未在備份中的會被清除）。\n確定？")) return;
+      const n = NU.importAll(obj, "replace");
+      alert("✓ 已還原 " + n + " 筆資料。即將重新整理頁面。");
+      location.reload();
+    } catch (err) { alert("匯入失敗：" + err.message); }
+  };
+  reader.readAsText(file);
+}
+function importSingleUserFromFile(file, targetUid) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const obj = JSON.parse(e.target.result);
+      if (!obj || obj.app !== 'nephron-pt-quiz' || !obj.data) throw new Error('無效的備份檔');
+      const sourceUsers = obj.users || [];
+      let sourceUid, sourceName;
+      if (sourceUsers.length === 1) {
+        sourceUid = sourceUsers[0].uid; sourceName = sourceUsers[0].name;
+      } else if (sourceUsers.length > 1) {
+        const opts = sourceUsers.map((u,i) => (i+1) + '. ' + u.name).join('\n');
+        const pick = prompt('備份檔含 ' + sourceUsers.length + ' 位使用者。要匯入哪一位（輸入編號）？\n' + opts, '1');
+        if (pick === null) return;
+        const idx = parseInt(pick, 10) - 1;
+        if (isNaN(idx) || idx < 0 || idx >= sourceUsers.length) { alert('無效選擇'); return; }
+        sourceUid = sourceUsers[idx].uid; sourceName = sourceUsers[idx].name;
+      } else { throw new Error('備份檔內無使用者'); }
+      let realTargetUid = targetUid, realTargetName = '';
+      if (targetUid === '__new__') {
+        const nm = prompt('新增本機使用者名稱：', sourceName) || sourceName;
+        realTargetUid = NU.add(nm); realTargetName = nm;
+        if (!realTargetUid) { alert('建立使用者失敗'); return; }
+      } else {
+        const tu = NU.list().find(x => x.uid === targetUid);
+        if (!tu) { alert('目標使用者不存在'); return; }
+        realTargetName = tu.name;
+      }
+      let cnt = 0;
+      for (const k in obj.data) { if (k.endsWith('::u::' + sourceUid)) cnt++; }
+      if (!confirm('將「' + sourceName + '」的 ' + cnt + ' 筆資料匯入到本機「' + realTargetName + '」。\n本機「' + realTargetName + '」現有資料會被取代。其他使用者的資料保留。\n確定？')) return;
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith('nephron_') && k.endsWith('::u::' + realTargetUid)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      let n = 0;
+      for (const k in obj.data) {
+        if (!k.endsWith('::u::' + sourceUid)) continue;
+        const newK = k.slice(0, -sourceUid.length) + realTargetUid;
+        localStorage.setItem(newK, obj.data[k]);
+        n++;
+      }
+      alert('✓ 已匯入 ' + n + ' 筆資料到「' + realTargetName + '」。即將重新整理。');
+      location.reload();
+    } catch (err) { alert("匯入失敗：" + err.message); }
+  };
+  reader.readAsText(file);
+}
+function clearAllMarks() {
+  const toDel = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && /^nephron_.*_marks_v1/.test(k)) toDel.push(k);
+  }
+  toDel.forEach(k => localStorage.removeItem(k));
+  return toDel.length;
+}
+function populateUserSelects() {
+  const list = NU.list();
+  const cur = NU.ck();
+  ['nuMdExpUserSel', 'nuMdImpUserSel'].forEach(id => {
+    const sel = document.getElementById(id); if (!sel) return;
+    const isImp = id === 'nuMdImpUserSel';
+    sel.innerHTML = list.map(u =>
+      '<option value="' + u.uid + '"' + (u.uid === cur ? ' selected' : '') + '>' + _esc(u.name) + (u.uid === cur ? ' (目前)' : '') + '</option>'
+    ).join('') + (isImp ? '<option value="__new__">＋ 新建使用者…</option>' : '');
+  });
+}
+window.addEventListener("DOMContentLoaded", () => {
+  refreshUserName();
+  const tbU = document.getElementById("nuTbUser");      if (tbU)  tbU.onclick  = () => showMd("nuMdUser");
+  const tbI = document.getElementById("nuTbIO");        if (tbI)  tbI.onclick  = () => showMd("nuMdIO");
+  const tbC = document.getElementById("nuTbClear");     if (tbC)  tbC.onclick  = () => showMd("nuMdClear");
+  document.querySelectorAll('[data-md-close]').forEach(b => b.onclick = () => hideMd(b.getAttribute('data-md-close')));
+  document.querySelectorAll('.nu-md-bg').forEach(bg => bg.addEventListener('click', e => { if (e.target === bg) bg.classList.remove('show'); }));
+  const addBtn = document.getElementById("nuMdAddBtn");
+  const newName = document.getElementById("nuMdNewName");
+  if (addBtn) addBtn.onclick = () => {
+    const v = newName.value.trim(); if (!v) { newName.focus(); return; }
+    NU.add(v); newName.value = ""; renderUserList(); refreshUserName();
+  };
+  if (newName) newName.addEventListener("keydown", e => { if (e.key === "Enter") addBtn.click(); });
+  const expAll = document.getElementById("nuMdExpAll"); if (expAll) expAll.onclick = () => exportAllJSON();
+  const expOne = document.getElementById("nuMdExpOne"); if (expOne) expOne.onclick = () => {
+    const sel = document.getElementById("nuMdExpUserSel");
+    if (!sel || !sel.value) { alert("請選擇要匯出的使用者"); return; }
+    exportSingleUserJSON(sel.value);
+  };
+  const impAll = document.getElementById("nuMdImpAll");
+  if (impAll) impAll.onclick = () => {
+    const f = document.getElementById("nuMdImpFile").files[0];
+    if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+    importJSONFromFile(f);
+  };
+  const impOne = document.getElementById("nuMdImpOne");
+  if (impOne) impOne.onclick = () => {
+    const f = document.getElementById("nuMdImpFile").files[0];
+    if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+    const sel = document.getElementById("nuMdImpUserSel");
+    if (!sel || !sel.value) { alert("請選擇匯入目標使用者"); return; }
+    importSingleUserFromFile(f, sel.value);
+  };
+  const clrCurMarks = document.getElementById("nuMdClrCurMarks");
+  if (clrCurMarks) clrCurMarks.onclick = () => {
+    const u = NU.cur();
+    if (!confirm('確定清除「' + u.name + '」的所有 🔖 標記？\n（該使用者的作答資料保留，其他使用者完全不動）\n此操作無法復原。')) return;
+    const cur = NU.ck();
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && /^nephron_.*_marks_v1/.test(k) && k.endsWith('::u::' + cur)) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    alert('✓ 已清除「' + u.name + '」的 ' + toDel.length + ' 個標記檔。即將重新整理。');
+    location.reload();
+  };
+  const clrMarks = document.getElementById("nuMdClrAllMarks");
+  if (clrMarks) clrMarks.onclick = () => {
+    if (!confirm('確定清除「全部使用者」的所有 🔖 標記？\n（作答資料保留）\n此操作無法復原。')) return;
+    const n = clearAllMarks();
+    alert('✓ 已清除 ' + n + ' 個標記檔。即將重新整理。');
+    location.reload();
+  };
+  const clrCur = document.getElementById("nuMdClrCur");
+  if (clrCur) clrCur.onclick = () => {
+    const u = NU.cur();
+    if (!confirm('確定清除「' + u.name + '」的所有作答／標記？此操作無法復原。')) return;
+    const cur = NU.ck();
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith("nephron_") && k.endsWith("::u::" + cur)) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    alert('✓ 已清除「' + u.name + '」的 ' + toDel.length + ' 筆紀錄。即將重新整理。');
+    location.reload();
+  };
+  const clrAllRec = document.getElementById("nuMdClrAllRec");
+  if (clrAllRec) clrAllRec.onclick = () => {
+    if (!confirm('確定清除「全部使用者」的所有作答／標記？\n（使用者清單保留，僅清除作答資料）\n此操作無法復原。')) return;
+    const n = NU.wipeAllProgress();
+    alert('✓ 已清除 ' + n + ' 筆紀錄。即將重新整理。');
+    location.reload();
+  };
+  const fullR = document.getElementById("nuMdFullReset");
+  if (fullR) fullR.onclick = () => {
+    if (!confirm('⚠️ 完全重置：刪除所有使用者、所有作答、所有標記。\n回到全新狀態（只保留「預設」使用者）。\n此操作無法復原，確定？')) return;
+    const n = NU.wipeAll();
+    alert('✓ 已重置 ' + n + ' 筆。即將重新整理。');
+    location.reload();
+  };
+});
+
+/* === Cross-paper Random Launcher (homepage) === */
+window.AGG_DATA = {};   /* quizId -> { href, papers: { Q1: {label, questions[]}, Q2: {...} } } */
+
+/* Convert quizId like "tech_114" to storage-key-base "nephron_114_tech" (year first, subject second) */
+function _qidToKeyBase(quizId) {
+  const parts = quizId.split("_");
+  if (parts.length < 2) return "nephron_" + quizId;
+  const year = parts[parts.length - 1];
+  const subject = parts.slice(0, -1).join("_");
+  return "nephron_" + year + "_" + subject;
+}
+
+/* Listen for quizData broadcasts from iframes */
+window.addEventListener("message", (e) => {
+  const msg = e.data;
+  if (!msg) return;
+  if (msg.type === "quizData" && msg.quizId && msg.papers) {
+    AGG_DATA[msg.quizId] = { href: msg.href || null, papers: msg.papers };
+    /* Throttle UI refresh */
+    clearTimeout(window._aggRefreshTimer);
+    window._aggRefreshTimer = setTimeout(_refreshRandCounts, 300);
+  }
+});
+
+/* Robust quiz href lookup: tries year + subject mapping, then falls back to iframe href.
+   Always returns a path RELATIVE to the dashboard (so links work in target=_blank). */
+const _SUBJ_MAP = {tech: '技術', neuro: '神經', ortho: '骨科', cardio: '心肺與小兒', xinfei: '心肺與小兒', foundation: '基礎', intro: '概論'};
+function _findHrefForQuiz(quizId, fallback) {
+  const parts = quizId.split("_");
+  const year = parts[parts.length - 1];
+  const subj = _SUBJ_MAP[parts[0]] || '';
+  const cells = document.querySelectorAll("td.cell.ready[data-href]");
+  /* Strategy 1: year + subject prefix */
+  for (const c of cells) {
+    const h = c.getAttribute("data-href");
+    if (!h) continue;
+    if (h.endsWith("_" + year + "_互動測驗.html") && subj && h.includes("/" + subj + "_")) {
+      return h;
+    }
+  }
+  /* Strategy 2: year + subject anywhere */
+  for (const c of cells) {
+    const h = c.getAttribute("data-href");
+    if (!h) continue;
+    if (h.includes("/" + year + "/") && subj && h.includes(subj)) return h;
+  }
+  /* Strategy 3: just year (last resort) */
+  for (const c of cells) {
+    const h = c.getAttribute("data-href");
+    if (h && h.endsWith("_" + year + "_互動測驗.html")) return h;
+  }
+  /* Fallback: try to convert fallback (iframe pathname) to relative */
+  if (fallback) {
+    const idx = fallback.indexOf("已分類/");
+    if (idx >= 0) return fallback.substring(idx);
+    return fallback;
+  }
+  return null;
+}
+
+/* Build flat question pool across all papers */
+function _buildPool(source) {
+  const uid = NU.ck();
+  const pool = [];
+  for (const quizId in AGG_DATA) {
+    const data = AGG_DATA[quizId];
+    if (!data || !data.papers) continue;
+    let href = _findHrefForQuiz(quizId, data.href);
+    for (const tag in data.papers) {
+      const paper = data.papers[tag];
+      const baseK = _qidToKeyBase(quizId);
+      const picksKey = baseK + "_picks_v1::u::" + uid;
+      const marksKey = baseK + "_marks_v1::u::" + uid;
+      let picks = {}, marks = {};
+      try { picks = JSON.parse(localStorage.getItem(picksKey) || "{}"); } catch(e) {}
+      try { marks = JSON.parse(localStorage.getItem(marksKey) || "{}"); } catch(e) {}
+      const tagPicks = picks[tag] || {};
+      const tagMarks = marks[tag] || {};
+      for (const q of (paper.questions || [])) {
+        const pick = tagPicks[q.n];
+        const isWrong = pick !== undefined && q.answer !== "#" &&
+                        (q.answer.length > 1 ? !q.answer.split("").includes(pick) : pick !== q.answer);
+        const isMarked = !!tagMarks[q.n];
+        if (source === "wrong" && !isWrong) continue;
+        if (source === "marked" && !isMarked) continue;
+        pool.push({
+          quizId, paperTag: tag, paperLabel: paper.label,
+          href, q: q, currentPick: pick, isMarked,
+        });
+      }
+    }
+  }
+  return pool;
+}
+
+function _refreshRandCounts() {
+  const aggLoaded = Object.keys(AGG_DATA).length;
+  const expected = document.querySelectorAll("td.cell.ready[data-href]").length;
+  /* While loading, show "loading" */
+  const loadingTxt = aggLoaded < expected ? " (載入中 " + aggLoaded + "/" + expected + ")" : "";
+  const pAll = _buildPool("all").length;
+  const pWrong = _buildPool("wrong").length;
+  const pMarked = _buildPool("marked").length;
+  const e1 = document.getElementById("randAllCnt");
+  if (e1) e1.textContent = (aggLoaded < expected) ? ("載入中 " + aggLoaded + "/" + expected) : (pAll + " 題");
+  const e2 = document.getElementById("randWrongCnt");
+  if (e2) e2.textContent = (aggLoaded < expected) ? "—" : (pWrong + " 題");
+  const e3 = document.getElementById("randMarkedCnt");
+  if (e3) e3.textContent = (aggLoaded < expected) ? "—" : (pMarked + " 題");
+}
+
+/* Picker modal */
+let _rlSource = "all";
+let _rlPool = [];
+function _rlOpen(source) {
+  _rlSource = source;
+  _rlPool = _buildPool(source);
+  const label = source === "wrong" ? "❌ 錯題隨機練習"
+              : source === "marked" ? "🔖 標記題隨機練習"
+              : "🎲 完全隨機練習";
+  document.getElementById("rlTitle").textContent = label;
+  if (_rlPool.length === 0) {
+    alert("沒有可用題目。\n（" + (source === "wrong" ? "請先做題並產生錯題" : source === "marked" ? "請先標記題目" : "資料還在載入中，請稍候") + "）");
+    return;
+  }
+  document.getElementById("rlSub").textContent = "可抽題庫：" + _rlPool.length + " 題（橫跨所有試卷）";
+  document.getElementById("rlCount").value = Math.min(10, _rlPool.length);
+  _rlSyncPills();
+  document.getElementById("rlModal").classList.add("show");
+}
+function _rlSyncPills() {
+  const v = parseInt(document.getElementById("rlCount").value, 10);
+  const pool = _rlPool.length;
+  document.querySelectorAll(".rl-cnt").forEach(b => {
+    const n = b.dataset.n;
+    let active = false;
+    if (n === "all") active = (v === pool && pool > 0);
+    else active = (String(v) === n);
+    b.classList.toggle("active", active);
+  });
+  const allBtn = document.getElementById("rlCntAll");
+  if (allBtn) allBtn.textContent = "全部 (" + pool + ")";
+  [10, 25, 50, 100].forEach(n => {
+    const b = document.querySelector('.rl-cnt[data-n="' + n + '"]');
+    if (b) {
+      const tooBig = pool < n;
+      b.disabled = tooBig || pool === 0;
+      b.style.opacity = b.disabled ? .35 : 1;
+    }
+  });
+  if (allBtn) { allBtn.disabled = pool === 0; allBtn.style.opacity = pool === 0 ? .35 : 1; }
+  const start = document.getElementById("rlStartBtn");
+  start.disabled = pool === 0 || !v || v <= 0;
+}
+function _shuffle(a) {
+  const r = a.slice();
+  for (let i = r.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [r[i], r[j]] = [r[j], r[i]];
+  }
+  return r;
+}
+
+/* Random quiz state */
+const RQ = { items: [], idx: 0, picks: {}, source: "all" };
+function _esc2(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function _rlStart() {
+  const N = parseInt(document.getElementById("rlCount").value, 10) || 10;
+  const items = _shuffle(_rlPool).slice(0, Math.min(N, _rlPool.length));
+  if (items.length === 0) return;
+  RQ.items = items;
+  RQ.idx = 0;
+  RQ.picks = {};
+  RQ.source = _rlSource;
+  document.getElementById("rlModal").classList.remove("show");
+  document.getElementById("rqOverlay").style.display = "block";
+  _rqRender();
+}
+
+function _rqIsCorrect(q, pick) {
+  if (!pick) return null;
+  if (q.answer === "#") return "errata";
+  if (q.answer.length > 1) return q.answer.split("").includes(pick) ? "ok" : "no";
+  return pick === q.answer ? "ok" : "no";
+}
+
+function _rqRenderGrid() {
+  const grid = document.getElementById("rqNumGrid"); if (!grid) return;
+  const cur = RQ.idx;
+  const html = RQ.items.map((item, i) => {
+    const pick = RQ.picks[i];
+    let cls = "";
+    if (i === cur) cls += "cur ";
+    if (pick) {
+      const v = _rqIsCorrect(item.q, pick);
+      cls += (v === "ok" || v === "errata") ? "right" : "wrong";
+    }
+    if (item.isMarked) cls += " marked";
+    return '<button data-i="' + i + '" class="' + cls.trim() + '" type="button">' + (i + 1) + '</button>';
+  }).join("");
+  grid.innerHTML = html;
+  grid.querySelectorAll("button").forEach(b => {
+    b.onclick = () => { const i = parseInt(b.dataset.i, 10); if (i >= 0) { RQ.idx = i; _rqRender(); } };
+  });
+  /* update head */
+  let answered = 0;
+  for (let i = 0; i < RQ.items.length; i++) if (RQ.picks[i]) answered++;
+  const head = document.getElementById("rqSideHead");
+  if (head) head.textContent = "題號（共 " + RQ.items.length + " 題）· 已答 " + answered;
+}
+
+function _rqRender() {
+  _rqRenderGrid();
+  const item = RQ.items[RQ.idx];
+  if (!item) return;
+  const q = item.q;
+  document.getElementById("rqProgress").textContent =
+    "第 " + (RQ.idx + 1) + " 題 / 共 " + RQ.items.length + " 題";
+  const srcLabel = RQ.source === "wrong" ? "錯題" : RQ.source === "marked" ? "標記題" : "完全隨機";
+  document.getElementById("rqTitle").textContent = "🎲 " + srcLabel + " 隨機練習";
+  const pick = RQ.picks[RQ.idx];
+  const verdict = _rqIsCorrect(q, pick);
+  const opts = ["A", "B", "C", "D"];
+  const optsHTML = opts.map(k => {
+    let cls = "rq-opt";
+    if (pick) {
+      if (q.answer === "#") {
+        if (k === pick) cls += " correct";
+      } else if (q.answer.length > 1) {
+        if (q.answer.includes(k)) cls += " correct";
+        else if (k === pick) cls += " wrong";
+      } else {
+        if (k === q.answer) cls += " correct";
+        else if (k === pick) cls += " wrong";
+      }
+    }
+    return '<button class="' + cls + '" data-k="' + k + '"' + (pick ? ' disabled' : '') + '>' +
+      '<span class="opt-label">' + k + '.</span>' + _esc2(q.options[k] || "") + '</button>';
+  }).join("");
+  let verdictHTML = "";
+  if (pick) {
+    if (q.answer === "#") {
+      verdictHTML = '<div class="rq-verdict note"><h4>本題經考選部公告「一律給分」</h4><div class="expl">' + _esc2(q.explanation || "") + '</div></div>';
+    } else if (q.answer.length > 1) {
+      const ok = q.answer.includes(pick);
+      const letters = q.answer.split("").join(" 或 ");
+      verdictHTML = '<div class="rq-verdict note"><h4>「答 ' + letters + ' 均給分」 · ' + (ok ? '✓ 你的選擇 (' + pick + ') 在正解內' : '✗ 你選 ' + pick + '，未在正解內') + '</h4><div class="expl">' + _esc2(q.explanation || "") + '</div></div>';
+    } else {
+      const ok = pick === q.answer;
+      verdictHTML = '<div class="rq-verdict ' + (ok ? "right" : "wrong") + '"><h4>' + (ok ? "✓ 答對" : "✗ 答錯") + " · 正解：" + q.answer + '</h4><div class="expl">' + _esc2(q.explanation || "") + '</div></div>';
+    }
+  }
+  let _imgLink = "#";
+  if (item.href) {
+    _imgLink = item.href + "#paper=" + encodeURIComponent(item.paperTag) + "&q=" + q.n;
+  }
+  let imgNotice = "";
+  if (q.images && q.images.length > 0) {
+    /* Render images directly */
+    let imgHTML = "";
+    for (const u of q.images) imgHTML += '<img class="rq-img" src="' + u + '" alt="題目附圖" />';
+    imgNotice = '<div class="rq-imgs">' + imgHTML +
+      '<div class="rq-img-link">📷 <a href="' + _imgLink + '" target="_blank" rel="noopener">在新分頁開啟原試卷</a>（圖片較不清楚時可參考）</div>' +
+      '</div>';
+  } else if (q.hasImages) {
+    /* Fallback: hasImages=true but no image data (e.g. older broadcast) */
+    imgNotice = '<div class="rq-img-notice">📷 此題含附圖。<a href="' + _imgLink + '" target="_blank" rel="noopener">在新分頁開啟原試卷查看第 ' + q.n + ' 題</a></div>';
+  }
+  const markBtnTxt = item.isMarked ? "🔖 已標記" : "🔖 標記";
+  const markBtnCls = item.isMarked ? "rq-mark-btn marked" : "rq-mark-btn";
+  document.getElementById("rqCard").innerHTML =
+    '<div class="rq-meta">' +
+      '<span class="rq-qnum">第 ' + q.n + ' 題</span>' +
+      '<span class="rq-source">' + _esc2(item.paperLabel) + ' · 原 ' + item.quizId + ' 第 ' + q.n + ' 題</span>' +
+      '<button class="' + markBtnCls + '" id="rqMarkBtn" type="button">' + markBtnTxt + '</button>' +
+    '</div>' +
+    imgNotice +
+    '<div class="rq-stem">' + _esc2(q.stem) + '</div>' +
+    '<div class="rq-opts">' + optsHTML + '</div>' +
+    verdictHTML;
+  /* Wire option clicks */
+  document.querySelectorAll("#rqCard .rq-opt").forEach(b => {
+    b.onclick = () => {
+      if (RQ.picks[RQ.idx]) return;
+      const k = b.getAttribute("data-k");
+      RQ.picks[RQ.idx] = k;
+      /* Persist back to original paper's picks in localStorage */
+      _persistPickToOriginal(item, k);
+      _rqRender();
+    };
+  });
+  /* Mark button */
+  const mb = document.getElementById("rqMarkBtn");
+  if (mb) mb.onclick = () => {
+    item.isMarked = !item.isMarked;
+    _persistMarkToOriginal(item, item.isMarked);
+    _rqRender();
+  };
+  /* Nav buttons */
+  document.getElementById("rqPrevBtn").disabled = RQ.idx === 0;
+  document.getElementById("rqNextBtn").textContent = RQ.idx === RQ.items.length - 1 ? "✓ 完成練習" : "下一題 →";
+}
+
+function _persistPickToOriginal(item, k) {
+  const uid = NU.ck();
+  const key = _qidToKeyBase(item.quizId) + "_picks_v1::u::" + uid;
+  let obj = {};
+  try { obj = JSON.parse(localStorage.getItem(key) || "{}"); } catch(e){}
+  if (!obj[item.paperTag]) obj[item.paperTag] = {};
+  obj[item.paperTag][item.q.n] = k;
+  localStorage.setItem(key, JSON.stringify(obj));
+}
+function _persistMarkToOriginal(item, on) {
+  const uid = NU.ck();
+  const key = _qidToKeyBase(item.quizId) + "_marks_v1::u::" + uid;
+  let obj = {};
+  try { obj = JSON.parse(localStorage.getItem(key) || "{}"); } catch(e){}
+  if (!obj[item.paperTag]) obj[item.paperTag] = {};
+  if (on) obj[item.paperTag][item.q.n] = true;
+  else delete obj[item.paperTag][item.q.n];
+  localStorage.setItem(key, JSON.stringify(obj));
+}
+
+function _rqShowSummary() {
+  let correct = 0, wrong = 0, unans = 0;
+  for (let i = 0; i < RQ.items.length; i++) {
+    const p = RQ.picks[i];
+    if (!p) { unans++; continue; }
+    const v = _rqIsCorrect(RQ.items[i].q, p);
+    if (v === "ok" || v === "errata") correct++;
+    else wrong++;
+  }
+  const pct = RQ.items.length > 0 ? Math.round((correct / RQ.items.length) * 100) : 0;
+  document.getElementById("rqCard").innerHTML =
+    '<div class="rq-summary">' +
+      '<h2>🎉 隨機練習完成</h2>' +
+      '<div style="color:var(--soft);font-size:14px;">共 ' + RQ.items.length + ' 題</div>' +
+      '<div class="stat-row">' +
+        '<div class="stat-box"><div class="num">' + correct + '</div><div class="lbl">答對</div></div>' +
+        '<div class="stat-box"><div class="num" style="color:var(--red);">' + wrong + '</div><div class="lbl">答錯</div></div>' +
+        '<div class="stat-box"><div class="num" style="color:var(--soft);">' + unans + '</div><div class="lbl">未作答</div></div>' +
+        '<div class="stat-box"><div class="num">' + pct + '%</div><div class="lbl">正確率</div></div>' +
+      '</div>' +
+      '<button class="rq-btn primary" onclick="_rqExit()" type="button">返回首頁</button>' +
+    '</div>';
+  document.getElementById("rqPrevBtn").style.display = "none";
+  document.getElementById("rqNextBtn").style.display = "none";
+}
+function _rqExit() {
+  document.getElementById("rqOverlay").style.display = "none";
+  document.getElementById("rqPrevBtn").style.display = "";
+  document.getElementById("rqNextBtn").style.display = "";
+  /* Refresh dashboard counts and progress */
+  if (typeof refreshAllProgress === "function") refreshAllProgress();
+}
+window._rqExit = _rqExit;
+
+function _rqBuildHTMLReport() {
+  let total = 0, answered = 0, correct = 0, marked = 0;
+  for (let i = 0; i < RQ.items.length; i++) {
+    total++;
+    const p = RQ.picks[i];
+    if (RQ.items[i].isMarked) marked++;
+    if (!p) continue;
+    answered++;
+    const v = _rqIsCorrect(RQ.items[i].q, p);
+    if (v === "ok" || v === "errata") correct++;
+  }
+  const pct = total > 0 ? ((correct / total) * 100).toFixed(1) : "0.0";
+  const srcLabel = RQ.source === "wrong" ? "錯題隨機練習" : RQ.source === "marked" ? "標記題隨機練習" : "完全隨機練習";
+  const stamp = new Date().toLocaleString("zh-TW", {hour12: false});
+  const userName = NU.cur().name;
+  function _e(s){return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+  let body = "";
+  for (let i = 0; i < RQ.items.length; i++) {
+    const it = RQ.items[i];
+    const q = it.q;
+    const pick = RQ.picks[i];
+    const correct_a = q.answer;
+    const errata = correct_a === "#";
+    const multi = !errata && correct_a && correct_a.length > 1;
+    let statusLabel, statusCls;
+    if (errata) { statusLabel = "一律給分"; statusCls = "errata"; }
+    else if (pick === undefined) { statusLabel = "未作答"; statusCls = "unanswered"; }
+    else if (multi) { const ok = correct_a.includes(pick); statusLabel = (ok ? "✓ " : "✗ ") + "多解（"+correct_a+"）"; statusCls = ok ? "right" : "wrong"; }
+    else { const ok = pick === correct_a; statusLabel = ok ? "✓ 答對" : "✗ 答錯"; statusCls = ok ? "right" : "wrong"; }
+    let optsHTML = "";
+    for (const k of ["A","B","C","D"]) {
+      let cls = "opt";
+      if (pick !== undefined) {
+        if (errata) { if (k === pick) cls += " selected"; }
+        else if (multi) { if (correct_a.includes(k)) cls += " correct"; if (k === pick) cls += " selected"; }
+        else { if (k === correct_a) cls += " correct"; if (k === pick && k !== correct_a) cls += " wrong selected"; if (k === pick && k === correct_a) cls += " selected"; }
+      }
+      optsHTML += '<li class="' + cls + '"><b>' + k + '.</b> ' + _e(q.options[k] || "") + '</li>';
+    }
+    const explHTML = q.explanation ? '<div class="expl"><b>詳解 ▸</b> ' + _e(q.explanation) + '</div>' : "";
+    const markBadge = it.isMarked ? '<span class="mark-badge">🔖 已標記</span>' : '';
+    let imgNotice = '';
+    if (q.images && q.images.length > 0) {
+      let imgHTML = '';
+      for (const u of q.images) imgHTML += '<img class="qimg" src="' + u + '" alt="題目附圖" />';
+      imgNotice = '<div class="qimgs">' + imgHTML + '</div>';
+    } else if (q.hasImages) {
+      imgNotice = '<div class="img-note">📷 此題含附圖（請至原試卷查看）</div>';
+    }
+    body += '<div class="q ' + statusCls + '">' +
+      '<div class="qhead"><span class="qnum">隨機第 ' + (i+1) + ' 題</span>' +
+      '<span class="qsrc">' + _e(it.paperLabel) + ' · 原第 ' + q.n + ' 題</span>' +
+      '<span class="status ' + statusCls + '">' + statusLabel + '</span>' + markBadge + '</div>' +
+      '<div class="stem">' + _e(q.stem) + '</div>' +
+      imgNotice +
+      '<ol class="opts">' + optsHTML + '</ol>' +
+      '<div class="ans"><b>正解：</b>' + (errata ? '一律給分' : correct_a) + (pick !== undefined ? ' · <b>你的答案：</b>' + pick : '') + '</div>' +
+      explHTML + '</div>';
+  }
+  return '<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">' +
+    '<title>隨機練習成績 · ' + _e(srcLabel) + '</title>' +
+    '<style>body{font-family:-apple-system,"Segoe UI","PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;background:#f7f7f5;color:#1f2933;margin:0;padding:20px;line-height:1.7;}' +
+    '.wrap{max-width:900px;margin:0 auto;}' +
+    'h1{font-size:22px;margin:0 0 6px;}' +
+    '.meta{color:#52606d;font-size:13px;margin-bottom:18px;}' +
+    '.summary{background:#fff;border:1px solid #e4e7eb;border-radius:10px;padding:18px;margin-bottom:18px;display:flex;flex-wrap:wrap;gap:18px;}' +
+    '.summary .stat{flex:1;min-width:120px;text-align:center;}' +
+    '.summary .stat .num{font-size:24px;font-weight:700;color:#1d6f9b;}' +
+    '.summary .stat .lbl{font-size:12px;color:#52606d;}' +
+    '.summary .stat.r .num{color:#2f9e44;}' +
+    '.summary .stat.w .num{color:#c92a2a;}' +
+    '.q{background:#fff;border:1px solid #e4e7eb;border-radius:10px;padding:16px 18px;margin-bottom:14px;border-left:4px solid #d4d7db;}' +
+    '.q.right{border-left-color:#2f9e44;}.q.wrong{border-left-color:#c92a2a;}.q.errata{border-left-color:#d9a700;}.q.unanswered{border-left-color:#52606d;background:#f8f9fa;}' +
+    '.qhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px;}' +
+    '.qnum{font-weight:700;color:#1d6f9b;}' +
+    '.qsrc{font-size:12px;color:#52606d;background:#f1f3f5;padding:2px 8px;border-radius:999px;}' +
+    '.status{font-size:12px;padding:2px 9px;border-radius:999px;font-weight:600;}' +
+    '.status.right{background:#d3f9d8;color:#2f9e44;}.status.wrong{background:#ffe3e3;color:#c92a2a;}.status.errata{background:#fff4c2;color:#a06a00;}.status.unanswered{background:#e9ecef;color:#52606d;}' +
+    '.mark-badge{font-size:11px;background:#fff4c2;color:#a06a00;padding:2px 7px;border-radius:999px;}' +
+    '.stem{font-size:15px;margin-bottom:10px;white-space:pre-wrap;}' +
+    '.img-note{background:#fff8e1;border:1px solid #ffe082;border-radius:6px;padding:6px 10px;font-size:13px;margin-bottom:10px;}' +
+    '.opts{list-style:none;padding:0;margin:0 0 10px;}' +
+    '.opts li{padding:8px 12px;border:1px solid #e4e7eb;border-radius:6px;margin-bottom:5px;}' +
+    '.opts li.correct{background:#d3f9d8;border-color:#2f9e44;}' +
+    '.opts li.wrong{background:#ffe3e3;border-color:#c92a2a;}' +
+    '.qimgs{margin-bottom:10px;}' +
+    '.qimgs .qimg{display:block;max-width:100%;height:auto;margin:0 auto 6px;border:1px solid #e4e7eb;border-radius:6px;}' +
+    '.opts li.selected{font-weight:600;}' +
+    '.ans{font-size:13px;color:#52606d;margin:6px 0;}' +
+    '.expl{background:#f8f9fa;padding:10px 12px;border-radius:6px;font-size:13px;color:#1f2933;line-height:1.7;margin-top:6px;white-space:pre-wrap;}' +
+    '@media print { body{background:#fff;padding:0;} .q{page-break-inside:avoid;} }' +
+    '</style></head><body><div class="wrap">' +
+    '<h1>🎲 ' + _e(srcLabel) + ' · 成績單</h1>' +
+    '<div class="meta">使用者：' + _e(userName) + ' · 匯出時間：' + _e(stamp) + '</div>' +
+    '<div class="summary">' +
+      '<div class="stat"><div class="num">' + total + '</div><div class="lbl">總題數</div></div>' +
+      '<div class="stat r"><div class="num">' + correct + '</div><div class="lbl">答對</div></div>' +
+      '<div class="stat w"><div class="num">' + (answered - correct) + '</div><div class="lbl">答錯</div></div>' +
+      '<div class="stat"><div class="num">' + (total - answered) + '</div><div class="lbl">未作答</div></div>' +
+      '<div class="stat"><div class="num">' + pct + '%</div><div class="lbl">正確率</div></div>' +
+    '</div>' +
+    body +
+    '</div></body></html>';
+}
+
+function _rqExportResults() {
+  if (RQ.items.length === 0) { alert("尚無題目可匯出"); return; }
+  const choice = prompt("選擇匯出格式：\n1 = HTML 完整報告（含題目、正解、詳解、可印出）\n2 = TSV 表格（純成績資料，可開 Excel）", "1");
+  if (choice === null) return;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  if (choice === "1") {
+    const html = _rqBuildHTMLReport();
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const def = _filenameStamp() + "_隨機練習成績單";
+    const fn = _promptFn(def);
+    if (!fn) { URL.revokeObjectURL(url); return; }
+    try { const a = document.createElement("a"); a.href = url; a.download = fn + ".html"; a.click(); a.remove(); } catch(e){}
+    if (isIOS) { setTimeout(() => { const w = window.open(url, "_blank"); if (!w || w.closed) location.href = url; alert("iOS：開新分頁後請用「分享 → 儲存到檔案」儲存。"); }, 100); }
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+  } else if (choice === "2") {
+    const lines = ["題號\t試卷\t題目\t正解\t我的答案\t結果\t標記"];
+    for (let i = 0; i < RQ.items.length; i++) {
+      const it = RQ.items[i];
+      const q = it.q;
+      const pick = RQ.picks[i] || "";
+      const v = pick ? _rqIsCorrect(q, pick) : null;
+      const result = !pick ? "未作答" : (v === "ok" || v === "errata" ? "答對" : "答錯");
+      const stem = (q.stem || "").replace(/\t/g, " ").replace(/\n/g, " ");
+      lines.push([(i+1) + "/" + RQ.items.length, it.paperLabel + "(" + it.quizId + ")", stem, q.answer, pick, result, it.isMarked ? "★" : ""].join("\t"));
+    }
+    const csv = lines.join("\n");
+    const blob = new Blob([csv], { type: "text/tab-separated-values;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const def = _filenameStamp() + "_隨機練習成績";
+    const fn = _promptFn(def);
+    if (!fn) { URL.revokeObjectURL(url); return; }
+    try { const a = document.createElement("a"); a.href = url; a.download = fn + ".tsv"; a.click(); a.remove(); } catch(e){}
+    if (isIOS) { setTimeout(() => { const w = window.open(url, "_blank"); if (!w || w.closed) location.href = url; alert("iOS：開新分頁後請用「分享 → 儲存到檔案」儲存。"); }, 100); }
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+  } else {
+    alert("請輸入 1 或 2");
+  }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const a = document.getElementById("randAll");
+  const w = document.getElementById("randWrong");
+  const m = document.getElementById("randMarked");
+  if (a) a.onclick = () => _rlOpen("all");
+  if (w) w.onclick = () => _rlOpen("wrong");
+  if (m) m.onclick = () => _rlOpen("marked");
+  document.querySelectorAll(".rl-cnt").forEach(b => {
+    b.onclick = () => {
+      const v = b.dataset.n;
+      const pool = _rlPool.length;
+      document.getElementById("rlCount").value = (v === "all") ? pool : v;
+      _rlSyncPills();
+    };
+  });
+  const ci = document.getElementById("rlCount");
+  if (ci) ci.addEventListener("input", _rlSyncPills);
+  const start = document.getElementById("rlStartBtn");
+  if (start) start.onclick = _rlStart;
+  const cancel = document.getElementById("rlCancelBtn");
+  if (cancel) cancel.onclick = () => document.getElementById("rlModal").classList.remove("show");
+  const bg = document.getElementById("rlModal");
+  if (bg) bg.addEventListener("click", e => { if (e.target === bg) bg.classList.remove("show"); });
+  /* Overlay buttons */
+  document.getElementById("rqExitBtn").onclick = () => {
+    if (Object.keys(RQ.picks).length > 0 && !confirm("確定要結束隨機練習？\n（已作答的紀錄會保留到原試卷）")) return;
+    _rqExit();
+  };
+  const sumBtn = document.getElementById("rqSummaryBtn");
+  if (sumBtn) sumBtn.onclick = () => _rqShowSummary();
+  const expBtn = document.getElementById("rqExportBtn");
+  if (expBtn) expBtn.onclick = () => _rqExportResults();
+  document.getElementById("rqPrevBtn").onclick = () => {
+    if (RQ.idx > 0) { RQ.idx--; _rqRender(); }
+  };
+  document.getElementById("rqNextBtn").onclick = () => {
+    if (RQ.idx < RQ.items.length - 1) { RQ.idx++; _rqRender(); }
+    else _rqShowSummary();
+  };
+});
+
+setInterval(_refreshRandCounts, 3000);
+
 </script>
 </body>
 </html>
