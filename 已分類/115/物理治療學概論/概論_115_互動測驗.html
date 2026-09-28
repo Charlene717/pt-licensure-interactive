@@ -1,0 +1,1384 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>物理治療學概論 — 115 年互動測驗</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --card: #ffffff;
+    --ink: #1f2933;
+    --ink-soft: #52606d;
+    --line: #e4e7eb;
+    --primary: #1d6f9b;
+    --primary-soft: #e6f1f7;
+    --green: #2f9e44;
+    --green-soft: #d3f9d8;
+    --red: #c92a2a;
+    --red-soft: #ffe3e3;
+    --yellow: #d9a700;
+    --yellow-soft: #fff4c2;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 12px rgba(0,0,0,.04);
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", "PingFang TC", "Microsoft JhengHei",
+                 "Noto Sans TC", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  header {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    padding: 14px 22px;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .h-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  h1 { font-size: 17px; margin: 0; font-weight: 600; }
+  .tabs { display: flex; gap: 4px; }
+  .tab {
+    background: #f1f3f5; border: 1px solid var(--line); color: var(--ink-soft);
+    padding: 6px 14px; border-radius: 999px; cursor: pointer; font-size: 14px;
+  }
+  .tab.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+  .progress { color: var(--ink-soft); font-size: 14px; margin-left: auto; }
+  .layout { display: grid; grid-template-columns: 300px 1fr; gap: 22px; max-width: 1400px; margin: 18px auto; padding: 0 22px; }
+  @media (max-width: 880px) { .layout { grid-template-columns: 1fr; padding: 0 14px; } .sidebar { order: 2; position: static; } }
+  .sidebar {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 14px; height: fit-content; position: sticky; top: 78px;
+  }
+  .grid {
+    display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px;
+  }
+  .gbtn {
+    aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line); border-radius: 6px; background: #fff;
+    color: var(--ink-soft); font-size: 13px; cursor: pointer;
+    font-variant-numeric: tabular-nums;
+  }
+  .gbtn:hover { border-color: var(--primary); }
+  .gbtn.cur { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .gbtn.right { background: var(--green-soft); color: var(--green); border-color: var(--green); }
+  .gbtn.wrong { background: var(--red-soft); color: var(--red); border-color: var(--red); }
+  .legend { font-size: 12px; color: var(--ink-soft); margin: 8px 0 0; display: flex; gap: 8px; flex-wrap: wrap; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; vertical-align: middle; margin-right: 4px; border: 1px solid var(--line); }
+  .dot.r { background: var(--green-soft); border-color: var(--green); }
+  .dot.w { background: var(--red-soft); border-color: var(--red); }
+  .main { display: flex; flex-direction: column; gap: 14px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; }
+  .qhead { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+  .qnum { font-size: 22px; font-weight: 700; color: var(--primary); }
+  .qmeta { color: var(--ink-soft); font-size: 13px; }
+  .stem { font-size: 16px; white-space: pre-wrap; word-break: break-word; margin-bottom: 12px; }
+  .qimg { display: block; max-width: 100%; max-height: 480px; margin: 8px 0; border: 1px solid var(--line); border-radius: 6px; }
+  .opts { display: flex; flex-direction: column; gap: 8px; margin: 14px 0 4px; }
+  .opt {
+    display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px;
+    background: #fff; border: 1px solid var(--line); border-radius: 8px; cursor: pointer;
+    transition: background .12s, border-color .12s;
+    text-align: left;
+    font-size: 15.5px;
+    color: var(--ink);
+  }
+  .opt:hover:not(.locked) { background: var(--primary-soft); border-color: var(--primary); }
+  .opt.locked { cursor: default; }
+  .opt .label { font-weight: 700; min-width: 22px; }
+  .opt.correct { background: var(--green-soft); border-color: var(--green); color: var(--green); }
+  .opt.wrong { background: var(--red-soft); border-color: var(--red); color: var(--red); }
+  .verdict { margin-top: 14px; padding: 12px 14px; border-radius: 8px; font-size: 14px; line-height: 1.7; }
+  .verdict.right { background: var(--green-soft); color: #186b29; }
+  .verdict.wrong { background: var(--red-soft); color: #861818; }
+  .verdict.note { background: var(--yellow-soft); color: #6b4e00; }
+  .verdict h3 { margin: 0 0 6px; font-size: 14px; }
+  .nav { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .btn {
+    background: var(--primary); color: #fff; border: 0; padding: 9px 18px;
+    border-radius: 8px; cursor: pointer; font-size: 14px;
+  }
+  .btn.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+  .btn.danger { background: #fff; color: var(--red); border: 1px solid var(--red); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .summary { padding: 18px; }
+  .summary h2 { margin: 0 0 8px; }
+  .score { font-size: 32px; font-weight: 700; color: var(--primary); }
+  .wrong-list { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .wrong-row { padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px; display: flex; gap: 10px; align-items: center; cursor: pointer; }
+  .wrong-row:hover { background: var(--primary-soft); }
+  .footer { color: var(--ink-soft); font-size: 12px; text-align: center; margin: 16px 0 30px; }
+
+  .homelink { color: var(--soft); text-decoration: none; font-size: 13px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; white-space: nowrap; }
+  .homelink:hover { background: var(--primary-soft); color: var(--primary); border-color: var(--primary); }
+
+
+  /* Export modal */
+  .modal-bg { position: fixed; inset: 0; background: rgba(15,20,30,.45); display: none; align-items: center; justify-content: center; z-index: 100; padding: 18px; }
+  .modal-bg.show { display: flex; }
+  .modal-card { background: #fff; border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,.18); max-width: 460px; width: 100%; padding: 22px; }
+  .modal-card h3 { margin: 0 0 4px; font-size: 17px; font-weight: 700; }
+  .modal-card .modal-sub { color: var(--ink-soft); font-size: 13px; margin-bottom: 14px; }
+  .modal-card .opt-row { display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 14px; }
+  .modal-card .exp-opt { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 14px; background: #f8f9fa; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; font-size: 14px; text-align: left; color: var(--ink); }
+  .modal-card .exp-opt:hover { background: var(--primary-soft); border-color: var(--primary); }
+  .modal-card .exp-opt:disabled { opacity: 0.5; cursor: not-allowed; background: #f1f3f5; }
+  .modal-card .exp-opt .count { color: var(--ink-soft); font-size: 12px; }
+  .modal-card .hint { color: var(--ink-soft); font-size: 12px; line-height: 1.6; margin: 0 0 12px; }
+  .modal-card .modal-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+
+  /* Bookmark / marker */
+  .gbtn { position: relative; }
+  .gbtn.marked::after {
+    content: "★"; position: absolute; top: 1px; right: 3px;
+    font-size: 10px; color: var(--yellow); line-height: 1;
+    text-shadow: 0 0 2px #fff;
+  }
+  .markbtn {
+    margin-left: auto; background: #fff; border: 1px solid var(--line);
+    color: var(--ink-soft); padding: 6px 13px; border-radius: 999px;
+    font-size: 13px; cursor: pointer; white-space: nowrap;
+  }
+  .markbtn:hover { border-color: var(--yellow); color: var(--yellow); }
+  .markbtn.marked { background: var(--yellow-soft); color: #6b4e00; border-color: var(--yellow); font-weight: 600; }
+  .qhead { flex-wrap: wrap; }
+  .marked-badge { display: inline-block; padding: 1px 7px; border-radius: 999px; background: var(--yellow-soft); color: #6b4e00; font-size: 11px; border: 1px solid var(--yellow); margin-left: 4px; }
+  .wrong-row.mk { border-color: var(--yellow); }
+
+
+  .nu-badge { display:inline-flex; align-items:center; gap:6px; padding:5px 10px; background:#fff; border:1px solid var(--line); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ink); margin-left:auto; transition:all .15s; }
+  .nu-badge:hover { background:var(--primary-soft); border-color:var(--primary); color:var(--primary); }
+  .nu-badge .nu-dot { width:8px; height:8px; border-radius:50%; background:var(--green); }
+  .nu-badge .nu-name { font-weight:600; }
+  .nu-modal-bg { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:9999; }
+  .nu-modal-bg.show { display:flex; }
+  .nu-modal { background:#fff; border-radius:12px; padding:24px; max-width:500px; width:92%; max-height:80vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,.18); }
+  .nu-modal h3 { margin:0 0 6px; font-size:17px; }
+  .nu-modal .nu-sub { color:#666; font-size:13px; margin-bottom:14px; }
+  .nu-modal .nu-list { list-style:none; padding:0; margin:0 0 12px; max-height:240px; overflow-y:auto; }
+  .nu-modal .nu-item { display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #e4e7eb; border-radius:8px; margin-bottom:6px; }
+  .nu-modal .nu-item.active { background:#f0f9ff; border-color:#1d6f9b; }
+  .nu-modal .nu-item .nu-iname { flex:1; font-weight:600; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .nu-modal .nu-item .nu-idate { font-size:11px; color:#888; min-width:90px; text-align:right; }
+  .nu-modal .nu-item button { padding:4px 10px; font-size:12px; border:1px solid #d4d7db; background:#fff; border-radius:6px; cursor:pointer; }
+  .nu-modal .nu-item button:hover { background:#f1f3f5; }
+  .nu-modal .nu-item button.nu-del { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-modal .nu-item button.nu-del:hover { background:#ffe3e3; }
+  .nu-modal .nu-item button:disabled { opacity:.45; cursor:not-allowed; }
+  .nu-modal .nu-add-row { display:flex; gap:6px; margin-top:8px; }
+  .nu-modal .nu-add-row input { flex:1; padding:8px 10px; border:1px solid #d4d7db; border-radius:6px; font-size:14px; }
+  .nu-modal .nu-add-row button { padding:8px 14px; background:#1d6f9b; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer; font-weight:600; }
+  .nu-modal .nu-tip { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:8px 10px; font-size:12px; color:#666; margin-top:10px; }
+  .nu-modal .nu-actions { margin-top:14px; text-align:right; }
+  .nu-modal .nu-actions button { padding:8px 14px; border:1px solid #d4d7db; background:#fff; border-radius:6px; font-size:13px; cursor:pointer; }
+
+  /* Top toolbar (3 buttons) */
+  .nu-toolbar { display:inline-flex; align-items:center; gap:6px; margin-left:auto; flex-wrap:wrap; }
+  .nu-tb-btn { display:inline-flex; align-items:center; gap:5px; padding:5px 11px; background:#fff; border:1px solid #d4d7db; border-radius:8px; font-size:13px; cursor:pointer; color:#1f2933; transition:all .15s; line-height:1.4; }
+  .nu-tb-btn:hover { background:#e6f1f7; border-color:#1d6f9b; color:#1d6f9b; }
+  .nu-tb-btn .nu-tb-icon { font-size:14px; }
+  .nu-tb-btn.nu-tb-user { font-weight:600; }
+  .nu-tb-btn.nu-tb-user .nu-tb-dot { width:7px; height:7px; border-radius:50%; background:#2f9e44; margin-right:1px; }
+  .nu-tb-btn.nu-tb-clear { color:#c92a2a; }
+  .nu-tb-btn.nu-tb-clear:hover { background:#ffe3e3; border-color:#c92a2a; color:#c92a2a; }
+  /* Generic modal (shared between 3) */
+  .nu-md-bg { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:9999; padding:20px; }
+  .nu-md-bg.show { display:flex; }
+  .nu-md { background:#fff; border-radius:12px; padding:22px; max-width:560px; width:100%; max-height:85vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,.18); }
+  .nu-md h3 { margin:0 0 6px; font-size:17px; }
+  .nu-md .nu-md-sub { color:#666; font-size:13px; margin-bottom:14px; line-height:1.6; }
+  .nu-md .nu-md-list { list-style:none; padding:0; margin:0 0 12px; max-height:240px; overflow-y:auto; }
+  .nu-md .nu-md-item { display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #e4e7eb; border-radius:8px; margin-bottom:6px; flex-wrap:wrap; }
+  .nu-md .nu-md-item.active { background:#f0f9ff; border-color:#1d6f9b; }
+  .nu-md .nu-md-item .nu-md-iname { flex:1; font-weight:600; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .nu-md .nu-md-item .nu-md-idate { font-size:11px; color:#888; min-width:90px; text-align:right; }
+  .nu-md .nu-md-item button { padding:4px 10px; font-size:12px; border:1px solid #d4d7db; background:#fff; border-radius:6px; cursor:pointer; }
+  .nu-md .nu-md-item button:hover { background:#f1f3f5; }
+  .nu-md .nu-md-item button.nu-md-del { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-md .nu-md-item button.nu-md-del:hover { background:#ffe3e3; }
+  .nu-md .nu-md-item button:disabled { opacity:.45; cursor:not-allowed; }
+  .nu-md .nu-md-add { display:flex; gap:6px; margin-top:8px; }
+  .nu-md .nu-md-add input { flex:1; padding:8px 10px; border:1px solid #d4d7db; border-radius:6px; font-size:14px; }
+  .nu-md .nu-md-add button { padding:8px 14px; background:#1d6f9b; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer; font-weight:600; }
+  .nu-md .nu-md-tip { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:8px 10px; font-size:12px; color:#666; margin-top:10px; line-height:1.6; }
+  .nu-md .nu-md-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:6px 0; }
+  .nu-md .nu-md-section { margin-top:14px; padding-top:14px; border-top:1px solid #e4e7eb; }
+  .nu-md .nu-md-section.danger { border-top:2px solid #ffe3e3; }
+  .nu-md .nu-md-section.danger > .nu-md-title { color:#c92a2a; font-weight:700; font-size:13px; margin-bottom:6px; }
+  .nu-md .nu-md-title { font-size:13px; font-weight:600; color:#1f2933; margin-bottom:6px; }
+  .nu-md .nu-md-actions { margin-top:14px; text-align:right; }
+  .nu-md .nu-md-actions button { padding:8px 14px; border:1px solid #d4d7db; background:#fff; border-radius:6px; font-size:13px; cursor:pointer; }
+  .nu-md .nu-md-btn-primary { background:#1d6f9b !important; color:#fff !important; border-color:#1d6f9b !important; font-weight:600; }
+  .nu-md .nu-md-btn-success { background:#2f9e44 !important; color:#fff !important; border-color:#2f9e44 !important; font-weight:600; }
+  .nu-md .nu-md-btn-danger  { background:#c92a2a !important; color:#fff !important; border-color:#c92a2a !important; font-weight:600; }
+  .nu-md .nu-md-btn-outline-danger { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-md .nu-md-btn-outline-danger:hover { background:#ffe3e3; }
+
+</style>
+</head>
+<body>
+<header>
+  <div class="h-row">
+    <a class="homelink" href="../../../index.html" title="回到測驗首頁">← 回首頁</a>
+    <h1>物理治療學概論 · 民國 115 年</h1>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-tab="Q1">第一次 (115020)</button>
+      <button class="tab" data-tab="Q2">第二次 (115090)</button>
+    </div>
+    <div class="progress" id="progress"></div>
+  </div>
+
+
+<div class="nu-toolbar">
+<button class="nu-tb-btn nu-tb-user" id="nuTbUser" type="button" title="切換／管理使用者">
+  <span class="nu-tb-dot"></span><span id="nuTbUserName">預設使用者</span><span style="font-size:9px;opacity:.6;">▼</span>
+</button>
+<button class="nu-tb-btn" id="nuTbIO" type="button" title="匯入／匯出 JSON 備份">
+  <span class="nu-tb-icon">💾</span>匯入／匯出
+</button>
+<button class="nu-tb-btn nu-tb-clear" id="nuTbClear" type="button" title="清除紀錄（無法復原）">
+  <span class="nu-tb-icon">🗑</span>清除
+</button>
+</div></header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div style="font-size:13px;color:var(--ink-soft);margin-bottom:6px;">題號（共 80 題）</div>
+    <div class="grid" id="grid"></div>
+    <div class="legend">
+      <span><i class="dot r"></i>答對</span>
+      <span><i class="dot w"></i>答錯</span>
+      <span style="color:var(--yellow);">★ 已標記</span>
+    </div>
+    <button id="resetBtn" class="btn danger" style="margin-top:12px;width:100%;font-size:13px;">重置本卷作答</button>
+    <button id="summaryBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px;">查看本卷總結</button>
+    <button id="exportBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px;">📤 匯入／匯出本卷</button>
+    <button id="clearMarksOnlyBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px; color:#c92a2a; border-color:#ffc9c9;">🔖 清除本卷標記</button>
+  </aside>
+
+  <main class="main" id="main"></main>
+</div>
+
+<div class="footer">資料來源：考選部 115 年第一次／第二次專技高等考試 · 物理治療師 · 物理治療學概論</div>
+
+<div class="modal-bg" id="exportModal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <h3>匯入／匯出本卷</h3>
+    <div class="modal-sub" id="exportSub">本卷：第一次 (115020)</div>
+    <div class="opt-row" id="exportOpts">
+      <button class="exp-opt" data-filter="all">📄 全部題目（含詳解） <span class="count" id="cntAll"></span></button>
+      <button class="exp-opt" data-filter="answered">📝 僅已作答 <span class="count" id="cntAnswered"></span></button>
+      <button class="exp-opt" data-filter="wrong">❌ 僅錯題 <span class="count" id="cntWrong"></span></button>
+      <button class="exp-opt" data-filter="unanswered">⏳ 僅未作答 <span class="count" id="cntUnans"></span></button>
+      <button class="exp-opt" data-filter="marked">🔖 僅已標記 <span class="count" id="cntMarked"></span></button>
+    </div>
+    <p class="hint">將下載一份自包含的 .html 檔，可離線檢視。打開後可用瀏覽器「列印」（Ctrl/⌘+P）→「另存為 PDF」存成 PDF。</p>
+    <div class="modal-actions">
+      <button class="btn ghost" id="closeExportBtn">取消</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+/* ===== Nephron 多人使用者系統 (NU) ===== */
+const NU = {
+  ck() { return localStorage.getItem("nephron::current_user") || "default"; },
+  list() {
+    try {
+      let l = JSON.parse(localStorage.getItem("nephron::users") || "[]");
+      if (!l.length) {
+        l = [{ uid: "default", name: "預設使用者", createdAt: new Date().toISOString().slice(0,10), star: true }];
+        localStorage.setItem("nephron::users", JSON.stringify(l));
+      }
+      return l;
+    } catch(e) { return [{ uid: "default", name: "預設使用者", createdAt: "", star: true }]; }
+  },
+  cur() { const id = NU.ck(); return NU.list().find(u => u.uid === id) || NU.list()[0]; },
+  use(uid) { localStorage.setItem("nephron::current_user", uid); },
+  add(name) {
+    if (!name.trim()) return null;
+    const l = NU.list();
+    const uid = "u_" + Date.now().toString(36) + Math.floor(Math.random()*1000).toString(36);
+    l.push({ uid, name: name.trim(), createdAt: new Date().toISOString().slice(0,10), star: false });
+    localStorage.setItem("nephron::users", JSON.stringify(l));
+    return uid;
+  },
+  rename(uid, newName) {
+    const l = NU.list();
+    const u = l.find(x => x.uid === uid);
+    if (u && newName.trim()) { u.name = newName.trim(); localStorage.setItem("nephron::users", JSON.stringify(l)); return true; }
+    return false;
+  },
+  del(uid) {
+    if (uid === "default") return false;
+    const l = NU.list().filter(x => x.uid !== uid);
+    localStorage.setItem("nephron::users", JSON.stringify(l));
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.includes("::u::" + uid)) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    if (NU.ck() === uid) localStorage.setItem("nephron::current_user", "default");
+    return true;
+  },
+  exportAll() {
+    const obj = { app: "nephron-pt-quiz", version: 1, exportedAt: new Date().toISOString(),
+                  users: NU.list(), currentUser: NU.ck(), data: {} };
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (!k) continue;
+      if (k.startsWith("nephron_") || k.startsWith("nephron::")) obj.data[k] = localStorage.getItem(k);
+    }
+    return obj;
+  },
+  importAll(obj, mode) {
+    if (!obj || !obj.data || obj.app !== "nephron-pt-quiz") throw new Error("無效的備份檔（找不到 nephron-pt-quiz 標記）");
+    mode = mode || "replace";
+    if (mode === "replace") {
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && (k.startsWith("nephron_") || k.startsWith("nephron::"))) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+    }
+    if (obj.users) localStorage.setItem("nephron::users", JSON.stringify(obj.users));
+    for (const k in obj.data) localStorage.setItem(k, obj.data[k]);
+    if (obj.currentUser) localStorage.setItem("nephron::current_user", obj.currentUser);
+    return Object.keys(obj.data).length;
+  },
+  wipeAllProgress() {
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith("nephron_")) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    return toDel.length;
+  },
+  wipeAll() {
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && (k.startsWith("nephron_") || k.startsWith("nephron::"))) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    return toDel.length;
+  }
+};
+(function migrate() {
+  if (NU.ck() !== "default") return;
+  const oldKeys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith("nephron_") && !k.includes("::u::")) oldKeys.push(k);
+  }
+  oldKeys.forEach(k => {
+    const v = localStorage.getItem(k);
+    const newK = k + "::u::default";
+    if (v !== null && localStorage.getItem(newK) === null) localStorage.setItem(newK, v);
+  });
+})();
+(function migrateDefaultName() {
+  try {
+    const raw = localStorage.getItem("nephron::users");
+    if (!raw) return;
+    const arr = JSON.parse(raw);
+    let changed = false;
+    for (const u of arr) {
+      if (u.uid === "default" && u.name === "預設") { u.name = "預設使用者"; changed = true; }
+    }
+    if (changed) localStorage.setItem("nephron::users", JSON.stringify(arr));
+  } catch(e) {}
+})();
+function _userKey(baseKey) { return baseKey + "::u::" + NU.ck(); }
+
+const DATA = {"Q1": {"label": "第一次", "questions": [{"n": 1, "stem": "國內第一家物理治療所於臺灣物理治療發展史上所分啟動、奠基、建構、穩定等四期中的那一期成立？", "options": {"A": "穩定期（1999 年至今）", "B": "建構期（1982 年～1998 年）", "C": "奠基期（1967 年～1981 年）", "D": "啟動期（1950 年～1966 年）"}, "images": [], "answer": "B"}, {"n": 2, "stem": "我國首次有大學以「物理治療學系」招生是在何時？", "options": {"A": "1967 年", "B": "1970 年", "C": "1992 年", "D": "1995 年"}, "images": [], "answer": "C"}, {"n": 3, "stem": "有關兒童早期介入之世界趨勢，下列敘述何者錯誤？", "options": {"A": "介入觀念應採以家庭為中心之模式", "B": "最佳的服務提供模式為到宅直接療育", "C": "提升家長親職能力", "D": "服務提供者與兒童家長共同分享資訊與進行決策"}, "images": [], "answer": "B"}, {"n": 4, "stem": "下列何者不是長照 2.0 復能服務所需具備的核心觀念？", "options": {"A": "避免習得無助與減少沒有必要的照顧", "B": "以個案問題為中心", "C": "團隊合作", "D": "減輕照顧者負擔及降低照護支出與成本"}, "images": [], "answer": "D"}, {"n": 5, "stem": "下列何者是第一個討論研究倫理的法典？", "options": {"A": "紐倫堡公約", "B": "赫爾辛基宣言", "C": "日內瓦公約", "D": "里斯本宣言"}, "images": [], "answer": "A"}, {"n": 6, "stem": "下列何項不是長照 2.0 復能多元服務計畫之特色？", "options": {"A": "以長照個案為中心", "B": "在住院期間即完成評估及照顧計畫，並在出院返家後連結復能服務，由專業人員到宅進行復能訓練", "C": "落實專業服務照護，強化出院準備服務效能，醫療與長照無縫接軌", "D": "復能訓練費用由衛生福利部中央健康保險署支出"}, "images": [], "answer": "D"}, {"n": 7, "stem": "某物理治療學系學生在醫院實習，畢業後受聘於該醫院，若此學生經過 6 個月後仍未取得執照而繼續執行物理 治療業務，將會受到何種處分？", "options": {"A": "新臺幣 1 萬元以上 5 萬元以下罰金", "B": "新臺幣 2 萬元以上 10 萬元以下罰金", "C": "3 年以下有期徒刑", "D": "在領有執照的物理治療師指導下執行業務可不受處罰"}, "images": [], "answer": "C"}, {"n": 8, "stem": "一般醫療機構消防自衛編組組成，不包括下列何者？", "options": {"A": "滅火班", "B": "公關聯絡班", "C": "避難引導班", "D": "救護班"}, "images": [], "answer": "B"}, {"n": 9, "stem": "下列有關醫療品質衡量的方法，何者正確？①共有四個方法：組織法、結構法、過程法及結果法 ②所謂組織 法是評量組織架構以及規章政策是否可以提供良好的醫療服務 ③所謂結構法是評量硬體的設施、人力資源、 組織架構以及規章政策是否可以提供良好的醫療服務 ④所謂過程法是察看病患的求醫行為及臨床人員的診療 行為 ⑤所謂結果法是評定醫療照顧是否確實增進病人的健康", "options": {"A": "①②③④", "B": "①③⑤", "C": "②④⑤", "D": "③④⑤"}, "images": [], "answer": "D"}, {"n": 10, "stem": "下列那一個組織其創立的主要目的是發展高品質系統回顧類型文獻，以促進實證健康照護？", "options": {"A": "英國國家健康與臨床卓越機構（National Institute for Health and Clinical Excellence）", "B": "考科藍協作網（Cochrane Collaboration）", "C": "喬安納布里格斯機構（Joanna Briggs Institute）", "D": "美國國家衛生研究院（National Institute for Health Research）"}, "images": [], "answer": "B"}, {"n": 11, "stem": "下列何項不是檢視介入型研究可信度的重點？", "options": {"A": "研究進行前是否有計算需要的樣本數", "B": "研究個案的組別分配是否採用隨機方式", "C": "隨機分派是否有採行保密方式", "D": "完成研究追蹤的個案人數是否夠多"}, "images": [], "answer": "A"}, {"n": 12, "stem": "下列何者不是評析系統性文獻回顧（systematic review）文獻可信度（credibility）應該考慮的問題？", "options": {"A": "是否有明確的研究問題", "B": "是否至少有 2 人獨立進行研究證據的評讀", "C": "是否有進行統合分析（meta-analysis）", "D": "是否有明確的選擇研究證據的標準"}, "images": [], "answer": "C"}, {"n": 13, "stem": "物理治療師在臨床上觀察到接受某項新治療的病患，症狀普遍都有改善，進而推論新治療有效。那些因素會 影響上述推論的正確性？①報告偏差（reporting bias） ②回憶偏差（recall bias） ③安慰劑效應 （placebo effect） ④有禮貌的病人（polite patients）", "options": {"A": "②③④", "B": "①②③", "C": "①③④", "D": "①②④"}, "images": [], "answer": "A"}, {"n": 14, "stem": "想比較中風患者接受不同運動的效益時，下列相關研究文獻之搜尋策略何者最有效率、最聚焦？", "options": {"A": "Stroke [MESH] AND “Physical Therapy” AND “Comparative study”", "B": "Stroke [MESH] AND Exercise AND “Comparative study”", "C": "Stroke AND “Physical Therapy”", "D": "Stroke AND Exercise"}, "images": [], "answer": "B"}, {"n": 15, "stem": "當兩組樣本之平均值差異經統計分析後，得 p 值小於 0.05，此時最可代表下列何項敘述？", "options": {"A": "推翻對立假設", "B": "推翻虛無假設", "C": "推翻雙尾檢定", "D": "推翻單尾檢定"}, "images": [], "answer": "B"}, {"n": 16, "stem": "關於信賴區間的定義，下列何者正確？", "options": {"A": "以一次的抽樣研究推估不同母群體多次抽樣的研究結果", "B": "以多次的抽樣研究推估不同母群體一次抽樣的研究結果", "C": "以一次的抽樣研究推估自同一母群體多次抽樣的研究結果", "D": "以多次的抽樣研究推估自同一母群體一次抽樣的研究結果"}, "images": [], "answer": "C"}, {"n": 17, "stem": "下列何種感覺神經纖維主要傳達急性疼痛訊號？", "options": {"A": "Aα", "B": "Aβ", "C": "Aδ", "D": "C"}, "images": [], "answer": "C"}, {"n": 18, "stem": "有關自來水廠處理飲用水之問題，下列何者正確？", "options": {"A": "加入明礬是為了除去細菌等微生物", "B": "良好的過濾設施可除去梨形鞭毛蟲與隱孢子蟲等", "C": "加入氯是為了結成絮狀膠羽物，以作沉澱之用", "D": "加入活性碳作為濾料，可吸附水中親水性有機物質"}, "images": [], "answer": "B"}, {"n": 19, "stem": "我國訂立之「勞工作業環境空氣中有害物質容許濃度標準」中規定，任何一次連續 15 分鐘內的時量平均濃度 不得超過的標準，是屬於下列何種容許濃度的規定？", "options": {"A": "短時間時量平均容許濃度", "B": "8 小時日時量平均容許濃度", "C": "最高容許濃度", "D": "生物時量平均容許濃度"}, "images": [], "answer": "A"}, {"n": 20, "stem": "根據臺灣物理治療學會提出的 2030 臺灣物理治療願景，教育改革之階段與目標，下列何者正確？", "options": {"A": "第一階段推行四年制學士與初階物理治療臨床博士（Entry-level DPT）學制併行", "B": "第二階段推動進階物理治療臨床博士（Advanced DPT）", "C": "第三階段全面改為初階物理治療臨床博士（Entry-level DPT）", "D": "第四階段全面改為進階物理治療臨床博士（Advanced DPT）"}, "images": [], "answer": "C"}, {"n": 21, "stem": "依據身心障礙者服務人員資格訓練及管理辦法修正條文，輔具評估人員可分五類，其中物理治療師經培訓後 可為下列那些類？", "options": {"A": "甲類或乙類", "B": "甲類或丙類", "C": "甲類或丁類", "D": "五類皆可"}, "images": [], "answer": "C"}, {"n": 22, "stem": "申請長照 2.0 的居家復能服務，個案若為一般戶則單次須自付金額多少元？", "options": {"A": "240", "B": "200", "C": "180", "D": "160"}, "images": [], "answer": "A"}, {"n": 23, "stem": "20 世紀著名的倫理學者莫爾（George Edward Moore）認為倫理學最重要工作為下列何者？", "options": {"A": "宣揚兼愛互利", "B": "決定善的意義", "C": "探討人與生俱來的義務", "D": "詮釋人生在世界的價值"}, "images": [], "answer": "B"}, {"n": 24, "stem": "關於倫理學理論的實用論，下列敘述何者錯誤？", "options": {"A": "實用主義堅持實用原理，又稱為責任論", "B": "實用論以遵行的原則或行為的結果為考量", "C": "實用論強調效益", "D": "實用論的積極方式是為大多數人謀取最大福利"}, "images": [], "answer": "A"}, {"n": 25, "stem": "曾奶奶每天到日照機構接受長照服務，機構為了促進長輩的健康，每天 9 點到 11 點都安排治療師帶領做運 動，即使曾奶奶想拒絕，照服員仍拉著曾奶奶參加，這樣的做法未符合那一項醫學倫理原則？", "options": {"A": "切勿傷害", "B": "行善利人", "C": "秉持公義", "D": "病人自主"}, "images": [], "answer": "D"}, {"n": 26, "stem": "承上題，機構認為曾奶奶應該多參與活動才能維持健康，所以即使曾奶奶不願意也要勉強她參加，這又是基 於何種醫學倫理原則？", "options": {"A": "切勿傷害", "B": "行善利人", "C": "秉持公義", "D": "病人自主"}, "images": [], "answer": "B"}, {"n": 27, "stem": "關於物理治療臨床決策，下列敘述何者錯誤？", "options": {"A": "物理治療師才是真正的臨床決策主體", "B": "以病人為中心來思考和做決策", "C": "與病患共同決策時，類似朋友關係", "D": "資深者的意見，常具參考價值"}, "images": [], "answer": "A"}, {"n": 28, "stem": "我國衛生福利部為提升病人就醫安全，因而制訂「醫院醫療品質及病人安全工作目標」。下列何者並非 111 ～112 年度醫院醫療品質及病人安全工作目標？", "options": {"A": "促進醫療人員間及醫病間之有效溝通", "B": "提升手術治療效用", "C": "預防病人跌倒及降低傷害程度", "D": "落實感染控制"}, "images": [], "answer": "B"}, {"n": 29, "stem": "從事物理治療業務時，必須提供足夠的資訊使病患能作決定。資訊項目除了治療內容的描述、預計的療程、 期望從治療中得到的益處與治療相關可能的危險之外，還包括下列那些？①不滿時的申訴管道 ②預計的費 用 ③推薦治療之外其他合理的治療選擇", "options": {"A": "僅①③", "B": "僅①②", "C": "①②③", "D": "僅②③"}, "images": [], "answer": "C"}, {"n": 30, "stem": "下列那一案例，最符合專業倫理？", "options": {"A": "資歷相同條件下，男性治療師升遷一定較女性治療師為快", "B": "男性治療師因體力較好，應多負擔體重較重的病人治療", "C": "可同意髖關節疾病患者要求，指派同性別治療師為其進行治療", "D": "治療師為增加收入，一律使用健保給付較高的治療"}, "images": [], "answer": "C"}, {"n": 31, "stem": "根據人體研究法，研究主持人應於實施研究前擬定計畫，並經倫理審查委員會審查通過，審查會應置委員 5 人以上，其中任一性別不得低於多少比例？", "options": {"A": "二分之一", "B": "三分之一", "C": "四分之一", "D": "五分之一"}, "images": [], "answer": "B"}, {"n": 32, "stem": "有關認定醫療過失的標準，我國法院向來是依照什麼法律來認定？", "options": {"A": "刑法", "B": "民法", "C": "醫療法", "D": "醫療糾紛處理及醫療事故補償法"}, "images": [], "answer": "AC", "correction_note": "答 A 或 C 或 AC 者均給分", "answer_alternatives": ["A", "C"], "explanation": "⚠️ 官方答案疑義\n\n考選部原公告標準答案:A。「更正答案」公告修正為「答 A 或 C 或 AC 者均給分」。\n\n即 A、C 選項皆為正解,審視後認定不只一個答案合理。\n\n建議:此題以「多重合理答案」看待。"}, {"n": 33, "stem": "一個適當的醫療措施卻產生嚴重的負面醫療結果，稱之：", "options": {"A": "醫療錯誤（medical errors）", "B": "疏失行為（negligent actions）", "C": "醫療不幸（medical mishap）", "D": "偶發事件（accident）"}, "images": [], "answer": "C"}, {"n": 34, "stem": "聯合國九大核心人權公約中，何者與性別平等教育的關連最深？", "options": {"A": "身心障礙者權利公約", "B": "消除一切形式種族歧視國際公約", "C": "消除婦女一切形式歧視公約", "D": "婦幼權利公約"}, "images": [], "answer": "C"}, {"n": 35, "stem": "依據性騷擾防治法的規定，醫院機構受僱人數達幾人以上，應訂定性騷擾防治措施，並公開揭示？", "options": {"A": "15", "B": "30", "C": "60", "D": "100"}, "images": [], "answer": "B"}, {"n": 36, "stem": "全民健保支付制度實施以來，對物理治療專業發展產生一定程度影響，下列敘述何者錯誤？", "options": {"A": "健保物理治療給付偏低，降低物理治療所特約的意願", "B": "在利潤最大化的前提下，偏重大量儀器操作的作業模式，藉以增加服務量", "C": "指定科別開單之健保物理治療給付，可以促進物理治療次專科發展", "D": "指定科別醫師開單才有健保物理治療給付，影響新興領域發展"}, "images": [], "answer": "C"}, {"n": 37, "stem": "某治療師負責院內骨科病房，發現最近照會數量有下降趨勢，經打聽才知道，因為 DRGs 制度的關係，照會治 療師會造成當科收益下降，所以只有複雜或嚴重的個案，才會啟動照會；其他都發衛教單張就結束了。上述 屬於那類型支付制度？", "options": {"A": "論量計酬", "B": "論日計酬", "C": "論人計酬", "D": "論病例計酬"}, "images": [], "answer": "D"}, {"n": 38, "stem": "有關醫療處所經營管理的特質，下列何者錯誤？", "options": {"A": "專業化程度高", "B": "醫療收費常無法事先決定", "C": "因為有法律與保險的規範，管理較為單純", "D": "容易受到醫療服務的供需及內在與外在環境之影響"}, "images": [], "answer": "C"}, {"n": 39, "stem": "有些醫療單位的管理觀念以激勵員工意願、運用民主參與、注重溝通與滿足需要等方法，提高員工對工作的 向心力。下列那個管理學派最不符合此觀念？", "options": {"A": "科學管理理論", "B": "行為學派", "C": "作業研究管理科學學派", "D": "工業心理學"}, "images": [], "answer": "A"}, {"n": 40, "stem": "下列那位學者被譽為「現代管理之父」？", "options": {"A": "杜拉克（Peter Drucker）", "B": "福利特（Mary Follett）", "C": "戴明（William Edwards Deming）", "D": "韋伯（Max Weber）"}, "images": [], "answer": "A"}, {"n": 41, "stem": "根據「醫事人員執業登記及繼續教育辦法」，下列何種情形物理治療師無法直接取得執業登記？", "options": {"A": "取得物理治療師證書，於第三年申請首次執業登記", "B": "執業三年後，歇業一年，再次申請執業登記", "C": "執業滿六年，並取得 150 點繼續教育課程之積分，申請執業執照更新", "D": "執業一年後，歇業三年，取得 15 點繼續再教育積分，再次申請執業登記"}, "images": [], "answer": "D"}, {"n": 42, "stem": "物理治療所若違反物理治療紀錄保存之規定，根據物理治療師法可進行下列何項裁罰？", "options": {"A": "處新臺幣 1 萬元以上 5 萬元以下罰鍰", "B": "處新臺幣 2 萬元以上 10 萬元以下罰鍰", "C": "處 1 個月以上 1 年以下停業處分", "D": "廢止其開業執照"}, "images": [], "answer": "A"}, {"n": 43, "stem": "物理治療師執業必須每 6 年接受繼續再教育課程，其中專業品質、專業倫理和專業相關法規合計至少達到多 少點？", "options": {"A": "5", "B": "10", "C": "12", "D": "15"}, "images": [], "answer": "C"}, {"n": 44, "stem": "物理治療所設置標準包含無障礙廁所盥洗室至少一間以上，下列關於無障礙廁所盥洗室之規定，何者正確？", "options": {"A": "廁所盥洗室空間內應設置迴轉空間，其直徑不得小於 120 公分", "B": "廁所盥洗室空間應採用橫向拉門，出入口之淨寬不得小於 90 公分", "C": "洗面盆上緣距地板面不得大於 80 公分", "D": "鏡子之鏡面底端與地板面距離不得大於 80 公分"}, "images": [], "answer": "C"}, {"n": 45, "stem": "人事管理是物理治療行政管理的核心，下列對於部門成員的人事管理，何者不是基本之要素？", "options": {"A": "招募與甄選", "B": "人力規劃", "C": "定價決策", "D": "紀律與績效考核"}, "images": [], "answer": "C"}, {"n": 46, "stem": "某治療師於教學醫院服務，一位五十肩病患接受治療師的熱敷治療後，接受徒手治療與被動性關節運動，最 後再接受干擾波治療 20 分鐘，若依據全民健康保險物理治療支付標準，應該申報下列何者？", "options": {"A": "複雜治療", "B": "中度治療－複雜", "C": "中度治療－中度", "D": "簡單治療－中度"}, "images": [], "answer": "C"}, {"n": 47, "stem": "某物理治療實習生在與老師討論一位病患的評估紀錄。老師拿出以前完成的紀錄，讓其觀摩與分析優缺點， 希望藉由討論過程，腦力激盪出不同的介入策略與方向。在該段討論過程中，物理治療紀錄的使用目的，不 包含下列何者？", "options": {"A": "教育", "B": "品管", "C": "增強動機", "D": "行政管理"}, "images": [], "answer": "D"}, {"n": 48, "stem": "美國病歷發展協會提出病歷電子化發展分為五個階段，最終與最佳發展為下列那一個階段？", "options": {"A": "電腦化病歷（Computerized Medical Record, CMR）", "B": "電子健康紀錄（Electronic Health Record, EHR）", "C": "電子病人紀錄（Electronic Patient Record, EPR）", "D": "電子病歷（Electronic Medical Record, EMR）"}, "images": [], "answer": "B"}, {"n": 49, "stem": "某醫院正在進行評鑑，評鑑委員跟著一名住院的中風病患，從排程、通知、轉送流程開始一一清點，也對現 場接案的治療師做相關訪談。最後該醫院被提出病患轉送未落實簽核、住院門診動線混亂、護理站無法調閱 物理治療評估紀錄、飲水機前的地面濕滑未及早排除等問題。針對以上描述，該委員所採用的評鑑查證方 式，下列敘述何者正確？", "options": {"A": "該評鑑的查核方式，主軸以建設與結構面為核心", "B": "該評鑑方式主要以評鑑基準條文，逐一進行適切性審查", "C": "該評鑑方式會相對增加繁瑣的書面文件準備時間", "D": "該評鑑方式被稱為 Patient Focus Method（PFM），為現行國內醫院評鑑的查證方式"}, "images": [], "answer": "D"}, {"n": 50, "stem": "在執行實證物理治療時，要形成有關介入的臨床問題時，可依照 PICO 架構分成四個部分。下列何者不屬於 PICO 架構的內容？", "options": {"A": "病人有興趣的結果", "B": "介入所需的成本", "C": "比較的介入", "D": "病人或問題"}, "images": [], "answer": "B"}, {"n": 51, "stem": "關於實證問題框定的五個組成部分 PECOT，下列何者敘述錯誤？", "options": {"A": "P 代表 participant", "B": "E 代表 exposure", "C": "C 代表 conflict", "D": "T 代表 time"}, "images": [], "answer": "C"}, {"n": 52, "stem": "下列那種設計形式不適合做為對照試驗，以用來提供臨床研究介入效果的證據？", "options": {"A": "一組有接受介入，另一組沒有接受介入", "B": "一組接受安慰劑介入，另一組沒有接受介入", "C": "一組接受標準介入，另一組接受標準介入加上新的介入", "D": "一組接受特定介入，另一組接受標準介入"}, "images": [], "answer": "B"}, {"n": 53, "stem": "實證物理治療的核心支柱包含下列何者？①病人喜好 ②專業知識 ③高品質臨床研究 ④醫療資源", "options": {"A": "①②③④", "B": "僅①②③", "C": "僅②③", "D": "僅③"}, "images": [], "answer": "B"}, {"n": 54, "stem": "臨床上可利用有無戴眼罩、頭戴干擾視覺的圓蓋、站在軟墊上等情境來進行感覺交互作用測試。若一位患者 站在軟墊上戴上眼罩與站在軟墊上頭戴圓蓋這兩種情況下皆會搖晃劇烈而跌倒，但若在平地上僅戴上眼罩或 圓蓋，或站在軟墊上不戴眼罩或圓蓋均可維持平衡。下列問題中，你認為該患者最有可能是那項問題？", "options": {"A": "視覺功能受損", "B": "本體感覺功能受損", "C": "前庭功能受損", "D": "感覺選擇功能受損"}, "images": [], "answer": "C"}, {"n": 55, "stem": "下列腦影像檢查工具，何者最適合用來做為急性腦中風的初步檢查工具？", "options": {"A": "電腦斷層掃描", "B": "腦波圖", "C": "正子射出斷層掃描", "D": "核磁共振造影"}, "images": [], "answer": "A"}, {"n": 56, "stem": "一研究想探討持續 4 週的磁場治療對下背痛患者止痛的效果，徵召 20 位下背痛患者，平均分配 A 組和 B 組； A 組接受運動衛教和磁場治療，B 組接受運動衛教；兩組患者皆不知道被分派到那一組。這樣的研究設計較可 避免何種偏差？①禮貌的病人（polite patients） ②分組偏差（allocation bias） ③受測者的損耗 （loss to follow-up） ④自然恢復（natural recovery）", "options": {"A": "③④", "B": "②③", "C": "①②", "D": "①④"}, "images": [], "answer": "D"}, {"n": 57, "stem": "下列資料庫何者以收納物理治療相關文獻為主？", "options": {"A": "PubMed", "B": "Cochrane", "C": "CINAHL", "D": "PEDro"}, "images": [], "answer": "D"}, {"n": 58, "stem": "隨機將研究個案分配至控制組、實驗組，此過程最大優點在於：", "options": {"A": "消除特定影響結果之干擾因子", "B": "有效控制潛在影響結果之因子", "C": "消除人為測量誤差", "D": "有效控制測量誤差"}, "images": [], "answer": "B"}, {"n": 59, "stem": "下列何者最不適合用來描述研究資料的變異度（variability）？", "options": {"A": "標準差（standard deviation）", "B": "偏態（skewness）", "C": "全距（range）", "D": "四分位數（interquartile range）"}, "images": [], "answer": "B"}, {"n": 60, "stem": "下列那一變項測量尺度的數學關係可加或減，但無真實零點？", "options": {"A": "住院日數", "B": "社經地位", "C": "學業分數", "D": "體重"}, "images": [], "answer": "C"}, {"n": 61, "stem": "某研究想了解使用量角器測量膝關節彎曲角度在不同測試者間的信度（reliability），徵召 100 位受試者， 所有受試者皆先後由兩位測試者進行測量，一位測試者為資深物理治療師，另一位為剛畢業的物理治療系學 生。請問要用那種統計方式來檢測其信度？", "options": {"A": "變異係數（coefficient of variance）", "B": "皮爾森相關係數（Pearson's product-moment coefficient of correlation）", "C": "測量標準誤（standard error of measurement）", "D": "配對 T 檢定（paired t-test）"}, "images": [], "answer": "B"}, {"n": 62, "stem": "有關肺結核的傳染與發病，下列敘述何者正確？", "options": {"A": "避免體液與血液之暴觸，可減少被他人傳染肺結核之機會", "B": "一般人受到傳染後，其發病之機率低於 20%", "C": "不論典型或非典型結核菌都是透過飛沫傳染給其他人", "D": "結核病會透過食物或餐具傳染"}, "images": [], "answer": "B"}, {"n": 63, "stem": "下列何者是造成腎前（prerenal）腎衰竭的原因之一？", "options": {"A": "腎絲球腎炎", "B": "嚴重腹瀉", "C": "前列腺肥大", "D": "輸尿管結石"}, "images": [], "answer": "B"}, {"n": 64, "stem": "腎上腺功能過高症的臨床表徵，下列敘述何者正確？ ①容易皮下出血 ②遠端肌肉病變 ③體重減輕 ④男 性化（virilization） ⑤血鉀過低 ⑥毛髮稀疏", "options": {"A": "①③⑤", "B": "①④⑤", "C": "②④⑥", "D": "③④⑤"}, "images": [], "answer": "B"}, {"n": 65, "stem": "有關血液透析併發之不平衡症候群（disequilibrium syndrome），下列敘述何者正確？", "options": {"A": "常發生於初次接受透析的病人", "B": "發生的原因為透析導致腦中的尿毒等分子快速清除", "C": "頭痛、噁心嘔吐、甚至癲癇發作常在透析結束 48 小時後發生", "D": "預防的方法為在透析時給予 0.45% NaCl 輸液"}, "images": [], "answer": "A"}, {"n": 66, "stem": "有關前額性步態異常，下列特徵何者正確？", "options": {"A": "速度較快", "B": "步寬較小", "C": "啟動較慢", "D": "步幅較長"}, "images": [], "answer": "C"}, {"n": 67, "stem": "有關頸髓 C5-C7 完全損傷病人之敘述，下列何者正確？", "options": {"A": "日常生活完全依賴", "B": "移位可自行完成", "C": "可駕駛電動輪椅活動", "D": "併有吞嚥障礙"}, "images": [], "answer": "C"}, {"n": 68, "stem": "下列造成低血氧（hypoxemia）情形的機轉中，何者最常見？", "options": {"A": "吸入空氣的氧分壓下降", "B": "換氣不足（hypoventilation）", "C": "動靜脈分流（shunt）", "D": "換氣灌流不協調（ventilation/perfusion mismatch）"}, "images": [], "answer": "D"}, {"n": 69, "stem": "關於婦科臨床問題，下列敘述何者正確？", "options": {"A": "排卵後基礎體溫（basal temperature）會有上升趨勢，所以每天量測基礎體溫適合用來避孕", "B": "最佳避孕方法是使用保險套，安全性百分百，而且可以預防性傳染病", "C": "事後避孕使用 RU486 非常安全，不用擔心子宮外孕", "D": "子宮內膜異位症、排卵功能不良和骨盆腔發炎導致輸卵管阻塞，併稱女性不孕症的三大原因"}, "images": [], "answer": "D"}, {"n": 70, "stem": "關於乳癌，下列敘述何者正確？", "options": {"A": "早期的乳癌通常會痛", "B": "男性不會得到乳癌", "C": "女性停經之後乳癌的盛行率上升", "D": "改良型乳房根除術（modified radial mastectomy）應避免廓清腋下淋巴結"}, "images": [], "answer": "C"}, {"n": 71, "stem": "關於大腸直腸癌，下列敘述何者正確？", "options": {"A": "直腸癌因接近肛門，較早即有解血便、裏急後重、排便習性改變與大便變細等症狀", "B": "升結腸及盲腸因腸道腔管較細，糞便較為成形，且腫瘤常為浸潤緊縮型而較易引起腸阻塞", "C": "降結腸因腔徑大，腫瘤多為突出膨大或菜花狀，且糞便多為流體，其腫瘤常生長到很大，才因缺鐵性貧血、 腹部脹氣、腹痛、體重減輕等症狀被發現", "D": "在臺灣地區大腸直腸癌造成腸阻塞後才被發現的比率很低"}, "images": [], "answer": "A"}, {"n": 72, "stem": "關於骨折臨床問題，下列敘述何者正確？", "options": {"A": "八字繃帶用來治療肱骨頸骨折", "B": "老年人的移位性股骨頸骨折需要置換部分人工髖關節", "C": "只要骨折有移位一定要矯正，否則會有後遺症", "D": "下肢骨骨折接受手術後如果固定良好，應該儘早負重，以避免關節僵硬"}, "images": [], "answer": "B"}, {"n": 73, "stem": "關於泌尿外科臨床問題，下列敘述何者正確？", "options": {"A": "泌尿道結石可能會復發，因此多運動、多喝水、不憋尿是對抗結石的三大法則，尿路結石的復發率約 3 成以 下", "B": "攝護腺癌是男性最常見的癌症之一，其發生與年齡有關，男性在 40 歲以後就有發生攝護腺癌的可能，此後 發生率隨年齡增長而增加", "C": "精索靜脈曲張造成生育問題，主要是精子數量所導致", "D": "攝護腺肥大進行內視鏡電刀刮除手術是一種體表沒有刀口的微創手術，治療效果佳，但仍有大量出血、尿失 禁及水中毒等副作用的風險，不包括性功能障礙"}, "images": [], "answer": "B"}, {"n": 74, "stem": "關於洗腎患者的動靜脈瘻管的敘述，下列何者錯誤？", "options": {"A": "有瘻管的上肢不可以量血壓", "B": "有瘻管的上肢不可以穿太緊的衣服", "C": "有瘻管的上肢不可以戴手錶或玉環", "D": "要抽血檢驗時從瘻管抽血既方便又快"}, "images": [], "answer": "D"}, {"n": 75, "stem": "關於髖部骨折之敘述，下列何者錯誤？", "options": {"A": "老年失智是危險因子", "B": "骨折後一年內死亡率會上升", "C": "手術是較好的處理方式", "D": "術後應儘量不要讓病人下床活動"}, "images": [], "answer": "D"}, {"n": 76, "stem": "基本再生數（或稱為複製率，Ro）是指在不具免疫力的族群中，單一傳染性個案由發病至痊癒（或死亡）期 間所傳染的所有次發性個案的總數，影響基本再生數值主要因素不包括下列何者？", "options": {"A": "接觸率", "B": "每次接觸感染的機率", "C": "傳染者傳染時間的長短", "D": "病毒的毒性"}, "images": [], "answer": "D"}, {"n": 77, "stem": "關於細懸浮微粒，下列敘述何者錯誤？", "options": {"A": "是指粒徑小於或等於 2.5 微米（μm）的懸浮微粒", "B": "主要來源是從透過機械方式由大變小，因揚塵、粉碎而懸浮於空氣中", "C": "粒徑小、比表面積大，更容易附著有害污染物", "D": "可以經過太陽光及化學反應後（例如，燃燒、冷凝等過程）所生成的微粒"}, "images": [], "answer": "B"}, {"n": 78, "stem": "關於健康政策模式的相關理論，下列何者錯誤？", "options": {"A": "健康政策的目標在考量資源分配的優先順序，是否反應公平、效率及品質的合理分配", "B": "系統模式認為公共政策為政治系統的一種輸出，需要全體社會支持", "C": "菁英模式政策制定的問題是大多數社會權力結構和分配不平均", "D": "團體模式認為政策形成是社會中各利益和壓力團體相互競爭的結果"}, "images": [], "answer": "C"}, {"n": 79, "stem": "肺癌早期大多無症狀，以低劑量電腦斷層（low-dose CT, LDCT）篩檢可提早檢出肺癌並提高治癒機會，若由 LDCT 篩檢出陽性者中找到真正有病的機率稱為何？", "options": {"A": "敏感度（sensitivity）", "B": "特異度（specificity）", "C": "陽性預測值（positive predictive value）", "D": "陰性預測值（negative predictive value）"}, "images": [], "answer": "C"}, {"n": 80, "stem": "由於考慮到治療或相關介入，對於不同疾病的人所增加存活時間的生活品質並不相同，因此依照不同健康狀 況採用質與量並重的評估指標來進行評價，其稱為下列何者？", "options": {"A": "平均生命年數損失（AYLL）", "B": "潛在生命年數損失（PYLL）", "C": "校正品質後存活人年（QALYs）", "D": "校正失能狀態後人年（DALYs）"}, "images": [], "answer": "C"}], "examCode": "115020"}, "Q2": {"label": "第二次", "questions": [{"n": 1, "stem": "根據對美國物理治療專業早期發展的敘述，下列何者最符合「物理治療在美國快速制度化」的關鍵進程？", "options": {"A": "先有專業組織建立，再因戰爭與小兒麻痺需求擴張，最後形成重建助手制度", "B": "先因小兒麻痺與戰傷需求產生重建助手，戰後角色混亂促使專業需國家層級定位，進而成立專業組織以確立 資格與標準", "C": "先由美國醫學會主導物理治療教育，再成立重建助手部門，最後才出現專業期刊", "D": "先由學術界提出肌力測量與運動治療方法，再促成小兒麻痺流行，最終才由政府成立物理治療專責部門"}, "images": [], "answer": "B"}, {"n": 2, "stem": "下列何者為臺灣最早提供物理治療博士課程之學校？", "options": {"A": "成功大學健康照護科學研究所", "B": "臺灣大學物理治療學系暨研究所", "C": "陽明交通大學物理治療暨輔助科技學系", "D": "長庚大學物理治療學系"}, "images": [], "answer": "A"}, {"n": 3, "stem": "依照中華民國物理治療師公會全國聯合會的章程，下列何者不屬於該會的宗旨？", "options": {"A": "物理治療師業務之輔導及福利之增進", "B": "物理治療業務糾紛之調處與仲裁", "C": "舉辦物理治療學術研討會、發行物理治療學術刊物", "D": "物理治療業務之鑑定及證明"}, "images": [], "answer": "C"}, {"n": 4, "stem": "關於長期照顧物理治療的敘述，下列何者正確？①強調個案功能上的需要，而非疾病處理 ②個別化、人性化 是長期照護的基本精神 ③常見因特殊運動專項造成的損傷狀況 ④包含居家、社區與機構式照護", "options": {"A": "僅①②", "B": "①②④", "C": "①③④", "D": "②③④"}, "images": [], "answer": "B"}, {"n": 5, "stem": "物理治療實習生到醫院的第一天，臨床老師便交代不可以接受病人送的禮物或餽贈，這是基於那一項醫學倫理 原則？", "options": {"A": "切勿傷害", "B": "行善利人", "C": "病人自主", "D": "秉持公義"}, "images": [], "answer": "A"}, {"n": 6, "stem": "研究倫理委員會在計畫執行前針對受試者招募廣告的審查，下列何者正確？", "options": {"A": "招募廣告可先刊登後，再送研究倫理委員會審查，避免延誤研究進行", "B": "文字須強調免費、安全、已經核准等相關文字，讓受試者較易理解", "C": "除明顯有益於特定族群之健康權益外，不得刊登於高中職或以下之校園", "D": "計畫進行中可依照需求修正內容，無須再送至倫理委員會審查"}, "images": [], "answer": "C"}, {"n": 7, "stem": "在物理治療所擬定行銷管理策略時，下列那一項最能有效提升病人對服務的信任度與滿意度，並符合醫療行銷 的核心原則？", "options": {"A": "強調價格優惠活動以吸引大量病人就診", "B": "以患者需求為中心，清楚傳達治療效益與專業價值，並提供一致且高品質的服務體驗", "C": "大幅增加廣告曝光量，使病人優先選擇該治療所", "D": "主要依治療師個人興趣決定行銷內容與服務特色"}, "images": [], "answer": "B"}, {"n": 8, "stem": "下列那位學者被譽為現代行銷之父，主張現代行銷應從以產品為中心轉移到以市場和顧客為中心？", "options": {"A": "柯特勒（Philip Kotler）", "B": "波特（Michael Porter）", "C": "戴明（William Edwards Deming）", "D": "杜拉克（Peter Drucker）"}, "images": [], "answer": "A"}, {"n": 9, "stem": "有關物理治療場所用電安全，下列敘述何者不適當？", "options": {"A": "一般 2.0 公厘線徑電線能承受的電流負載為 19 安培以下", "B": "欲使用日本製造之 100 伏特電療儀器，可請代理商提供適當之變壓器使用", "C": "若無法避免使用延長線，建議使用具有獨立保險絲斷電機制之延長線", "D": "電器設備漏電常是接地不良所引起"}, "images": [], "answer": "B"}, {"n": 10, "stem": "某治療師平時能言善道，很會講授課程，深獲主管喜愛，導致主管在績效評核時認為該治療師在各方面都是 同樣表現很好，使績效評核失真。這種情境下，主管可能陷入了下列那一種盲點？", "options": {"A": "刻板印象", "B": "暈輪效果", "C": "標準不一", "D": "霍桑效應"}, "images": [], "answer": "B"}, {"n": 11, "stem": "一位物理治療師在治療所工作，其薪資結構包含底薪 5 萬，外加業績獎金。業績獎金部分屬於下列何種開支 分類？", "options": {"A": "直接成本／固定開銷", "B": "直接成本／變動開銷", "C": "間接成本／固定開銷", "D": "間接成本／變動開銷"}, "images": [], "answer": "B"}, {"n": 12, "stem": "醫療機構應建立清晰、詳實、完整之病歷，下列何者為前項所稱病歷包括的資料？", "options": {"A": "各種醫療費用與帳務資料", "B": "臨床研究發表的論文報告", "C": "物理治療部門之行政紀錄", "D": "各項檢查、檢驗報告資料"}, "images": [], "answer": "D"}, {"n": 13, "stem": "透過資訊交換平台連結顧客與供應商，進行各項活動服務並藉此服務來創造價值，屬於價值組態的那一種模 式？", "options": {"A": "商業價值", "B": "價值鏈結", "C": "價值商店", "D": "價值網路"}, "images": [], "answer": "D"}, {"n": 14, "stem": "使用下列那一個截詞檢索可以快速在 PubMed 資料庫內搜尋到與糖尿病相關的文獻？", "options": {"A": "diabet*", "B": "diabet?", "C": "diabet$", "D": "diabet#"}, "images": [], "answer": "A"}, {"n": 15, "stem": "在物理治療實證化的過程中，那一個資料庫的建立被視為幫助臨床物理治療師搜尋高品質臨床試驗證據的重 要里程碑？", "options": {"A": "Google Scholar", "B": "Wikipedia", "C": "PubMed", "D": "PEDro"}, "images": [], "answer": "D"}, {"n": 16, "stem": "有關實證物理治療之三大支柱，下列敘述何者錯誤？", "options": {"A": "有效與病患溝通並以病人為中心的目標設定", "B": "最佳可取得的證據已經不符現代對實證物理治療之期待", "C": "照顧者的訪談不包含在高品質臨床研究", "D": "物理治療師須具備反思能力才能促進其專業知識"}, "images": [], "answer": "C"}, {"n": 17, "stem": "下列那一個國家最早將實證醫學概念融入醫學教育？", "options": {"A": "加拿大", "B": "美國", "C": "德國", "D": "澳洲"}, "images": [], "answer": "A"}, {"n": 18, "stem": "研究者進行預後（prognosis）相關文獻之實證評析時，下列敘述何者錯誤？", "options": {"A": "病程追蹤時間是否足夠，且追蹤是否完整，一般至少需達 80％以上追蹤率，以降低追蹤偏差", "B": "結果測量者是否知悉受試者之狀況，可能影響結果評估之客觀性", "C": "當結果呈現之勝算比（odds ratio）其信賴區間涵蓋 1 時，表示該預測因子對結果之影響在統計上具有顯著 意義", "D": "各項統計指標之信賴區間越狹窄，表示預測因子對結果之估計精確度越高"}, "images": [], "answer": "C"}, {"n": 19, "stem": "有關研究設計的敘述，下列何者正確？", "options": {"A": "隨機控制研究屬於實驗型研究", "B": "系統性回顧研究屬於實驗型研究", "C": "世代追蹤研究屬於半實驗型研究", "D": "病例對照研究屬於半實驗型研究"}, "images": [], "answer": "A"}, {"n": 20, "stem": "下列何項不屬於 PEDro 量表之評估項目？", "options": {"A": "受試者的分配方式是隱藏的", "B": "受試者的納入條件有具體說明", "C": "報告所有評估參數的組間比較統計結果", "D": "對所有實施治療的治療師設盲"}, "images": [], "answer": "C"}, {"n": 21, "stem": "研究中使用下肢布朗斯壯（Brunnstrom stage）分數做為中風患者訓練後的成效評估，此分數屬於：", "options": {"A": "等比變項", "B": "等距變項", "C": "名義變項", "D": "序位變項"}, "images": [], "answer": "D"}, {"n": 22, "stem": "頭痛的原因可分為原發性和次發性頭痛，有關頭痛的敘述，下列何者正確？", "options": {"A": "原發性頭痛三分之二以上為偏頭痛", "B": "次發性頭痛近三分之二為頭部外傷後造成", "C": "第一次突然發作嚴重頭痛可能有嚴重的潛在疾病", "D": "嚴重頭痛後發生嘔吐可能有嚴重的潛在疾病"}, "images": [], "answer": "C"}, {"n": 23, "stem": "有關肺癌的敘述，下列何者錯誤？", "options": {"A": "危險因子包括抽菸、環境中的氡氣、石綿、砷等", "B": "可能轉移到腎上腺、腦部、骨頭等處", "C": "最常見的是鱗狀細胞癌，其次是腺癌", "D": "為能得到精確的診斷，需要胸部 X 光、電腦斷層、正子斷層造影等影像，加上支氣管鏡或細針抽吸化驗"}, "images": [], "answer": "C"}, {"n": 24, "stem": "關於形成危險因子與疾病之間干擾因子之判定條件，下列何項敘述錯誤？", "options": {"A": "干擾因子與暴露之間具有關聯", "B": "干擾因子可位於暴露與疾病之間的因果途徑上", "C": "干擾因子會影響暴露與疾病觀察關係的估計值", "D": "干擾因子在未暴露的狀況下為疾病之危險因子"}, "images": [], "answer": "B"}, {"n": 25, "stem": "有關前瞻型世代研究法之適用時機，下列敘述何者正確？", "options": {"A": "適合探討罕見暴露對疾病的作用", "B": "適合探討誘導期較長的疾病", "C": "適合用於研究對象移動性較高的群體", "D": "適合用於過去已建置暴露與疾病資料之數據庫"}, "images": [], "answer": "A"}, {"n": 26, "stem": "下列何項不屬於社會行為科學研究在公共衛生的角色？", "options": {"A": "發展可測量社會行為相關概念之測量工具", "B": "評價公共衛生計畫之行為與社會成效", "C": "直接參與各類公共衛生介入之規劃", "D": "提供醫療系統與健康相互影響之專業知識"}, "images": [], "answer": "D"}, {"n": 27, "stem": "物理治療師在健康照護團隊中多為直接接觸病人的專業人員，同時也可能扮演多元角色。下列敘述何者與現 況不符？", "options": {"A": "物理治療師可在醫療單位中提供第三級照護", "B": "美國多數州內採用物理治療直接就診（direct access）制度", "C": "物理治療師皆必須於衛生機關註冊之醫療單位內，方可提供相關專業服務", "D": "物理治療師可依患者失能狀況提出工作適應方案（work-conditioning program）"}, "images": [], "answer": "C"}, {"n": 28, "stem": "根據中華民國物理治療學會闡述之物理治療工作內容範圍，不包含下列何項？", "options": {"A": "提供民眾關於傷害、功能損失之預防", "B": "從事物理治療教育、諮詢等相關之工作", "C": "提供病患物理治療評估、照護計畫", "D": "社會關係、婚姻、社會適應等問題的社會暨心理評估與處置、保護性服務"}, "images": [], "answer": "D"}, {"n": 29, "stem": "一位 85 歲男性長者，與配偶同住於社區透天厝一樓，近期因反覆跌倒與行走不穩，由家庭醫師轉介接受居家 物理治療評估。其病史包含高血壓及退化性關節炎，無明確失智診斷，但家屬表示長者近半年反應變慢，學 習新動作較以往困難。物理治療師初次居家評估發現：①室內行走可不使用輔具，但轉彎及起立時穩定度不 足 ②下肢肌力約 4 分，平衡反應延遲 ③膝部疼痛自主疼痛評分約 4/10 ④居家環境中，出入口門檻偏 高、浴室無扶手、夜間照明不足 ⑤長者表示：「我只希望能在家裡安全活動，不想常常跌倒麻煩家人。」 依據老人居家物理治療之評估與介入原則，下列何者最符合物理治療師在此情境下的適當臨床決策？", "options": {"A": "以增加膝關節活動度與下肢肌力為主要治療目標，優先設計阻力訓練課程", "B": "考量長者學習新技巧困難，避免指導新的動作策略，改以物理因子治療減輕疼痛", "C": "以功能性活動與平衡訓練為介入重點，並同時進行居家環境安全評估與必要之環境調整", "D": "為避免再次跌倒，建議限制長者在家中的活動範圍並減少日常活動量"}, "images": [], "answer": "C"}, {"n": 30, "stem": "某長照個案接受物理治療已半年但進步有限，若中止治療，釋出的場地、時段資源可讓 3 位新個案開始復 健。所內治療師進行討論如圖示，其中丙治療師屬於何種理論？", "options": {"A": "責任實用論", "B": "社群論", "C": "義務論", "D": "契約論"}, "images": [], "answer": "A"}, {"n": 31, "stem": "臺灣的健保制度獲得多數人肯定，即使對某些專業發展不一定有利，政府仍持續實施健保制度，此做法較符 合那一種倫理學派理念？", "options": {"A": "實用論", "B": "義務論", "C": "情境公平論", "D": "良知論"}, "images": [], "answer": "A"}, {"n": 32, "stem": "關於圖示中使用體外震波治療肌鍵鈣化的敘述，下列何者正確？", "options": {"A": "基於病人自主原則，在病人要求下，治療師應調高震波治療的強度", "B": "於取得病人明示同意下，治療師可以進行常規以外的治療", "C": "病人知悉不符常規還執意要求提高震波治療強度，若因此受傷，治療師仍須負責", "D": "基於行善利他原則，治療師不得因意見不同而拒絕治療"}, "images": [], "answer": "C"}, {"n": 33, "stem": "某患者因肩頸痠痛長年在診所就醫，本週六醫師剛好休診，其處方已過期。在醫師尚未開立醫囑的情況下， 患者直接向物理治療師要求：「我不需要醫師看，我看過網紅醫師的介紹影片，我有「知情同意權」與「醫 療自主權」，我決定要做按摩、雷射與震波，你照做就好。」治療師仍堅持必須先經醫師處方並由自己評 估，且認為患者應以運動治療為主。針對此情境，依據醫學倫理學的四大原則，下列敘述何者正確？", "options": {"A": "患者主張其擁有「醫療自主權」，故即便無醫師醫囑，治療師若不照辦即違反「病人自主原則」", "B": "若治療師為了避免衝突（追求和諧結果）而直接提供治療；若未造成傷害，即合法並符合「行善利人原則」", "C": "治療師堅持先經診斷與評估，是為了確保醫療處置的合法性與正確性，避免盲目治療造成潛在風險，體現了 「行善利人原則」與「切勿傷害原則」", "D": "治療師建議患者改採運動治療，是為了節省昂貴的雷射與震波資源留給他人，此判斷屬於「秉持公義原則」"}, "images": [], "answer": "C"}, {"n": 34, "stem": "治療師甲與廠商合作開發人體工學椅，拍攝推廣影片（如圖示）放在個人頻道時，下列何者放入封面字卡， 較符合臺灣物理治療師專業倫理準則的要求？", "options": {"A": "物理治療師監製，你的下背痛剋星", "B": "一張椅子，讓所有治療師都失業了", "C": "我用 200 小時，打造動態腰椎支撐", "D": "辦公椅這張搞定，加班再也沒關係"}, "images": [], "answer": "C"}, {"n": 35, "stem": "某物理治療師每次繼續教育課程都請別人代簽名，只為湊齊繼續教育時數，這是違反了那一項中華民國物理 治療師專業行為準則？", "options": {"A": "物理治療師應充分了解專業目的及責任", "B": "物理治療師應善盡團隊責任", "C": "物理治療師應提升專業能力", "D": "物理治療師應執行實證物理治療"}, "images": [], "answer": "C"}, {"n": 36, "stem": "張先生是一位 55 歲的中風患者，左側肢體張力過高，導致肩頸長期痠痛。物理治療師建議在肌肉激痛點進行 較高風險的徒手治療以緩解張力。為確保患者能真正行使知情同意權，下列何者不屬於同意權之要素？", "options": {"A": "告知：提供充足且易懂的資訊", "B": "能力：評估患者的理解與判斷力", "C": "紀錄：紀錄知情同意過程並獲患者書面同意", "D": "自願：排除外部給予患者的壓力與脅迫"}, "images": [], "answer": "C"}, {"n": 37, "stem": "某醫學中心復健部門人力吃緊，未來 4 週門診物理治療名額有限。你負責排定優先順序。今日同時出現兩種 壓力：①高跌倒風險個案家屬要求增加治療次數，否則將透過管道申訴 ②慢性疼痛個案主張「我也繳健保 費」，也要求增加治療次數。主管暗示「先安撫會吵的」。你要兼顧專業判斷與資源公平分配，下列何者最 恰當？", "options": {"A": "以「需求和實證醫學」為考量，並耐心向病患與家屬解釋原因和可能的醫療影響", "B": "以「一致性」為先，依掛號／候補順序先來先上，不因風險高低或家屬壓力而做例外調整", "C": "以「效益最大化」排序，依預估改善幅度與成本效益決定名額，並以同一套量化指標套用全體", "D": "採「配額折衷」，將名額固定比例分給高風險與慢性疼痛兩群，並以院內一致政策執行"}, "images": [], "answer": "A"}, {"n": 38, "stem": "關於研究倫理，下列敘述何者錯誤？", "options": {"A": "執行臨床研究時，應詳實記錄數據，不可變造、捏造數據", "B": "執行人體研究前，該研究必須先通過人體試驗委員會審查", "C": "研究成果發表，至多可同時投稿兩個期刊，其中一個期刊接受後，儘快對另一個期刊要求撤稿", "D": "執行臨床研究時，受試者有權隨時退出試驗"}, "images": [], "answer": "C"}, {"n": 39, "stem": "某物理治療師在治療所內拍攝一系列公開影片如圖示，內容為對多位網紅進行評估與治療，有關倫理與法規 議題的敘述，下列何者正確？", "options": {"A": "影片非屬醫療廣告，不受醫療法規範", "B": "影片上架經網紅同意，未違反個資法", "C": "影片設定為非營利，即無須揭露利益", "D": "影片中只要遮蓋器材 logo，即無商標侵權"}, "images": [], "answer": "B"}, {"n": 40, "stem": "在醫院復健部門，第一次來的患者表示「女生力氣不夠大」，因此拒絕配合女性治療師的評估與治療，並表 示要更換治療師，該患者可能違反：", "options": {"A": "性騷擾防治法", "B": "性別平等教育法", "C": "跟蹤騷擾防制法", "D": "性侵害犯罪防治法"}, "images": [], "answer": "A"}, {"n": 41, "stem": "物理治療師依法組織物理治療師公會，其法源為何？", "options": {"A": "醫療法", "B": "物理治療師法", "C": "物理治療師法施行細則", "D": "人民團體法"}, "images": [], "answer": "B"}, {"n": 42, "stem": "全民健保自 1995 年開辦至今，下列那些情境最符合臺灣物理治療執業環境的實況？①健保開辦初期，基層診 所端因具有「低成本、高效益、低風險」特色，且能透過相對彈性的申報制度維持利潤，經營環境相對較優 ②由於轉診制度與部分負擔政策的落實，醫學中心門診病患成功分流至基層，導致大型醫院治療師的工作壓 力大幅減輕 ③部分中小型地區醫院因設備資源不若醫學中心，且人才招募困難，導致病患流向大型醫院， 許多同質性醫院被迫關閉或轉型為慢性病床、長照機構 ④中央健保局作為「單一付費者」，具有極強的議 價與制度掌控能力，醫療院所得積極開發「自費項目」或「差額負擔衛材」，以應對健保利潤空間縮小的困 境", "options": {"A": "①②③", "B": "①③④", "C": "②③④", "D": "①②④"}, "images": [], "answer": "B"}, {"n": 43, "stem": "有關常見的組織型態敘述，下列何者錯誤？", "options": {"A": "在正式組織結構中，屬於上司與下屬關係，稱為直線式組織結構", "B": "工作人員同時必須向數位主管負責並形成倒金字塔的架構，稱為功能式組織結構", "C": "組織是管理的功能之一，主要在於將組織任務與職權加以適當劃分，並進行有效協調", "D": "在固定的層級組織中，再加入特別的工作編組或類似委員會組織，稱為直線加幕僚式組織結構"}, "images": [], "answer": "D"}, {"n": 44, "stem": "下列何者是全民健保給付的項目？", "options": {"A": "人工協助生殖技術", "B": "居家護理訪視", "C": "義齒、義眼、助聽器", "D": "居家物理治療"}, "images": [], "answer": "BD", "correction_note": "答 B 或 D 或 BD 者均給分", "answer_alternatives": ["B", "D"], "explanation": "⚠️ 官方答案疑義\n\n考選部原公告標準答案:B。「更正答案」公告修正為「答 B 或 D 或 BD 者均給分」。\n\n即 B、D 選項皆為正解,審視後認定不只一個答案合理。\n\n建議:此題以「多重合理答案」看待。"}, {"n": 45, "stem": "下列那一項最符合行銷組合（marketing mix）7 個 P 中實體證據（physical evidence）應用於物理治療所 的概念？", "options": {"A": "依據保險給付水準訂定具競爭力的治療價格", "B": "確保治療師每年完成繼續教育與專業技能訓練", "C": "維持物理治療所環境整潔與設備現代化", "D": "擴增物理治療所據點，以提升病人就醫的地理可近性"}, "images": [], "answer": "C"}, {"n": 46, "stem": "某物理治療師擔任一家物理治療所的負責人，在執業期間，因涉入刑事案件，並在司法機關詢問時做出虛偽 陳述，經法院判決確定判處有期徒刑一年並其廢止其治療所之開業執照。然治療師在服刑期間，該物理治療 所仍正常開業，根據《物理治療師法》及相關行政法規，針對治療師個人之物理治療師證書與執業執照的行 政處分，下列敘述何者最符合法規要求？", "options": {"A": "廢止其物理治療師證書，但執業執照僅需註銷，不代表執業權永久喪失", "B": "需處以停業處分一年且強制執行，並要求重新接受醫學倫理繼續教育課程", "C": "僅需廢止其執業執照，治療師仍可保有物理治療師證書，待刑滿後可重新執業", "D": "需廢止其執業執照，因治療所仍正常開業，亦得廢止其物理治療師證書"}, "images": [], "answer": "D"}, {"n": 47, "stem": "依「醫事人員執業登記及繼續教育辦法」之規定，關於物理治療師參與繼續教育之敘述，下列何者最能反應 該制度設計目的？", "options": {"A": "透過累積教育時數以提升個人經濟報酬", "B": "作為醫療機構內部考核與升遷之依據", "C": "確保專業知能持續更新，並作為執業管理之一環", "D": "作為替代國家考試或專業認證之方式"}, "images": [], "answer": "C"}, {"n": 48, "stem": "臺北市物理治療師公會，依其業務與事業目的，應受主管機關與上層機關之指導、監督，下列何者非其上層 單位或指導監督機關？", "options": {"A": "社團法人臺灣物理治療學會", "B": "社團法人中華民國物理治療師公會全國聯合會", "C": "臺北市政府社會局", "D": "臺北市政府衛生局"}, "images": [], "answer": "A"}, {"n": 49, "stem": "在組織管理的三個層級中，中層主管主要屬於那個層次？", "options": {"A": "技術", "B": "知識", "C": "協調", "D": "決策"}, "images": [], "answer": "C"}, {"n": 50, "stem": "某物理治療診所具有以下財務指標： ①流動比率（current ratio）＝流動資產（current assets）／流動負債（current liabilities）＝2.1： 1 ②應收帳款天數（days receivable）＝應收帳款（accounts receivable）／每日病人收入（patient revenue per day）＝45 天 ③營業利益率（operating margin）＝〔營業總收入（total revenues）－營業總支出（total expenses）〕／營業總收入＝–2％ 根據上述指標，下列敘述何者正確？", "options": {"A": "該診所短期償債能力不足，但營運效率良好", "B": "該診所具備足夠流動性，但績效表現不佳", "C": "該診所人員流動率低與收款金額高，但財務表現略差", "D": "該診所財務狀況良好，因為較高的流動比率可彌補負的營業利益率"}, "images": [], "answer": "B"}, {"n": 51, "stem": "關於醫療法記載病歷或製作紀錄的規定，下列敘述何者錯誤？", "options": {"A": "醫事人員於執行業務時應親自記載病歷，簽名或蓋章，加註執行日期", "B": "病歷或紀錄如有增刪，應以畫線去除，不得塗燬", "C": "情況急迫時，醫囑得先以口頭方式為之，並於 12 小時內完成書面紀錄", "D": "以電子文件方式製作及貯存之病歷，得免另以書面方式製作"}, "images": [], "answer": "C"}, {"n": 52, "stem": "基於醫療資訊安全與隱私保護指導綱領共識，醫療機構或醫事相關人員於蒐集、使用或揭露醫療資訊前，必 須在病人或其法定代理人知情、自願的情形下為之。以上敘述屬於何種原則？", "options": {"A": "最小需求", "B": "直接取得", "C": "最大安全", "D": "尊重及告知"}, "images": [], "answer": "D"}, {"n": 53, "stem": "某醫院物理治療部的部主任在推動降低患者跌倒率的品質改善計畫時，發現部分資深治療師認為跌倒是患者 的個人行為，醫療紀錄只是增加負擔。部主任決定召開工作坊，透過實際數據對話，引導治療師看見精準紀 錄能展現物理治療預防跌倒的專業價值，而非只是行政庶務。這項策略最符合品質管理技巧中的那一個元 素？", "options": {"A": "重新形塑價值觀與信念", "B": "展現勇氣", "C": "細分參與計畫", "D": "發現共同目標"}, "images": [], "answer": "A"}, {"n": 54, "stem": "對於患有第 2 型糖尿病和沾黏性肩關節囊炎的患者，皮質類固醇注射是否比物理治療更能有效減輕肩關節功 能障礙和疼痛，並增加活動範圍。若以 PICO 的形式提問，下列那些組成項目錯誤？①參與者 （population）：第 2 型糖尿病和沾黏性關節囊炎的患者 ②介入（intervention）：物理治療 ③比較 （comparison）：皮質類固醇注射 ④結果（outcomes）：肩關節功能障礙減輕，疼痛緩解，活動範圍增加", "options": {"A": "①②", "B": "②③", "C": "③④", "D": "①④"}, "images": [], "answer": "B"}, {"n": 55, "stem": "使用 PEDro 評析圖示的研究，下列敘述何者錯誤？", "options": {"A": "是否採隨機分派得 1 分", "B": "治療者是否盲化得 1 分", "C": "受試者是否盲化得 0 分", "D": "≧85％受試者完成成效測量得 0 分"}, "images": [], "answer": "B"}, {"n": 56, "stem": "下列那一個評析工具不適用於單篇治療介入文獻的評析？", "options": {"A": "PEDro 量表", "B": "Cochrane 誤差風險工具", "C": "CASP 隨機對照試驗評析工具", "D": "GRADE 評分系統"}, "images": [], "answer": "D"}, {"n": 57, "stem": "對於治療效果使用信賴區間表示，下列敘述何者錯誤？", "options": {"A": "相較於統計 p 值，更能提供治療效果的精確度", "B": "信賴區間包含 0，代表統計上不顯著", "C": "信賴區間越寬代表精確度越高", "D": "信賴區間可呈現效應值的大小"}, "images": [], "answer": "C"}, {"n": 58, "stem": "某早期療育中心使用一項新的幼兒粗大動作發展診斷工具，研究顯示此工具的敏感度（sensitivity）為 0.91、特異度（specificity）為 0.40。下列敘述何者正確？", "options": {"A": "低特異度表示該工具不適合用於任何臨床評估", "B": "低特異度表示可能產生較多偽陽性結果", "C": "高敏感度表示該工具特別適合做為確診工具", "D": "高敏感度表示可有效排除非發展遲緩兒童"}, "images": [], "answer": "B"}, {"n": 59, "stem": "若想了解工作站配置與動作行為是否與慢性下背痛的存在有關，下列何種研究設計最適合？", "options": {"A": "個案研究", "B": "世代追蹤研究", "C": "病例對照研究", "D": "隨機對照研究"}, "images": [], "answer": "C"}, {"n": 60, "stem": "有關研究的證據等級由高至低之排序，下列何者正確？①專家意見 ②設計良好的的病例對照研究與世代研 究 ③描述性及質性研究的系統性文獻回顧 ④至少一篇設計良好的隨機控制研究", "options": {"A": "①②③④", "B": "③②①④", "C": "④③②①", "D": "④②③①"}, "images": [], "answer": "D"}, {"n": 61, "stem": "想要評估「那種測試可以用來排除膝關節外傷患者的前十字韌帶完全斷裂的問題」，最好再採用何種方式進 行研究？", "options": {"A": "前瞻性世代研究", "B": "橫斷研究", "C": "回溯世代研究", "D": "病例系列研究"}, "images": [], "answer": "B"}, {"n": 62, "stem": "下列何種情況最不適合假設資料近似常態分佈？", "options": {"A": "樣本數大且分布對稱", "B": "平均數與中位數差異極小", "C": "資料明顯偏斜且離群值多", "D": "Shapiro–Wilk 檢定未達顯著"}, "images": [], "answer": "C"}, {"n": 63, "stem": "圖 1 為探討單項與雙項任務對不同年齡個案行走速度的影響，應使用何種統計分析方式探討任務與年齡對行 走速度的效益？", "options": {"A": "混合線性模型（linear mixed model）", "B": "二因子獨立樣本變異數分析（two-way independent ANOVA）", "C": "三因子重複量測變異數分析（three-way repeated measure ANOVA）", "D": "混合型雙因子變異數分析（mixed two-way ANOVA）"}, "images": [], "answer": "D"}, {"n": 64, "stem": "下列何者適合用來描述觀察資料的分散狀況？①Z 分數 ②四分位數 ③相關係數", "options": {"A": "僅②", "B": "僅①", "C": "①②", "D": "②③"}, "images": [], "answer": "A"}, {"n": 65, "stem": "物理治療師想了解頸部穩定運動對頸部疼痛患者頸部動作控制能力的療效，徵召 100 位患者參與研究，介入 前後使用生物壓力回饋儀進行顱頸屈曲測試。測試時，受試者要做出點頭動作，讓壓力回饋儀數值由 20 毫米 汞柱的基準壓力值上升至 22 毫米汞柱，並維持 5 至 10 秒。若受試者可以完成測試，目標壓力值會以 2 毫米 汞柱的間距逐漸增加至 30 毫米汞柱，受試者可以完成的最大目標壓力值即為測試結果。下列何種集中趨勢量 數（measures of central tendency）最適合用來描述顱頸屈曲測試的結果？", "options": {"A": "平均值（mean）", "B": "全距（range）", "C": "百分位（percentile）", "D": "眾數（mode）"}, "images": [], "answer": "D"}, {"n": 66, "stem": "動脈粥狀硬化性心血管疾病（atherosclerotic cardiovascular disease）是全球首要疾病死因，預防發生 此疾病主要為修正其可改變的危險因子（modifiable risk factors）。下列何者為其可改變的危險因子？① 吸菸、高血壓及糖尿病 ②年齡（男性≧45 歲；女性≧55 歲） ③肥胖及久坐的生活方式 ④血脂異常（低 密度脂蛋白膽固醇降低或高密度脂蛋白膽固醇升高）", "options": {"A": "①②", "B": "①③", "C": "①④", "D": "③④"}, "images": [], "answer": "B"}, {"n": 67, "stem": "下列降低特定癌症風險的預防措施敘述中，何者正確？", "options": {"A": "生活飲食中避免吸菸飲酒，飲食增加蔬果及飽和脂肪含量高食物，可以降低大腸直腸癌風險", "B": "戒菸為最有效的肺癌預防措施之一", "C": "35 歲以上女性應接種含有人類乳突病毒（Human Papillomavirus, HPV）抗原的疫苗，來預防子宮頸癌", "D": "避免喝酒可以預防多種癌症，但和乳癌無關"}, "images": [], "answer": "B"}, {"n": 68, "stem": "糖尿病病患常併發血脂異常症（dyslipidemia），而增加心血管的風險。對未患有心血管疾病的糖尿病病 患，下列血脂異常時的治療目標敘述中，何者正確？①低密度脂蛋白膽固醇（Low Density Lipoprotein- Cholesterol，LDL-C）低於 2.6 mmol/L（＜100 mg/dL） ②男性高密度脂蛋白膽固醇（High Density Lipoprotein-Cholesterol，HDL-C）高於 1.1 mmol/L（＞40 mg/dL），女性高密度脂蛋白膽固醇高於 1.38 mmol/L（＞50 mg/dL） ③男性高密度脂蛋白膽固醇高於 1.38 mmol/L（＞50 mg/dL），女性高密度脂蛋白 膽固醇高於 1.1 mmol/L（＞40 mg/dL） ④所有 40 歲以上的糖尿病患者，無論低密度脂蛋白膽固醇水平如 何，均應服用史他汀（statin）類藥物 ⑤三酸甘油酯低於 1.4 mmol/L（＜120 mg/dL）", "options": {"A": "①②④", "B": "①②⑤", "C": "①③④", "D": "①③⑤"}, "images": [], "answer": "A"}, {"n": 69, "stem": "正常人血壓定義為收縮壓低於 120 mmHg 且舒張壓低於 80mmHg，高血壓是心血管疾病及其併發症的主要危險 因子，80～95％的患者為病因不明的原發性高血壓（essential hypertension）。有關高血壓的敘述，下列 何者正確？①第一期高血壓（stage 1 hypertension）定義為收縮壓 130～139 mmHg 或舒張壓 80～90 mmHg ②第二期高血壓（stage 2 hypertension）定義為收縮壓≧140 mmHg 或舒張壓≧90 mmHg ③40 歲及以下或 65 歲以後才出現高血壓的患者應考慮繼發性高血壓（secondary hypertension） ④單純收縮期高血壓 （Isolated systolic hypertension）定義為收縮壓≧140 mmHg，而舒張壓低於 90 mmHg", "options": {"A": "①②③", "B": "①②④", "C": "②③④", "D": "①③④"}, "images": [], "answer": "B"}, {"n": 70, "stem": "有關骨性關節炎的特徵，下列敘述何者正確？", "options": {"A": "罹病者男性多於女性", "B": "病變起始於軟骨", "C": "常侵犯手的近端指間關節", "D": "晨間僵硬常超過一個小時"}, "images": [], "answer": "B"}, {"n": 71, "stem": "下列何種初級感覺輸入神經，其結構半徑最大？", "options": {"A": "Aα", "B": "Aβ", "C": "Aδ", "D": "C"}, "images": [], "answer": "A"}, {"n": 72, "stem": "有關良性陣發性姿勢性眩暈的敘述，下列何者錯誤？", "options": {"A": "中高齡、女性、或頭部受傷過較容易產生", "B": "成因為沉積物或耳石影響內耳耳蝸的功能所造成", "C": "耳石復位術通常可以有效治療病人的症狀", "D": "手術治療良性陣發性姿勢性眩暈，會有永久聽覺損失，或是顏面神經受損的風險"}, "images": [], "answer": "B"}, {"n": 73, "stem": "有關食道癌的敘述，下列何者錯誤？", "options": {"A": "通常確診已屬較後期", "B": "西方國家的危險因子主要為肥胖和胃食道逆流，而亞洲則為抽菸和喝酒", "C": "絕大多數病患可藉由內視鏡局部燒灼或內視鏡粘膜切除術完全治癒", "D": "對於局部後期腺癌或鱗狀細胞癌，常需要術前化療或放療，再接受食道切除手術"}, "images": [], "answer": "C"}, {"n": 74, "stem": "中風行動不便，或長期臥床的老年人，可能在尾骶骨、髖部或腳跟產生壓瘡，對於壓瘡分級，下列何者錯 誤？", "options": {"A": "第一級壓瘡：皮膚完整，按壓不會變白的紅斑", "B": "第二級壓瘡：部分皮膚受損之傷口，包括表皮和真皮", "C": "第三級壓瘡：全層皮膚受損之傷口，包括皮下組織，但未超過筋膜層", "D": "第四級壓瘡：全層皮膚受損之傷口，但由於腐肉和焦痂覆蓋，不能判斷深度是否超過筋膜層"}, "images": [], "answer": "D"}, {"n": 75, "stem": "足球員膝關節受傷容易有 terrible triad，不包括下列那一項組織受傷？", "options": {"A": "前十字韌帶", "B": "內側半月軟骨", "C": "外側半月軟骨", "D": "內側附韌帶"}, "images": [], "answer": "C"}, {"n": 76, "stem": "關於鎖骨骨折之敘述，下列何者錯誤？", "options": {"A": "很少須開刀治療", "B": "開放性鎖骨骨折為開刀之適應症之一", "C": "大多數發生於中段 1/3 處", "D": "遠端 1/3 處之鎖骨骨折一定要開刀"}, "images": [], "answer": "D"}, {"n": 77, "stem": "下列何者不是氣候變遷所產生的間接衝擊？", "options": {"A": "冷熱傷害", "B": "擾動生態系統", "C": "失衡的社會經濟系統", "D": "破壞人為系統"}, "images": [], "answer": "A"}, {"n": 78, "stem": "某社區中共有 1000 位住民，年初時計有 50 名糖尿病患者；於一年期間內，5 名患者死亡、5 名患者遷出社 區，並新增 15 名糖尿病個案；另有 20 名未罹患糖尿病之民眾遷出，但無民眾遷入。此社區於年末時之糖尿 病盛行率為何？", "options": {"A": "5.5％", "B": "5.7％", "C": "6.5％", "D": "6.7％"}, "images": [], "answer": "B"}, {"n": 79, "stem": "醫院人力資源規劃，是針對醫院的業務發展需要，對其所需要的人力供需預做估計規劃，應該考慮下列那些 因素？①政府法規 ②人力市場及科技進步 ③未來營運計畫 ④業務現況", "options": {"A": "僅①②", "B": "僅②③", "C": "僅①②③", "D": "①②③④"}, "images": [], "answer": "D"}, {"n": 80, "stem": "有關職業的危害與疾病，下列敘述何者錯誤？", "options": {"A": "異常的溫濕度為化學性的職業危害", "B": "長期異常的振動暴露為物理性的職業危害", "C": "棉紡業是花粉生物性暴露的一類職業", "D": "不正確的姿勢搬運重物可引起人體工學性的職業危害"}, "images": [], "answer": "A"}], "examCode": "115090"}};
+
+const state = {
+  paper: "Q1",
+  idx: {Q1: 0, Q2: 0},
+  picks: { Q1: {}, Q2: {} }, // hydrated later, after persistence block defines PICKS_STORAGE_KEY
+};
+
+const $ = sel => document.querySelector(sel);
+const main = $("#main");
+const grid = $("#grid");
+const progressEl = $("#progress");
+
+function isCorrect(paper, n, pick) {
+  const ans = DATA[paper].questions[n-1].answer;
+  if (ans === "#") return true; // 一律給分
+  return ans.indexOf(pick) >= 0; // single "A" or multi "AB" (X 或 Y 均給分)
+}
+
+function picksDone(paper) {
+  return Object.keys(state.picks[paper]).length;
+}
+
+function score(paper) {
+  let s = 0;
+  for (const n in state.picks[paper]) {
+    if (isCorrect(paper, parseInt(n), state.picks[paper][n])) s++;
+  }
+  return s;
+}
+
+function renderGrid() {
+  grid.innerHTML = "";
+  const qs = DATA[state.paper].questions;
+  for (let i = 0; i < qs.length; i++) {
+    const n = i + 1;
+    const btn = document.createElement("button");
+    btn.className = "gbtn";
+    btn.textContent = n;
+    if (state.idx[state.paper] === i && !state.viewSummary) btn.classList.add("cur");
+    if (n in state.picks[state.paper]) {
+      const ok = isCorrect(state.paper, n, state.picks[state.paper][n]);
+      btn.classList.add(ok ? "right" : "wrong");
+    }
+    if (isMarked(state.paper, n)) btn.classList.add("marked");
+    btn.onclick = () => { state.viewSummary = false; state.idx[state.paper] = i; render(); };
+    grid.appendChild(btn);
+  }
+}
+
+function escapeHTML(s) { return s.replace(/&/g, "&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function renderQuestion() {
+  const qs = DATA[state.paper].questions;
+  const i = state.idx[state.paper];
+  const q = qs[i];
+  const pick = state.picks[state.paper][q.n];
+  const locked = !!pick;
+  const correct = q.answer;
+  const total = qs.length;
+  progressEl.textContent = `第 ${i+1} 題 / 共 ${total} 題　·　已作答 ${picksDone(state.paper)}　·　目前得分 ${score(state.paper)}`;
+
+  let imgsHTML = "";
+  for (const u of q.images) imgsHTML += `<img class="qimg" src="${u}" alt="題目附圖">`;
+
+  let optsHTML = "";
+  for (const k of ["A","B","C","D"]) {
+    let cls = "opt";
+    if (locked) {
+      cls += " locked";
+      const isCorrLetter = (correct !== "#" && correct.indexOf(k) >= 0);
+      if (isCorrLetter) cls += " correct";
+      else if (k === pick && correct !== "#") cls += " wrong";
+      else if (correct === "#" && k === pick) cls += " correct";
+    }
+    optsHTML += `<button class="${cls}" data-k="${k}" ${locked ? "disabled" : ""}>
+      <span class="label">${k}.</span><span>${escapeHTML(q.options[k] || "")}</span>
+    </button>`;
+  }
+
+  let verdictHTML = "";
+  if (locked) {
+    if (correct === "#") {
+      verdictHTML = `<div class="verdict note">
+        <h3>本題經考選部公告「一律給分」</h3>
+        <div>${escapeHTML(q.explanation || "")}</div>
+      </div>`;
+    } else if (correct.length > 1) {
+      const ok = correct.indexOf(pick) >= 0;
+      const letters = correct.split("").join(" 或 ");
+      verdictHTML = `<div class="verdict note">
+        <h3>本題經考選部公告「答 ${letters} 均給分」　·　${ok ? "✓ 你的選擇 ("+pick+") 在正解內" : "✗ 你選 "+pick+"，未在正解內"}</h3>
+        <div>${escapeHTML(q.explanation || "")}</div>
+      </div>`;
+    } else {
+      const ok = pick === correct;
+      verdictHTML = `<div class="verdict ${ok ? "right" : "wrong"}">
+        <h3>${ok ? "✓ 答對" : "✗ 答錯"}　·　正解：${correct}</h3>
+        <div>${escapeHTML(q.explanation || "")}</div>
+      </div>`;
+    }
+  }
+
+  main.innerHTML = `<div class="card">
+    <div class="qhead">
+      <span class="qnum">第 ${q.n} 題</span>
+      <span class="qmeta">${DATA[state.paper].label}　·　${q.images.length>0?"含附圖":"純文字"}${isMarked(state.paper, q.n) ? ' <span class="marked-badge">🔖 已標記</span>' : ''}</span>
+      <button class="markbtn ${isMarked(state.paper, q.n) ? "marked" : ""}" id="markBtn" title="標記此題以便日後複習">${isMarked(state.paper, q.n) ? "🔖 已標記" : "🔖 標記"}</button>
+    </div>
+    <div class="stem">${escapeHTML(q.stem)}</div>
+    ${imgsHTML}
+    <div class="opts">${optsHTML}</div>
+    ${verdictHTML}
+    <div class="nav">
+      <button class="btn ghost" id="prevBtn" ${i===0?"disabled":""}>← 上一題</button>
+      <button class="btn" id="nextBtn" ${i===total-1?"disabled":""}>下一題 →</button>
+      <button class="btn ghost" id="clearBtn" ${locked?"":"disabled"}>清除本題作答</button>
+      ${i===total-1?'<button class="btn" id="finishBtn">完成本卷 / 看總結</button>':""}
+    </div>
+  </div>`;
+
+  // wire up
+  main.querySelectorAll(".opt").forEach(el => {
+    el.onclick = () => {
+      if (locked) return;
+      const k = el.getAttribute("data-k");
+      state.picks[state.paper][q.n] = k;
+      savePicks();
+      render();
+    };
+  });
+  $("#prevBtn").onclick = () => { if (i>0) { state.idx[state.paper] = i-1; render(); } };
+  $("#nextBtn").onclick = () => { if (i<total-1) { state.idx[state.paper] = i+1; render(); } };
+  $("#clearBtn").onclick = () => { delete state.picks[state.paper][q.n]; savePicks(); render(); };
+  $("#markBtn").onclick = () => { toggleMark(state.paper, q.n); render(); };
+  const fb = document.getElementById("finishBtn");
+  if (fb) fb.onclick = () => { state.viewSummary = true; render(); };
+}
+
+function renderSummary() {
+  const qs = DATA[state.paper].questions;
+  const total = qs.length;
+  const done = picksDone(state.paper);
+  const s = score(state.paper);
+  const pct = ((s/total)*100).toFixed(1);
+  progressEl.textContent = `本卷總結　·　已作答 ${done}/${total}　·　得分 ${s}　·　已標記 ${markedCount(state.paper)}`;
+
+  const wrongRows = [];
+  for (let i = 0; i < qs.length; i++) {
+    const q = qs[i];
+    const pick = state.picks[state.paper][q.n];
+    if (pick === undefined) continue;
+    if (q.answer === "#") continue;
+    if (pick === q.answer) continue;
+    const stemShort = q.stem.length > 50 ? q.stem.slice(0, 50) + "…" : q.stem;
+    wrongRows.push(`<div class="wrong-row" data-idx="${i}">
+      <strong>第 ${q.n} 題</strong>
+      <span style="color:var(--red);">你選 ${pick}</span>
+      <span style="color:var(--green);">正解 ${q.answer}</span>
+      <span style="color:var(--ink-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHTML(stemShort)}</span>
+    </div>`);
+  }
+  const unansweredRows = [];
+  for (let i = 0; i < qs.length; i++) {
+    if (state.picks[state.paper][qs[i].n] === undefined) {
+      unansweredRows.push(`<div class="wrong-row" data-idx="${i}" style="border-color:var(--yellow);"><strong>第 ${qs[i].n} 題</strong><span style="color:var(--yellow);">未作答</span></div>`);
+    }
+  }
+
+  main.innerHTML = `<div class="card summary">
+    <h2>${DATA[state.paper].label} · 總結</h2>
+    <div class="score">${s} / ${total}　<span style="font-size:18px;color:var(--ink-soft);">(${pct}%)</span></div>
+    <div style="color:var(--ink-soft);font-size:14px;">已作答 ${done} 題　·　答對 ${s} 題　·　答錯 ${done - s} 題　·　未作答 ${total - done} 題</div>
+    <div style="margin-top:18px;">
+      <h3 style="margin:0 0 6px;">錯題清單（${wrongRows.length}）</h3>
+      <div class="wrong-list">${wrongRows.join("") || '<div style="color:var(--ink-soft);">沒有錯題，太強了！</div>'}</div>
+    </div>
+    ${unansweredRows.length>0?`<div style="margin-top:14px;">
+      <h3 style="margin:0 0 6px;">未作答（${unansweredRows.length}）</h3>
+      <div class="wrong-list">${unansweredRows.join("")}</div>
+    </div>`:""}
+    ${(()=>{ const rows=[]; for (let i=0;i<qs.length;i++){ const q=qs[i]; if (!isMarked(state.paper,q.n)) continue; const pick=state.picks[state.paper][q.n]; const stemShort = q.stem.length>50?q.stem.slice(0,50)+'…':q.stem; const tag = pick===undefined?'未作答':(q.answer==='#'?'一律給分':(pick===q.answer?'答對':'答錯')); const tagColor = pick===undefined?'var(--ink-soft)':(q.answer==='#'?'var(--yellow)':(pick===q.answer?'var(--green)':'var(--red)')); rows.push(`<div class="wrong-row mk" data-idx="${i}"><strong>★ 第 ${q.n} 題</strong><span style="color:${tagColor};">${tag}</span><span style="color:var(--ink-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHTML(stemShort)}</span></div>`); } return rows.length>0 ? `<div style="margin-top:14px;"><h3 style="margin:0 0 6px;">🔖 已標記題目（${rows.length}）</h3><div class="wrong-list">${rows.join('')}</div><button class="btn ghost" id="clearMarksBtn" style="margin-top:8px;font-size:13px;">清除本卷所有標記</button></div>` : ''; })()}
+    <div class="nav" style="margin-top:18px;">
+      <button class="btn ghost" id="backBtn">← 回到題目</button>
+      <button class="btn danger" id="resetBtn2">重置本卷</button>
+    </div>
+  </div>`;
+  main.querySelectorAll(".wrong-row").forEach(el => {
+    el.onclick = () => {
+      state.idx[state.paper] = parseInt(el.getAttribute("data-idx"));
+      state.viewSummary = false; render();
+    };
+  });
+  document.getElementById("backBtn").onclick = () => { state.viewSummary = false; render(); };
+  const cmb = document.getElementById("clearMarksBtn");
+  if (cmb) cmb.onclick = () => { if (confirm("確定要清除「" + DATA[state.paper].label + "」這一卷的所有標記嗎？")) { clearAllMarks(state.paper); render(); } };
+  document.getElementById("resetBtn2").onclick = () => { resetCurrent(); };
+}
+
+function render() {
+  renderGrid();
+  if (state.viewSummary) renderSummary();
+  else renderQuestion();
+}
+
+function resetCurrent() {
+  if (!confirm(`確定要清除「${DATA[state.paper].label}」這一卷的所有作答與標記嗎？`)) return;
+  state.picks[state.paper] = {};
+  state.marks[state.paper] = {};
+  state.idx[state.paper] = 0;
+  state.viewSummary = false;
+  savePicks();
+  saveMarks();
+  render();
+}
+
+document.querySelectorAll(".tab").forEach(t => {
+  t.onclick = () => {
+    document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+    t.classList.add("active");
+    state.paper = t.getAttribute("data-tab");
+    state.viewSummary = false;
+    render();
+  };
+});
+$("#resetBtn").onclick = resetCurrent;
+$("#summaryBtn").onclick = () => { state.viewSummary = true; render(); };
+$("#clearMarksOnlyBtn").onclick = () => {
+  if (!confirm("確定清除本卷（" + DATA[state.paper].label + "）的所有 🔖 標記？\n（作答資料保留，其他卷的標記不動）\n此操作無法復原。")) return;
+  state.marks[state.paper] = {};
+  saveMarks();
+  alert("✓ 已清除本卷的所有標記。");
+  render();
+};
+
+
+// ===== Answer persistence (per-paper picks, saved to localStorage) =====
+const PICKS_STORAGE_KEY = _userKey("nephron_114_intro_picks_v1");
+const QUIZ_ID = "intro_114";  // unique id used when broadcasting summary
+
+function loadPicks() {
+  try {
+    const s = localStorage.getItem(PICKS_STORAGE_KEY);
+    if (s) {
+      const parsed = JSON.parse(s);
+      return { Q1: parsed.Q1 || {}, Q2: parsed.Q2 || {} };
+    }
+  } catch (e) {}
+  return { Q1: {}, Q2: {} };
+}
+function savePicks() {
+  try { localStorage.setItem(PICKS_STORAGE_KEY, JSON.stringify(state.picks)); } catch (e) {}
+  broadcastProgress();
+}
+
+// Send a summary of progress to parent window if embedded in an iframe.
+// Used by the dashboard (index.html) to show progress bars.
+
+
+/* Auto-jump to specific question from URL hash (e.g. #paper=Q1&q=27) */
+function _autoJumpFromHash() {
+  try {
+    const h = location.hash || "";
+    if (!h.includes("paper=") && !h.includes("q=")) return;
+    const pm = h.match(/paper=(Q[12])/);
+    const qm = h.match(/[&?#]q=(\d+)/);
+    if (pm) {
+      const newPaper = pm[1];
+      if (DATA[newPaper]) {
+        state.paper = newPaper;
+        document.querySelectorAll(".tab").forEach(t => {
+          t.classList.toggle("active", t.getAttribute("data-tab") === newPaper);
+        });
+      }
+    }
+    if (qm) {
+      const qNum = parseInt(qm[1], 10);
+      const qs = DATA[state.paper].questions;
+      const idx = qs.findIndex(qq => qq.n === qNum);
+      if (idx >= 0) state.idx[state.paper] = idx;
+    }
+    state.viewSummary = false;
+    render();
+    /* Clear hash so refresh doesn't re-trigger */
+    history.replaceState(null, "", location.pathname + location.search);
+    /* Smooth scroll to question for visibility */
+    setTimeout(() => {
+      const main = document.getElementById("main");
+      if (main) main.scrollIntoView({behavior: "smooth", block: "start"});
+    }, 100);
+  } catch(e) {}
+}
+if (document.readyState !== "loading") setTimeout(_autoJumpFromHash, 200);
+else document.addEventListener("DOMContentLoaded", () => setTimeout(_autoJumpFromHash, 200));
+
+function broadcastFullData() {
+  if (typeof window === "undefined") return;
+  let target = null;
+  try { if (window.parent && window.parent !== window) target = window.parent; } catch(e){}
+  if (!target) return;
+  try {
+    const msg = { type: "quizData", quizId: QUIZ_ID, href: location.pathname, papers: {} };
+    for (const tag of ["Q1","Q2"]) {
+      const qs = DATA[tag].questions;
+      const paperLabel = DATA[tag].label;
+      const slim = qs.map(q => ({
+        n: q.n,
+        stem: q.stem,
+        options: q.options,
+        answer: q.answer,
+        explanation: q.explanation,
+        hasImages: !!(q.images && q.images.length > 0),
+        images: (q.images || []).slice()
+      }));
+      msg.papers[tag] = { label: paperLabel, questions: slim };
+    }
+    target.postMessage(msg, "*");
+  } catch (e) {}
+}
+
+function broadcastProgress() {
+  if (typeof window === "undefined") return;
+  let target = null;
+  try { if (window.parent && window.parent !== window) target = window.parent; } catch(e){}
+  if (!target) return;
+  try {
+    const summary = { type: "quizSummary", quizId: QUIZ_ID, papers: {} };
+    for (const tag of ["Q1","Q2"]) {
+      const qs = DATA[tag].questions;
+      const picks = state.picks[tag] || {};
+      const marks = state.marks ? (state.marks[tag] || {}) : {};
+      let answered = 0, correct = 0;
+      for (const n in picks) {
+        answered++;
+        if (isCorrect(tag, parseInt(n), picks[n])) correct++;
+      }
+      summary.papers[tag] = {
+        label: DATA[tag].label,
+        total: qs.length,
+        answered, correct,
+        marked: Object.keys(marks).length,
+      };
+    }
+    target.postMessage(summary, "*");
+  } catch (e) {}
+}
+
+// Hydrate persisted picks now that PICKS_STORAGE_KEY and loadPicks are defined
+state.picks = loadPicks();
+
+// ===== Bookmarks (per-paper question marks, persisted to localStorage) =====
+const MARKS_STORAGE_KEY = _userKey("nephron_114_intro_marks_v1");
+function loadMarks() {
+  try {
+    const s = localStorage.getItem(MARKS_STORAGE_KEY);
+    if (s) {
+      const parsed = JSON.parse(s);
+      return { Q1: parsed.Q1 || {}, Q2: parsed.Q2 || {} };
+    }
+  } catch (e) {}
+  return { Q1: {}, Q2: {} };
+}
+function saveMarks() {
+  try { localStorage.setItem(MARKS_STORAGE_KEY, JSON.stringify(state.marks)); } catch (e) {}
+  broadcastProgress();
+}
+function toggleMark(paper, n) {
+  if (state.marks[paper][n]) delete state.marks[paper][n];
+  else state.marks[paper][n] = true;
+  saveMarks();
+}
+function isMarked(paper, n) { return !!state.marks[paper][n]; }
+function clearAllMarks(paper) {
+  state.marks[paper] = {};
+  saveMarks();
+}
+function markedCount(paper) { return Object.keys(state.marks[paper]).length; }
+state.marks = loadMarks();
+
+// ===== Export / Download report =====
+function _esc(s) {
+  return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+function _stamp() {
+  const d = new Date();
+  const p = n => String(n).padStart(2, "0");
+  return `${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}`;
+}
+function _nowStr() { return new Date().toLocaleString("zh-TW", {hour12: false}); }
+
+function _filenameStamp() {
+  const d = new Date();
+  const p = n => String(n).padStart(2, "0");
+  return d.getFullYear() + "-" + p(d.getMonth()+1) + "-" + p(d.getDate()) + "_" + p(d.getHours()) + "-" + p(d.getMinutes());
+}
+function _safeFn(s) { return String(s).replace(/[\\/:*?"<>|]/g, "_").replace(/\s+/g, "_"); }
+function _promptFn(defaultName) {
+  const v = prompt("輸入匯出檔名（不含副檔名）：\n直接按確定即使用預設。", defaultName);
+  if (v === null) return null;
+  const t = v.trim();
+  return _safeFn(t || defaultName);
+}
+
+function _filterQs(paper, filter) {
+  const qs = DATA[paper].questions;
+  const picks = state.picks[paper];
+  if (filter === "all") return qs.slice();
+  if (filter === "answered") return qs.filter(q => picks[q.n] !== undefined);
+  if (filter === "unanswered") return qs.filter(q => picks[q.n] === undefined);
+  if (filter === "wrong") {
+    return qs.filter(q => {
+      const p = picks[q.n];
+      return p !== undefined && q.answer !== "#" && q.answer.indexOf(p) < 0;
+    });
+  }
+  if (filter === "marked") return qs.filter(q => isMarked(paper, q.n));
+  return qs.slice();
+}
+
+function _filterCounts(paper) {
+  return {
+    all: _filterQs(paper, "all").length,
+    answered: _filterQs(paper, "answered").length,
+    wrong: _filterQs(paper, "wrong").length,
+    unanswered: _filterQs(paper, "unanswered").length,
+    marked: _filterQs(paper, "marked").length,
+  };
+}
+
+function buildExportHTML(paper, filter) {
+  const allQs = DATA[paper].questions;
+  const picks = state.picks[paper];
+  const qs = _filterQs(paper, filter);
+  const total = allQs.length;
+  const answered = Object.keys(picks).length;
+  const correctCount = Object.entries(picks).filter(([n, p]) => isCorrect(paper, parseInt(n), p)).length;
+  const pct = total > 0 ? ((correctCount / total) * 100).toFixed(1) : "0.0";
+  const filterLabel = {all:"全部題目", wrong:"僅錯題", answered:"僅已作答", unanswered:"僅未作答", marked:"僅已標記"}[filter];
+  const paperLabel = DATA[paper].label + (paper === "Q1" ? "（115020）" : "（115090）");
+
+  const subjectTitle = "物理治療學概論 · 民國 115 年 · " + paperLabel;
+  const fileTitle = `${_filenameStamp()}_${(NU.cur().name || "user")}_概論_114_${paperLabel.replace(/[（）]/g, "")}_${filterLabel}`;
+
+  let body = "";
+  for (const q of qs) {
+    const pick = picks[q.n];
+    const correct = q.answer;
+    const errata = (correct === "#");
+    const answeredFlag = pick !== undefined;
+    let statusLabel, statusCls;
+    const multiHere = (!errata && correct && correct.length > 1);
+    if (errata) { statusLabel = "一律給分"; statusCls = "errata"; }
+    else if (!answeredFlag) { statusLabel = "未作答"; statusCls = "unanswered"; }
+    else if (multiHere) {
+      const ok = correct.indexOf(pick) >= 0;
+      statusLabel = ok ? "✓ 多解·入正解" : "✗ 多解·未入正解";
+      statusCls = ok ? "correct" : "wrong";
+    }
+    else if (pick === correct) { statusLabel = "✓ 答對"; statusCls = "correct"; }
+    else { statusLabel = "✗ 答錯"; statusCls = "wrong"; }
+
+    let imgsHTML = "";
+    for (const u of q.images) {
+      imgsHTML += `<img class="qimg" src="${u}" alt="題目附圖">`;
+    }
+
+    let optsHTML = "";
+    const multi = (!errata && correct && correct.length > 1);
+    for (const k of ["A","B","C","D"]) {
+      const isPick = (k === pick);
+      const isCorr = (!errata && correct && correct.indexOf(k) >= 0);
+      let cls = "opt";
+      let tag = "";
+      if (isPick && isCorr) { cls += " correct user-pick"; tag = "（你的選擇 ✓）"; }
+      else if (isPick && !isCorr && !errata) { cls += " wrong user-pick"; tag = "（你的選擇 ✗）"; }
+      else if (isCorr) { cls += " correct"; tag = (multi ? "（正解之一）" : "（正解）"); }
+      else if (isPick && errata) { cls += " errata user-pick"; tag = "（你的選擇）"; }
+      optsHTML += `<li class="${cls}"><b>${k}.</b> ${_esc(q.options[k] || "")}<span class="opt-tag">${tag}</span></li>`;
+    }
+
+    let verdictHTML = "";
+    if (errata) {
+      verdictHTML = `<div class="verdict errata"><b>本題經考選部公告「一律給分」</b>${answeredFlag ? `（你選了 ${pick}）` : ""}</div>`;
+    } else if (multi) {
+      const letters = correct.split("").join(" 或 ");
+      const ok = answeredFlag && correct.indexOf(pick) >= 0;
+      verdictHTML = `<div class="verdict errata"><b>本題經考選部公告「答 ${letters} 均給分」</b>${answeredFlag ? ` · 你選 <b>${pick}</b>${ok ? " ✓" : " ✗"}` : " · 未作答"}</div>`;
+    } else if (!answeredFlag) {
+      verdictHTML = `<div class="verdict unanswered"><b>未作答</b> · 正解：<b>${correct}</b></div>`;
+    } else {
+      const ok = pick === correct;
+      verdictHTML = `<div class="verdict ${ok ? "correct" : "wrong"}"><b>${ok ? "✓ 答對" : "✗ 答錯"}</b> · 你的選擇：<b>${pick}</b> · 正解：<b>${correct}</b></div>`;
+    }
+
+    const explHTML = q.explanation ? `<div class="expl"><b>詳解 ▸</b> ${_esc(q.explanation)}</div>` : "";
+
+    const markedBadge = isMarked(paper, q.n) ? ` <span class="qstatus marked">🔖 已標記</span>` : "";
+    body += `<article class="q ${statusCls}">
+  <div class="qhead">
+    <h2>第 ${q.n} 題</h2>
+    <span class="qstatus ${statusCls}">${statusLabel}</span>${markedBadge}
+  </div>
+  <div class="stem">${_esc(q.stem)}</div>
+  ${imgsHTML}
+  <ol class="opts">${optsHTML}</ol>
+  ${verdictHTML}
+  ${explHTML}
+</article>`;
+  }
+
+  const css = `
+:root { --ink:#1f2933; --soft:#52606d; --line:#dde2e7; --primary:#1d6f9b;
+  --green:#2f9e44; --green-soft:#e6f7ec; --red:#c92a2a; --red-soft:#fff0f0;
+  --yellow:#a07700; --yellow-soft:#fff8d8; --grey:#f3f4f6; }
+* { box-sizing: border-box; }
+body { font-family: -apple-system, "Segoe UI", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  color: var(--ink); line-height: 1.7; margin: 0; padding: 0; background: #fafbfc; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 24px 22px 60px; }
+header.report { padding: 18px 22px; border-bottom: 2px solid var(--primary); background: #fff; margin: -24px -22px 24px; }
+header.report h1 { margin: 0 0 6px; font-size: 19px; font-weight: 700; color: var(--primary); }
+header.report .meta { color: var(--soft); font-size: 13px; line-height: 1.7; }
+header.report .score { font-size: 22px; color: var(--primary); font-weight: 700; }
+header.report .actions { margin-top: 10px; }
+.print-btn { background: var(--primary); color: #fff; border: 0; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+article.q { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; margin-bottom: 14px; page-break-inside: avoid; break-inside: avoid; }
+article.q.correct { border-left: 4px solid var(--green); }
+article.q.wrong { border-left: 4px solid var(--red); }
+article.q.errata { border-left: 4px solid var(--yellow); }
+article.q.unanswered { border-left: 4px solid var(--soft); background: #fcfcfd; }
+.qhead { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+.qhead h2 { font-size: 15px; margin: 0; font-weight: 700; }
+.qstatus { font-size: 12px; padding: 2px 9px; border-radius: 999px; font-weight: 600; }
+.qstatus.correct { background: var(--green-soft); color: var(--green); }
+.qstatus.wrong { background: var(--red-soft); color: var(--red); }
+.qstatus.errata { background: var(--yellow-soft); color: var(--yellow); }
+.qstatus.unanswered { background: var(--grey); color: var(--soft); }
+.qstatus.marked { background: var(--yellow-soft); color: var(--yellow); margin-left: 4px; }
+.stem { font-size: 15px; white-space: pre-wrap; word-break: break-word; margin-bottom: 10px; }
+.qimg { display: block; max-width: 100%; max-height: 380px; margin: 8px 0; border: 1px solid var(--line); border-radius: 4px; }
+ol.opts { list-style: none; padding-left: 0; margin: 8px 0; }
+ol.opts li.opt { padding: 7px 12px; border: 1px solid var(--line); border-radius: 6px; margin-bottom: 5px; font-size: 14px; background: #fff; display: flex; gap: 8px; align-items: flex-start; }
+ol.opts li.opt b { min-width: 22px; }
+ol.opts li.opt .opt-tag { margin-left: auto; font-size: 12px; font-weight: 600; }
+ol.opts li.opt.correct { background: var(--green-soft); border-color: var(--green); color: #186b29; }
+ol.opts li.opt.wrong { background: var(--red-soft); border-color: var(--red); color: #861818; }
+ol.opts li.opt.errata { background: var(--yellow-soft); border-color: var(--yellow); }
+.verdict { padding: 8px 12px; border-radius: 6px; font-size: 13px; margin-top: 8px; }
+.verdict.correct { background: var(--green-soft); color: #186b29; }
+.verdict.wrong { background: var(--red-soft); color: #861818; }
+.verdict.errata { background: var(--yellow-soft); color: #6b4e00; }
+.verdict.unanswered { background: var(--grey); color: var(--soft); }
+.expl { margin-top: 8px; padding: 10px 14px; background: #f5f7fa; border-left: 3px solid var(--primary); border-radius: 0 6px 6px 0; font-size: 13.5px; line-height: 1.75; color: #2c3a44; }
+.empty { padding: 40px; text-align: center; color: var(--soft); border: 1px dashed var(--line); border-radius: 8px; background: #fff; }
+@media print {
+  body { background: #fff; }
+  .print-btn, .actions { display: none !important; }
+  header.report { margin: 0; border-bottom: 2px solid #000; }
+  article.q { box-shadow: none; }
+}
+`;
+
+  let main;
+  if (qs.length === 0) {
+    main = `<div class="empty">沒有符合條件的題目（${filterLabel}）。</div>`;
+  } else {
+    main = body;
+  }
+
+  const html = `<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${_esc(fileTitle)}</title>
+<style>${css}</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="report">
+    <h1>${_esc(subjectTitle)}</h1>
+    <div class="score">得分 ${correctCount} / ${total} （${pct}%）</div>
+    <div class="meta">
+      已作答 ${answered} 題 · 答對 ${correctCount} 題 · 答錯 ${answered - correctCount} 題 · 未作答 ${total - answered} 題 · 🔖 已標記 ${markedCount(paper)} 題<br>
+      匯出範圍：<b>${filterLabel}</b>（${qs.length} 題） · 匯出時間：${_nowStr()}
+    </div>
+    <div class="actions">
+      <button class="print-btn" onclick="window.print()">列印 / 存成 PDF</button>
+    </div>
+  </header>
+  <main>${main}</main>
+</div>
+
+</div>
+
+</body>
+</html>`;
+  return { html, fileTitle };
+}
+
+function downloadExport(filter) {
+  const built = buildExportHTML(state.paper, filter);
+  const html = built.html;
+  const fn = _promptFn(built.fileTitle);
+  if (!fn) return;
+  const fileTitle = fn;
+  const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const isAndroidWebView = /Android.*wv|Version\/.*Chrome\/[.0-9]+ Mobile/.test(navigator.userAgent) && !/Chrome\/[.0-9]+ (Mobile )?Safari/.test(navigator.userAgent);
+  // Try standard download flow first
+  try {
+    const a = document.createElement("a");
+    a.href = url; a.download = fileTitle + ".html";
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  } catch (err) { /* fallthrough */ }
+  // iOS Safari ignores the download attribute. Open the blob in a new tab so user can save via share sheet.
+  if (isIOS) {
+    setTimeout(() => {
+      const win = window.open(url, "_blank");
+      if (!win || win.closed) {
+        // Popup blocked - navigate current page instead
+        location.href = url;
+      }
+      alert("iOS 提示：\n剛開啟的頁面就是匯出結果。\n\n要儲存：\n1. 點下方「分享」按鈕（方框上箭頭）\n2. 選「儲存到檔案」或「Save to Files」\n\n或長按頁面 → 「儲存」即可。");
+    }, 100);
+  } else if (isAndroidWebView) {
+    setTimeout(() => {
+      alert("提示：若沒看到下載提示，請改用 Chrome / Firefox 等瀏覽器開啟此網頁再匯出。");
+    }, 200);
+  }
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+
+function showExportModal() {
+  const modal = document.getElementById("exportModal");
+  // Update counts based on current paper state
+  const c = _filterCounts(state.paper);
+  document.getElementById("cntAll").textContent = `(${c.all} 題)`;
+  document.getElementById("cntAnswered").textContent = `(${c.answered} 題)`;
+  document.getElementById("cntWrong").textContent = `(${c.wrong} 題)`;
+  document.getElementById("cntUnans").textContent = `(${c.unanswered} 題)`;
+  document.getElementById("cntMarked").textContent = `(${c.marked} 題)`;
+  document.getElementById("exportSub").textContent =
+    "本卷：" + DATA[state.paper].label + (state.paper === "Q1" ? "（115020）" : "（115090）");
+  // Disable empty options
+  document.querySelectorAll("#exportOpts .exp-opt").forEach(b => {
+    const f = b.getAttribute("data-filter");
+    b.disabled = (c[f] === 0);
+  });
+  modal.classList.add("show");
+}
+function hideExportModal() {
+  document.getElementById("exportModal").classList.remove("show");
+}
+
+document.getElementById("exportBtn").onclick = showExportModal;
+document.getElementById("closeExportBtn").onclick = hideExportModal;
+document.getElementById("exportModal").addEventListener("click", e => {
+  if (e.target.id === "exportModal") hideExportModal();
+});
+document.querySelectorAll("#exportOpts .exp-opt").forEach(btn => {
+  btn.onclick = () => {
+    const filter = btn.getAttribute("data-filter");
+    if (btn.disabled) return;
+    downloadExport(filter);
+    hideExportModal();
+  };
+});
+
+render();
+// Broadcast initial state to parent (dashboard) if loaded as iframe
+broadcastProgress();
+broadcastFullData();
+
+
+function downloadJSONBackup() {
+  const obj = NU.exportAll();
+  const def = _filenameStamp() + "_" + (NU.cur().name || "user") + "_概論_114";
+  const fn = _promptFn(def);
+  if (!fn) return;
+  const fileTitle = fn;
+  const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  try { const a = document.createElement("a"); a.href = url; a.download = fileTitle + ".json"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove(); } catch (e) {}
+  if (isIOS) {
+    setTimeout(() => {
+      const win = window.open(url, "_blank");
+      if (!win || win.closed) location.href = url;
+      alert("iOS：剛開啟的頁面就是 JSON 備份。\n按下方「分享」→「儲存到檔案」即可儲存。");
+    }, 100);
+  }
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+function importJSONBackupFromFile(file, scope) {
+  // scope: "this" = only current paper's keys, "all" = everything (true replace for both)
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const obj = JSON.parse(e.target.result);
+      if (!obj || !obj.data || obj.app !== "nephron-pt-quiz") throw new Error("無效的備份檔");
+      const picksBase = PICKS_STORAGE_KEY.split("::u::")[0];
+      const marksBase = MARKS_STORAGE_KEY.split("::u::")[0];
+      const cur = NU.ck();
+      const dataKeys = Object.keys(obj.data);
+      if (scope === "this") {
+        // Find this paper's data in backup (any user namespace)
+        let foundPicks = null, foundMarks = null;
+        for (const k of dataKeys) {
+          const baseK = k.split("::u::")[0];
+          if (baseK === picksBase) foundPicks = obj.data[k];
+          if (baseK === marksBase) foundMarks = obj.data[k];
+        }
+        if (foundPicks === null && foundMarks === null) {
+          alert("此備份檔不包含本卷的資料。"); return;
+        }
+        const msg = "還原本卷至備份狀態，匯入到目前使用者「" + NU.cur().name + "」。\n（若備份未含 picks/marks，現有同類別資料會被清除以還原為「未作答」狀態。）\n確定？";
+        if (!confirm(msg)) return;
+        // True replace: clear current user's keys for this subject, then set from backup if present
+        const picksKeyForCur = picksBase + "::u::" + cur;
+        const marksKeyForCur = marksBase + "::u::" + cur;
+        if (foundPicks !== null) localStorage.setItem(picksKeyForCur, foundPicks);
+        else localStorage.removeItem(picksKeyForCur);
+        if (foundMarks !== null) localStorage.setItem(marksKeyForCur, foundMarks);
+        else localStorage.removeItem(marksKeyForCur);
+        alert("✓ 本卷進度已還原。即將重新整理頁面。");
+      } else {
+        const userCount = obj.users ? obj.users.length : "?";
+        if (!confirm("還原「全部」資料：" + userCount + " 位使用者、" + dataKeys.length + " 筆 key。\n現有所有 nephron 資料將被「完全替換」為備份內容（未在備份中的會被清除）。\n確定？")) return;
+        const n = NU.importAll(obj, "replace");
+        alert("✓ 已還原 " + n + " 筆資料。即將重新整理頁面。");
+      }
+      location.reload();
+    } catch (err) { alert("匯入失敗：" + err.message); }
+  };
+  reader.readAsText(file);
+}
+(function() {
+  function inject() {
+    const opts = document.getElementById("exportOpts");
+    if (!opts || document.getElementById("expJsonBtn")) return;
+    const jsonBtn = document.createElement("button");
+    jsonBtn.className = "exp-opt"; jsonBtn.id = "expJsonBtn";
+    jsonBtn.innerHTML = '💾 進度備份 JSON（跨裝置同步用） <span class="count">全部使用者</span>';
+    jsonBtn.onclick = () => { downloadJSONBackup(); hideExportModal(); };
+    opts.appendChild(jsonBtn);
+    const importDiv = document.createElement("div");
+    importDiv.style.cssText = "margin-top:14px; padding-top:14px; border-top:1px solid var(--line);";
+    importDiv.innerHTML = '<div style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:6px;">從 JSON 還原進度</div>'
+      + '<div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">'
+      + '<input type="file" id="expImportFile" accept=".json,application/json" style="flex:1; min-width:160px; font-size:13px;" />'
+      + '<button id="expImportThis" style="padding:7px 14px; font-size:13px; background:var(--primary); color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:600;">📥 僅匯入本卷</button>'
+      + '<button id="expImportAll" style="padding:7px 14px; font-size:13px; background:#fff; color:var(--primary); border:1px solid var(--primary); border-radius:6px; cursor:pointer; font-weight:600;">📥 匯入全部</button>'
+      + '</div>'
+      + '<p style="font-size:12px; color:var(--ink-soft); margin:8px 0 0;">💡 「僅匯入本卷」只還原此測驗的 picks／marks（會匯入到目前使用者）。「匯入全部」會還原所有使用者與所有測驗。</p>';
+    opts.parentElement.insertBefore(importDiv, opts.nextSibling);
+    document.getElementById("expImportThis").onclick = () => {
+      const f = document.getElementById("expImportFile").files[0];
+      if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+      importJSONBackupFromFile(f, "this");
+    };
+    document.getElementById("expImportAll").onclick = () => {
+      const f = document.getElementById("expImportFile").files[0];
+      if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+      importJSONBackupFromFile(f, "all");
+    };
+  }
+  if (document.readyState !== "loading") setTimeout(inject, 0);
+  else document.addEventListener("DOMContentLoaded", inject);
+})();
+
+
+
+
+
+/* === Toolbar v2 wiring === */
+(function() {
+  function _esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  function refreshUserName() {
+    const e = document.getElementById("nuTbUserName"); if (e) e.textContent = NU.cur().name;
+    const c = document.getElementById("nuMdCurName"); if (c) c.textContent = NU.cur().name;
+    const c2 = document.getElementById("nuMdCurName2"); if (c2) c2.textContent = NU.cur().name;
+  }
+  function renderUserList() {
+    const list = document.getElementById("nuMdUserList"); if (!list) return;
+    const cur = NU.ck(); const users = NU.list();
+    list.innerHTML = users.map(u => {
+      const active = u.uid === cur;
+      const star = u.star ? "★ " : "";
+      return '<li class="nu-md-item' + (active ? ' active' : '') + '">'
+        + '<span class="nu-md-iname">' + star + _esc(u.name) + '</span>'
+        + '<span class="nu-md-idate">' + _esc(u.createdAt) + '</span>'
+        + '<button data-act="use" data-uid="' + u.uid + '"' + (active ? ' disabled' : '') + '>' + (active ? '使用中' : '切換') + '</button>'
+        + '<button data-act="rename" data-uid="' + u.uid + '">重新命名</button>'
+        + (u.uid === 'default' ? '' : '<button class="nu-md-del" data-act="del" data-uid="' + u.uid + '">刪除</button>')
+        + '</li>';
+    }).join('');
+    list.querySelectorAll('button').forEach(btn => {
+      btn.onclick = () => {
+        const act = btn.getAttribute('data-act'), uid = btn.getAttribute('data-uid');
+        if (act === 'use') {
+          NU.use(uid);
+          const newU = NU.list().find(x => x.uid === uid);
+          /* visual feedback before reload */
+          btn.textContent = '切換中…';
+          setTimeout(() => location.reload(), 80);
+        }
+        else if (act === 'rename') {
+          const u = NU.list().find(x => x.uid === uid);
+          const n = prompt('重新命名：', u ? u.name : '');
+          if (n) { NU.rename(uid, n); renderUserList(); refreshUserName(); }
+        } else if (act === 'del') {
+          const u = NU.list().find(x => x.uid === uid);
+          if (confirm('確定刪除「' + (u ? u.name : '') + '」？該使用者所有作答記錄將一併清除。')) {
+            NU.del(uid); renderUserList(); refreshUserName();
+            if (NU.ck() === 'default') location.reload();
+          }
+        }
+      };
+    });
+  }
+  function showMd(id) { if (id === 'nuMdUser') { renderUserList(); refreshUserName(); } document.getElementById(id).classList.add('show'); }
+  function hideMd(id) { const m = document.getElementById(id); if (m) m.classList.remove('show'); }
+  function wire() {
+    refreshUserName();
+    /* toolbar buttons */
+    const tbU = document.getElementById("nuTbUser");      if (tbU)  tbU.onclick  = () => showMd("nuMdUser");
+    const tbI = document.getElementById("nuTbIO");        if (tbI)  tbI.onclick  = () => showMd("nuMdIO");
+    const tbC = document.getElementById("nuTbClear");     if (tbC)  tbC.onclick  = () => showMd("nuMdClear");
+    /* close buttons */
+    document.querySelectorAll('[data-md-close]').forEach(b => b.onclick = () => hideMd(b.getAttribute('data-md-close')));
+    /* click outside to close */
+    document.querySelectorAll('.nu-md-bg').forEach(bg => bg.addEventListener('click', e => { if (e.target === bg) bg.classList.remove('show'); }));
+    /* user modal: add */
+    const addBtn = document.getElementById("nuMdAddBtn");
+    const newName = document.getElementById("nuMdNewName");
+    if (addBtn) addBtn.onclick = () => {
+      const v = newName.value.trim(); if (!v) { newName.focus(); return; }
+      NU.add(v); newName.value = ""; renderUserList(); refreshUserName();
+    };
+    if (newName) newName.addEventListener("keydown", e => { if (e.key === "Enter") addBtn.click(); });
+    /* IO modal: export */
+    const expBtn = document.getElementById("nuMdExpBtn");
+    if (expBtn) expBtn.onclick = () => { downloadJSONBackup(); hideMd("nuMdIO"); };
+    
+  /* Quiz: per-paper "this" import */
+  const impThis = document.getElementById("nuMdImpThis");
+  if (impThis) impThis.onclick = () => {
+    const f = document.getElementById("nuMdImpFile").files[0];
+    if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+    importJSONBackupFromFile(f, "this");
+  };
+  const impAll = document.getElementById("nuMdImpAll");
+  if (impAll) impAll.onclick = () => {
+    const f = document.getElementById("nuMdImpFile").files[0];
+    if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+    importJSONBackupFromFile(f, "all");
+  };
+    /* clear modal */
+    const clrCur = document.getElementById("nuMdClrCur");
+    if (clrCur) clrCur.onclick = () => {
+      const u = NU.cur();
+      if (!confirm('確定清除「' + u.name + '」的所有作答／標記？此操作無法復原。')) return;
+      const cur = NU.ck();
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith("nephron_") && k.endsWith("::u::" + cur)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除「' + u.name + '」的 ' + toDel.length + ' 筆紀錄。即將重新整理。');
+      location.reload();
+    };
+    const clrAllRec = document.getElementById("nuMdClrAllRec");
+    if (clrAllRec) clrAllRec.onclick = () => {
+      if (!confirm('確定清除「全部使用者」的所有作答／標記？\\n（使用者清單保留，僅清除作答資料）\\n此操作無法復原。')) return;
+      const n = NU.wipeAllProgress();
+      alert('✓ 已清除 ' + n + ' 筆紀錄。即將重新整理。');
+      location.reload();
+    };
+    const clrCurMarks = document.getElementById("nuMdClrCurMarks");
+    if (clrCurMarks) clrCurMarks.onclick = () => {
+      const u = NU.cur();
+      if (!confirm('確定清除「' + u.name + '」的所有 🔖 標記？\n（該使用者的作答資料保留，其他使用者完全不動）\n此操作無法復原。')) return;
+      const cur = NU.ck();
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && /^nephron_.*_marks_v1/.test(k) && k.endsWith('::u::' + cur)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除「' + u.name + '」的 ' + toDel.length + ' 個標記檔。即將重新整理。');
+      location.reload();
+    };
+    const clrAllMarks = document.getElementById("nuMdClrAllMarks");
+    if (clrAllMarks) clrAllMarks.onclick = () => {
+      if (!confirm('確定清除「全部使用者」的所有 🔖 標記？\n（作答資料保留）\n此操作無法復原。')) return;
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && /^nephron_.*_marks_v1/.test(k)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除 ' + toDel.length + ' 個標記檔。即將重新整理。');
+      location.reload();
+    };
+    const fullR = document.getElementById("nuMdFullReset");
+    if (fullR) fullR.onclick = () => {
+      if (!confirm('⚠️ 完全重置：刪除所有使用者、所有作答、所有標記。\\n回到全新狀態（只保留「預設」使用者）。\\n此操作無法復原，確定？')) return;
+      const n = NU.wipeAll();
+      alert('✓ 已重置 ' + n + ' 筆。即將重新整理。');
+      location.reload();
+    };
+  }
+  if (document.readyState !== "loading") setTimeout(wire, 0);
+  else document.addEventListener("DOMContentLoaded", wire);
+})();
+
+
+</script>
+
+
+
+<!-- nu modals -->
+<div class="nu-md-bg" id="nuMdUser" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>👤 使用者切換／管理</h3>
+    <div class="nu-md-sub">同一台裝置可建立多個使用者，作答進度互不干擾。<br><strong>切換使用者後會自動重新整理。</strong></div>
+    <ul class="nu-md-list" id="nuMdUserList"></ul>
+    <div class="nu-md-title">新增使用者</div>
+    <div class="nu-md-add">
+      <input type="text" id="nuMdNewName" placeholder="輸入名字…" maxlength="20" />
+      <button id="nuMdAddBtn" type="button">＋ 新增</button>
+    </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdUser" type="button">關閉</button></div>
+  </div>
+</div>
+<div class="nu-md-bg" id="nuMdIO" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>💾 匯入／匯出 JSON 備份</h3>
+    <div class="nu-md-sub">匯出 JSON 可在不同裝置間同步進度（含所有使用者與所有測驗）。</div>
+    <div class="nu-md-section">
+      <div class="nu-md-title">📤 匯出 JSON</div>
+      <button id="nuMdExpBtn" class="nu-md-btn-success" type="button" style="padding:7px 14px; font-size:13px; border-radius:6px; cursor:pointer;">💾 匯出全部 JSON</button>
+      <div class="nu-md-tip">含所有使用者、所有測驗的 picks／marks，可作為跨裝置同步的備份檔。iOS 會自動開新分頁，請用「分享 → 儲存到檔案」儲存。</div>
+    </div>
+    
+      <div class="nu-md-section">
+        <div class="nu-md-title">📥 從 JSON 還原進度</div>
+        <div class="nu-md-row">
+          <input type="file" id="nuMdImpFile" accept=".json,application/json" style="flex:1; min-width:160px; font-size:13px;" />
+        </div>
+        <div class="nu-md-row" style="gap:6px;">
+          <button id="nuMdImpThis" class="nu-md-btn-primary" type="button" style="padding:7px 12px; font-size:13px; border-radius:6px; cursor:pointer;">📥 僅匯入本卷</button>
+          <button id="nuMdImpAll" type="button" style="padding:7px 12px; font-size:13px; background:#fff; color:#1d6f9b; border:1px solid #1d6f9b; border-radius:6px; cursor:pointer; font-weight:600;">📥 匯入全部</button>
+        </div>
+        <div class="nu-md-tip">「僅匯入本卷」只還原此測驗的 picks／marks（會匯入到目前使用者，並把現有同類資料清空為「未作答」）。<br>「匯入全部」會還原所有使用者與所有測驗，未在備份中的資料會被清除（真正的「還原」語意）。</div>
+      </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdIO" type="button">關閉</button></div>
+  </div>
+</div>
+<div class="nu-md-bg" id="nuMdClear" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>🗑 清除紀錄</h3>
+    <div class="nu-md-sub" style="color:#c92a2a;"><strong>⚠️ 以下動作無法復原。</strong></div>
+    <div class="nu-md-row" style="flex-direction:column; align-items:stretch; gap:8px;">
+      <button id="nuMdClrCur" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🗑 清除「目前使用者」（<span id="nuMdCurName">預設使用者</span>）的所有紀錄<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除目前使用者的作答／標記，使用者本身保留</div></button>
+      <button id="nuMdClrAllRec" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🗑 清除「全部使用者」的所有紀錄<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">所有人的作答／標記都會清除，但使用者清單保留</div></button>
+      <button id="nuMdClrCurMarks" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🔖 清除「目前使用者」（<span id="nuMdCurName2">預設使用者</span>）的所有標記<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除目前使用者的書籤（🔖），作答資料保留</div></button>
+      <button id="nuMdClrAllMarks" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🔖 清除「全部使用者」的所有標記<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除所有人的書籤（🔖），作答資料保留</div></button>
+      <button id="nuMdFullReset" class="nu-md-btn-danger" type="button" style="padding:9px 14px; font-size:13px; border-radius:6px; cursor:pointer; text-align:left;">🔥 完全重置<div style="font-size:11px; color:rgba(255,255,255,.85); margin-top:2px; font-weight:normal;">連使用者清單一起刪除，回到全新狀態（只剩「預設」使用者）</div></button>
+    </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdClear" type="button">關閉</button></div>
+  </div>
+</div>
+
+</body>
+</html>

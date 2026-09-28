@@ -1,0 +1,1384 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>物理治療基礎學 — 115 年互動測驗</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --card: #ffffff;
+    --ink: #1f2933;
+    --ink-soft: #52606d;
+    --line: #e4e7eb;
+    --primary: #1d6f9b;
+    --primary-soft: #e6f1f7;
+    --green: #2f9e44;
+    --green-soft: #d3f9d8;
+    --red: #c92a2a;
+    --red-soft: #ffe3e3;
+    --yellow: #d9a700;
+    --yellow-soft: #fff4c2;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 12px rgba(0,0,0,.04);
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", "PingFang TC", "Microsoft JhengHei",
+                 "Noto Sans TC", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  header {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    padding: 14px 22px;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .h-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  h1 { font-size: 17px; margin: 0; font-weight: 600; }
+  .tabs { display: flex; gap: 4px; }
+  .tab {
+    background: #f1f3f5; border: 1px solid var(--line); color: var(--ink-soft);
+    padding: 6px 14px; border-radius: 999px; cursor: pointer; font-size: 14px;
+  }
+  .tab.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+  .progress { color: var(--ink-soft); font-size: 14px; margin-left: auto; }
+  .layout { display: grid; grid-template-columns: 300px 1fr; gap: 22px; max-width: 1400px; margin: 18px auto; padding: 0 22px; }
+  @media (max-width: 880px) { .layout { grid-template-columns: 1fr; padding: 0 14px; } .sidebar { order: 2; position: static; } }
+  .sidebar {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 14px; height: fit-content; position: sticky; top: 78px;
+  }
+  .grid {
+    display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px;
+  }
+  .gbtn {
+    aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line); border-radius: 6px; background: #fff;
+    color: var(--ink-soft); font-size: 13px; cursor: pointer;
+    font-variant-numeric: tabular-nums;
+  }
+  .gbtn:hover { border-color: var(--primary); }
+  .gbtn.cur { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .gbtn.right { background: var(--green-soft); color: var(--green); border-color: var(--green); }
+  .gbtn.wrong { background: var(--red-soft); color: var(--red); border-color: var(--red); }
+  .legend { font-size: 12px; color: var(--ink-soft); margin: 8px 0 0; display: flex; gap: 8px; flex-wrap: wrap; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; vertical-align: middle; margin-right: 4px; border: 1px solid var(--line); }
+  .dot.r { background: var(--green-soft); border-color: var(--green); }
+  .dot.w { background: var(--red-soft); border-color: var(--red); }
+  .main { display: flex; flex-direction: column; gap: 14px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; }
+  .qhead { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+  .qnum { font-size: 22px; font-weight: 700; color: var(--primary); }
+  .qmeta { color: var(--ink-soft); font-size: 13px; }
+  .stem { font-size: 16px; white-space: pre-wrap; word-break: break-word; margin-bottom: 12px; }
+  .qimg { display: block; max-width: 100%; max-height: 480px; margin: 8px 0; border: 1px solid var(--line); border-radius: 6px; }
+  .opts { display: flex; flex-direction: column; gap: 8px; margin: 14px 0 4px; }
+  .opt {
+    display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px;
+    background: #fff; border: 1px solid var(--line); border-radius: 8px; cursor: pointer;
+    transition: background .12s, border-color .12s;
+    text-align: left;
+    font-size: 15.5px;
+    color: var(--ink);
+  }
+  .opt:hover:not(.locked) { background: var(--primary-soft); border-color: var(--primary); }
+  .opt.locked { cursor: default; }
+  .opt .label { font-weight: 700; min-width: 22px; }
+  .opt.correct { background: var(--green-soft); border-color: var(--green); color: var(--green); }
+  .opt.wrong { background: var(--red-soft); border-color: var(--red); color: var(--red); }
+  .verdict { margin-top: 14px; padding: 12px 14px; border-radius: 8px; font-size: 14px; line-height: 1.7; }
+  .verdict.right { background: var(--green-soft); color: #186b29; }
+  .verdict.wrong { background: var(--red-soft); color: #861818; }
+  .verdict.note { background: var(--yellow-soft); color: #6b4e00; }
+  .verdict h3 { margin: 0 0 6px; font-size: 14px; }
+  .nav { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .btn {
+    background: var(--primary); color: #fff; border: 0; padding: 9px 18px;
+    border-radius: 8px; cursor: pointer; font-size: 14px;
+  }
+  .btn.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+  .btn.danger { background: #fff; color: var(--red); border: 1px solid var(--red); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .summary { padding: 18px; }
+  .summary h2 { margin: 0 0 8px; }
+  .score { font-size: 32px; font-weight: 700; color: var(--primary); }
+  .wrong-list { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .wrong-row { padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px; display: flex; gap: 10px; align-items: center; cursor: pointer; }
+  .wrong-row:hover { background: var(--primary-soft); }
+  .footer { color: var(--ink-soft); font-size: 12px; text-align: center; margin: 16px 0 30px; }
+
+  .homelink { color: var(--soft); text-decoration: none; font-size: 13px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; white-space: nowrap; }
+  .homelink:hover { background: var(--primary-soft); color: var(--primary); border-color: var(--primary); }
+
+
+  /* Export modal */
+  .modal-bg { position: fixed; inset: 0; background: rgba(15,20,30,.45); display: none; align-items: center; justify-content: center; z-index: 100; padding: 18px; }
+  .modal-bg.show { display: flex; }
+  .modal-card { background: #fff; border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,.18); max-width: 460px; width: 100%; padding: 22px; }
+  .modal-card h3 { margin: 0 0 4px; font-size: 17px; font-weight: 700; }
+  .modal-card .modal-sub { color: var(--ink-soft); font-size: 13px; margin-bottom: 14px; }
+  .modal-card .opt-row { display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 14px; }
+  .modal-card .exp-opt { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 14px; background: #f8f9fa; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; font-size: 14px; text-align: left; color: var(--ink); }
+  .modal-card .exp-opt:hover { background: var(--primary-soft); border-color: var(--primary); }
+  .modal-card .exp-opt:disabled { opacity: 0.5; cursor: not-allowed; background: #f1f3f5; }
+  .modal-card .exp-opt .count { color: var(--ink-soft); font-size: 12px; }
+  .modal-card .hint { color: var(--ink-soft); font-size: 12px; line-height: 1.6; margin: 0 0 12px; }
+  .modal-card .modal-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+
+  /* Bookmark / marker */
+  .gbtn { position: relative; }
+  .gbtn.marked::after {
+    content: "★"; position: absolute; top: 1px; right: 3px;
+    font-size: 10px; color: var(--yellow); line-height: 1;
+    text-shadow: 0 0 2px #fff;
+  }
+  .markbtn {
+    margin-left: auto; background: #fff; border: 1px solid var(--line);
+    color: var(--ink-soft); padding: 6px 13px; border-radius: 999px;
+    font-size: 13px; cursor: pointer; white-space: nowrap;
+  }
+  .markbtn:hover { border-color: var(--yellow); color: var(--yellow); }
+  .markbtn.marked { background: var(--yellow-soft); color: #6b4e00; border-color: var(--yellow); font-weight: 600; }
+  .qhead { flex-wrap: wrap; }
+  .marked-badge { display: inline-block; padding: 1px 7px; border-radius: 999px; background: var(--yellow-soft); color: #6b4e00; font-size: 11px; border: 1px solid var(--yellow); margin-left: 4px; }
+  .wrong-row.mk { border-color: var(--yellow); }
+
+
+  .nu-badge { display:inline-flex; align-items:center; gap:6px; padding:5px 10px; background:#fff; border:1px solid var(--line); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ink); margin-left:auto; transition:all .15s; }
+  .nu-badge:hover { background:var(--primary-soft); border-color:var(--primary); color:var(--primary); }
+  .nu-badge .nu-dot { width:8px; height:8px; border-radius:50%; background:var(--green); }
+  .nu-badge .nu-name { font-weight:600; }
+  .nu-modal-bg { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:9999; }
+  .nu-modal-bg.show { display:flex; }
+  .nu-modal { background:#fff; border-radius:12px; padding:24px; max-width:500px; width:92%; max-height:80vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,.18); }
+  .nu-modal h3 { margin:0 0 6px; font-size:17px; }
+  .nu-modal .nu-sub { color:#666; font-size:13px; margin-bottom:14px; }
+  .nu-modal .nu-list { list-style:none; padding:0; margin:0 0 12px; max-height:240px; overflow-y:auto; }
+  .nu-modal .nu-item { display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #e4e7eb; border-radius:8px; margin-bottom:6px; }
+  .nu-modal .nu-item.active { background:#f0f9ff; border-color:#1d6f9b; }
+  .nu-modal .nu-item .nu-iname { flex:1; font-weight:600; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .nu-modal .nu-item .nu-idate { font-size:11px; color:#888; min-width:90px; text-align:right; }
+  .nu-modal .nu-item button { padding:4px 10px; font-size:12px; border:1px solid #d4d7db; background:#fff; border-radius:6px; cursor:pointer; }
+  .nu-modal .nu-item button:hover { background:#f1f3f5; }
+  .nu-modal .nu-item button.nu-del { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-modal .nu-item button.nu-del:hover { background:#ffe3e3; }
+  .nu-modal .nu-item button:disabled { opacity:.45; cursor:not-allowed; }
+  .nu-modal .nu-add-row { display:flex; gap:6px; margin-top:8px; }
+  .nu-modal .nu-add-row input { flex:1; padding:8px 10px; border:1px solid #d4d7db; border-radius:6px; font-size:14px; }
+  .nu-modal .nu-add-row button { padding:8px 14px; background:#1d6f9b; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer; font-weight:600; }
+  .nu-modal .nu-tip { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:8px 10px; font-size:12px; color:#666; margin-top:10px; }
+  .nu-modal .nu-actions { margin-top:14px; text-align:right; }
+  .nu-modal .nu-actions button { padding:8px 14px; border:1px solid #d4d7db; background:#fff; border-radius:6px; font-size:13px; cursor:pointer; }
+
+  /* Top toolbar (3 buttons) */
+  .nu-toolbar { display:inline-flex; align-items:center; gap:6px; margin-left:auto; flex-wrap:wrap; }
+  .nu-tb-btn { display:inline-flex; align-items:center; gap:5px; padding:5px 11px; background:#fff; border:1px solid #d4d7db; border-radius:8px; font-size:13px; cursor:pointer; color:#1f2933; transition:all .15s; line-height:1.4; }
+  .nu-tb-btn:hover { background:#e6f1f7; border-color:#1d6f9b; color:#1d6f9b; }
+  .nu-tb-btn .nu-tb-icon { font-size:14px; }
+  .nu-tb-btn.nu-tb-user { font-weight:600; }
+  .nu-tb-btn.nu-tb-user .nu-tb-dot { width:7px; height:7px; border-radius:50%; background:#2f9e44; margin-right:1px; }
+  .nu-tb-btn.nu-tb-clear { color:#c92a2a; }
+  .nu-tb-btn.nu-tb-clear:hover { background:#ffe3e3; border-color:#c92a2a; color:#c92a2a; }
+  /* Generic modal (shared between 3) */
+  .nu-md-bg { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:9999; padding:20px; }
+  .nu-md-bg.show { display:flex; }
+  .nu-md { background:#fff; border-radius:12px; padding:22px; max-width:560px; width:100%; max-height:85vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,.18); }
+  .nu-md h3 { margin:0 0 6px; font-size:17px; }
+  .nu-md .nu-md-sub { color:#666; font-size:13px; margin-bottom:14px; line-height:1.6; }
+  .nu-md .nu-md-list { list-style:none; padding:0; margin:0 0 12px; max-height:240px; overflow-y:auto; }
+  .nu-md .nu-md-item { display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #e4e7eb; border-radius:8px; margin-bottom:6px; flex-wrap:wrap; }
+  .nu-md .nu-md-item.active { background:#f0f9ff; border-color:#1d6f9b; }
+  .nu-md .nu-md-item .nu-md-iname { flex:1; font-weight:600; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .nu-md .nu-md-item .nu-md-idate { font-size:11px; color:#888; min-width:90px; text-align:right; }
+  .nu-md .nu-md-item button { padding:4px 10px; font-size:12px; border:1px solid #d4d7db; background:#fff; border-radius:6px; cursor:pointer; }
+  .nu-md .nu-md-item button:hover { background:#f1f3f5; }
+  .nu-md .nu-md-item button.nu-md-del { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-md .nu-md-item button.nu-md-del:hover { background:#ffe3e3; }
+  .nu-md .nu-md-item button:disabled { opacity:.45; cursor:not-allowed; }
+  .nu-md .nu-md-add { display:flex; gap:6px; margin-top:8px; }
+  .nu-md .nu-md-add input { flex:1; padding:8px 10px; border:1px solid #d4d7db; border-radius:6px; font-size:14px; }
+  .nu-md .nu-md-add button { padding:8px 14px; background:#1d6f9b; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer; font-weight:600; }
+  .nu-md .nu-md-tip { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:8px 10px; font-size:12px; color:#666; margin-top:10px; line-height:1.6; }
+  .nu-md .nu-md-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:6px 0; }
+  .nu-md .nu-md-section { margin-top:14px; padding-top:14px; border-top:1px solid #e4e7eb; }
+  .nu-md .nu-md-section.danger { border-top:2px solid #ffe3e3; }
+  .nu-md .nu-md-section.danger > .nu-md-title { color:#c92a2a; font-weight:700; font-size:13px; margin-bottom:6px; }
+  .nu-md .nu-md-title { font-size:13px; font-weight:600; color:#1f2933; margin-bottom:6px; }
+  .nu-md .nu-md-actions { margin-top:14px; text-align:right; }
+  .nu-md .nu-md-actions button { padding:8px 14px; border:1px solid #d4d7db; background:#fff; border-radius:6px; font-size:13px; cursor:pointer; }
+  .nu-md .nu-md-btn-primary { background:#1d6f9b !important; color:#fff !important; border-color:#1d6f9b !important; font-weight:600; }
+  .nu-md .nu-md-btn-success { background:#2f9e44 !important; color:#fff !important; border-color:#2f9e44 !important; font-weight:600; }
+  .nu-md .nu-md-btn-danger  { background:#c92a2a !important; color:#fff !important; border-color:#c92a2a !important; font-weight:600; }
+  .nu-md .nu-md-btn-outline-danger { color:#c92a2a; border-color:#ffc9c9; }
+  .nu-md .nu-md-btn-outline-danger:hover { background:#ffe3e3; }
+
+</style>
+</head>
+<body>
+<header>
+  <div class="h-row">
+    <a class="homelink" href="../../../index.html" title="回到測驗首頁">← 回首頁</a>
+    <h1>物理治療基礎學 · 民國 115 年</h1>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-tab="Q1">第一次 (115020)</button>
+      <button class="tab" data-tab="Q2">第二次 (115090)</button>
+    </div>
+    <div class="progress" id="progress"></div>
+  </div>
+
+
+<div class="nu-toolbar">
+<button class="nu-tb-btn nu-tb-user" id="nuTbUser" type="button" title="切換／管理使用者">
+  <span class="nu-tb-dot"></span><span id="nuTbUserName">預設使用者</span><span style="font-size:9px;opacity:.6;">▼</span>
+</button>
+<button class="nu-tb-btn" id="nuTbIO" type="button" title="匯入／匯出 JSON 備份">
+  <span class="nu-tb-icon">💾</span>匯入／匯出
+</button>
+<button class="nu-tb-btn nu-tb-clear" id="nuTbClear" type="button" title="清除紀錄（無法復原）">
+  <span class="nu-tb-icon">🗑</span>清除
+</button>
+</div></header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div style="font-size:13px;color:var(--ink-soft);margin-bottom:6px;">題號（共 80 題）</div>
+    <div class="grid" id="grid"></div>
+    <div class="legend">
+      <span><i class="dot r"></i>答對</span>
+      <span><i class="dot w"></i>答錯</span>
+      <span style="color:var(--yellow);">★ 已標記</span>
+    </div>
+    <button id="resetBtn" class="btn danger" style="margin-top:12px;width:100%;font-size:13px;">重置本卷作答</button>
+    <button id="summaryBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px;">查看本卷總結</button>
+    <button id="exportBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px;">📤 匯入／匯出本卷</button>
+    <button id="clearMarksOnlyBtn" class="btn ghost" style="margin-top:6px;width:100%;font-size:13px; color:#c92a2a; border-color:#ffc9c9;">🔖 清除本卷標記</button>
+  </aside>
+
+  <main class="main" id="main"></main>
+</div>
+
+<div class="footer">資料來源：考選部 115 年第一次／第二次專技高等考試 · 物理治療師 · 物理治療基礎學</div>
+
+<div class="modal-bg" id="exportModal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <h3>匯入／匯出本卷</h3>
+    <div class="modal-sub" id="exportSub">本卷：第一次 (115020)</div>
+    <div class="opt-row" id="exportOpts">
+      <button class="exp-opt" data-filter="all">📄 全部題目（含詳解） <span class="count" id="cntAll"></span></button>
+      <button class="exp-opt" data-filter="answered">📝 僅已作答 <span class="count" id="cntAnswered"></span></button>
+      <button class="exp-opt" data-filter="wrong">❌ 僅錯題 <span class="count" id="cntWrong"></span></button>
+      <button class="exp-opt" data-filter="unanswered">⏳ 僅未作答 <span class="count" id="cntUnans"></span></button>
+      <button class="exp-opt" data-filter="marked">🔖 僅已標記 <span class="count" id="cntMarked"></span></button>
+    </div>
+    <p class="hint">將下載一份自包含的 .html 檔，可離線檢視。打開後可用瀏覽器「列印」（Ctrl/⌘+P）→「另存為 PDF」存成 PDF。</p>
+    <div class="modal-actions">
+      <button class="btn ghost" id="closeExportBtn">取消</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+/* ===== Nephron 多人使用者系統 (NU) ===== */
+const NU = {
+  ck() { return localStorage.getItem("nephron::current_user") || "default"; },
+  list() {
+    try {
+      let l = JSON.parse(localStorage.getItem("nephron::users") || "[]");
+      if (!l.length) {
+        l = [{ uid: "default", name: "預設使用者", createdAt: new Date().toISOString().slice(0,10), star: true }];
+        localStorage.setItem("nephron::users", JSON.stringify(l));
+      }
+      return l;
+    } catch(e) { return [{ uid: "default", name: "預設使用者", createdAt: "", star: true }]; }
+  },
+  cur() { const id = NU.ck(); return NU.list().find(u => u.uid === id) || NU.list()[0]; },
+  use(uid) { localStorage.setItem("nephron::current_user", uid); },
+  add(name) {
+    if (!name.trim()) return null;
+    const l = NU.list();
+    const uid = "u_" + Date.now().toString(36) + Math.floor(Math.random()*1000).toString(36);
+    l.push({ uid, name: name.trim(), createdAt: new Date().toISOString().slice(0,10), star: false });
+    localStorage.setItem("nephron::users", JSON.stringify(l));
+    return uid;
+  },
+  rename(uid, newName) {
+    const l = NU.list();
+    const u = l.find(x => x.uid === uid);
+    if (u && newName.trim()) { u.name = newName.trim(); localStorage.setItem("nephron::users", JSON.stringify(l)); return true; }
+    return false;
+  },
+  del(uid) {
+    if (uid === "default") return false;
+    const l = NU.list().filter(x => x.uid !== uid);
+    localStorage.setItem("nephron::users", JSON.stringify(l));
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.includes("::u::" + uid)) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    if (NU.ck() === uid) localStorage.setItem("nephron::current_user", "default");
+    return true;
+  },
+  exportAll() {
+    const obj = { app: "nephron-pt-quiz", version: 1, exportedAt: new Date().toISOString(),
+                  users: NU.list(), currentUser: NU.ck(), data: {} };
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (!k) continue;
+      if (k.startsWith("nephron_") || k.startsWith("nephron::")) obj.data[k] = localStorage.getItem(k);
+    }
+    return obj;
+  },
+  importAll(obj, mode) {
+    if (!obj || !obj.data || obj.app !== "nephron-pt-quiz") throw new Error("無效的備份檔（找不到 nephron-pt-quiz 標記）");
+    mode = mode || "replace";
+    if (mode === "replace") {
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && (k.startsWith("nephron_") || k.startsWith("nephron::"))) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+    }
+    if (obj.users) localStorage.setItem("nephron::users", JSON.stringify(obj.users));
+    for (const k in obj.data) localStorage.setItem(k, obj.data[k]);
+    if (obj.currentUser) localStorage.setItem("nephron::current_user", obj.currentUser);
+    return Object.keys(obj.data).length;
+  },
+  wipeAllProgress() {
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith("nephron_")) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    return toDel.length;
+  },
+  wipeAll() {
+    const toDel = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && (k.startsWith("nephron_") || k.startsWith("nephron::"))) toDel.push(k);
+    }
+    toDel.forEach(k => localStorage.removeItem(k));
+    return toDel.length;
+  }
+};
+(function migrate() {
+  if (NU.ck() !== "default") return;
+  const oldKeys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith("nephron_") && !k.includes("::u::")) oldKeys.push(k);
+  }
+  oldKeys.forEach(k => {
+    const v = localStorage.getItem(k);
+    const newK = k + "::u::default";
+    if (v !== null && localStorage.getItem(newK) === null) localStorage.setItem(newK, v);
+  });
+})();
+(function migrateDefaultName() {
+  try {
+    const raw = localStorage.getItem("nephron::users");
+    if (!raw) return;
+    const arr = JSON.parse(raw);
+    let changed = false;
+    for (const u of arr) {
+      if (u.uid === "default" && u.name === "預設") { u.name = "預設使用者"; changed = true; }
+    }
+    if (changed) localStorage.setItem("nephron::users", JSON.stringify(arr));
+  } catch(e) {}
+})();
+function _userKey(baseKey) { return baseKey + "::u::" + NU.ck(); }
+
+const DATA = {"Q1": {"label": "第一次", "questions": [{"n": 1, "stem": "下列那一個頭顱骨不參與構成前顱窩（anterior cranial fossa）？", "options": {"A": "額骨（frontal bone）", "B": "枕骨（occipital bone）", "C": "篩骨（ethmoid bone）", "D": "蝶骨（sphenoid bone）"}, "images": [], "answer": "B"}, {"n": 2, "stem": "下列何者屬於跗骨的骨頭（tarsal bones）？", "options": {"A": "小多角骨（trapezoid）", "B": "楔狀骨（cuneiforms）", "C": "頭狀骨（capitate）", "D": "三角骨（triquetrum）"}, "images": [], "answer": "B"}, {"n": 3, "stem": "下列關於孔洞與通過構造的配對，何者錯誤？", "options": {"A": "圓孔（foramen rotundum）／下頜神經（mandibular nerve）", "B": "莖乳孔（stylomastoid foramen）／顏面神經（facial nerve）", "C": "橫突孔（transverse foramen）／椎動脈（vertebral artery）", "D": "椎間孔（intervertebral foramen）／脊神經（spinal nerve）"}, "images": [], "answer": "A"}, {"n": 4, "stem": "下列何者不屬於滑液關節（synovial joint）？", "options": {"A": "車軸關節（pivot joint）", "B": "嵌合關節（gomphosis）", "C": "平面關節（plane joint）", "D": "鞍狀關節（saddle joint）"}, "images": [], "answer": "B"}, {"n": 5, "stem": "某患者右眼之下斜肌（inferior oblique）受損，右眼的下列何種動作會受到嚴重的影響？", "options": {"A": "往右上方看", "B": "往左側水平看", "C": "往右側水平看", "D": "往左下方看"}, "images": [], "answer": "A"}, {"n": 6, "stem": "下列何者由左冠狀動脈（left coranary artery）發出，並朝心尖（apex）方向下行？", "options": {"A": "前室間動脈（anterior interventricular artery）", "B": "迴旋動脈（circumflex artery）", "C": "邊緣動脈（marginal artery）", "D": "後室間動脈（posterior interventricular artery）"}, "images": [], "answer": "A"}, {"n": 7, "stem": "下列何者是運送空氣的通道，不會進行氣體交換（gas exchange）？", "options": {"A": "肺泡管（alveolar duct）", "B": "呼吸性細支氣管（respiratory bronchiole）", "C": "支氣管（bronchus）", "D": "肺泡囊（alveolar sac）"}, "images": [], "answer": "C"}, {"n": 8, "stem": "下列那一條肌肉的收縮，能夠同時屈曲食指的掌指關節（metacarpophalangeal joint），且伸直指間關節 （interphalangeal joint）？", "options": {"A": "伸食指肌（extensor indicis）", "B": "屈指深肌（flexor digitorum profundus）", "C": "屈指淺肌（flexor digitorum superficialis）", "D": "蚓狀肌（lumbricals）"}, "images": [], "answer": "D"}, {"n": 9, "stem": "翼外肌（lateral pterygoid muscle）的收縮能夠促成下頜骨（mandible）的什麼動作？①左右移動（side- to-side movement） ②向前突出 （protraction） ③下降（depression） ④上升（elevation）", "options": {"A": "③", "B": "①③", "C": "①②③", "D": "④"}, "images": [], "answer": "C"}, {"n": 10, "stem": "下列關於自主神經元（autonomic neurons）的敘述，何者錯誤？", "options": {"A": "節前神經元（preganglionic neuron）的細胞本體位在腦部與脊髓中", "B": "自主神經節（autonomic ganglion）是節前神經元（preganglionic neuron）的細胞本體聚集的地方", "C": "交感神經節（sympathic ganglion）依照位置，分成交感神經幹神經節（sympathetic trunk ganglia）及 椎前神經節（prevertebral ganglia）", "D": "交感神經幹的灰交通支（gray rami communicantes）是節後神經元的軸突，並連結脊神經（spinal nerves）的結構"}, "images": [], "answer": "B"}, {"n": 11, "stem": "下列關於大腦（cerebrum）的結構與功能敘述，何者錯誤？", "options": {"A": "無論是周邊或中樞神經系統，灰質（gray matter）通常是神經元細胞本體所在的位置，而白質（white matter）則是神經元樹突（dendrite）經過的路徑", "B": "前聯合（anterior commissure）與胼胝體（corpus callosum）負責聯絡大腦左右半球的神經訊息", "C": "大腦皮質經由放射冠（corona radiata）和內囊（internal capsule），與大腦以外的神經細胞互相聯絡", "D": "腦波（brain waves）是腦中神經元發出的動作電位之神經衝動訊號。臨床上常用的腦波圖 （electroencephalogram）紀錄，可以協助診斷許多腦部疾病或腦部是否死亡"}, "images": [], "answer": "AD", "correction_note": "答 A 或 D 或 AD 者均給分", "answer_alternatives": ["A", "D"], "explanation": "⚠️ 官方答案疑義\n\n考選部原公告標準答案:A。「更正答案」公告修正為「答 A 或 D 或 AD 者均給分」。\n\n即 A、D 選項皆為正解,審視後認定不只一個答案合理。\n\n建議:此題以「多重合理答案」看待。"}, {"n": 12, "stem": "下列何者不屬於腦幹（brain stem）的一部分？", "options": {"A": "黑質（substantia nigra）", "B": "大腦腳（cerebral peduncle）", "C": "紅核（red nucleus）", "D": "蚓狀部（vermis）"}, "images": [], "answer": "D"}, {"n": 13, "stem": "下列關於副神經（accessory nerve）的敘述，何者正確？", "options": {"A": "副神經（accessory nerve）支配源自頭部外側中胚層（lateral mesoderm）的肌肉，並負責傳遞來自這些 肌肉的觸覺、溫痛覺", "B": "若因中風、外傷等原因導致副神經（accessory nerve）損傷，將會使胸鎖乳突肌（sternocleidomastoid） 和斜方肌（trapezius）麻痺，患者將難以做出聳肩與轉頭的動作", "C": "副神經（accessory nerve）與舌下神經（hypoglossal nerve）皆經由舌下神經管（hypoglossal canal） 離開顱骨", "D": "副神經（accessory nerve）在中樞的起源位於橋腦（pons）"}, "images": [], "answer": "B"}, {"n": 14, "stem": "下列關於腰神經叢（lumbar plexus）的敘述，何者錯誤？", "options": {"A": "腰神經叢主要負責支配大腿外側與前側的肌肉", "B": "下肢前側與內側的皮膚由腰神經叢負責支配", "C": "閉孔神經（obturator nerve）與股神經（femoral nerve）皆由腰神經叢延伸而來", "D": "腰神經叢由 L1～L4 的脊神經組成，位於後腹壁的腰大肌（psoas major muscle）中"}, "images": [], "answer": "A"}, {"n": 15, "stem": "骨髓中，下列何者負責形成血小板（platelet）？", "options": {"A": "帶狀細胞（band cell）", "B": "巨核細胞（megakaryocyte）", "C": "網織血球（reticulocyte）", "D": "單核母細胞（monoblast）"}, "images": [], "answer": "B"}, {"n": 16, "stem": "下列關於伴行的動脈（artery）與靜脈（vein）構造的比較，何者正確？", "options": {"A": "靜脈的管腔（lumen）比動脈管腔小", "B": "靜脈管壁的中膜層（tunica media）厚度比外膜層（tunica externa）厚，動脈則剛好相反", "C": "靜脈的管壁比動脈厚", "D": "動脈管壁內具有較多的彈性蛋白（elastin）"}, "images": [], "answer": "D"}, {"n": 17, "stem": "下列關於胰臟（pancreas）的敘述，何者正確？", "options": {"A": "胰臟屬於腹膜內器官（intraperitoneal organ）", "B": "胰臟的頭部位於十二指腸（duodenum）彎曲處，尾部則與脾臟（spleen）相接觸", "C": "胰臟位於胃（stomach）的後下方，橫結腸（transverse colon）的前方", "D": "胰臟可藉由腸繫膜本體（mesentery proper）將之固定於後腹壁（posterior abdominal wall）"}, "images": [], "answer": "B"}, {"n": 18, "stem": "下列何者是小腸（small intestine）與大腸（large intestine）同時具有的構造？", "options": {"A": "絨毛（villi）", "B": "腸腺（intestinal glands）", "C": "腸脂垂（epiploic appendages）", "D": "環皺襞（plicae circulares）"}, "images": [], "answer": "B"}, {"n": 19, "stem": "有關女性生殖系統在月經週期（menstrual cycle）的變化，下列敘述何者正確？", "options": {"A": "腦下垂體分泌的促性腺激素（gonadotrophins）的波動式變化（fluctuating levels），可調控卵巢週期 （ovarian cycle）", "B": "助孕酮（progesterone）濃度的上升是促進排卵（ovulation）的主要因素", "C": "子宮週期（uterine cycle）的增生期（proliferative phase），子宮內膜（endometrium）的增厚主要是 靠高濃度助孕酮（progesterone）的作用", "D": "受精後，黃體（corpus luteum）就會立即崩解，並由胎盤來製造及分泌雌激素（estrogen）及助孕酮 （progesterone）"}, "images": [], "answer": "A"}, {"n": 20, "stem": "下列關於構造與其分泌的荷爾蒙之配對，何者正確？", "options": {"A": "賽托力氏細胞（Sertoli cell）／睪固酮（testosterone）", "B": "副甲狀腺（parathyroid gland）／降鈣素（calcitonin）", "C": "腎上腺網狀帶（zona reticularis of adrenal gland）／雄性素（androgens）", "D": "腦下腺前葉（anterior lobe of pituitary gland）／抗利尿激素（anti-diuretic hormone）"}, "images": [], "answer": "C"}, {"n": 21, "stem": "白肌纖維（white fibers）與紅肌纖維（red fibers）比較，白肌纖維最明顯的特徵為何？", "options": {"A": "肌凝蛋白 ATP 水解酶活性較低", "B": "肌細胞直徑較小", "C": "肌紅素含量較少", "D": "疲乏的速率較慢"}, "images": [], "answer": "C"}, {"n": 22, "stem": "引起肌梭（muscle spindle）感受器興奮的適當刺激是：", "options": {"A": "肌肉長度增加", "B": "肌肉長度縮短", "C": "肌腱張力增加", "D": "肌腱張力減少"}, "images": [], "answer": "A"}, {"n": 23, "stem": "肌肉細胞將所儲存的肝醣轉變成可利用的能量 ATP，不需要下列何過程？", "options": {"A": "糖解作用（glycolysis）", "B": "糖質新生作用（gluconeogenesis）", "C": "肝醣分解（glycogenolysis）", "D": "電子傳遞鏈（electron transport chain）"}, "images": [], "answer": "B"}, {"n": 24, "stem": "骨骼的重塑（bone remodeling）終其一生不斷進行，由骨再吸收（bone resorption）與骨的形成（bone formation）兩者相互配合而進行，這兩項作用分別由何種細胞來完成？", "options": {"A": "骨母細胞（osteoblasts）與骨細胞（osteocytes）", "B": "骨母細胞（osteoblasts）與軟骨細胞（chondrocytes）", "C": "蝕骨細胞（osteoclasts）與骨細胞（osteocytes）", "D": "蝕骨細胞（osteoclasts）與骨母細胞（osteoblasts）"}, "images": [], "answer": "D"}, {"n": 25, "stem": "肌肉對阻力訓練（resistance training）產生之適應，下列何者正確？", "options": {"A": "第 IIb 型肌纖維會轉變成第 IIa 型肌纖維", "B": "肌纖維數目增加（hyperplasia）", "C": "肌肉肥大（hypertrophy）", "D": "第 I 型肌纖維的比率會增加"}, "images": [], "answer": "C"}, {"n": 26, "stem": "類固醇激素可以影響蛋白合成，合成之順序排列何者正確？①與接受器蛋白結合 ②與染色體的 DNA 結合開 始轉錄作用 ③運送到細胞核 ④mRNA 進入細胞質", "options": {"A": "①②③④", "B": "①③②④", "C": "②①③④", "D": "②①④③"}, "images": [], "answer": "B"}, {"n": 27, "stem": "關於神經傳導物質與神經調節物質的敘述，下列何者錯誤？", "options": {"A": "神經傳導物質會誘發興奮性突觸後電位（EPSPs）或抑制性突觸後電位（IPSPs）", "B": "神經調節物質是透過第二訊息影響突觸後細胞，作用較神經傳導物質為快", "C": "一個化學分子可同時為神經傳導物質與神經調節物質", "D": "氨基丁酸（GABA）是屬於抑制型的神經傳導物質"}, "images": [], "answer": "B"}, {"n": 28, "stem": "在腦下垂體病變引發的疾病中，下列疾病與相關激素分泌異常所引發症狀的配對，何者錯誤？", "options": {"A": "高泌乳素血症－泌乳激素（prolactin, PRL）－乳漏和性腺機能低下", "B": "庫欣氏病－礦物皮質素（mineralocorticoid）－月亮臉、軀幹型肥胖", "C": "尿崩症－抗利尿激素（antidiuretic hormone, ADH）－排尿過多", "D": "肢端肥大症－生長激素（growth hormone, GH）－面孔粗獷、手腳增大"}, "images": [], "answer": "B"}, {"n": 29, "stem": "下列那一個激素會隨著運動時間或運動強度的增加，而減少其分泌量？", "options": {"A": "生長激素（growth hormone）", "B": "皮質醇（cortisol）", "C": "腎上腺素（epinephrine）", "D": "胰島素（insulin）"}, "images": [], "answer": "D"}, {"n": 30, "stem": "耐力訓練後，關於升糖激素（glucagon）於運動時的反應，下列敘述何者正確？", "options": {"A": "較訓練前的激素反應明顯下降", "B": "較訓練前的激素反應明顯上升", "C": "與訓練前的反應一樣，不太會受到運動訓練的影響", "D": "目前的研究結果尚不清楚"}, "images": [], "answer": "A"}, {"n": 31, "stem": "當一氧化碳擴散容積（diffusing capacity for carbon monoxide）只有預測值的 50%，下列那個參數在運 動時會明顯下降？", "options": {"A": "動脈二氧化碳分壓（PaCO2）", "B": "肺泡氧分壓（PAO2）", "C": "解剖性無效腔體積（anatomic dead space volume）", "D": "動脈氧分壓（PaO2）"}, "images": [], "answer": "D"}, {"n": 32, "stem": "血紅素低於正常範圍，但無肺部疾病，下列那個參數最可能下降？", "options": {"A": "血紅素－氧飽和濃度（Hb-O2 saturation）", "B": "動脈二氧化碳分壓（PaCO2）", "C": "動脈含氧量（arterial O2 concentration）", "D": "動脈氧分壓（PaO2）"}, "images": [], "answer": "C"}, {"n": 33, "stem": "因車禍大腦皮質受傷的患者（其他腦區無異常），下列何種呼吸控制功能會受損？", "options": {"A": "對二氧化碳變化的反應", "B": "對氧變化的反應", "C": "呼吸節律的產生", "D": "自主控制呼吸"}, "images": [], "answer": "D"}, {"n": 34, "stem": "不同離子對血管調控的影響，下列敘述何者錯誤？", "options": {"A": "鈣離子濃度增加可造成血管收縮", "B": "鉀離子濃度增加可造成血管收縮", "C": "鎂離子濃度增加可造成血管舒張", "D": "鈉離子濃度增加可造成血管收縮"}, "images": [], "answer": "#", "correction_note": "一律給分", "answer_alternatives": ["A", "B", "C", "D"], "explanation": "⚠️ 官方答案疑義\n\n考選部原公告標準答案:B。但於「更正答案」公告中修正為「一律給分」。\n\n表示本題經考選部審視後認定爭議過大,任何選項作答皆給分。\n\n建議:此題不列入答題準確度統計。理解時可思考各選項各自的邏輯依據。"}, {"n": 35, "stem": "老化與肌力下降的變化，下列敘述何者正確？", "options": {"A": "爆發力（power）降低的發生早於最大肌力（maximal strength） 的降低", "B": "離心肌力（eccentric strength）降低的發生早於向心肌力（concentric strength ）的降低", "C": "手部肌力（arm strength） 降低的發生早於腿部肌力（leg strength ）的降低", "D": "老化過程中，女性的肌力降低相較於男性較早發生"}, "images": [], "answer": "A"}, {"n": 36, "stem": "在熱環境通風不佳下運動時，人體最重要的散熱管道為何？", "options": {"A": "輻射，不需物質接觸", "B": "傳導，需接觸溫度較低的物質", "C": "對流，仰賴空氣吹過皮膚", "D": "蒸發，汗液變為水蒸氣將熱能帶離身體"}, "images": [], "answer": "D"}, {"n": 37, "stem": "關於消化道黏液（mucus）的敘述，下列何者錯誤？", "options": {"A": "黏液含電解質與黏多醣", "B": "黏液酸鹼度偏酸性", "C": "黏液不易被消化酶消化", "D": "黏液可使糞便成團"}, "images": [], "answer": "B"}, {"n": 38, "stem": "重量訓練可刺激增加肌肉質量，和下列何種荷爾蒙最無相關？", "options": {"A": "睪固酮（testosterone）", "B": "生長激素（growth hormone）", "C": "類胰島素生長因子（insulin-like growth factor）", "D": "兒茶酚胺（catecholamine）"}, "images": [], "answer": "D"}, {"n": 39, "stem": "有關後段遠曲小管與皮質集尿小管的敘述，下列何者錯誤？", "options": {"A": "對尿素有極高的通透性", "B": "可再吸收鈉離子", "C": "對水的通透性受抗利尿劑影響", "D": "可調整血液酸鹼質"}, "images": [], "answer": "A"}, {"n": 40, "stem": "下列關於免疫球蛋白 M（IgM）的敘述，何者錯誤？", "options": {"A": "可藉由穿透胎盤，從母體提供胎兒免疫力", "B": "體液免疫的早期階段是由 IgM 來清除病原", "C": "在所有抗體裡分子量最大", "D": "由 B 細胞產生"}, "images": [], "answer": "A"}, {"n": 41, "stem": "股脛關節（femorotibial joint）從事伸直（extension）動作時，下列敘述何者錯誤？", "options": {"A": "關節活動自由度（degree of freedom）為 2", "B": "在開放鏈（open chain）動作時，關節內動作為滾動（roll）與滑動（slide）同一方向", "C": "在閉鎖鏈（closed chain）動作時，屬於凸在凹上（convex-on-concave）的動作", "D": "在閉鎖鏈動作時，股骨關節面向外做自旋（spin）"}, "images": [], "answer": "D"}, {"n": 42, "stem": "有關滑液關節及其機械模擬的敘述，下列何者錯誤？", "options": {"A": "機械模擬的關節面簡化形狀為平面形（planar）、類卵形（ovoid）與鞍形（saddle）", "B": "即使具有相似的形狀，但真實關節的動作大小和整體功能可能存在很大差異", "C": "真實關節總是表現出細小的變化，使得機械模擬的簡化形狀能廣泛適用", "D": "掌指關節（metacarpophalangeal joint）其關節簡化形狀為卵形（ovoid）"}, "images": [], "answer": "C"}, {"n": 43, "stem": "有關骨骼肌內感覺受器功能與接受刺激種類之配對敘述，下列何者錯誤？", "options": {"A": "初級肌梭（primary muscle spindle）－增加主動肌興奮性與降低拮抗肌的興奮性－接受牽拉速率刺激", "B": "高基氏器（Golgi tendon organ）－降低主動肌興奮性與增加拮抗肌興奮性－接受肌肉肌腱間的力量刺激", "C": "機械受器－增加心血管和換氣輸出與抑制中樞運動驅動－接受肌肉牽拉刺激", "D": "代謝受器－增加心血管和換氣輸出與抑制中樞運動驅動－接受肌肉新陳代謝變化刺激"}, "images": [], "answer": "C"}, {"n": 44, "stem": "當肌肉長度超過休息長度再繼續拉長 30%時，有關長度與張力關係（length-tension relationship）之敘 述，下列何者正確？", "options": {"A": "主動張力及被動張力皆隨著長度增加而增加", "B": "主動張力隨之增加，被動張力則是遞減", "C": "主動張力隨之降低，被動張力則是遞增", "D": "主動張力隨之降低，被動張力則不改變"}, "images": [], "answer": "C"}, {"n": 45, "stem": "下列那一個情況下，肱三頭肌會被拉到最長？", "options": {"A": "肩關節屈曲＋肘關節屈曲", "B": "肩關節屈曲＋肘關節伸直", "C": "肩關節伸直＋肘關節屈曲", "D": "肩關節伸直＋肘關節伸直"}, "images": [], "answer": "A"}, {"n": 46, "stem": "關於前臂開放鏈（open chain）主動旋前（active pronation）的敘述，下列何者錯誤？", "options": {"A": "橈骨頭的中央凹靠著肱骨小頭（capitulum）作旋轉", "B": "不活化的肱二頭肌被拉伸", "C": "近端橈尺關節（proximal radio-ulnar joint）的關節內動作為旋轉", "D": "遠端橈尺關節（proximal radio-ulnar joint）的腹側關節囊韌帶（ventral capsular ligament）被拉緊"}, "images": [], "answer": "D"}, {"n": 47, "stem": "根據 Bergman 等學者的研究，日常生活的活動時，股骨頭的那個部位傳遞大部分的承重？", "options": {"A": "前側和內側的月狀面", "B": "前上側的月狀面", "C": "前側和內側的馬蹄狀面", "D": "前上側的馬蹄狀面"}, "images": [], "answer": "A"}, {"n": 48, "stem": "下列日常生活的活動中，那個活動的髖關節動作在矢狀面的彎曲動作最大？", "options": {"A": "站立繫鞋帶", "B": "從站到坐", "C": "坐姿腿交叉", "D": "跑步"}, "images": [], "answer": "A"}, {"n": 49, "stem": "膝關節在那個位置，有最多外展和內收方向的被動活動度？", "options": {"A": "完全伸直", "B": "屈曲 30 度", "C": "屈曲 90 度", "D": "完全屈曲"}, "images": [], "answer": "B"}, {"n": 50, "stem": "關於比目魚肌與腓腸肌比較的敘述，下列何者錯誤？", "options": {"A": "腓腸肌含較多比率之肌凝蛋白 ATP 酶", "B": "比目魚肌含較少比率之肌肉氧化酶", "C": "腓腸肌肌力較比目魚肌易受膝關節影響", "D": "維持姿勢平衡，比目魚肌較重要"}, "images": [], "answer": "B"}, {"n": 51, "stem": "在評估正常姿勢時，那些條件是必須的？①放鬆站姿 ②雙腳併立 ③手臂放身體兩側 ④眼睛看前上方", "options": {"A": "①③", "B": "②③", "C": "①②", "D": "③④"}, "images": [], "answer": "A"}, {"n": 52, "stem": "可自行拿枴杖緩慢行走之中風患者，較不可能出現下列何種不正常的步態？", "options": {"A": "兩腳步長不對稱", "B": "小碎步", "C": "患側承重時，會以肌肉共同收縮的方式，維持穩定", "D": "雙腳支撐期（double limb support）時間拉長"}, "images": [], "answer": "B"}, {"n": 53, "stem": "走路時最大膝伸直主要發生在步態那一期？", "options": {"A": "接觸末期", "B": "載重反應期", "C": "擺盪初期", "D": "擺盪中期"}, "images": [], "answer": "A"}, {"n": 54, "stem": "皮質骨在極高的應變速率（300／sec）和在慢走時應變速率（0.001／sec）的材料特性之敘述，下列何者正 確？", "options": {"A": "極高應變速率的皮質骨比慢走時的皮質骨有較大的極限應力，且在斷裂前能承受的應變較大", "B": "極高應變速率的皮質骨比慢走時的皮質骨有較大的極限應力，但在斷裂前能承受的應變較小", "C": "極高應變速率的皮質骨比慢走時的皮質骨有較小的極限應力，且在斷裂前能承受的應變較小", "D": "極高應變速率的皮質骨比慢走時的皮質骨有較小的極限應力，但在斷裂前能承受的應變較大"}, "images": [], "answer": "B"}, {"n": 55, "stem": "關於胸鎖關節的敘述，下列何者正確？", "options": {"A": "胸鎖關節為髁狀關節（condyloid joint）", "B": "鎖骨間韌帶（interclavicular ligament）會限制過多的上舉動作", "C": "當做出前突（protraction）動作時，鎖骨端會向前滾動並向後滑動", "D": "肩峰鎖骨韌帶（acromioclavicular ligament）拉扯會造成鎖骨向後旋轉的被動動作"}, "images": [], "answer": "D"}, {"n": 56, "stem": "有關於肩峰鎖骨關節（acromioclavicular joint）敘述，下列何者錯誤？", "options": {"A": "穩定肩峰鎖骨關節的組織主要是喙鎖韌帶（coracoclavicular ligament）以及肩峰鎖骨韌帶 （acromioclavicular joint capsule ligament）", "B": "三角肌和上斜方肌強化穩定度", "C": "沒有滾動滑動關節運動", "D": "最主要的動作為鎖骨相對於肩峰往後的旋轉（posterior rotation）"}, "images": [], "answer": "D"}, {"n": 57, "stem": "如下圖，坐姿手將屁股抬起動作過程中，作用肌與收縮方式，下列何者正確？", "options": {"A": "胸小肌（pectoralis minor）做離心收縮", "B": "下斜方肌（lower trapezius）做向心收縮", "C": "上斜方肌（upper trapezius）做等長收縮", "D": "闊背肌（latissimus dorsi）做等長收縮"}, "images": [], "answer": "B"}, {"n": 58, "stem": "長期重複性的過度肘屈曲動作容易造成下列那一條神經損傷？", "options": {"A": "尺神經（ulnar nerve）", "B": "橈神經（radial nerve）", "C": "正中神經（median nerve）", "D": "經皮神經（musculocutaneous nerve）"}, "images": [], "answer": "A"}, {"n": 59, "stem": "關於蚓狀肌（lumbricals）的敘述，下列何者正確？", "options": {"A": "掌指關節屈曲及指間關節伸直", "B": "掌指關節伸直及指間關節屈曲", "C": "掌指關節屈曲及指間關節屈曲", "D": "掌指關節伸直及指間關節伸直"}, "images": [], "answer": "A"}, {"n": 60, "stem": "有關鈕孔手指畸形（boutonnière deformity）的敘述，下列何者錯誤？", "options": {"A": "遠端與近端指間關節出現過度彎曲", "B": "是因伸指肌的力量被完整的側帶（lateral bands）傳到遠端手指所造成手指變形", "C": "造成撿起小物如硬幣困難", "D": "保守治療方式為利用副木使近端指間關節保持在伸直狀態"}, "images": [], "answer": "A"}, {"n": 61, "stem": "髖內收長肌（adductor longus）除了髖內收的功能外，還有下列那些功能？①髖伸直 ②髖屈曲 ③髖外轉 ④髖內轉", "options": {"A": "②③", "B": "③④", "C": "①④", "D": "①②④"}, "images": [], "answer": "D"}, {"n": 62, "stem": "如何在兩張 X 光影像中定位膝關節瞬時旋轉中心？", "options": {"A": "不同彎曲角度下，各標記點位置連線的中垂線交點", "B": "不同彎曲角度下，各標記點位置連線的延伸線交點", "C": "相同彎曲角度下，兩個標記點連線的中垂線交點", "D": "相同彎曲角度下，兩個標記點連線的延伸線交點"}, "images": [], "answer": "A"}, {"n": 63, "stem": "下肢提供關節被動穩定性的韌帶，依照其最大可承受之張力強度（tensile strength）由小到大排序：①前 十字韌帶 ②前距腓韌帶 ③踝三角韌帶", "options": {"A": "①②③", "B": "②③①", "C": "①③②", "D": "②①③"}, "images": [], "answer": "B"}, {"n": 64, "stem": "有關腓骨肌群相關敘述，下列何者錯誤？", "options": {"A": "腓骨長肌的外翻力量較腓骨短肌強", "B": "腓骨長肌收縮過大的牽引力容易導致舟狀骨半脫位", "C": "腓骨長肌因麻痺而失去肌力時容易導致大腳趾背側滑液囊炎", "D": "因麻痺而失去肌力時容易導致腳踝內翻傷害"}, "images": [], "answer": "B"}, {"n": 65, "stem": "先下蹲再站起過程中肌肉收縮的敘述，下列何者正確？", "options": {"A": "在下蹲階段，踝關節背屈肌離心收縮", "B": "在下蹲階段，膝關節伸肌向心收縮", "C": "在站起階段，膝關節屈肌離心收縮", "D": "在站起階段，踝關節蹠屈肌向心收縮"}, "images": [], "answer": "D"}, {"n": 66, "stem": "有關顳顎關節內關節盤（articular disc）的敘述，下列何者錯誤？", "options": {"A": "主要由緻密的纖維軟骨（fibrocartilage）構成", "B": "關節盤的周邊範圍，不具血管分布與神經支配", "C": "關節盤的後區域（posterior region），在形態上為上方凸形，下方凹形", "D": "有助於降低關節面的接觸壓力、增加關節穩定與協助引導關節面的動作"}, "images": [], "answer": "B"}, {"n": 67, "stem": "有關在顳顎關節執行動作時，下頜髁突（mandibular condyle）骨性結構動作的長軸的敘述，下列何者正 確？", "options": {"A": "長軸的方向平行額狀面（frontal plane），為左右方向", "B": "長軸的方向平行矢狀面（sagittal plane），為前後方向", "C": "長軸的方向與額狀面成一夾角，為外前與內後方向", "D": "長軸的方向與矢狀面成一夾角，為外後與內前方向"}, "images": [], "answer": "C"}, {"n": 68, "stem": "寰椎是一環狀結構，下列敘述何者錯誤？", "options": {"A": "上關節小面是凹的", "B": "下關節小面是平或凹的", "C": "前弓（anterior arch）較短", "D": "後弓（posterior arch）較長約占 2/3 圓周"}, "images": [], "answer": "D"}, {"n": 69, "stem": "有關前斜角肌的作用，下列何者錯誤？", "options": {"A": "兩側作用可彎曲頸椎", "B": "兩側作用可固定頸椎抬起第一根肋骨", "C": "右側收縮會往右彎", "D": "右側收縮會往左轉"}, "images": [], "answer": "D"}, {"n": 70, "stem": "有關脊椎關節構造與活動敘述，下列何者錯誤？", "options": {"A": "頸椎 C1/2 的椎體活動程度：旋轉＞側彎＞屈曲伸展", "B": "胸椎小面關節與水平面的夾角為 60 度", "C": "腰椎的椎體活動程度：屈曲伸展＞側彎＞旋轉", "D": "腰椎小面關節與額狀面的夾角為 45 度"}, "images": [], "answer": "A"}, {"n": 71, "stem": "關於軀幹肌肉的敘述，下列何者錯誤？", "options": {"A": "說話時，頸長肌增加肌肉活動，提供穩定頸椎功能", "B": "解剖排列由內到外依序是棘肌（spinalis）、最長肌（longissimus）和髂肋肌（iliocostalis）", "C": "若腹肌麻痺，軀幹微向前傾，此時豎脊肌用離心和向心收縮來控制軀幹往前的動作", "D": "解剖排列由淺到深的順序為腹外斜肌、腹橫肌、腹內斜肌"}, "images": [], "answer": "D"}, {"n": 72, "stem": "有關軀幹向右軸向旋轉動作時，下列何者錯誤？", "options": {"A": "左側腹外斜肌與右側腹內斜肌為主要旋轉肌群", "B": "右側擴背肌、右側腰髂肋肌（iliocostalis lumborum）與左側橫棘肌（transversospinalis）為次要旋轉 肌群", "C": "橫棘肌（transversospinalis）具軀幹側彎肌群角色，減少軀幹軸向旋轉時，軀幹側彎動作的產生", "D": "多裂肌為次要旋轉肌群之一，於軀幹軸向旋轉時，提供伸展方向的穩定"}, "images": [], "answer": "C"}, {"n": 73, "stem": "有關對稱站姿的敘述，下列何者最適當？", "options": {"A": "腹肌比背肌明顯用力", "B": "小腿前側比後側肌肉更明顯用力", "C": "大部分人在站姿下無法偵測到股四頭肌的肌電活動", "D": "放鬆站姿下髖關節完全伸直"}, "images": [], "answer": "C"}, {"n": 74, "stem": "下圖中男子使用那一種抓握動作來握住咖啡壺手把？", "options": {"A": "強力抓握（power grip）", "B": "指尖到指尖的捏夾（tip-to-tip prehension pinch）", "C": "鑰匙捏夾（power key pinch）", "D": "鈎形抓握（hook grip）"}, "images": [], "answer": "D"}, {"n": 75, "stem": "承上題，該男子要將馬克杯中的咖啡倒滿，上肢要做出什麼動作？", "options": {"A": "前臂旋後和盂肱關節肩胛面外展", "B": "前臂旋後和盂肱關節冠狀面外展", "C": "前臂旋前和盂肱關節肩胛面外展", "D": "前臂旋前和盂肱關節冠狀面外展"}, "images": [], "answer": "C"}, {"n": 76, "stem": "棒球投手於上肩投球的揮臂晚期（late cocking phase），下列何者錯誤？", "options": {"A": "上斜方肌向心收縮以上旋肩胛骨", "B": "肩胛下肌離心收縮以控制肱骨外轉", "C": "後三角肌向心收縮將肱骨水平伸展", "D": "前鋸肌持續收縮以穩定肩胛骨"}, "images": [], "answer": "A"}, {"n": 77, "stem": "關於彎腰直腿的屈身搬運（stoop lift）之敘述，何者錯誤？", "options": {"A": "此動作是以第五腰椎和第一薦椎之間的椎間盤為支點", "B": "搬運物品重量固定的情況下，軀幹彎曲角度越接近水平，外在負荷越大", "C": "身高不同的人搬運相同重量的物品，需要克服的外在負荷相同", "D": "髖伸肌和豎棘肌（erector spinae）是主要作用肌"}, "images": [], "answer": "C"}, {"n": 78, "stem": "關於關節軟骨的滲透性（permeability）之敘述，下列何者正確？", "options": {"A": "關節軟骨中液體體積相對總體積的比值是低的", "B": "關節軟骨具有很低的滲透性", "C": "關節軟骨承受的壓力增加會使滲透性減少", "D": "當關節軟骨變形使其液體體積減少時，滲透性會增加"}, "images": [], "answer": "C"}, {"n": 79, "stem": "關於肌腱及韌帶的黏彈性質敘述，下列何者錯誤？", "options": {"A": "肌腱及韌帶在應力－鬆弛測試中，應變值是固定的", "B": "肌腱及韌帶在應力－鬆弛測試中，以週期性方式重複進行，應力減少的情況會更明顯", "C": "肌腱及韌帶在潛變－變形測試中，剛開始時，樣本的應變會快速增加", "D": "臨床上穿戴背架來改善脊椎側彎，是利用潛變的特性進行矯正"}, "images": [], "answer": "B"}, {"n": 80, "stem": "下列圖形何者最能代表描述肌肉行為的 Hill's model？〔CE：收縮元件（contractile element）；SE：串 聯元件（series element）；PE：並聯元件（parallel element）；η：阻尼元件（dashpot element）〕", "options": {"A": "", "B": "", "C": "", "D": ""}, "images": [], "answer": "B"}], "examCode": "115020"}, "Q2": {"label": "第二次", "questions": [{"n": 1, "stem": "下列何者屬於顏面骨（facial bone）？", "options": {"A": "篩骨（ethmoid bone）", "B": "蝶骨（sphenoid bone）", "C": "顳骨（temporal bone）", "D": "下鼻甲（inferior nasal concha）"}, "images": [], "answer": "D"}, {"n": 2, "stem": "肩帶（pectoral girdle）是由下列那兩塊骨頭所組成？", "options": {"A": "肩胛骨（scapula）與肱骨（humerus）", "B": "肩胛骨（scapula）與鎖骨（clavicle）", "C": "鎖骨（clavicle）與第一肋骨（1st rib）", "D": "鎖骨（clavicle）與胸骨（sternum）"}, "images": [], "answer": "B"}, {"n": 3, "stem": "觸診頸動脈脈搏時，須了解頸動脈與肌肉關係，下列敘述何者正確？", "options": {"A": "頸部淺層結構以胸鎖乳突肌（sternocleidomastoid）為界可以分成頸前三角與頸後三角", "B": "頸動脈脈搏觸診位置是在胸鎖乳突肌（sternocleidomastoid）後方，位在頸後三角中", "C": "胸鎖乳突肌（sternocleidomastoid）和頸動脈竇（carotid sinus）一樣，由第 9 對腦神經支配", "D": "胸鎖乳突肌（sternocleidomastoid）緊繃可能導致頸動脈壓迫，造成脈搏消失"}, "images": [], "answer": "A"}, {"n": 4, "stem": "下列何者最不可能參與自主神經系統的調控？", "options": {"A": "腦幹（brain stem）", "B": "下視丘（hypothalamus）", "C": "脊髓（spinal cord）", "D": "基底核（basal nuclei）"}, "images": [], "answer": "D"}, {"n": 5, "stem": "下列何者最難以透過體表觸摸（surface palpation）的方式，觸摸到該構造？", "options": {"A": "頸靜脈切迹（jugular notch）", "B": "坐骨粗隆（ischial tuberosity）", "C": "脛骨粗隆（tibial tuberosity）", "D": "坐骨棘（ischial spine）"}, "images": [], "answer": "D"}, {"n": 6, "stem": "下列何者的動作類型屬於單軸活動（uniaxial movement）？", "options": {"A": "寰樞關節（atlantoaxial joint）", "B": "腕骨間關節（intercarpal joint）", "C": "腕關節（wrist joint）", "D": "髖關節（hip joint）"}, "images": [], "answer": "A"}, {"n": 7, "stem": "下列何者的起始點（origin）位於恥骨嵴（pubic crest）及恥骨聯合（pubic symphysis）？", "options": {"A": "腹直肌（rectus abdominis）", "B": "腹內斜肌（internal abdominal oblique）", "C": "腹外斜肌（external abdominal oblique）", "D": "腹橫肌（transversus abdominis）"}, "images": [], "answer": "A"}, {"n": 8, "stem": "下列何者附著於薦骨前方（anterior sacrum）？", "options": {"A": "梨狀肌（piriformis）", "B": "臀小肌（gluteus minimus）", "C": "臀中肌（gluteus medius）", "D": "臀大肌（gluteus maximus）"}, "images": [], "answer": "A"}, {"n": 9, "stem": "下列關於大腦基底核（basal nuclei）的敘述，何者正確？", "options": {"A": "由於內囊（internal capsule）部分纖維會通過殼核（putamen）和豆狀核（lentiform nucleus），故殼核 和豆狀核合稱為紋狀體（striatum）", "B": "間腦的底丘腦核（subthalamic nucleus）屬於基底核迴路的一部分，此處多巴胺神經元（dopaminergic neurons）的退化死亡會導致帕金森氏病（Parkinson's disease）", "C": "基底核迴路可以調控大腦皮質欲執行的動作之啟動與停止", "D": "基底核迴路以調控動作功能為主，因此與神經退化性疾病較有關係，並不參與精神疾病的病理機制"}, "images": [], "answer": "C"}, {"n": 10, "stem": "某患者因為腦溢血造成喪失味覺的後遺症，則下列何者為最有可能受損的大腦部位？", "options": {"A": "頂葉（parietal lobe）", "B": "額葉（frontal lobe）", "C": "顳葉（temporal lobe）", "D": "腦島（insula）"}, "images": [], "answer": "D"}, {"n": 11, "stem": "下列何者不屬於臂叢神經（brachial plexus）的分支？", "options": {"A": "肩胛上神經（suprascapular nerve）", "B": "肩胛背神經（dorsal scapular nerve）", "C": "胸長神經（long thoracic nerve）", "D": "鎖骨上神經（supraclavicular nerve）"}, "images": [], "answer": "D"}, {"n": 12, "stem": "患者嚼肌（masseter muscle）區域的皮膚失去感覺且無法用力咬合，最可能是下列何者受損？", "options": {"A": "顏面神經（facial nerve）", "B": "上頜神經（maxillary nerve）", "C": "下頜神經（mandibular nerve）", "D": "舌咽神經（glossopharyngeal nerve）"}, "images": [], "answer": "C"}, {"n": 13, "stem": "腋動脈（axillary artery）通過大圓肌（teres major）下緣後變成下列何者？", "options": {"A": "肱動脈（brachial artery）", "B": "尺動脈（ulnar artery）", "C": "肩胛背動脈（dorsal scapular artery）", "D": "深肱動脈（profunda brachii artery）"}, "images": [], "answer": "A"}, {"n": 14, "stem": "下列何者供應心肌（cardiac muscle）充氧血？", "options": {"A": "肺動脈（pulmonary artery）", "B": "主動脈弓（aortic arch）", "C": "冠狀動脈（coronary artery）", "D": "胸內動脈（internal thoracic artery）"}, "images": [], "answer": "C"}, {"n": 15, "stem": "血漿（blood plasma）內不含有下列何者？", "options": {"A": "白蛋白（albumin）", "B": "球蛋白（globulin）", "C": "纖維蛋白原（fibrinogen）", "D": "紅血球（erythrocyte）"}, "images": [], "answer": "D"}, {"n": 16, "stem": "聲韌帶（vocal ligament）連結下列那兩塊軟骨？", "options": {"A": "環狀軟骨與甲狀軟骨（cricoid and thyroid cartilages）", "B": "環狀軟骨與杓狀軟骨（cricoid and arytenoid cartilages）", "C": "杓狀軟骨與小角軟骨（arytenoid and corniculate cartilages）", "D": "杓狀軟骨與甲狀軟骨（arytenoid and thyroid cartilages）"}, "images": [], "answer": "D"}, {"n": 17, "stem": "小腸中，由黏膜（mucosa）與黏膜下層（submucosa）所形成皺褶為下列何者？", "options": {"A": "絨毛（villus）", "B": "皺襞（rugae）", "C": "環狀皺褶（circular fold）", "D": "腸脂垂（epiploic appendage）"}, "images": [], "answer": "C"}, {"n": 18, "stem": "在排尿（micturition）過程中，副交感神經的作用為下列何者？", "options": {"A": "刺激膀胱（urinary bladder）收縮", "B": "刺激尿道內括約肌（internal urethral sphincter）收縮", "C": "抑制腦幹（brain stem）功能", "D": "使尿道外括約肌（external urethral sphincter）鬆弛"}, "images": [], "answer": "A"}, {"n": 19, "stem": "胰臟中的α細胞（A 細胞）會分泌下列何者？", "options": {"A": "胰島素（insulin）", "B": "體制素（somatostatin）", "C": "升糖激素（glucagon）", "D": "胰多胜肽（pancreatic polypeptide）"}, "images": [], "answer": "C"}, {"n": 20, "stem": "下列何者不屬於表皮（epidermis）的衍生物？", "options": {"A": "指甲", "B": "毛囊", "C": "毛髮", "D": "壓覺受器"}, "images": [], "answer": "D"}, {"n": 21, "stem": "關於慢肌纖維（Type Ⅰ）的特性，下列何者正確？", "options": {"A": "具有廣泛發達的肌漿網（sarcoplasmic reticulum），利於快速釋放鈣離子", "B": "肌纖維比快肌大", "C": "含有大量的肌紅蛋白（myoglobin）", "D": "支配的神經纖維較粗"}, "images": [], "answer": "C"}, {"n": 22, "stem": "根據肌肉負荷與收縮速度（force-velocity）之規律，下列敘述何者正確？", "options": {"A": "向心收縮時負荷愈大其收縮的速度會愈快", "B": "等長收縮時產生的力量一定大於離心收縮", "C": "離心收縮時其產生的力矩平均大於向心收縮", "D": "最大收縮速度通常發生在肌肉承受重負荷時"}, "images": [], "answer": "C"}, {"n": 23, "stem": "屍僵（rigor mortis）發生的主要生理機制為何？", "options": {"A": "溶酶體酵素釋放導致肌纖維溶解", "B": "鈣離子大量流失導致肌肉無法收縮", "C": "ATP 耗盡，導致肌凝蛋白頭部無法與肌動蛋白分離", "D": "肌漿網過度釋放鈣離子導致持續性去極化"}, "images": [], "answer": "C"}, {"n": 24, "stem": "高齡者常有肌肉無力的現象，下列何種運動方式最適合有效增加高齡者的肌力？", "options": {"A": "無負重的運動訓練", "B": "阻力運動", "C": "伸展運動", "D": "被動關節運動"}, "images": [], "answer": "B"}, {"n": 25, "stem": "下列何種狀況，最會加速女性高齡者骨質流失的情形？", "options": {"A": "停經", "B": "曬太陽", "C": "運動補充很多水", "D": "體重增加"}, "images": [], "answer": "A"}, {"n": 26, "stem": "關於類固醇激素的敘述，下列何者錯誤？", "options": {"A": "化學結構與膽固醇相似", "B": "大多從膽固醇合成而來", "C": "容易經由擴散通過細胞膜進入組織間液", "D": "多數儲存於內分泌細胞"}, "images": [], "answer": "D"}, {"n": 27, "stem": "下列激素何者為腦下垂體後葉所分泌？", "options": {"A": "生長激素", "B": "黃體生成素", "C": "抗利尿激素", "D": "促腎上腺皮質素"}, "images": [], "answer": "C"}, {"n": 28, "stem": "關於 1,25-雙羥維生素 D（1,25-Dihydroxyvitamin D）的敘述，下列何者錯誤？", "options": {"A": "患有腎疾的病患血漿中濃度較低", "B": "主要功能是促進小腸內的鈣質吸收", "C": "生合成作用受到副甲狀腺素（parathyroid hormone）的調控", "D": "主要的前驅物質是維生素 D1"}, "images": [], "answer": "D"}, {"n": 29, "stem": "關於女性青春期生長加速（pubertal growth spurt）的機轉，下列敘述何者正確？", "options": {"A": "主要由甲狀腺素（thyroid hormones）單獨驅動", "B": "雌激素（estrogen）會促進生長並最終導致骨骺閉合（epiphysial closure）", "C": "第二型類胰島素生長因子（insulin-like growth factor Ⅱ, IGF-Ⅱ）在青春期達到高峰", "D": "生長激素（growth hormone, GH）的基礎分泌量在青春期顯著下降"}, "images": [], "answer": "B"}, {"n": 30, "stem": "病患因為腦部長了腫瘤，壓迫到視覺傳導區域，導致視野明顯受損，產生類似隧道式的視野，即靠近鼻側的 視覺正常，而兩邊外側視野明顯受損。此病患的腫瘤壓迫到視覺區的位置最有可能是在下圖中何處？", "options": {"A": "視神經（optic nerve）", "B": "視交叉（optic chiasm）", "C": "視徑（optic tract）", "D": "膝距束（geniculocalcarine tract）"}, "images": [], "answer": "B"}, {"n": 31, "stem": "下列有關一般人過度換氣（hyperventilation）之敘述，何者正確？", "options": {"A": "過度換氣會增加血氧，增加血二氧化碳，過高的血氧刺激呼吸中樞更加速呼吸", "B": "過度換氣會增加血氧，降低血二氧化碳，過高的血氧抑制呼吸中樞更減弱呼吸", "C": "過度換氣不會增加血氧，會增加血二氧化碳，過高的血二氧化碳刺激呼吸中樞更增強呼吸", "D": "過度換氣不會增加血氧，會降低血二氧化碳，過低的血二氧化碳抑制呼吸中樞更減弱呼吸"}, "images": [], "answer": "D"}, {"n": 32, "stem": "進行無氧閾值以上的強度運動 30 分鐘後，會使血紅素－氧解離曲線（oxyhemoglobin dissociation curve） 向何處偏移？", "options": {"A": "左", "B": "右", "C": "維持不變", "D": "無法判斷"}, "images": [], "answer": "B"}, {"n": 33, "stem": "承上題，影響該血紅素－氧解離曲線偏移的主要生理意義為何？", "options": {"A": "增加氧在肺部微血管與血紅素結合", "B": "增加氧在組織端被釋放", "C": "降低氧在肺部微血管與血紅素結合", "D": "增加血液攜帶氧的量"}, "images": [], "answer": "B"}, {"n": 34, "stem": "一位患者在進行閉氣用力（Valsalva maneuver）後釋放測試時，出現以下四個階段的血壓變化： Phase Ⅰ 血壓短暫上升、Phase Ⅱ 血壓下降伴隨心率加快、Phase Ⅲ 血壓進一步下降、Phase Ⅳ 血壓超 過基線值。關於 Phase Ⅳ 血壓超過基線值的機制，下列敘述何者最適當？", "options": {"A": "胸內壓持續升高導致心輸出量增加", "B": "心輸出量恢復時周邊血管仍處於收縮狀態", "C": "迷走神經活性增加導致血管阻力上升", "D": "壓力感受器敏感度下降導致交感神經持續興奮"}, "images": [], "answer": "B"}, {"n": 35, "stem": "老化與身體組成之變化，下列敘述何者錯誤？", "options": {"A": "橫向研究（cross-sectional data）結果指出，70 歲的人一般而言相較於 20 歲的人矮", "B": "縱向研究（longitudinal data）結果指出，體脂肪隨年齡上升而上升", "C": "超過 60 歲，骨質（bone mass）可能下降多至 30～50%", "D": "一般而言，18 歲之後體重與體脂肪逐漸上升至 50 歲到 60 歲，之後體重與體脂肪開始下降"}, "images": [], "answer": "D"}, {"n": 36, "stem": "甲在高山上時的大氣壓力為 500 mmHg，環境溫度為 0℃，若他的體溫仍為 37℃，則此時他氣管內的氧分壓最 接近多少 mmHg？（平地大氣壓＝760 mmHg；0℃的飽和水蒸氣壓＝5 mmHg，37℃的飽和水蒸氣壓＝47 mmHg； 氧占全部氣體體積的 20%）", "options": {"A": "142.6", "B": "100.0", "C": "99.0", "D": "90.6"}, "images": [], "answer": "D"}, {"n": 37, "stem": "在促黃體激素高峰（LH surge）出現後，大約幾小時發生排卵？", "options": {"A": "9", "B": "13", "C": "24", "D": "48"}, "images": [], "answer": "#", "correction_note": "一律給分", "answer_alternatives": ["A", "B", "C", "D"], "explanation": "⚠️ 官方答案疑義\n\n考選部原公告標準答案:A。但於「更正答案」公告中修正為「一律給分」。\n\n表示本題經考選部審視後認定爭議過大,任何選項作答皆給分。\n\n建議:此題不列入答題準確度統計。理解時可思考各選項各自的邏輯依據。"}, {"n": 38, "stem": "假設一位患者血漿中某物質的濃度為 0.5mg/dL，患者每分鐘排尿量為 125mL 且尿中某物質的濃度為 0.3mg/dL，此患者的腎臟對該物質的清除率應為多少？", "options": {"A": "0.375 mg/min", "B": "0.375 ml/min", "C": "0.75 mg/min", "D": "0.75 ml/min"}, "images": [], "answer": "#", "correction_note": "一律給分", "answer_alternatives": ["A", "B", "C", "D"], "explanation": "⚠️ 官方答案疑義\n\n考選部原公告標準答案:A。但於「更正答案」公告中修正為「一律給分」。\n\n表示本題經考選部審視後認定爭議過大,任何選項作答皆給分。\n\n建議:此題不列入答題準確度統計。理解時可思考各選項各自的邏輯依據。"}, {"n": 39, "stem": "在皮膚損傷後的癒合過程中，下列那一種細胞在正常生理作用下的參與度相對最少？", "options": {"A": "嗜中性白血球（neutrophil）", "B": "巨噬細胞（macrophage）", "C": "微膠細胞（microglial cell）", "D": "纖維母細胞（fibroblast）"}, "images": [], "answer": "C"}, {"n": 40, "stem": "關於補體系統（complement system）的敘述，下列何者錯誤？", "options": {"A": "補體蛋白可藉由抗體（antibodies）在入侵微生物的細胞膜上直接進行破壞，造成大孔而使水分等流入膜內 促使微生物死亡", "B": "補體系統具調理作用（opsonization），可以在吞噬細胞和標的細胞間形成橋樑而促進吞噬作用", "C": "補體系統具趨化作用（chemotaxis），釋放的補體片段可吸引吞噬細胞移到補體活化的部位", "D": "活化補體系統可促使感染區因為血管舒張而增加微血管通透性，因此可吸引更多吞噬細胞參與作戰"}, "images": [], "answer": "A"}, {"n": 41, "stem": "依應力－應變關係圖（stress-strain relationship），韌帶或肌腱承受拉力時，下列何者錯誤？", "options": {"A": "關係圖可分為非線性區、彈性區與塑性區", "B": "彈性區為正常的生理範圍，可提供關節穩定度", "C": "拉筋時，應力須進入塑性區但不能超過最終崩潰點（ultimate failure point）", "D": "結締組織的剛性（stiffness）為應變（strain）除以應力（stress）"}, "images": [], "answer": "D"}, {"n": 42, "stem": "下列肌蛋白結構與功能之配對，何者錯誤？", "options": {"A": "肌球蛋白重鏈（myosin heavy chain）—與肌動蛋白（actin）鍵結產生收縮力", "B": "肌球蛋白輕鏈（myosin light chain）—影響肌小節（sarcomere）的收縮速度", "C": "肌動蛋白（actin）—與肌球蛋白（myosin）鍵結以傳導力量和縮短肌小節（sarcomere）", "D": "巨型肌聯蛋白（titin）—幫助肌動蛋白鈎住 Z 盤（Z discs）"}, "images": [], "answer": "D"}, {"n": 43, "stem": "下圖（一）～（三），受試者平躺，上肢與軀幹平行並平貼床面，做肘關節屈曲及伸直，下列敘述何者正 確？", "options": {"A": "全部屈曲過程中，肱二頭肌為主動肌（agonist），作正功（positive work）", "B": "全部伸直過程中，肱三頭肌為主動肌（agonist），作負功（negative work）", "C": "屈曲超過 90 度到完全屈曲（圖二）的過程，肱三頭肌為主動肌（agonist），作正功（positive work）", "D": "伸直超過 90 度到近乎完全伸直（圖三）的過程，肱二頭肌為主動肌（agonist），作負功（negative work）"}, "images": [], "answer": "#", "correction_note": "一律給分", "answer_alternatives": ["A", "B", "C", "D"], "explanation": "⚠️ 官方答案疑義\n\n考選部原公告標準答案:D。但於「更正答案」公告中修正為「一律給分」。\n\n表示本題經考選部審視後認定爭議過大,任何選項作答皆給分。\n\n建議:此題不列入答題準確度統計。理解時可思考各選項各自的邏輯依據。"}, {"n": 44, "stem": "有關肌肉進行向心與離心活動之比較，下列敘述何者正確？", "options": {"A": "離心收縮所產生的力量小於向心收縮", "B": "在相同負荷下，離心活動所激活的運動單位（motor units）少於向心活動", "C": "在固定力量輸出時，離心活動的耗氧量大於向心活動", "D": "向心的肌肉活動是做負功，離心的肌肉活動是做正功"}, "images": [], "answer": "B"}, {"n": 45, "stem": "下列那一條肌肉最無法穩定盂肱關節？", "options": {"A": "小圓肌（teres minor）", "B": "棘上肌（supraspinatus）", "C": "三角肌（deltoid）", "D": "胸大肌（pectoralis major）"}, "images": [], "answer": "D"}, {"n": 46, "stem": "下列那個肌肉不是肩胛下轉的協同肌（synergist）？", "options": {"A": "菱形肌（rhomboid）", "B": "提肩胛肌（levator scapulae）", "C": "胸小肌（pectoralis minor）", "D": "上斜方肌（upper trapezius）"}, "images": [], "answer": "D"}, {"n": 47, "stem": "肘關節處於下列那一個屈曲角度範圍，肘屈肌可以產生最大肌力？", "options": {"A": "15 至 30 度", "B": "35 至 50 度", "C": "70 至 85 度", "D": "85 至 100 度"}, "images": [], "answer": "CD", "correction_note": "答 C 或 D 或 CD 者均給分", "answer_alternatives": ["C", "D"], "explanation": "⚠️ 官方答案疑義\n\n考選部原公告標準答案:C。「更正答案」公告修正為「答 C 或 D 或 CD 者均給分」。\n\n即 C、D 選項皆為正解,審視後認定不只一個答案合理。\n\n建議:此題以「多重合理答案」看待。"}, {"n": 48, "stem": "右手使用螺絲起子，要順時針用力鎖緊螺絲時，不會用到以下那一條肌肉？", "options": {"A": "橈側伸腕肌", "B": "伸拇長肌", "C": "掌長肌", "D": "肱三頭肌"}, "images": [], "answer": "C"}, {"n": 49, "stem": "下列那一肌肉不屬於小魚際肌群（hypothenar muscles）？", "options": {"A": "屈小指肌", "B": "外展小指肌", "C": "掌短肌", "D": "蚓狀肌"}, "images": [], "answer": "D"}, {"n": 50, "stem": "有關拇指腕掌（carpometacarpal）關節的屈曲動作，下列敘述何者正確？", "options": {"A": "發生於矢狀面", "B": "發生於水平面", "C": "拇指掌骨關節面向內側滾動", "D": "拇指掌骨關節面向外側滑動"}, "images": [], "answer": "C"}, {"n": 51, "stem": "下列那條肌肉不附著於脛骨？", "options": {"A": "股薄肌", "B": "縫匠肌", "C": "內收大肌", "D": "股二頭肌"}, "images": [], "answer": "C"}, {"n": 52, "stem": "下列肌肉與所對應的嘴巴動作，何者正確？", "options": {"A": "外翼肌（lateral pterygoid muscles）：下巴後縮", "B": "顳肌（temporalis muscles）：下巴前突", "C": "內翼肌（medial pterygoid muscles）：嘴巴張開", "D": "嚼肌（masseter muscles）：嘴巴閉合"}, "images": [], "answer": "D"}, {"n": 53, "stem": "步態隨著速度增加，從走變為跑的變化，下列何者錯誤？", "options": {"A": "一開始會以增加步頻和步長來增加速度", "B": "當步長到達極限，則會增加步寬來增加速度", "C": "開始奔跑時，雙腳支撐期（double limb support）會消失", "D": "奔跑時，腳觸地的位置可能在中足（midfoot）"}, "images": [], "answer": "B"}, {"n": 54, "stem": "地面反作用力的垂直方向的力，在站立期會有兩個尖峰，分別發生於那兩個時期？", "options": {"A": "站立中期及腳趾離地時", "B": "承重反應期及推進期", "C": "腳跟著地一瞬間及站立中期", "D": "腳跟著地一瞬間及腳趾離地時"}, "images": [], "answer": "B"}, {"n": 55, "stem": "由沒有扶手的椅子上站起，下列敘述何者錯誤？", "options": {"A": "站起前，膝關節屈曲約 90 至 115 度，較有利於身體重心向前轉移", "B": "對正常人來說，身體重心向前移動的過程中，髖屈肌無需持續收縮", "C": "身體由向前移動轉為向上移動時，其重心位置在踝關節正上方最有效率", "D": "隨著身體重心向前移動，頸椎會伸直以維持視線水平"}, "images": [], "answer": "C"}, {"n": 56, "stem": "進行下圖側面棒式（side plank）運動時，主要訓練的核心肌肉不包括下列那一條？", "options": {"A": "腹斜肌（oblique abdominis）", "B": "腰方肌（quadratus lumborum）", "C": "腹橫肌（transverse abdominis）", "D": "腹直肌（rectus abdominis）"}, "images": [], "answer": "D"}, {"n": 57, "stem": "有關骨頭在承受扭轉（torsion）負載發生骨折現象的敘述，下列何者正確？", "options": {"A": "骨折先由剪力的作用而發生，接著發生的骨折通常會沿著最大張應力平面分布", "B": "骨折先由張力的作用而發生，接著發生的骨折通常會沿著最大剪應力平面分布", "C": "骨折先由壓力的作用而發生，接著發生的骨折通常會沿著最大剪應力平面分布", "D": "骨折先由壓力的作用而發生，接著發生的骨折通常會沿著最大張應力平面分布"}, "images": [], "answer": "A"}, {"n": 58, "stem": "有關脊神經根的敘述，下列何者錯誤？", "options": {"A": "在脊椎的膜囊（thecal sac）內的神經根含有神經束膜（perineurium），所以具有張力強度", "B": "承受張力時，位於椎間孔的神經根其強度大於位在膜囊（thecal sac）內的神經根", "C": "脊神經根的兩個位置遭受壓迫時，會較單一位置遭受壓迫引起較多的症狀", "D": "椎間盤突出壓迫脊神經是屬於外側壓迫的形式"}, "images": [], "answer": "A"}, {"n": 59, "stem": "下列何者無法藉由加強盂肱關節囊以提供盂肱關節穩定度的功能？", "options": {"A": "喙肱韌帶（coracohumeral ligament）", "B": "棘上肌（supraspinatus）", "C": "二頭肌短頭", "D": "上、中、下盂肱韌帶"}, "images": [], "answer": "C"}, {"n": 60, "stem": "關於肌肉和支配神經的配對，下列何者錯誤？", "options": {"A": "肱二頭肌－肌皮神經", "B": "旋前圓肌－尺神經", "C": "旋後肌－橈神經", "D": "肱橈肌－橈神經"}, "images": [], "answer": "B"}, {"n": 61, "stem": "下列何種肌肉收縮，最不可能造成尺側偏移？", "options": {"A": "尺側伸腕肌", "B": "尺側屈腕肌", "C": "伸指肌", "D": "屈拇長肌"}, "images": [], "answer": "D"}, {"n": 62, "stem": "如圖所示，某病患以右腳單腳站立維持平衡時，左手提一重物的重量 F 為 100 牛頓，力臂長 c 為 0.4 公尺。 病患體重（排除右下肢重量）W 為 800 牛頓，力臂長 b 為 0.1 公尺。髖外展肌的施力臂 a 為 0.04 公尺。髖外 展肌的力量 M 大小是多少？", "options": {"A": "900 牛頓", "B": "3000 牛頓", "C": "1000 牛頓", "D": "700 牛頓"}, "images": [], "answer": "B"}, {"n": 63, "stem": "當右側髖關節疼痛患者要拿枴杖和一個重物走路時，在軀幹維持相同直立姿勢下，下列那個方式會造成在右 腳單腳支撐期的右側髖關節壓力最大？", "options": {"A": "左手用枴杖，右手提重物", "B": "左手用枴杖，重物背在背上", "C": "右手用枴杖，左手提重物", "D": "右手用枴杖，重物背在背上"}, "images": [], "answer": "C"}, {"n": 64, "stem": "膝關節於開放鏈姿勢下，下列何肌肉收縮時不會造成脛骨相對股骨內轉？", "options": {"A": "股薄肌（gracilis）", "B": "膕肌（popliteus）", "C": "半膜肌（semimembranosus）", "D": "闊筋膜張肌（tensor faciae latae）"}, "images": [], "answer": "D"}, {"n": 65, "stem": "膝關節由完全伸直到彎曲的運動過程中，脛股、髕股兩個關節在股骨髁的接觸區何處會有重疊（如下圖）？", "options": {"A": "①", "B": "②", "C": "③", "D": "④"}, "images": [], "answer": "A"}, {"n": 66, "stem": "下列腳踝韌帶之強度，由強至弱順序，何者是正確的？①三角（deltoid）韌帶 ②前距腓（anterior talofibular）韌帶 ③跟腓（calcaneofibular）韌帶 ④後距腓（posterior talofibular）韌帶", "options": {"A": "①②③④", "B": "①③④②", "C": "①④③②", "D": "④①③②"}, "images": [], "answer": "B"}, {"n": 67, "stem": "有關腳踝負荷分布之敘述，下列何者錯誤？", "options": {"A": "主要負重是脛骨平台和距骨穹窿（talar dome）", "B": "內翻動作增加內側小面（medial facet）載重", "C": "正中位置接觸面積大於背屈時", "D": "三角韌帶切除減少距骨接觸面積"}, "images": [], "answer": "C"}, {"n": 68, "stem": "下列那個肌肉沒有支持內側縱弓的功能？", "options": {"A": "脛後肌（tibialis posterior）", "B": "屈 長肌（flexor hallucis longus）", "C": "外展小趾肌（abductor digiti minimi）", "D": "外展 肌（abductor hallucis）"}, "images": [], "answer": "C"}, {"n": 69, "stem": "有關顳顎關節執行張嘴動作時，關節面動作的敘述，下列何者正確？", "options": {"A": "張嘴前期，關節面動作以滑動動作為主，造成下頜體（the body of mandible）往下往後動", "B": "張嘴前期，關節面動作以轉動動作為主，造成下頜體（the body of mandible）往下往後動", "C": "張嘴後期，關節面動作以滑動動作為主，造成下頜髁（the mandibular condyle）往下往後動", "D": "張嘴後期，關節面動作以轉動動作為主，造成下頜髁（the mandibular condyle）往下往後動"}, "images": [], "answer": "B"}, {"n": 70, "stem": "關於頸部斜角肌（scalenus muscle）的敘述，下列何者錯誤？", "options": {"A": "單側肌肉收縮會使頸部做同側側彎及旋轉", "B": "中斜角肌與後斜角肌有臂神經叢通過（brachial plexus）", "C": "前斜角肌與中斜角肌有鎖骨下動脈通過（subclavian artery）", "D": "起始點包含第四至第六節頸椎的橫突，終點包含第一或第二肋骨"}, "images": [], "answer": "B"}, {"n": 71, "stem": "有關黃韌帶（ligamentum flavum）的敘述，下列何者錯誤？", "options": {"A": "有 80%是彈性蛋白", "B": "可以延長 35%，過長就會斷裂", "C": "是成對的韌帶", "D": "在頸椎最肥厚"}, "images": [], "answer": "D"}, {"n": 72, "stem": "正常頸椎的總活動角度在那個方向角度最大？", "options": {"A": "前彎", "B": "後仰", "C": "側彎", "D": "旋轉"}, "images": [], "answer": "D"}, {"n": 73, "stem": "下列那個肌群無法協助軀幹執行屈曲動作？", "options": {"A": "腹直肌", "B": "腹內斜肌", "C": "腰大肌", "D": "腰髂肋肌"}, "images": [], "answer": "D"}, {"n": 74, "stem": "關於軀幹肌肉控制之敘述，下列何者錯誤？", "options": {"A": "咳嗽和吞嚥過程中，頸長肌肌肉活動增加，提供頸部穩定作用", "B": "胸鎖乳突肌需要其他頸部肌肉的協同收縮，才能產生頸部屈曲的動作", "C": "腹橫肌主要可引起軀幹伸直", "D": "腹外斜肌可以協助咳嗽動作的完成"}, "images": [], "answer": "C"}, {"n": 75, "stem": "穩定背部的內在肌肉（intrinsic muscles），由頸半棘肌（semispinalis cervicis muscle）到多裂肌 （multifidus）到旋轉短肌（rotator brevis），其施力方向與脊椎連線的銳夾角變化如何？", "options": {"A": "由大而小", "B": "由小而大", "C": "大致相同", "D": "由小漸大，再變小"}, "images": [], "answer": "B"}, {"n": 76, "stem": "於公車站立時，採取髖關節策略來穩定姿勢，下列那塊肌肉最不活躍？", "options": {"A": "公車突然向前開動：膕旁肌", "B": "公車突然剎車：股四頭肌", "C": "公車突然向前開動：腓腸肌", "D": "公車突然剎車：腹直肌"}, "images": [], "answer": "C"}, {"n": 77, "stem": "在擺盪中期到腳跟著地之間，下列那個肌肉最沒有活化？", "options": {"A": "股外側肌", "B": "股內側肌", "C": "股中間肌", "D": "股直肌"}, "images": [], "answer": "D"}, {"n": 78, "stem": "關於站立時使用吸塵器清潔地板的敘述，下列何者錯誤？", "options": {"A": "良好的身體力學是頭、頸和軀幹保持在正中位置", "B": "用強力抓握（power grip）的方式握住吸塵器手把", "C": "依靠肩關節和肘關節的協同動作即可省力地推拉吸塵器", "D": "向前推吸塵器時，右側肩胛骨做出前突（protraction）和稍微向上轉動（upward rotation）的動作"}, "images": [], "answer": "C"}, {"n": 79, "stem": "下列關於高爾夫球揮桿中加速期（acceleration phase）的敘述，下列何者錯誤？", "options": {"A": "起始於球桿與地面水平，結束於桿頭碰到球", "B": "期間身體重量都落在後側支撐腳以維持穩定", "C": "此期間骨盆與軀幹的旋轉速度會在擊到球前達到最快", "D": "此期間需要全身上下肢與軀幹各部位的肌肉都共同參與"}, "images": [], "answer": "B"}, {"n": 80, "stem": "關於關節固定（immobilization）對關節周圍肌腱或韌帶組織力學與結構之作用，下列那一項敘述最適當？", "options": {"A": "降低韌帶在拉伸的材料剛性（mechanical stiffness）", "B": "增加肌腱在拉伸的材料剛性（mechanical stiffness）", "C": "增加第一型膠原纖維合成", "D": "減少肌腱或韌帶內基質金屬蛋白酶（matrix metalloproteinases, MMPs）活動"}, "images": [], "answer": "A"}], "examCode": "115090"}};
+
+const state = {
+  paper: "Q1",
+  idx: {Q1: 0, Q2: 0},
+  picks: { Q1: {}, Q2: {} }, // hydrated later, after persistence block defines PICKS_STORAGE_KEY
+};
+
+const $ = sel => document.querySelector(sel);
+const main = $("#main");
+const grid = $("#grid");
+const progressEl = $("#progress");
+
+function isCorrect(paper, n, pick) {
+  const ans = DATA[paper].questions[n-1].answer;
+  if (ans === "#") return true; // 一律給分
+  return ans.indexOf(pick) >= 0; // single "A" or multi "AB" (X 或 Y 均給分)
+}
+
+function picksDone(paper) {
+  return Object.keys(state.picks[paper]).length;
+}
+
+function score(paper) {
+  let s = 0;
+  for (const n in state.picks[paper]) {
+    if (isCorrect(paper, parseInt(n), state.picks[paper][n])) s++;
+  }
+  return s;
+}
+
+function renderGrid() {
+  grid.innerHTML = "";
+  const qs = DATA[state.paper].questions;
+  for (let i = 0; i < qs.length; i++) {
+    const n = i + 1;
+    const btn = document.createElement("button");
+    btn.className = "gbtn";
+    btn.textContent = n;
+    if (state.idx[state.paper] === i && !state.viewSummary) btn.classList.add("cur");
+    if (n in state.picks[state.paper]) {
+      const ok = isCorrect(state.paper, n, state.picks[state.paper][n]);
+      btn.classList.add(ok ? "right" : "wrong");
+    }
+    if (isMarked(state.paper, n)) btn.classList.add("marked");
+    btn.onclick = () => { state.viewSummary = false; state.idx[state.paper] = i; render(); };
+    grid.appendChild(btn);
+  }
+}
+
+function escapeHTML(s) { return s.replace(/&/g, "&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function renderQuestion() {
+  const qs = DATA[state.paper].questions;
+  const i = state.idx[state.paper];
+  const q = qs[i];
+  const pick = state.picks[state.paper][q.n];
+  const locked = !!pick;
+  const correct = q.answer;
+  const total = qs.length;
+  progressEl.textContent = `第 ${i+1} 題 / 共 ${total} 題　·　已作答 ${picksDone(state.paper)}　·　目前得分 ${score(state.paper)}`;
+
+  let imgsHTML = "";
+  for (const u of q.images) imgsHTML += `<img class="qimg" src="${u}" alt="題目附圖">`;
+
+  let optsHTML = "";
+  for (const k of ["A","B","C","D"]) {
+    let cls = "opt";
+    if (locked) {
+      cls += " locked";
+      const isCorrLetter = (correct !== "#" && correct.indexOf(k) >= 0);
+      if (isCorrLetter) cls += " correct";
+      else if (k === pick && correct !== "#") cls += " wrong";
+      else if (correct === "#" && k === pick) cls += " correct";
+    }
+    optsHTML += `<button class="${cls}" data-k="${k}" ${locked ? "disabled" : ""}>
+      <span class="label">${k}.</span><span>${escapeHTML(q.options[k] || "")}</span>
+    </button>`;
+  }
+
+  let verdictHTML = "";
+  if (locked) {
+    if (correct === "#") {
+      verdictHTML = `<div class="verdict note">
+        <h3>本題經考選部公告「一律給分」</h3>
+        <div>${escapeHTML(q.explanation || "")}</div>
+      </div>`;
+    } else if (correct.length > 1) {
+      const ok = correct.indexOf(pick) >= 0;
+      const letters = correct.split("").join(" 或 ");
+      verdictHTML = `<div class="verdict note">
+        <h3>本題經考選部公告「答 ${letters} 均給分」　·　${ok ? "✓ 你的選擇 ("+pick+") 在正解內" : "✗ 你選 "+pick+"，未在正解內"}</h3>
+        <div>${escapeHTML(q.explanation || "")}</div>
+      </div>`;
+    } else {
+      const ok = pick === correct;
+      verdictHTML = `<div class="verdict ${ok ? "right" : "wrong"}">
+        <h3>${ok ? "✓ 答對" : "✗ 答錯"}　·　正解：${correct}</h3>
+        <div>${escapeHTML(q.explanation || "")}</div>
+      </div>`;
+    }
+  }
+
+  main.innerHTML = `<div class="card">
+    <div class="qhead">
+      <span class="qnum">第 ${q.n} 題</span>
+      <span class="qmeta">${DATA[state.paper].label}　·　${q.images.length>0?"含附圖":"純文字"}${isMarked(state.paper, q.n) ? ' <span class="marked-badge">🔖 已標記</span>' : ''}</span>
+      <button class="markbtn ${isMarked(state.paper, q.n) ? "marked" : ""}" id="markBtn" title="標記此題以便日後複習">${isMarked(state.paper, q.n) ? "🔖 已標記" : "🔖 標記"}</button>
+    </div>
+    <div class="stem">${escapeHTML(q.stem)}</div>
+    ${imgsHTML}
+    <div class="opts">${optsHTML}</div>
+    ${verdictHTML}
+    <div class="nav">
+      <button class="btn ghost" id="prevBtn" ${i===0?"disabled":""}>← 上一題</button>
+      <button class="btn" id="nextBtn" ${i===total-1?"disabled":""}>下一題 →</button>
+      <button class="btn ghost" id="clearBtn" ${locked?"":"disabled"}>清除本題作答</button>
+      ${i===total-1?'<button class="btn" id="finishBtn">完成本卷 / 看總結</button>':""}
+    </div>
+  </div>`;
+
+  // wire up
+  main.querySelectorAll(".opt").forEach(el => {
+    el.onclick = () => {
+      if (locked) return;
+      const k = el.getAttribute("data-k");
+      state.picks[state.paper][q.n] = k;
+      savePicks();
+      render();
+    };
+  });
+  $("#prevBtn").onclick = () => { if (i>0) { state.idx[state.paper] = i-1; render(); } };
+  $("#nextBtn").onclick = () => { if (i<total-1) { state.idx[state.paper] = i+1; render(); } };
+  $("#clearBtn").onclick = () => { delete state.picks[state.paper][q.n]; savePicks(); render(); };
+  $("#markBtn").onclick = () => { toggleMark(state.paper, q.n); render(); };
+  const fb = document.getElementById("finishBtn");
+  if (fb) fb.onclick = () => { state.viewSummary = true; render(); };
+}
+
+function renderSummary() {
+  const qs = DATA[state.paper].questions;
+  const total = qs.length;
+  const done = picksDone(state.paper);
+  const s = score(state.paper);
+  const pct = ((s/total)*100).toFixed(1);
+  progressEl.textContent = `本卷總結　·　已作答 ${done}/${total}　·　得分 ${s}　·　已標記 ${markedCount(state.paper)}`;
+
+  const wrongRows = [];
+  for (let i = 0; i < qs.length; i++) {
+    const q = qs[i];
+    const pick = state.picks[state.paper][q.n];
+    if (pick === undefined) continue;
+    if (q.answer === "#") continue;
+    if (pick === q.answer) continue;
+    const stemShort = q.stem.length > 50 ? q.stem.slice(0, 50) + "…" : q.stem;
+    wrongRows.push(`<div class="wrong-row" data-idx="${i}">
+      <strong>第 ${q.n} 題</strong>
+      <span style="color:var(--red);">你選 ${pick}</span>
+      <span style="color:var(--green);">正解 ${q.answer}</span>
+      <span style="color:var(--ink-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHTML(stemShort)}</span>
+    </div>`);
+  }
+  const unansweredRows = [];
+  for (let i = 0; i < qs.length; i++) {
+    if (state.picks[state.paper][qs[i].n] === undefined) {
+      unansweredRows.push(`<div class="wrong-row" data-idx="${i}" style="border-color:var(--yellow);"><strong>第 ${qs[i].n} 題</strong><span style="color:var(--yellow);">未作答</span></div>`);
+    }
+  }
+
+  main.innerHTML = `<div class="card summary">
+    <h2>${DATA[state.paper].label} · 總結</h2>
+    <div class="score">${s} / ${total}　<span style="font-size:18px;color:var(--ink-soft);">(${pct}%)</span></div>
+    <div style="color:var(--ink-soft);font-size:14px;">已作答 ${done} 題　·　答對 ${s} 題　·　答錯 ${done - s} 題　·　未作答 ${total - done} 題</div>
+    <div style="margin-top:18px;">
+      <h3 style="margin:0 0 6px;">錯題清單（${wrongRows.length}）</h3>
+      <div class="wrong-list">${wrongRows.join("") || '<div style="color:var(--ink-soft);">沒有錯題，太強了！</div>'}</div>
+    </div>
+    ${unansweredRows.length>0?`<div style="margin-top:14px;">
+      <h3 style="margin:0 0 6px;">未作答（${unansweredRows.length}）</h3>
+      <div class="wrong-list">${unansweredRows.join("")}</div>
+    </div>`:""}
+    ${(()=>{ const rows=[]; for (let i=0;i<qs.length;i++){ const q=qs[i]; if (!isMarked(state.paper,q.n)) continue; const pick=state.picks[state.paper][q.n]; const stemShort = q.stem.length>50?q.stem.slice(0,50)+'…':q.stem; const tag = pick===undefined?'未作答':(q.answer==='#'?'一律給分':(pick===q.answer?'答對':'答錯')); const tagColor = pick===undefined?'var(--ink-soft)':(q.answer==='#'?'var(--yellow)':(pick===q.answer?'var(--green)':'var(--red)')); rows.push(`<div class="wrong-row mk" data-idx="${i}"><strong>★ 第 ${q.n} 題</strong><span style="color:${tagColor};">${tag}</span><span style="color:var(--ink-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHTML(stemShort)}</span></div>`); } return rows.length>0 ? `<div style="margin-top:14px;"><h3 style="margin:0 0 6px;">🔖 已標記題目（${rows.length}）</h3><div class="wrong-list">${rows.join('')}</div><button class="btn ghost" id="clearMarksBtn" style="margin-top:8px;font-size:13px;">清除本卷所有標記</button></div>` : ''; })()}
+    <div class="nav" style="margin-top:18px;">
+      <button class="btn ghost" id="backBtn">← 回到題目</button>
+      <button class="btn danger" id="resetBtn2">重置本卷</button>
+    </div>
+  </div>`;
+  main.querySelectorAll(".wrong-row").forEach(el => {
+    el.onclick = () => {
+      state.idx[state.paper] = parseInt(el.getAttribute("data-idx"));
+      state.viewSummary = false; render();
+    };
+  });
+  document.getElementById("backBtn").onclick = () => { state.viewSummary = false; render(); };
+  const cmb = document.getElementById("clearMarksBtn");
+  if (cmb) cmb.onclick = () => { if (confirm("確定要清除「" + DATA[state.paper].label + "」這一卷的所有標記嗎？")) { clearAllMarks(state.paper); render(); } };
+  document.getElementById("resetBtn2").onclick = () => { resetCurrent(); };
+}
+
+function render() {
+  renderGrid();
+  if (state.viewSummary) renderSummary();
+  else renderQuestion();
+}
+
+function resetCurrent() {
+  if (!confirm(`確定要清除「${DATA[state.paper].label}」這一卷的所有作答與標記嗎？`)) return;
+  state.picks[state.paper] = {};
+  state.marks[state.paper] = {};
+  state.idx[state.paper] = 0;
+  state.viewSummary = false;
+  savePicks();
+  saveMarks();
+  render();
+}
+
+document.querySelectorAll(".tab").forEach(t => {
+  t.onclick = () => {
+    document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+    t.classList.add("active");
+    state.paper = t.getAttribute("data-tab");
+    state.viewSummary = false;
+    render();
+  };
+});
+$("#resetBtn").onclick = resetCurrent;
+$("#summaryBtn").onclick = () => { state.viewSummary = true; render(); };
+$("#clearMarksOnlyBtn").onclick = () => {
+  if (!confirm("確定清除本卷（" + DATA[state.paper].label + "）的所有 🔖 標記？\n（作答資料保留，其他卷的標記不動）\n此操作無法復原。")) return;
+  state.marks[state.paper] = {};
+  saveMarks();
+  alert("✓ 已清除本卷的所有標記。");
+  render();
+};
+
+
+// ===== Answer persistence (per-paper picks, saved to localStorage) =====
+const PICKS_STORAGE_KEY = _userKey("nephron_114_foundation_picks_v1");
+const QUIZ_ID = "foundation_114";  // unique id used when broadcasting summary
+
+function loadPicks() {
+  try {
+    const s = localStorage.getItem(PICKS_STORAGE_KEY);
+    if (s) {
+      const parsed = JSON.parse(s);
+      return { Q1: parsed.Q1 || {}, Q2: parsed.Q2 || {} };
+    }
+  } catch (e) {}
+  return { Q1: {}, Q2: {} };
+}
+function savePicks() {
+  try { localStorage.setItem(PICKS_STORAGE_KEY, JSON.stringify(state.picks)); } catch (e) {}
+  broadcastProgress();
+}
+
+// Send a summary of progress to parent window if embedded in an iframe.
+// Used by the dashboard (index.html) to show progress bars.
+
+
+/* Auto-jump to specific question from URL hash (e.g. #paper=Q1&q=27) */
+function _autoJumpFromHash() {
+  try {
+    const h = location.hash || "";
+    if (!h.includes("paper=") && !h.includes("q=")) return;
+    const pm = h.match(/paper=(Q[12])/);
+    const qm = h.match(/[&?#]q=(\d+)/);
+    if (pm) {
+      const newPaper = pm[1];
+      if (DATA[newPaper]) {
+        state.paper = newPaper;
+        document.querySelectorAll(".tab").forEach(t => {
+          t.classList.toggle("active", t.getAttribute("data-tab") === newPaper);
+        });
+      }
+    }
+    if (qm) {
+      const qNum = parseInt(qm[1], 10);
+      const qs = DATA[state.paper].questions;
+      const idx = qs.findIndex(qq => qq.n === qNum);
+      if (idx >= 0) state.idx[state.paper] = idx;
+    }
+    state.viewSummary = false;
+    render();
+    /* Clear hash so refresh doesn't re-trigger */
+    history.replaceState(null, "", location.pathname + location.search);
+    /* Smooth scroll to question for visibility */
+    setTimeout(() => {
+      const main = document.getElementById("main");
+      if (main) main.scrollIntoView({behavior: "smooth", block: "start"});
+    }, 100);
+  } catch(e) {}
+}
+if (document.readyState !== "loading") setTimeout(_autoJumpFromHash, 200);
+else document.addEventListener("DOMContentLoaded", () => setTimeout(_autoJumpFromHash, 200));
+
+function broadcastFullData() {
+  if (typeof window === "undefined") return;
+  let target = null;
+  try { if (window.parent && window.parent !== window) target = window.parent; } catch(e){}
+  if (!target) return;
+  try {
+    const msg = { type: "quizData", quizId: QUIZ_ID, href: location.pathname, papers: {} };
+    for (const tag of ["Q1","Q2"]) {
+      const qs = DATA[tag].questions;
+      const paperLabel = DATA[tag].label;
+      const slim = qs.map(q => ({
+        n: q.n,
+        stem: q.stem,
+        options: q.options,
+        answer: q.answer,
+        explanation: q.explanation,
+        hasImages: !!(q.images && q.images.length > 0),
+        images: (q.images || []).slice()
+      }));
+      msg.papers[tag] = { label: paperLabel, questions: slim };
+    }
+    target.postMessage(msg, "*");
+  } catch (e) {}
+}
+
+function broadcastProgress() {
+  if (typeof window === "undefined") return;
+  let target = null;
+  try { if (window.parent && window.parent !== window) target = window.parent; } catch(e){}
+  if (!target) return;
+  try {
+    const summary = { type: "quizSummary", quizId: QUIZ_ID, papers: {} };
+    for (const tag of ["Q1","Q2"]) {
+      const qs = DATA[tag].questions;
+      const picks = state.picks[tag] || {};
+      const marks = state.marks ? (state.marks[tag] || {}) : {};
+      let answered = 0, correct = 0;
+      for (const n in picks) {
+        answered++;
+        if (isCorrect(tag, parseInt(n), picks[n])) correct++;
+      }
+      summary.papers[tag] = {
+        label: DATA[tag].label,
+        total: qs.length,
+        answered, correct,
+        marked: Object.keys(marks).length,
+      };
+    }
+    target.postMessage(summary, "*");
+  } catch (e) {}
+}
+
+// Hydrate persisted picks now that PICKS_STORAGE_KEY and loadPicks are defined
+state.picks = loadPicks();
+
+// ===== Bookmarks (per-paper question marks, persisted to localStorage) =====
+const MARKS_STORAGE_KEY = _userKey("nephron_114_foundation_marks_v1");
+function loadMarks() {
+  try {
+    const s = localStorage.getItem(MARKS_STORAGE_KEY);
+    if (s) {
+      const parsed = JSON.parse(s);
+      return { Q1: parsed.Q1 || {}, Q2: parsed.Q2 || {} };
+    }
+  } catch (e) {}
+  return { Q1: {}, Q2: {} };
+}
+function saveMarks() {
+  try { localStorage.setItem(MARKS_STORAGE_KEY, JSON.stringify(state.marks)); } catch (e) {}
+  broadcastProgress();
+}
+function toggleMark(paper, n) {
+  if (state.marks[paper][n]) delete state.marks[paper][n];
+  else state.marks[paper][n] = true;
+  saveMarks();
+}
+function isMarked(paper, n) { return !!state.marks[paper][n]; }
+function clearAllMarks(paper) {
+  state.marks[paper] = {};
+  saveMarks();
+}
+function markedCount(paper) { return Object.keys(state.marks[paper]).length; }
+state.marks = loadMarks();
+
+// ===== Export / Download report =====
+function _esc(s) {
+  return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+function _stamp() {
+  const d = new Date();
+  const p = n => String(n).padStart(2, "0");
+  return `${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}`;
+}
+function _nowStr() { return new Date().toLocaleString("zh-TW", {hour12: false}); }
+
+function _filenameStamp() {
+  const d = new Date();
+  const p = n => String(n).padStart(2, "0");
+  return d.getFullYear() + "-" + p(d.getMonth()+1) + "-" + p(d.getDate()) + "_" + p(d.getHours()) + "-" + p(d.getMinutes());
+}
+function _safeFn(s) { return String(s).replace(/[\\/:*?"<>|]/g, "_").replace(/\s+/g, "_"); }
+function _promptFn(defaultName) {
+  const v = prompt("輸入匯出檔名（不含副檔名）：\n直接按確定即使用預設。", defaultName);
+  if (v === null) return null;
+  const t = v.trim();
+  return _safeFn(t || defaultName);
+}
+
+function _filterQs(paper, filter) {
+  const qs = DATA[paper].questions;
+  const picks = state.picks[paper];
+  if (filter === "all") return qs.slice();
+  if (filter === "answered") return qs.filter(q => picks[q.n] !== undefined);
+  if (filter === "unanswered") return qs.filter(q => picks[q.n] === undefined);
+  if (filter === "wrong") {
+    return qs.filter(q => {
+      const p = picks[q.n];
+      return p !== undefined && q.answer !== "#" && q.answer.indexOf(p) < 0;
+    });
+  }
+  if (filter === "marked") return qs.filter(q => isMarked(paper, q.n));
+  return qs.slice();
+}
+
+function _filterCounts(paper) {
+  return {
+    all: _filterQs(paper, "all").length,
+    answered: _filterQs(paper, "answered").length,
+    wrong: _filterQs(paper, "wrong").length,
+    unanswered: _filterQs(paper, "unanswered").length,
+    marked: _filterQs(paper, "marked").length,
+  };
+}
+
+function buildExportHTML(paper, filter) {
+  const allQs = DATA[paper].questions;
+  const picks = state.picks[paper];
+  const qs = _filterQs(paper, filter);
+  const total = allQs.length;
+  const answered = Object.keys(picks).length;
+  const correctCount = Object.entries(picks).filter(([n, p]) => isCorrect(paper, parseInt(n), p)).length;
+  const pct = total > 0 ? ((correctCount / total) * 100).toFixed(1) : "0.0";
+  const filterLabel = {all:"全部題目", wrong:"僅錯題", answered:"僅已作答", unanswered:"僅未作答", marked:"僅已標記"}[filter];
+  const paperLabel = DATA[paper].label + (paper === "Q1" ? "（115020）" : "（115090）");
+
+  const subjectTitle = "物理治療基礎學 · 民國 115 年 · " + paperLabel;
+  const fileTitle = `${_filenameStamp()}_${(NU.cur().name || "user")}_基礎_114_${paperLabel.replace(/[（）]/g, "")}_${filterLabel}`;
+
+  let body = "";
+  for (const q of qs) {
+    const pick = picks[q.n];
+    const correct = q.answer;
+    const errata = (correct === "#");
+    const answeredFlag = pick !== undefined;
+    let statusLabel, statusCls;
+    const multiHere = (!errata && correct && correct.length > 1);
+    if (errata) { statusLabel = "一律給分"; statusCls = "errata"; }
+    else if (!answeredFlag) { statusLabel = "未作答"; statusCls = "unanswered"; }
+    else if (multiHere) {
+      const ok = correct.indexOf(pick) >= 0;
+      statusLabel = ok ? "✓ 多解·入正解" : "✗ 多解·未入正解";
+      statusCls = ok ? "correct" : "wrong";
+    }
+    else if (pick === correct) { statusLabel = "✓ 答對"; statusCls = "correct"; }
+    else { statusLabel = "✗ 答錯"; statusCls = "wrong"; }
+
+    let imgsHTML = "";
+    for (const u of q.images) {
+      imgsHTML += `<img class="qimg" src="${u}" alt="題目附圖">`;
+    }
+
+    let optsHTML = "";
+    const multi = (!errata && correct && correct.length > 1);
+    for (const k of ["A","B","C","D"]) {
+      const isPick = (k === pick);
+      const isCorr = (!errata && correct && correct.indexOf(k) >= 0);
+      let cls = "opt";
+      let tag = "";
+      if (isPick && isCorr) { cls += " correct user-pick"; tag = "（你的選擇 ✓）"; }
+      else if (isPick && !isCorr && !errata) { cls += " wrong user-pick"; tag = "（你的選擇 ✗）"; }
+      else if (isCorr) { cls += " correct"; tag = (multi ? "（正解之一）" : "（正解）"); }
+      else if (isPick && errata) { cls += " errata user-pick"; tag = "（你的選擇）"; }
+      optsHTML += `<li class="${cls}"><b>${k}.</b> ${_esc(q.options[k] || "")}<span class="opt-tag">${tag}</span></li>`;
+    }
+
+    let verdictHTML = "";
+    if (errata) {
+      verdictHTML = `<div class="verdict errata"><b>本題經考選部公告「一律給分」</b>${answeredFlag ? `（你選了 ${pick}）` : ""}</div>`;
+    } else if (multi) {
+      const letters = correct.split("").join(" 或 ");
+      const ok = answeredFlag && correct.indexOf(pick) >= 0;
+      verdictHTML = `<div class="verdict errata"><b>本題經考選部公告「答 ${letters} 均給分」</b>${answeredFlag ? ` · 你選 <b>${pick}</b>${ok ? " ✓" : " ✗"}` : " · 未作答"}</div>`;
+    } else if (!answeredFlag) {
+      verdictHTML = `<div class="verdict unanswered"><b>未作答</b> · 正解：<b>${correct}</b></div>`;
+    } else {
+      const ok = pick === correct;
+      verdictHTML = `<div class="verdict ${ok ? "correct" : "wrong"}"><b>${ok ? "✓ 答對" : "✗ 答錯"}</b> · 你的選擇：<b>${pick}</b> · 正解：<b>${correct}</b></div>`;
+    }
+
+    const explHTML = q.explanation ? `<div class="expl"><b>詳解 ▸</b> ${_esc(q.explanation)}</div>` : "";
+
+    const markedBadge = isMarked(paper, q.n) ? ` <span class="qstatus marked">🔖 已標記</span>` : "";
+    body += `<article class="q ${statusCls}">
+  <div class="qhead">
+    <h2>第 ${q.n} 題</h2>
+    <span class="qstatus ${statusCls}">${statusLabel}</span>${markedBadge}
+  </div>
+  <div class="stem">${_esc(q.stem)}</div>
+  ${imgsHTML}
+  <ol class="opts">${optsHTML}</ol>
+  ${verdictHTML}
+  ${explHTML}
+</article>`;
+  }
+
+  const css = `
+:root { --ink:#1f2933; --soft:#52606d; --line:#dde2e7; --primary:#1d6f9b;
+  --green:#2f9e44; --green-soft:#e6f7ec; --red:#c92a2a; --red-soft:#fff0f0;
+  --yellow:#a07700; --yellow-soft:#fff8d8; --grey:#f3f4f6; }
+* { box-sizing: border-box; }
+body { font-family: -apple-system, "Segoe UI", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  color: var(--ink); line-height: 1.7; margin: 0; padding: 0; background: #fafbfc; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 24px 22px 60px; }
+header.report { padding: 18px 22px; border-bottom: 2px solid var(--primary); background: #fff; margin: -24px -22px 24px; }
+header.report h1 { margin: 0 0 6px; font-size: 19px; font-weight: 700; color: var(--primary); }
+header.report .meta { color: var(--soft); font-size: 13px; line-height: 1.7; }
+header.report .score { font-size: 22px; color: var(--primary); font-weight: 700; }
+header.report .actions { margin-top: 10px; }
+.print-btn { background: var(--primary); color: #fff; border: 0; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+article.q { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; margin-bottom: 14px; page-break-inside: avoid; break-inside: avoid; }
+article.q.correct { border-left: 4px solid var(--green); }
+article.q.wrong { border-left: 4px solid var(--red); }
+article.q.errata { border-left: 4px solid var(--yellow); }
+article.q.unanswered { border-left: 4px solid var(--soft); background: #fcfcfd; }
+.qhead { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+.qhead h2 { font-size: 15px; margin: 0; font-weight: 700; }
+.qstatus { font-size: 12px; padding: 2px 9px; border-radius: 999px; font-weight: 600; }
+.qstatus.correct { background: var(--green-soft); color: var(--green); }
+.qstatus.wrong { background: var(--red-soft); color: var(--red); }
+.qstatus.errata { background: var(--yellow-soft); color: var(--yellow); }
+.qstatus.unanswered { background: var(--grey); color: var(--soft); }
+.qstatus.marked { background: var(--yellow-soft); color: var(--yellow); margin-left: 4px; }
+.stem { font-size: 15px; white-space: pre-wrap; word-break: break-word; margin-bottom: 10px; }
+.qimg { display: block; max-width: 100%; max-height: 380px; margin: 8px 0; border: 1px solid var(--line); border-radius: 4px; }
+ol.opts { list-style: none; padding-left: 0; margin: 8px 0; }
+ol.opts li.opt { padding: 7px 12px; border: 1px solid var(--line); border-radius: 6px; margin-bottom: 5px; font-size: 14px; background: #fff; display: flex; gap: 8px; align-items: flex-start; }
+ol.opts li.opt b { min-width: 22px; }
+ol.opts li.opt .opt-tag { margin-left: auto; font-size: 12px; font-weight: 600; }
+ol.opts li.opt.correct { background: var(--green-soft); border-color: var(--green); color: #186b29; }
+ol.opts li.opt.wrong { background: var(--red-soft); border-color: var(--red); color: #861818; }
+ol.opts li.opt.errata { background: var(--yellow-soft); border-color: var(--yellow); }
+.verdict { padding: 8px 12px; border-radius: 6px; font-size: 13px; margin-top: 8px; }
+.verdict.correct { background: var(--green-soft); color: #186b29; }
+.verdict.wrong { background: var(--red-soft); color: #861818; }
+.verdict.errata { background: var(--yellow-soft); color: #6b4e00; }
+.verdict.unanswered { background: var(--grey); color: var(--soft); }
+.expl { margin-top: 8px; padding: 10px 14px; background: #f5f7fa; border-left: 3px solid var(--primary); border-radius: 0 6px 6px 0; font-size: 13.5px; line-height: 1.75; color: #2c3a44; }
+.empty { padding: 40px; text-align: center; color: var(--soft); border: 1px dashed var(--line); border-radius: 8px; background: #fff; }
+@media print {
+  body { background: #fff; }
+  .print-btn, .actions { display: none !important; }
+  header.report { margin: 0; border-bottom: 2px solid #000; }
+  article.q { box-shadow: none; }
+}
+`;
+
+  let main;
+  if (qs.length === 0) {
+    main = `<div class="empty">沒有符合條件的題目（${filterLabel}）。</div>`;
+  } else {
+    main = body;
+  }
+
+  const html = `<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${_esc(fileTitle)}</title>
+<style>${css}</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="report">
+    <h1>${_esc(subjectTitle)}</h1>
+    <div class="score">得分 ${correctCount} / ${total} （${pct}%）</div>
+    <div class="meta">
+      已作答 ${answered} 題 · 答對 ${correctCount} 題 · 答錯 ${answered - correctCount} 題 · 未作答 ${total - answered} 題 · 🔖 已標記 ${markedCount(paper)} 題<br>
+      匯出範圍：<b>${filterLabel}</b>（${qs.length} 題） · 匯出時間：${_nowStr()}
+    </div>
+    <div class="actions">
+      <button class="print-btn" onclick="window.print()">列印 / 存成 PDF</button>
+    </div>
+  </header>
+  <main>${main}</main>
+</div>
+
+</div>
+
+</body>
+</html>`;
+  return { html, fileTitle };
+}
+
+function downloadExport(filter) {
+  const built = buildExportHTML(state.paper, filter);
+  const html = built.html;
+  const fn = _promptFn(built.fileTitle);
+  if (!fn) return;
+  const fileTitle = fn;
+  const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const isAndroidWebView = /Android.*wv|Version\/.*Chrome\/[.0-9]+ Mobile/.test(navigator.userAgent) && !/Chrome\/[.0-9]+ (Mobile )?Safari/.test(navigator.userAgent);
+  // Try standard download flow first
+  try {
+    const a = document.createElement("a");
+    a.href = url; a.download = fileTitle + ".html";
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  } catch (err) { /* fallthrough */ }
+  // iOS Safari ignores the download attribute. Open the blob in a new tab so user can save via share sheet.
+  if (isIOS) {
+    setTimeout(() => {
+      const win = window.open(url, "_blank");
+      if (!win || win.closed) {
+        // Popup blocked - navigate current page instead
+        location.href = url;
+      }
+      alert("iOS 提示：\n剛開啟的頁面就是匯出結果。\n\n要儲存：\n1. 點下方「分享」按鈕（方框上箭頭）\n2. 選「儲存到檔案」或「Save to Files」\n\n或長按頁面 → 「儲存」即可。");
+    }, 100);
+  } else if (isAndroidWebView) {
+    setTimeout(() => {
+      alert("提示：若沒看到下載提示，請改用 Chrome / Firefox 等瀏覽器開啟此網頁再匯出。");
+    }, 200);
+  }
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+
+function showExportModal() {
+  const modal = document.getElementById("exportModal");
+  // Update counts based on current paper state
+  const c = _filterCounts(state.paper);
+  document.getElementById("cntAll").textContent = `(${c.all} 題)`;
+  document.getElementById("cntAnswered").textContent = `(${c.answered} 題)`;
+  document.getElementById("cntWrong").textContent = `(${c.wrong} 題)`;
+  document.getElementById("cntUnans").textContent = `(${c.unanswered} 題)`;
+  document.getElementById("cntMarked").textContent = `(${c.marked} 題)`;
+  document.getElementById("exportSub").textContent =
+    "本卷：" + DATA[state.paper].label + (state.paper === "Q1" ? "（115020）" : "（115090）");
+  // Disable empty options
+  document.querySelectorAll("#exportOpts .exp-opt").forEach(b => {
+    const f = b.getAttribute("data-filter");
+    b.disabled = (c[f] === 0);
+  });
+  modal.classList.add("show");
+}
+function hideExportModal() {
+  document.getElementById("exportModal").classList.remove("show");
+}
+
+document.getElementById("exportBtn").onclick = showExportModal;
+document.getElementById("closeExportBtn").onclick = hideExportModal;
+document.getElementById("exportModal").addEventListener("click", e => {
+  if (e.target.id === "exportModal") hideExportModal();
+});
+document.querySelectorAll("#exportOpts .exp-opt").forEach(btn => {
+  btn.onclick = () => {
+    const filter = btn.getAttribute("data-filter");
+    if (btn.disabled) return;
+    downloadExport(filter);
+    hideExportModal();
+  };
+});
+
+render();
+// Broadcast initial state to parent (dashboard) if loaded as iframe
+broadcastProgress();
+broadcastFullData();
+
+
+function downloadJSONBackup() {
+  const obj = NU.exportAll();
+  const def = _filenameStamp() + "_" + (NU.cur().name || "user") + "_基礎_114";
+  const fn = _promptFn(def);
+  if (!fn) return;
+  const fileTitle = fn;
+  const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  try { const a = document.createElement("a"); a.href = url; a.download = fileTitle + ".json"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove(); } catch (e) {}
+  if (isIOS) {
+    setTimeout(() => {
+      const win = window.open(url, "_blank");
+      if (!win || win.closed) location.href = url;
+      alert("iOS：剛開啟的頁面就是 JSON 備份。\n按下方「分享」→「儲存到檔案」即可儲存。");
+    }, 100);
+  }
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+function importJSONBackupFromFile(file, scope) {
+  // scope: "this" = only current paper's keys, "all" = everything (true replace for both)
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const obj = JSON.parse(e.target.result);
+      if (!obj || !obj.data || obj.app !== "nephron-pt-quiz") throw new Error("無效的備份檔");
+      const picksBase = PICKS_STORAGE_KEY.split("::u::")[0];
+      const marksBase = MARKS_STORAGE_KEY.split("::u::")[0];
+      const cur = NU.ck();
+      const dataKeys = Object.keys(obj.data);
+      if (scope === "this") {
+        // Find this paper's data in backup (any user namespace)
+        let foundPicks = null, foundMarks = null;
+        for (const k of dataKeys) {
+          const baseK = k.split("::u::")[0];
+          if (baseK === picksBase) foundPicks = obj.data[k];
+          if (baseK === marksBase) foundMarks = obj.data[k];
+        }
+        if (foundPicks === null && foundMarks === null) {
+          alert("此備份檔不包含本卷的資料。"); return;
+        }
+        const msg = "還原本卷至備份狀態，匯入到目前使用者「" + NU.cur().name + "」。\n（若備份未含 picks/marks，現有同類別資料會被清除以還原為「未作答」狀態。）\n確定？";
+        if (!confirm(msg)) return;
+        // True replace: clear current user's keys for this subject, then set from backup if present
+        const picksKeyForCur = picksBase + "::u::" + cur;
+        const marksKeyForCur = marksBase + "::u::" + cur;
+        if (foundPicks !== null) localStorage.setItem(picksKeyForCur, foundPicks);
+        else localStorage.removeItem(picksKeyForCur);
+        if (foundMarks !== null) localStorage.setItem(marksKeyForCur, foundMarks);
+        else localStorage.removeItem(marksKeyForCur);
+        alert("✓ 本卷進度已還原。即將重新整理頁面。");
+      } else {
+        const userCount = obj.users ? obj.users.length : "?";
+        if (!confirm("還原「全部」資料：" + userCount + " 位使用者、" + dataKeys.length + " 筆 key。\n現有所有 nephron 資料將被「完全替換」為備份內容（未在備份中的會被清除）。\n確定？")) return;
+        const n = NU.importAll(obj, "replace");
+        alert("✓ 已還原 " + n + " 筆資料。即將重新整理頁面。");
+      }
+      location.reload();
+    } catch (err) { alert("匯入失敗：" + err.message); }
+  };
+  reader.readAsText(file);
+}
+(function() {
+  function inject() {
+    const opts = document.getElementById("exportOpts");
+    if (!opts || document.getElementById("expJsonBtn")) return;
+    const jsonBtn = document.createElement("button");
+    jsonBtn.className = "exp-opt"; jsonBtn.id = "expJsonBtn";
+    jsonBtn.innerHTML = '💾 進度備份 JSON（跨裝置同步用） <span class="count">全部使用者</span>';
+    jsonBtn.onclick = () => { downloadJSONBackup(); hideExportModal(); };
+    opts.appendChild(jsonBtn);
+    const importDiv = document.createElement("div");
+    importDiv.style.cssText = "margin-top:14px; padding-top:14px; border-top:1px solid var(--line);";
+    importDiv.innerHTML = '<div style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:6px;">從 JSON 還原進度</div>'
+      + '<div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">'
+      + '<input type="file" id="expImportFile" accept=".json,application/json" style="flex:1; min-width:160px; font-size:13px;" />'
+      + '<button id="expImportThis" style="padding:7px 14px; font-size:13px; background:var(--primary); color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:600;">📥 僅匯入本卷</button>'
+      + '<button id="expImportAll" style="padding:7px 14px; font-size:13px; background:#fff; color:var(--primary); border:1px solid var(--primary); border-radius:6px; cursor:pointer; font-weight:600;">📥 匯入全部</button>'
+      + '</div>'
+      + '<p style="font-size:12px; color:var(--ink-soft); margin:8px 0 0;">💡 「僅匯入本卷」只還原此測驗的 picks／marks（會匯入到目前使用者）。「匯入全部」會還原所有使用者與所有測驗。</p>';
+    opts.parentElement.insertBefore(importDiv, opts.nextSibling);
+    document.getElementById("expImportThis").onclick = () => {
+      const f = document.getElementById("expImportFile").files[0];
+      if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+      importJSONBackupFromFile(f, "this");
+    };
+    document.getElementById("expImportAll").onclick = () => {
+      const f = document.getElementById("expImportFile").files[0];
+      if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+      importJSONBackupFromFile(f, "all");
+    };
+  }
+  if (document.readyState !== "loading") setTimeout(inject, 0);
+  else document.addEventListener("DOMContentLoaded", inject);
+})();
+
+
+
+
+
+/* === Toolbar v2 wiring === */
+(function() {
+  function _esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  function refreshUserName() {
+    const e = document.getElementById("nuTbUserName"); if (e) e.textContent = NU.cur().name;
+    const c = document.getElementById("nuMdCurName"); if (c) c.textContent = NU.cur().name;
+    const c2 = document.getElementById("nuMdCurName2"); if (c2) c2.textContent = NU.cur().name;
+  }
+  function renderUserList() {
+    const list = document.getElementById("nuMdUserList"); if (!list) return;
+    const cur = NU.ck(); const users = NU.list();
+    list.innerHTML = users.map(u => {
+      const active = u.uid === cur;
+      const star = u.star ? "★ " : "";
+      return '<li class="nu-md-item' + (active ? ' active' : '') + '">'
+        + '<span class="nu-md-iname">' + star + _esc(u.name) + '</span>'
+        + '<span class="nu-md-idate">' + _esc(u.createdAt) + '</span>'
+        + '<button data-act="use" data-uid="' + u.uid + '"' + (active ? ' disabled' : '') + '>' + (active ? '使用中' : '切換') + '</button>'
+        + '<button data-act="rename" data-uid="' + u.uid + '">重新命名</button>'
+        + (u.uid === 'default' ? '' : '<button class="nu-md-del" data-act="del" data-uid="' + u.uid + '">刪除</button>')
+        + '</li>';
+    }).join('');
+    list.querySelectorAll('button').forEach(btn => {
+      btn.onclick = () => {
+        const act = btn.getAttribute('data-act'), uid = btn.getAttribute('data-uid');
+        if (act === 'use') {
+          NU.use(uid);
+          const newU = NU.list().find(x => x.uid === uid);
+          /* visual feedback before reload */
+          btn.textContent = '切換中…';
+          setTimeout(() => location.reload(), 80);
+        }
+        else if (act === 'rename') {
+          const u = NU.list().find(x => x.uid === uid);
+          const n = prompt('重新命名：', u ? u.name : '');
+          if (n) { NU.rename(uid, n); renderUserList(); refreshUserName(); }
+        } else if (act === 'del') {
+          const u = NU.list().find(x => x.uid === uid);
+          if (confirm('確定刪除「' + (u ? u.name : '') + '」？該使用者所有作答記錄將一併清除。')) {
+            NU.del(uid); renderUserList(); refreshUserName();
+            if (NU.ck() === 'default') location.reload();
+          }
+        }
+      };
+    });
+  }
+  function showMd(id) { if (id === 'nuMdUser') { renderUserList(); refreshUserName(); } document.getElementById(id).classList.add('show'); }
+  function hideMd(id) { const m = document.getElementById(id); if (m) m.classList.remove('show'); }
+  function wire() {
+    refreshUserName();
+    /* toolbar buttons */
+    const tbU = document.getElementById("nuTbUser");      if (tbU)  tbU.onclick  = () => showMd("nuMdUser");
+    const tbI = document.getElementById("nuTbIO");        if (tbI)  tbI.onclick  = () => showMd("nuMdIO");
+    const tbC = document.getElementById("nuTbClear");     if (tbC)  tbC.onclick  = () => showMd("nuMdClear");
+    /* close buttons */
+    document.querySelectorAll('[data-md-close]').forEach(b => b.onclick = () => hideMd(b.getAttribute('data-md-close')));
+    /* click outside to close */
+    document.querySelectorAll('.nu-md-bg').forEach(bg => bg.addEventListener('click', e => { if (e.target === bg) bg.classList.remove('show'); }));
+    /* user modal: add */
+    const addBtn = document.getElementById("nuMdAddBtn");
+    const newName = document.getElementById("nuMdNewName");
+    if (addBtn) addBtn.onclick = () => {
+      const v = newName.value.trim(); if (!v) { newName.focus(); return; }
+      NU.add(v); newName.value = ""; renderUserList(); refreshUserName();
+    };
+    if (newName) newName.addEventListener("keydown", e => { if (e.key === "Enter") addBtn.click(); });
+    /* IO modal: export */
+    const expBtn = document.getElementById("nuMdExpBtn");
+    if (expBtn) expBtn.onclick = () => { downloadJSONBackup(); hideMd("nuMdIO"); };
+    
+  /* Quiz: per-paper "this" import */
+  const impThis = document.getElementById("nuMdImpThis");
+  if (impThis) impThis.onclick = () => {
+    const f = document.getElementById("nuMdImpFile").files[0];
+    if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+    importJSONBackupFromFile(f, "this");
+  };
+  const impAll = document.getElementById("nuMdImpAll");
+  if (impAll) impAll.onclick = () => {
+    const f = document.getElementById("nuMdImpFile").files[0];
+    if (!f) { alert("請先選擇 JSON 備份檔。"); return; }
+    importJSONBackupFromFile(f, "all");
+  };
+    /* clear modal */
+    const clrCur = document.getElementById("nuMdClrCur");
+    if (clrCur) clrCur.onclick = () => {
+      const u = NU.cur();
+      if (!confirm('確定清除「' + u.name + '」的所有作答／標記？此操作無法復原。')) return;
+      const cur = NU.ck();
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith("nephron_") && k.endsWith("::u::" + cur)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除「' + u.name + '」的 ' + toDel.length + ' 筆紀錄。即將重新整理。');
+      location.reload();
+    };
+    const clrAllRec = document.getElementById("nuMdClrAllRec");
+    if (clrAllRec) clrAllRec.onclick = () => {
+      if (!confirm('確定清除「全部使用者」的所有作答／標記？\\n（使用者清單保留，僅清除作答資料）\\n此操作無法復原。')) return;
+      const n = NU.wipeAllProgress();
+      alert('✓ 已清除 ' + n + ' 筆紀錄。即將重新整理。');
+      location.reload();
+    };
+    const clrCurMarks = document.getElementById("nuMdClrCurMarks");
+    if (clrCurMarks) clrCurMarks.onclick = () => {
+      const u = NU.cur();
+      if (!confirm('確定清除「' + u.name + '」的所有 🔖 標記？\n（該使用者的作答資料保留，其他使用者完全不動）\n此操作無法復原。')) return;
+      const cur = NU.ck();
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && /^nephron_.*_marks_v1/.test(k) && k.endsWith('::u::' + cur)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除「' + u.name + '」的 ' + toDel.length + ' 個標記檔。即將重新整理。');
+      location.reload();
+    };
+    const clrAllMarks = document.getElementById("nuMdClrAllMarks");
+    if (clrAllMarks) clrAllMarks.onclick = () => {
+      if (!confirm('確定清除「全部使用者」的所有 🔖 標記？\n（作答資料保留）\n此操作無法復原。')) return;
+      const toDel = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && /^nephron_.*_marks_v1/.test(k)) toDel.push(k);
+      }
+      toDel.forEach(k => localStorage.removeItem(k));
+      alert('✓ 已清除 ' + toDel.length + ' 個標記檔。即將重新整理。');
+      location.reload();
+    };
+    const fullR = document.getElementById("nuMdFullReset");
+    if (fullR) fullR.onclick = () => {
+      if (!confirm('⚠️ 完全重置：刪除所有使用者、所有作答、所有標記。\\n回到全新狀態（只保留「預設」使用者）。\\n此操作無法復原，確定？')) return;
+      const n = NU.wipeAll();
+      alert('✓ 已重置 ' + n + ' 筆。即將重新整理。');
+      location.reload();
+    };
+  }
+  if (document.readyState !== "loading") setTimeout(wire, 0);
+  else document.addEventListener("DOMContentLoaded", wire);
+})();
+
+
+</script>
+
+
+
+<!-- nu modals -->
+<div class="nu-md-bg" id="nuMdUser" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>👤 使用者切換／管理</h3>
+    <div class="nu-md-sub">同一台裝置可建立多個使用者，作答進度互不干擾。<br><strong>切換使用者後會自動重新整理。</strong></div>
+    <ul class="nu-md-list" id="nuMdUserList"></ul>
+    <div class="nu-md-title">新增使用者</div>
+    <div class="nu-md-add">
+      <input type="text" id="nuMdNewName" placeholder="輸入名字…" maxlength="20" />
+      <button id="nuMdAddBtn" type="button">＋ 新增</button>
+    </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdUser" type="button">關閉</button></div>
+  </div>
+</div>
+<div class="nu-md-bg" id="nuMdIO" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>💾 匯入／匯出 JSON 備份</h3>
+    <div class="nu-md-sub">匯出 JSON 可在不同裝置間同步進度（含所有使用者與所有測驗）。</div>
+    <div class="nu-md-section">
+      <div class="nu-md-title">📤 匯出 JSON</div>
+      <button id="nuMdExpBtn" class="nu-md-btn-success" type="button" style="padding:7px 14px; font-size:13px; border-radius:6px; cursor:pointer;">💾 匯出全部 JSON</button>
+      <div class="nu-md-tip">含所有使用者、所有測驗的 picks／marks，可作為跨裝置同步的備份檔。iOS 會自動開新分頁，請用「分享 → 儲存到檔案」儲存。</div>
+    </div>
+    
+      <div class="nu-md-section">
+        <div class="nu-md-title">📥 從 JSON 還原進度</div>
+        <div class="nu-md-row">
+          <input type="file" id="nuMdImpFile" accept=".json,application/json" style="flex:1; min-width:160px; font-size:13px;" />
+        </div>
+        <div class="nu-md-row" style="gap:6px;">
+          <button id="nuMdImpThis" class="nu-md-btn-primary" type="button" style="padding:7px 12px; font-size:13px; border-radius:6px; cursor:pointer;">📥 僅匯入本卷</button>
+          <button id="nuMdImpAll" type="button" style="padding:7px 12px; font-size:13px; background:#fff; color:#1d6f9b; border:1px solid #1d6f9b; border-radius:6px; cursor:pointer; font-weight:600;">📥 匯入全部</button>
+        </div>
+        <div class="nu-md-tip">「僅匯入本卷」只還原此測驗的 picks／marks（會匯入到目前使用者，並把現有同類資料清空為「未作答」）。<br>「匯入全部」會還原所有使用者與所有測驗，未在備份中的資料會被清除（真正的「還原」語意）。</div>
+      </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdIO" type="button">關閉</button></div>
+  </div>
+</div>
+<div class="nu-md-bg" id="nuMdClear" role="dialog" aria-modal="true">
+  <div class="nu-md">
+    <h3>🗑 清除紀錄</h3>
+    <div class="nu-md-sub" style="color:#c92a2a;"><strong>⚠️ 以下動作無法復原。</strong></div>
+    <div class="nu-md-row" style="flex-direction:column; align-items:stretch; gap:8px;">
+      <button id="nuMdClrCur" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🗑 清除「目前使用者」（<span id="nuMdCurName">預設使用者</span>）的所有紀錄<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除目前使用者的作答／標記，使用者本身保留</div></button>
+      <button id="nuMdClrAllRec" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🗑 清除「全部使用者」的所有紀錄<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">所有人的作答／標記都會清除，但使用者清單保留</div></button>
+      <button id="nuMdClrCurMarks" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🔖 清除「目前使用者」（<span id="nuMdCurName2">預設使用者</span>）的所有標記<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除目前使用者的書籤（🔖），作答資料保留</div></button>
+      <button id="nuMdClrAllMarks" class="nu-md-btn-outline-danger" type="button" style="padding:9px 14px; font-size:13px; background:#fff; border:1px solid #ffc9c9; border-radius:6px; cursor:pointer; text-align:left;">🔖 清除「全部使用者」的所有標記<div style="font-size:11px; color:#888; margin-top:2px; font-weight:normal;">只清除所有人的書籤（🔖），作答資料保留</div></button>
+      <button id="nuMdFullReset" class="nu-md-btn-danger" type="button" style="padding:9px 14px; font-size:13px; border-radius:6px; cursor:pointer; text-align:left;">🔥 完全重置<div style="font-size:11px; color:rgba(255,255,255,.85); margin-top:2px; font-weight:normal;">連使用者清單一起刪除，回到全新狀態（只剩「預設」使用者）</div></button>
+    </div>
+    <div class="nu-md-actions"><button data-md-close="nuMdClear" type="button">關閉</button></div>
+  </div>
+</div>
+
+</body>
+</html>

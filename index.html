@@ -118,6 +118,7 @@
   .nu-tb-btn.nu-tb-user .nu-tb-dot { width:7px; height:7px; border-radius:50%; background:#2f9e44; margin-right:1px; }
   .nu-tb-btn.nu-tb-clear { color:#c92a2a; }
   .nu-tb-btn.nu-tb-clear:hover { background:#ffe3e3; border-color:#c92a2a; color:#c92a2a; }
+  /* Random panel */
   .rand-row { display:flex; gap:10px; flex-wrap:wrap; }
   .rand-btn { flex:1; min-width:200px; display:flex; align-items:center; gap:10px; padding:12px 16px; background:#fff; border:1.5px solid var(--line); border-radius:10px; font-size:14px; cursor:pointer; transition:all .15s; color:var(--ink); }
   .rand-btn:hover { background:var(--primary-soft); border-color:var(--primary); color:var(--primary); }
@@ -128,6 +129,7 @@
   .rand-btn-wrong .rand-cnt { background:#ffe3e3; color:#c92a2a; }
   .rand-btn-marked .rand-cnt { background:#fff4c2; color:#a06a00; }
   .rand-btn:disabled { opacity:.5; cursor:not-allowed; }
+  /* Random launcher modal */
   .rl-bg { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:9999; padding:20px; }
   .rl-bg.show { display:flex; }
   .rl-md { background:#fff; border-radius:12px; padding:22px; max-width:500px; width:100%; max-height:85vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,.18); }
@@ -146,7 +148,6 @@
   .rl-btn.primary { background:var(--primary); color:#fff; border-color:var(--primary); font-weight:600; }
   .rl-btn.primary:disabled { background:#ccc; border-color:#ccc; cursor:not-allowed; }
   .rl-btn.ghost { background:#fff; color:#333; border-color:var(--line); }
-  /* Random quiz overlay */
   .rq-overlay { position:fixed; inset:0; background:#fff; z-index:9998; overflow:auto; }
   .rq-header { position:sticky; top:0; background:#1d6f9b; color:#fff; padding:12px 20px; display:flex; align-items:center; gap:12px; box-shadow:0 2px 8px rgba(0,0,0,.15); z-index:10; }
   .rq-title { font-weight:700; font-size:16px; }
@@ -250,7 +251,7 @@
 <header>
   <div class="h-row">
     <h1>物理治療師國考 · 互動測驗</h1>
-    <span class="sub">考選部 105 – 114 年歷屆試題</span>
+    <span class="sub">考選部 105 – 115 年歷屆試題</span>
     <div class="nu-toolbar"><button class="nu-tb-btn nu-tb-user" id="nuTbUser" type="button" title="切換／管理使用者"><span class="nu-tb-dot"></span><span id="nuTbUserName">預設使用者</span><span style="font-size:9px;opacity:.6;">▼</span></button><button class="nu-tb-btn" id="nuTbIO" type="button" title="匯入／匯出 JSON 備份"><span class="nu-tb-icon">💾</span>匯入／匯出</button><button class="nu-tb-btn nu-tb-clear" id="nuTbClear" type="button" title="清除紀錄（無法復原）"><span class="nu-tb-icon">🗑</span>清除</button></div><div class="stat">已建立 <strong>60</strong> / 60 卷 · 已完成 <strong id="completedCount">0</strong></div>
   </div>
 </header>
@@ -277,7 +278,6 @@
     </div>
     <div class="desc" style="margin-top:10px; font-size:12px;">真正跨 60 卷打散抽題（不再以單卷為單位）。資料載入需要約 5–10 秒，請等待數字穩定後再點擊。</div>
   </div>
-
   <div class="panel">
     <div class="global-prog" id="globalProg">
       <span class="gp-label">總體答題進度</span>
@@ -290,7 +290,8 @@
     <div class="matrix-wrap">
       <table class="matrix">
         <thead><tr><th class="ycol"></th><th class="scol" title="神經疾病物理治療學">神經</th><th class="scol" title="骨科疾病物理治療學">骨科</th><th class="scol" title="心肺疾病與小兒疾病物理治療學">心肺・小兒</th><th class="scol" title="物理治療基礎學">基礎</th><th class="scol" title="物理治療學概論">概論</th><th class="scol" title="物理治療技術學">技術</th></tr></thead>
-        <tbody><tr><th class="ycol">民國 114 年</th><td class="cell ready" data-href="已分類/114/神經疾病物理治療學/神經_114_互動測驗.html"><a class="celllink" href="已分類/114/神經疾病物理治療學/神經_114_互動測驗.html" title="神經疾病物理治療學 · 民國 114 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">神經_114</div></a></td><td class="cell ready" data-href="已分類/114/骨科疾病物理治療學/骨科_114_互動測驗.html"><a class="celllink" href="已分類/114/骨科疾病物理治療學/骨科_114_互動測驗.html" title="骨科疾病物理治療學 · 民國 114 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">骨科_114</div></a></td><td class="cell ready" data-href="已分類/114/心肺疾病與小兒疾病物理治療學/心肺與小兒_114_互動測驗.html"><a class="celllink" href="已分類/114/心肺疾病與小兒疾病物理治療學/心肺與小兒_114_互動測驗.html" title="心肺疾病與小兒疾病物理治療學 · 民國 114 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">心肺・小兒_114</div></a></td><td class="cell ready" data-href="已分類/114/物理治療基礎學/基礎_114_互動測驗.html"><a class="celllink" href="已分類/114/物理治療基礎學/基礎_114_互動測驗.html" title="物理治療基礎學 · 民國 114 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">基礎_114</div></a></td><td class="cell ready" data-href="已分類/114/物理治療學概論/概論_114_互動測驗.html"><a class="celllink" href="已分類/114/物理治療學概論/概論_114_互動測驗.html" title="物理治療學概論 · 民國 114 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">概論_114</div></a></td><td class="cell ready" data-href="已分類/114/物理治療技術學/技術_114_互動測驗.html"><a class="celllink" href="已分類/114/物理治療技術學/技術_114_互動測驗.html" title="物理治療技術學 · 民國 114 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">技術_114</div></a></td></tr>
+        <tbody><tr><th class="ycol">民國 115 年</th><td class="cell ready" data-href="已分類/115/神經疾病物理治療學/神經_115_互動測驗.html"><a class="celllink" href="已分類/115/神經疾病物理治療學/神經_115_互動測驗.html" title="神經疾病物理治療學 · 民國 115 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">神經_115</div></a></td><td class="cell ready" data-href="已分類/115/骨科疾病物理治療學/骨科_115_互動測驗.html"><a class="celllink" href="已分類/115/骨科疾病物理治療學/骨科_115_互動測驗.html" title="骨科疾病物理治療學 · 民國 115 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">骨科_115</div></a></td><td class="cell ready" data-href="已分類/115/心肺疾病與小兒疾病物理治療學/心肺與小兒_115_互動測驗.html"><a class="celllink" href="已分類/115/心肺疾病與小兒疾病物理治療學/心肺與小兒_115_互動測驗.html" title="心肺疾病與小兒疾病物理治療學 · 民國 115 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">心肺・小兒_115</div></a></td><td class="cell ready" data-href="已分類/115/物理治療基礎學/基礎_115_互動測驗.html"><a class="celllink" href="已分類/115/物理治療基礎學/基礎_115_互動測驗.html" title="物理治療基礎學 · 民國 115 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">基礎_115</div></a></td><td class="cell ready" data-href="已分類/115/物理治療學概論/概論_115_互動測驗.html"><a class="celllink" href="已分類/115/物理治療學概論/概論_115_互動測驗.html" title="物理治療學概論 · 民國 115 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">概論_115</div></a></td><td class="cell ready" data-href="已分類/115/物理治療技術學/技術_115_互動測驗.html"><a class="celllink" href="已分類/115/物理治療技術學/技術_115_互動測驗.html" title="物理治療技術學 · 民國 115 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">技術_115</div></a></td></tr>
+<tr><th class="ycol">民國 114 年</th><td class="cell ready" data-href="已分類/114/神經疾病物理治療學/神經_114_互動測驗.html"><a class="celllink" href="已分類/114/神經疾病物理治療學/神經_114_互動測驗.html" title="神經疾病物理治療學 · 民國 114 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">神經_114</div></a></td><td class="cell ready" data-href="已分類/114/骨科疾病物理治療學/骨科_114_互動測驗.html"><a class="celllink" href="已分類/114/骨科疾病物理治療學/骨科_114_互動測驗.html" title="骨科疾病物理治療學 · 民國 114 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">骨科_114</div></a></td><td class="cell ready" data-href="已分類/114/心肺疾病與小兒疾病物理治療學/心肺與小兒_114_互動測驗.html"><a class="celllink" href="已分類/114/心肺疾病與小兒疾病物理治療學/心肺與小兒_114_互動測驗.html" title="心肺疾病與小兒疾病物理治療學 · 民國 114 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">心肺・小兒_114</div></a></td><td class="cell ready" data-href="已分類/114/物理治療基礎學/基礎_114_互動測驗.html"><a class="celllink" href="已分類/114/物理治療基礎學/基礎_114_互動測驗.html" title="物理治療基礎學 · 民國 114 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">基礎_114</div></a></td><td class="cell ready" data-href="已分類/114/物理治療學概論/概論_114_互動測驗.html"><a class="celllink" href="已分類/114/物理治療學概論/概論_114_互動測驗.html" title="物理治療學概論 · 民國 114 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">概論_114</div></a></td><td class="cell ready" data-href="已分類/114/物理治療技術學/技術_114_互動測驗.html"><a class="celllink" href="已分類/114/物理治療技術學/技術_114_互動測驗.html" title="物理治療技術學 · 民國 114 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">技術_114</div></a></td></tr>
 <tr><th class="ycol">民國 113 年</th><td class="cell ready" data-href="已分類/113/神經疾病物理治療學/神經_113_互動測驗.html"><a class="celllink" href="已分類/113/神經疾病物理治療學/神經_113_互動測驗.html" title="神經疾病物理治療學 · 民國 113 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">神經_113</div></a></td><td class="cell ready" data-href="已分類/113/骨科疾病物理治療學/骨科_113_互動測驗.html"><a class="celllink" href="已分類/113/骨科疾病物理治療學/骨科_113_互動測驗.html" title="骨科疾病物理治療學 · 民國 113 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">骨科_113</div></a></td><td class="cell ready" data-href="已分類/113/心肺疾病與小兒疾病物理治療學/心肺與小兒_113_互動測驗.html"><a class="celllink" href="已分類/113/心肺疾病與小兒疾病物理治療學/心肺與小兒_113_互動測驗.html" title="心肺疾病與小兒疾病物理治療學 · 民國 113 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">心肺・小兒_113</div></a></td><td class="cell ready" data-href="已分類/113/物理治療基礎學/基礎_113_互動測驗.html"><a class="celllink" href="已分類/113/物理治療基礎學/基礎_113_互動測驗.html" title="物理治療基礎學 · 民國 113 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">基礎_113</div></a></td><td class="cell ready" data-href="已分類/113/物理治療學概論/概論_113_互動測驗.html"><a class="celllink" href="已分類/113/物理治療學概論/概論_113_互動測驗.html" title="物理治療學概論 · 民國 113 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">概論_113</div></a></td><td class="cell ready" data-href="已分類/113/物理治療技術學/技術_113_互動測驗.html"><a class="celllink" href="已分類/113/物理治療技術學/技術_113_互動測驗.html" title="物理治療技術學 · 民國 113 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">技術_113</div></a></td></tr>
 <tr><th class="ycol">民國 112 年</th><td class="cell ready" data-href="已分類/112/神經疾病物理治療學/神經_112_互動測驗.html"><a class="celllink" href="已分類/112/神經疾病物理治療學/神經_112_互動測驗.html" title="神經疾病物理治療學 · 民國 112 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">神經_112</div></a></td><td class="cell ready" data-href="已分類/112/骨科疾病物理治療學/骨科_112_互動測驗.html"><a class="celllink" href="已分類/112/骨科疾病物理治療學/骨科_112_互動測驗.html" title="骨科疾病物理治療學 · 民國 112 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">骨科_112</div></a></td><td class="cell ready" data-href="已分類/112/心肺疾病與小兒疾病物理治療學/心肺與小兒_112_互動測驗.html"><a class="celllink" href="已分類/112/心肺疾病與小兒疾病物理治療學/心肺與小兒_112_互動測驗.html" title="心肺疾病與小兒疾病物理治療學 · 民國 112 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">心肺・小兒_112</div></a></td><td class="cell ready" data-href="已分類/112/物理治療基礎學/基礎_112_互動測驗.html"><a class="celllink" href="已分類/112/物理治療基礎學/基礎_112_互動測驗.html" title="物理治療基礎學 · 民國 112 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">基礎_112</div></a></td><td class="cell ready" data-href="已分類/112/物理治療學概論/概論_112_互動測驗.html"><a class="celllink" href="已分類/112/物理治療學概論/概論_112_互動測驗.html" title="物理治療學概論 · 民國 112 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">概論_112</div></a></td><td class="cell ready" data-href="已分類/112/物理治療技術學/技術_112_互動測驗.html"><a class="celllink" href="已分類/112/物理治療技術學/技術_112_互動測驗.html" title="物理治療技術學 · 民國 112 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">技術_112</div></a></td></tr>
 <tr><th class="ycol">民國 111 年</th><td class="cell ready" data-href="已分類/111/神經疾病物理治療學/神經_111_互動測驗.html"><a class="celllink" href="已分類/111/神經疾病物理治療學/神經_111_互動測驗.html" title="神經疾病物理治療學 · 民國 111 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">神經_111</div></a></td><td class="cell ready" data-href="已分類/111/骨科疾病物理治療學/骨科_111_互動測驗.html"><a class="celllink" href="已分類/111/骨科疾病物理治療學/骨科_111_互動測驗.html" title="骨科疾病物理治療學 · 民國 111 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">骨科_111</div></a></td><td class="cell ready" data-href="已分類/111/心肺疾病與小兒疾病物理治療學/心肺與小兒_111_互動測驗.html"><a class="celllink" href="已分類/111/心肺疾病與小兒疾病物理治療學/心肺與小兒_111_互動測驗.html" title="心肺疾病與小兒疾病物理治療學 · 民國 111 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">心肺・小兒_111</div></a></td><td class="cell ready" data-href="已分類/111/物理治療基礎學/基礎_111_互動測驗.html"><a class="celllink" href="已分類/111/物理治療基礎學/基礎_111_互動測驗.html" title="物理治療基礎學 · 民國 111 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">基礎_111</div></a></td><td class="cell ready" data-href="已分類/111/物理治療學概論/概論_111_互動測驗.html"><a class="celllink" href="已分類/111/物理治療學概論/概論_111_互動測驗.html" title="物理治療學概論 · 民國 111 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">概論_111</div></a></td><td class="cell ready" data-href="已分類/111/物理治療技術學/技術_111_互動測驗.html"><a class="celllink" href="已分類/111/物理治療技術學/技術_111_互動測驗.html" title="物理治療技術學 · 民國 111 年"><div class="status">📝 開始測驗</div><div class="prog-row"><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="prog-text">— · 尚未作答</div><div class="meta">技術_111</div></a></td></tr>
@@ -313,7 +314,7 @@
   <div class="panel">
     <h2>依年份檢視</h2>
     <div class="desc">同樣的資料，以年份為單位的卡片檢視（手機建議使用此檢視）。</div>
-    <div class="cards"><div class="ycard"><div class="ytitle">民國 114 年</div><div class="chips"><a class="chip ready" href="已分類/114/神經疾病物理治療學/神經_114_互動測驗.html" data-href="已分類/114/神經疾病物理治療學/神經_114_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/114/骨科疾病物理治療學/骨科_114_互動測驗.html" data-href="已分類/114/骨科疾病物理治療學/骨科_114_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/114/心肺疾病與小兒疾病物理治療學/心肺與小兒_114_互動測驗.html" data-href="已分類/114/心肺疾病與小兒疾病物理治療學/心肺與小兒_114_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/114/物理治療基礎學/基礎_114_互動測驗.html" data-href="已分類/114/物理治療基礎學/基礎_114_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/114/物理治療學概論/概論_114_互動測驗.html" data-href="已分類/114/物理治療學概論/概論_114_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/114/物理治療技術學/技術_114_互動測驗.html" data-href="已分類/114/物理治療技術學/技術_114_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 113 年</div><div class="chips"><a class="chip ready" href="已分類/113/神經疾病物理治療學/神經_113_互動測驗.html" data-href="已分類/113/神經疾病物理治療學/神經_113_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/113/骨科疾病物理治療學/骨科_113_互動測驗.html" data-href="已分類/113/骨科疾病物理治療學/骨科_113_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/113/心肺疾病與小兒疾病物理治療學/心肺與小兒_113_互動測驗.html" data-href="已分類/113/心肺疾病與小兒疾病物理治療學/心肺與小兒_113_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/113/物理治療基礎學/基礎_113_互動測驗.html" data-href="已分類/113/物理治療基礎學/基礎_113_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/113/物理治療學概論/概論_113_互動測驗.html" data-href="已分類/113/物理治療學概論/概論_113_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/113/物理治療技術學/技術_113_互動測驗.html" data-href="已分類/113/物理治療技術學/技術_113_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 112 年</div><div class="chips"><a class="chip ready" href="已分類/112/神經疾病物理治療學/神經_112_互動測驗.html" data-href="已分類/112/神經疾病物理治療學/神經_112_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/112/骨科疾病物理治療學/骨科_112_互動測驗.html" data-href="已分類/112/骨科疾病物理治療學/骨科_112_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/112/心肺疾病與小兒疾病物理治療學/心肺與小兒_112_互動測驗.html" data-href="已分類/112/心肺疾病與小兒疾病物理治療學/心肺與小兒_112_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/112/物理治療基礎學/基礎_112_互動測驗.html" data-href="已分類/112/物理治療基礎學/基礎_112_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/112/物理治療學概論/概論_112_互動測驗.html" data-href="已分類/112/物理治療學概論/概論_112_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/112/物理治療技術學/技術_112_互動測驗.html" data-href="已分類/112/物理治療技術學/技術_112_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 111 年</div><div class="chips"><a class="chip ready" href="已分類/111/神經疾病物理治療學/神經_111_互動測驗.html" data-href="已分類/111/神經疾病物理治療學/神經_111_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/111/骨科疾病物理治療學/骨科_111_互動測驗.html" data-href="已分類/111/骨科疾病物理治療學/骨科_111_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/111/心肺疾病與小兒疾病物理治療學/心肺與小兒_111_互動測驗.html" data-href="已分類/111/心肺疾病與小兒疾病物理治療學/心肺與小兒_111_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/111/物理治療基礎學/基礎_111_互動測驗.html" data-href="已分類/111/物理治療基礎學/基礎_111_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/111/物理治療學概論/概論_111_互動測驗.html" data-href="已分類/111/物理治療學概論/概論_111_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/111/物理治療技術學/技術_111_互動測驗.html" data-href="已分類/111/物理治療技術學/技術_111_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 110 年</div><div class="chips"><a class="chip ready" href="已分類/110/神經疾病物理治療學/神經_110_互動測驗.html" data-href="已分類/110/神經疾病物理治療學/神經_110_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/110/骨科疾病物理治療學/骨科_110_互動測驗.html" data-href="已分類/110/骨科疾病物理治療學/骨科_110_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/110/心肺疾病與小兒疾病物理治療學/心肺與小兒_110_互動測驗.html" data-href="已分類/110/心肺疾病與小兒疾病物理治療學/心肺與小兒_110_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/110/物理治療基礎學/基礎_110_互動測驗.html" data-href="已分類/110/物理治療基礎學/基礎_110_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/110/物理治療學概論/概論_110_互動測驗.html" data-href="已分類/110/物理治療學概論/概論_110_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/110/物理治療技術學/技術_110_互動測驗.html" data-href="已分類/110/物理治療技術學/技術_110_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 109 年</div><div class="chips"><a class="chip ready" href="已分類/109/神經疾病物理治療學/神經_109_互動測驗.html" data-href="已分類/109/神經疾病物理治療學/神經_109_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/109/骨科疾病物理治療學/骨科_109_互動測驗.html" data-href="已分類/109/骨科疾病物理治療學/骨科_109_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/109/心肺疾病與小兒疾病物理治療學/心肺與小兒_109_互動測驗.html" data-href="已分類/109/心肺疾病與小兒疾病物理治療學/心肺與小兒_109_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/109/物理治療基礎學/基礎_109_互動測驗.html" data-href="已分類/109/物理治療基礎學/基礎_109_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/109/物理治療學概論/概論_109_互動測驗.html" data-href="已分類/109/物理治療學概論/概論_109_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/109/物理治療技術學/技術_109_互動測驗.html" data-href="已分類/109/物理治療技術學/技術_109_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 108 年</div><div class="chips"><a class="chip ready" href="已分類/108/神經疾病物理治療學/神經_108_互動測驗.html" data-href="已分類/108/神經疾病物理治療學/神經_108_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/108/骨科疾病物理治療學/骨科_108_互動測驗.html" data-href="已分類/108/骨科疾病物理治療學/骨科_108_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/108/心肺疾病與小兒疾病物理治療學/心肺與小兒_108_互動測驗.html" data-href="已分類/108/心肺疾病與小兒疾病物理治療學/心肺與小兒_108_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/108/物理治療基礎學/基礎_108_互動測驗.html" data-href="已分類/108/物理治療基礎學/基礎_108_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/108/物理治療學概論/概論_108_互動測驗.html" data-href="已分類/108/物理治療學概論/概論_108_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/108/物理治療技術學/技術_108_互動測驗.html" data-href="已分類/108/物理治療技術學/技術_108_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 107 年</div><div class="chips"><a class="chip ready" href="已分類/107/神經疾病物理治療學/神經_107_互動測驗.html" data-href="已分類/107/神經疾病物理治療學/神經_107_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/107/骨科疾病物理治療學/骨科_107_互動測驗.html" data-href="已分類/107/骨科疾病物理治療學/骨科_107_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/107/心肺疾病與小兒疾病物理治療學/心肺與小兒_107_互動測驗.html" data-href="已分類/107/心肺疾病與小兒疾病物理治療學/心肺與小兒_107_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/107/物理治療基礎學/基礎_107_互動測驗.html" data-href="已分類/107/物理治療基礎學/基礎_107_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/107/物理治療學概論/概論_107_互動測驗.html" data-href="已分類/107/物理治療學概論/概論_107_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/107/物理治療技術學/技術_107_互動測驗.html" data-href="已分類/107/物理治療技術學/技術_107_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 106 年</div><div class="chips"><a class="chip ready" href="已分類/106/神經疾病物理治療學/神經_106_互動測驗.html" data-href="已分類/106/神經疾病物理治療學/神經_106_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/106/骨科疾病物理治療學/骨科_106_互動測驗.html" data-href="已分類/106/骨科疾病物理治療學/骨科_106_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/106/心肺疾病與小兒疾病物理治療學/心肺與小兒_106_互動測驗.html" data-href="已分類/106/心肺疾病與小兒疾病物理治療學/心肺與小兒_106_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/106/物理治療基礎學/基礎_106_互動測驗.html" data-href="已分類/106/物理治療基礎學/基礎_106_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/106/物理治療學概論/概論_106_互動測驗.html" data-href="已分類/106/物理治療學概論/概論_106_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/106/物理治療技術學/技術_106_互動測驗.html" data-href="已分類/106/物理治療技術學/技術_106_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 105 年</div><div class="chips"><a class="chip ready" href="已分類/105/神經疾病物理治療學/神經_105_互動測驗.html" data-href="已分類/105/神經疾病物理治療學/神經_105_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/105/骨科疾病物理治療學/骨科_105_互動測驗.html" data-href="已分類/105/骨科疾病物理治療學/骨科_105_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/105/心肺疾病與小兒疾病物理治療學/心肺與小兒_105_互動測驗.html" data-href="已分類/105/心肺疾病與小兒疾病物理治療學/心肺與小兒_105_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/105/物理治療基礎學/基礎_105_互動測驗.html" data-href="已分類/105/物理治療基礎學/基礎_105_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/105/物理治療學概論/概論_105_互動測驗.html" data-href="已分類/105/物理治療學概論/概論_105_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/105/物理治療技術學/技術_105_互動測驗.html" data-href="已分類/105/物理治療技術學/技術_105_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div></div>
+    <div class="cards"><div class="ycard"><div class="ytitle">民國 115 年</div><div class="chips"><a class="chip ready" href="已分類/115/神經疾病物理治療學/神經_115_互動測驗.html" data-href="已分類/115/神經疾病物理治療學/神經_115_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/115/骨科疾病物理治療學/骨科_115_互動測驗.html" data-href="已分類/115/骨科疾病物理治療學/骨科_115_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/115/心肺疾病與小兒疾病物理治療學/心肺與小兒_115_互動測驗.html" data-href="已分類/115/心肺疾病與小兒疾病物理治療學/心肺與小兒_115_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/115/物理治療基礎學/基礎_115_互動測驗.html" data-href="已分類/115/物理治療基礎學/基礎_115_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/115/物理治療學概論/概論_115_互動測驗.html" data-href="已分類/115/物理治療學概論/概論_115_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/115/物理治療技術學/技術_115_互動測驗.html" data-href="已分類/115/物理治療技術學/技術_115_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 114 年</div><div class="chips"><a class="chip ready" href="已分類/114/神經疾病物理治療學/神經_114_互動測驗.html" data-href="已分類/114/神經疾病物理治療學/神經_114_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/114/骨科疾病物理治療學/骨科_114_互動測驗.html" data-href="已分類/114/骨科疾病物理治療學/骨科_114_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/114/心肺疾病與小兒疾病物理治療學/心肺與小兒_114_互動測驗.html" data-href="已分類/114/心肺疾病與小兒疾病物理治療學/心肺與小兒_114_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/114/物理治療基礎學/基礎_114_互動測驗.html" data-href="已分類/114/物理治療基礎學/基礎_114_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/114/物理治療學概論/概論_114_互動測驗.html" data-href="已分類/114/物理治療學概論/概論_114_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/114/物理治療技術學/技術_114_互動測驗.html" data-href="已分類/114/物理治療技術學/技術_114_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 113 年</div><div class="chips"><a class="chip ready" href="已分類/113/神經疾病物理治療學/神經_113_互動測驗.html" data-href="已分類/113/神經疾病物理治療學/神經_113_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/113/骨科疾病物理治療學/骨科_113_互動測驗.html" data-href="已分類/113/骨科疾病物理治療學/骨科_113_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/113/心肺疾病與小兒疾病物理治療學/心肺與小兒_113_互動測驗.html" data-href="已分類/113/心肺疾病與小兒疾病物理治療學/心肺與小兒_113_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/113/物理治療基礎學/基礎_113_互動測驗.html" data-href="已分類/113/物理治療基礎學/基礎_113_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/113/物理治療學概論/概論_113_互動測驗.html" data-href="已分類/113/物理治療學概論/概論_113_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/113/物理治療技術學/技術_113_互動測驗.html" data-href="已分類/113/物理治療技術學/技術_113_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 112 年</div><div class="chips"><a class="chip ready" href="已分類/112/神經疾病物理治療學/神經_112_互動測驗.html" data-href="已分類/112/神經疾病物理治療學/神經_112_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/112/骨科疾病物理治療學/骨科_112_互動測驗.html" data-href="已分類/112/骨科疾病物理治療學/骨科_112_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/112/心肺疾病與小兒疾病物理治療學/心肺與小兒_112_互動測驗.html" data-href="已分類/112/心肺疾病與小兒疾病物理治療學/心肺與小兒_112_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/112/物理治療基礎學/基礎_112_互動測驗.html" data-href="已分類/112/物理治療基礎學/基礎_112_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/112/物理治療學概論/概論_112_互動測驗.html" data-href="已分類/112/物理治療學概論/概論_112_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/112/物理治療技術學/技術_112_互動測驗.html" data-href="已分類/112/物理治療技術學/技術_112_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 111 年</div><div class="chips"><a class="chip ready" href="已分類/111/神經疾病物理治療學/神經_111_互動測驗.html" data-href="已分類/111/神經疾病物理治療學/神經_111_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/111/骨科疾病物理治療學/骨科_111_互動測驗.html" data-href="已分類/111/骨科疾病物理治療學/骨科_111_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/111/心肺疾病與小兒疾病物理治療學/心肺與小兒_111_互動測驗.html" data-href="已分類/111/心肺疾病與小兒疾病物理治療學/心肺與小兒_111_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/111/物理治療基礎學/基礎_111_互動測驗.html" data-href="已分類/111/物理治療基礎學/基礎_111_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/111/物理治療學概論/概論_111_互動測驗.html" data-href="已分類/111/物理治療學概論/概論_111_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/111/物理治療技術學/技術_111_互動測驗.html" data-href="已分類/111/物理治療技術學/技術_111_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 110 年</div><div class="chips"><a class="chip ready" href="已分類/110/神經疾病物理治療學/神經_110_互動測驗.html" data-href="已分類/110/神經疾病物理治療學/神經_110_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/110/骨科疾病物理治療學/骨科_110_互動測驗.html" data-href="已分類/110/骨科疾病物理治療學/骨科_110_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/110/心肺疾病與小兒疾病物理治療學/心肺與小兒_110_互動測驗.html" data-href="已分類/110/心肺疾病與小兒疾病物理治療學/心肺與小兒_110_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/110/物理治療基礎學/基礎_110_互動測驗.html" data-href="已分類/110/物理治療基礎學/基礎_110_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/110/物理治療學概論/概論_110_互動測驗.html" data-href="已分類/110/物理治療學概論/概論_110_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/110/物理治療技術學/技術_110_互動測驗.html" data-href="已分類/110/物理治療技術學/技術_110_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 109 年</div><div class="chips"><a class="chip ready" href="已分類/109/神經疾病物理治療學/神經_109_互動測驗.html" data-href="已分類/109/神經疾病物理治療學/神經_109_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/109/骨科疾病物理治療學/骨科_109_互動測驗.html" data-href="已分類/109/骨科疾病物理治療學/骨科_109_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/109/心肺疾病與小兒疾病物理治療學/心肺與小兒_109_互動測驗.html" data-href="已分類/109/心肺疾病與小兒疾病物理治療學/心肺與小兒_109_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/109/物理治療基礎學/基礎_109_互動測驗.html" data-href="已分類/109/物理治療基礎學/基礎_109_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/109/物理治療學概論/概論_109_互動測驗.html" data-href="已分類/109/物理治療學概論/概論_109_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/109/物理治療技術學/技術_109_互動測驗.html" data-href="已分類/109/物理治療技術學/技術_109_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 108 年</div><div class="chips"><a class="chip ready" href="已分類/108/神經疾病物理治療學/神經_108_互動測驗.html" data-href="已分類/108/神經疾病物理治療學/神經_108_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/108/骨科疾病物理治療學/骨科_108_互動測驗.html" data-href="已分類/108/骨科疾病物理治療學/骨科_108_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/108/心肺疾病與小兒疾病物理治療學/心肺與小兒_108_互動測驗.html" data-href="已分類/108/心肺疾病與小兒疾病物理治療學/心肺與小兒_108_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/108/物理治療基礎學/基礎_108_互動測驗.html" data-href="已分類/108/物理治療基礎學/基礎_108_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/108/物理治療學概論/概論_108_互動測驗.html" data-href="已分類/108/物理治療學概論/概論_108_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/108/物理治療技術學/技術_108_互動測驗.html" data-href="已分類/108/物理治療技術學/技術_108_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 107 年</div><div class="chips"><a class="chip ready" href="已分類/107/神經疾病物理治療學/神經_107_互動測驗.html" data-href="已分類/107/神經疾病物理治療學/神經_107_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/107/骨科疾病物理治療學/骨科_107_互動測驗.html" data-href="已分類/107/骨科疾病物理治療學/骨科_107_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/107/心肺疾病與小兒疾病物理治療學/心肺與小兒_107_互動測驗.html" data-href="已分類/107/心肺疾病與小兒疾病物理治療學/心肺與小兒_107_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/107/物理治療基礎學/基礎_107_互動測驗.html" data-href="已分類/107/物理治療基礎學/基礎_107_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/107/物理治療學概論/概論_107_互動測驗.html" data-href="已分類/107/物理治療學概論/概論_107_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/107/物理治療技術學/技術_107_互動測驗.html" data-href="已分類/107/物理治療技術學/技術_107_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 106 年</div><div class="chips"><a class="chip ready" href="已分類/106/神經疾病物理治療學/神經_106_互動測驗.html" data-href="已分類/106/神經疾病物理治療學/神經_106_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/106/骨科疾病物理治療學/骨科_106_互動測驗.html" data-href="已分類/106/骨科疾病物理治療學/骨科_106_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/106/心肺疾病與小兒疾病物理治療學/心肺與小兒_106_互動測驗.html" data-href="已分類/106/心肺疾病與小兒疾病物理治療學/心肺與小兒_106_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/106/物理治療基礎學/基礎_106_互動測驗.html" data-href="已分類/106/物理治療基礎學/基礎_106_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/106/物理治療學概論/概論_106_互動測驗.html" data-href="已分類/106/物理治療學概論/概論_106_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/106/物理治療技術學/技術_106_互動測驗.html" data-href="已分類/106/物理治療技術學/技術_106_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div><div class="ycard"><div class="ytitle">民國 105 年</div><div class="chips"><a class="chip ready" href="已分類/105/神經疾病物理治療學/神經_105_互動測驗.html" data-href="已分類/105/神經疾病物理治療學/神經_105_互動測驗.html" title="神經疾病物理治療學"><span class="chip-tick">✓</span>神經<span class="chip-prog"></span></a><a class="chip ready" href="已分類/105/骨科疾病物理治療學/骨科_105_互動測驗.html" data-href="已分類/105/骨科疾病物理治療學/骨科_105_互動測驗.html" title="骨科疾病物理治療學"><span class="chip-tick">✓</span>骨科<span class="chip-prog"></span></a><a class="chip ready" href="已分類/105/心肺疾病與小兒疾病物理治療學/心肺與小兒_105_互動測驗.html" data-href="已分類/105/心肺疾病與小兒疾病物理治療學/心肺與小兒_105_互動測驗.html" title="心肺疾病與小兒疾病物理治療學"><span class="chip-tick">✓</span>心肺・小兒<span class="chip-prog"></span></a><a class="chip ready" href="已分類/105/物理治療基礎學/基礎_105_互動測驗.html" data-href="已分類/105/物理治療基礎學/基礎_105_互動測驗.html" title="物理治療基礎學"><span class="chip-tick">✓</span>基礎<span class="chip-prog"></span></a><a class="chip ready" href="已分類/105/物理治療學概論/概論_105_互動測驗.html" data-href="已分類/105/物理治療學概論/概論_105_互動測驗.html" title="物理治療學概論"><span class="chip-tick">✓</span>概論<span class="chip-prog"></span></a><a class="chip ready" href="已分類/105/物理治療技術學/技術_105_互動測驗.html" data-href="已分類/105/物理治療技術學/技術_105_互動測驗.html" title="物理治療技術學"><span class="chip-tick">✓</span>技術<span class="chip-prog"></span></a></div></div></div>
   </div>
   <div class="footer">試題來源：考選部 · <a href="index.md">完整試題索引 (index.md)</a></div>
 </main>
@@ -519,6 +520,7 @@ const NU = {
     return toDel.length;
   }
 };
+function _esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
 (function migrateDefaultName() {
   try {
@@ -532,9 +534,6 @@ const NU = {
     if (changed) localStorage.setItem("nephron::users", JSON.stringify(arr));
   } catch(e) {}
 })();
-function _esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-
-
 
 
 const PENDING = new Map();
@@ -743,6 +742,7 @@ function importSingleUserFromFile(file, targetUid) {
       if (sourceUsers.length === 1) {
         sourceUid = sourceUsers[0].uid; sourceName = sourceUsers[0].name;
       } else if (sourceUsers.length > 1) {
+        // Full bundle: ask which source user to extract
         const opts = sourceUsers.map((u,i) => (i+1) + '. ' + u.name).join('\n');
         const pick = prompt('備份檔含 ' + sourceUsers.length + ' 位使用者。要匯入哪一位（輸入編號）？\n' + opts, '1');
         if (pick === null) return;
@@ -750,6 +750,8 @@ function importSingleUserFromFile(file, targetUid) {
         if (isNaN(idx) || idx < 0 || idx >= sourceUsers.length) { alert('無效選擇'); return; }
         sourceUid = sourceUsers[idx].uid; sourceName = sourceUsers[idx].name;
       } else { throw new Error('備份檔內無使用者'); }
+
+      // Determine target uid (and name)
       let realTargetUid = targetUid, realTargetName = '';
       if (targetUid === '__new__') {
         const nm = prompt('新增本機使用者名稱：', sourceName) || sourceName;
@@ -760,15 +762,23 @@ function importSingleUserFromFile(file, targetUid) {
         if (!tu) { alert('目標使用者不存在'); return; }
         realTargetName = tu.name;
       }
+
+      // Count keys to import
       let cnt = 0;
-      for (const k in obj.data) { if (k.endsWith('::u::' + sourceUid)) cnt++; }
+      for (const k in obj.data) {
+        if (k.endsWith('::u::' + sourceUid)) cnt++;
+      }
       if (!confirm('將「' + sourceName + '」的 ' + cnt + ' 筆資料匯入到本機「' + realTargetName + '」。\n本機「' + realTargetName + '」現有資料會被取代。其他使用者的資料保留。\n確定？')) return;
+
+      // Wipe target user's existing nephron_ data
       const toDel = [];
       for (let i = 0; i < localStorage.length; i++) {
         const k = localStorage.key(i);
         if (k && k.startsWith('nephron_') && k.endsWith('::u::' + realTargetUid)) toDel.push(k);
       }
       toDel.forEach(k => localStorage.removeItem(k));
+
+      // Import, remapping uid in keys
       let n = 0;
       for (const k in obj.data) {
         if (!k.endsWith('::u::' + sourceUid)) continue;
@@ -899,46 +909,36 @@ function _qidToKeyBase(quizId) {
   return "nephron_" + year + "_" + subject;
 }
 
-/* Listen for quizData broadcasts from iframes */
 window.addEventListener("message", (e) => {
   const msg = e.data;
   if (!msg) return;
   if (msg.type === "quizData" && msg.quizId && msg.papers) {
     AGG_DATA[msg.quizId] = { href: msg.href || null, papers: msg.papers };
-    /* Throttle UI refresh */
     clearTimeout(window._aggRefreshTimer);
     window._aggRefreshTimer = setTimeout(_refreshRandCounts, 300);
   }
 });
 
-/* Robust quiz href lookup: tries year + subject mapping, then falls back to iframe href.
-   Always returns a path RELATIVE to the dashboard (so links work in target=_blank). */
 const _SUBJ_MAP = {tech: '技術', neuro: '神經', ortho: '骨科', cardio: '心肺與小兒', xinfei: '心肺與小兒', foundation: '基礎', intro: '概論'};
 function _findHrefForQuiz(quizId, fallback) {
   const parts = quizId.split("_");
   const year = parts[parts.length - 1];
   const subj = _SUBJ_MAP[parts[0]] || '';
   const cells = document.querySelectorAll("td.cell.ready[data-href]");
-  /* Strategy 1: year + subject prefix */
   for (const c of cells) {
     const h = c.getAttribute("data-href");
     if (!h) continue;
-    if (h.endsWith("_" + year + "_互動測驗.html") && subj && h.includes("/" + subj + "_")) {
-      return h;
-    }
+    if (h.endsWith("_" + year + "_互動測驗.html") && subj && h.includes("/" + subj + "_")) return h;
   }
-  /* Strategy 2: year + subject anywhere */
   for (const c of cells) {
     const h = c.getAttribute("data-href");
     if (!h) continue;
     if (h.includes("/" + year + "/") && subj && h.includes(subj)) return h;
   }
-  /* Strategy 3: just year (last resort) */
   for (const c of cells) {
     const h = c.getAttribute("data-href");
     if (h && h.endsWith("_" + year + "_互動測驗.html")) return h;
   }
-  /* Fallback: try to convert fallback (iframe pathname) to relative */
   if (fallback) {
     const idx = fallback.indexOf("已分類/");
     if (idx >= 0) return fallback.substring(idx);
@@ -947,7 +947,6 @@ function _findHrefForQuiz(quizId, fallback) {
   return null;
 }
 
-/* Build flat question pool across all papers */
 function _buildPool(source) {
   const uid = NU.ck();
   const pool = [];
@@ -972,21 +971,22 @@ function _buildPool(source) {
         const isMarked = !!tagMarks[q.n];
         if (source === "wrong" && !isWrong) continue;
         if (source === "marked" && !isMarked) continue;
-        pool.push({
-          quizId, paperTag: tag, paperLabel: paper.label,
-          href, q: q, currentPick: pick, isMarked,
-        });
+        pool.push({ quizId, paperTag: tag, paperLabel: paper.label, href, q: q, currentPick: pick, isMarked });
       }
     }
   }
   return pool;
 }
 
+function _parsePaperInfo(href) {
+  const m = href.match(/已分類\/(\d+)\/([^\/]+)\/([^\/_]+)_(\d+)_互動測驗\.html$/);
+  if (!m) return null;
+  return { year: m[1], subjectFolder: m[2], subjectShort: m[3], href: href };
+}
+
 function _refreshRandCounts() {
   const aggLoaded = Object.keys(AGG_DATA).length;
   const expected = document.querySelectorAll("td.cell.ready[data-href]").length;
-  /* While loading, show "loading" */
-  const loadingTxt = aggLoaded < expected ? " (載入中 " + aggLoaded + "/" + expected + ")" : "";
   const pAll = _buildPool("all").length;
   const pWrong = _buildPool("wrong").length;
   const pMarked = _buildPool("marked").length;
@@ -998,7 +998,6 @@ function _refreshRandCounts() {
   if (e3) e3.textContent = (aggLoaded < expected) ? "—" : (pMarked + " 題");
 }
 
-/* Picker modal */
 let _rlSource = "all";
 let _rlPool = [];
 function _rlOpen(source) {
@@ -1050,7 +1049,6 @@ function _shuffle(a) {
   return r;
 }
 
-/* Random quiz state */
 const RQ = { items: [], idx: 0, picks: {}, source: "all" };
 function _esc2(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
@@ -1092,7 +1090,6 @@ function _rqRenderGrid() {
   grid.querySelectorAll("button").forEach(b => {
     b.onclick = () => { const i = parseInt(b.dataset.i, 10); if (i >= 0) { RQ.idx = i; _rqRender(); } };
   });
-  /* update head */
   let answered = 0;
   for (let i = 0; i < RQ.items.length; i++) if (RQ.picks[i]) answered++;
   const head = document.getElementById("rqSideHead");
@@ -1104,12 +1101,10 @@ function _rqRender() {
   const item = RQ.items[RQ.idx];
   if (!item) return;
   const q = item.q;
-  document.getElementById("rqProgress").textContent =
-    "第 " + (RQ.idx + 1) + " 題 / 共 " + RQ.items.length + " 題";
+  document.getElementById("rqProgress").textContent = "第 " + (RQ.idx + 1) + " 題 / 共 " + RQ.items.length + " 題";
   const srcLabel = RQ.source === "wrong" ? "錯題" : RQ.source === "marked" ? "標記題" : "完全隨機";
   document.getElementById("rqTitle").textContent = "🎲 " + srcLabel + " 隨機練習";
   const pick = RQ.picks[RQ.idx];
-  const verdict = _rqIsCorrect(q, pick);
   const opts = ["A", "B", "C", "D"];
   const optsHTML = opts.map(k => {
     let cls = "rq-opt";
@@ -1146,14 +1141,12 @@ function _rqRender() {
   }
   let imgNotice = "";
   if (q.images && q.images.length > 0) {
-    /* Render images directly */
     let imgHTML = "";
     for (const u of q.images) imgHTML += '<img class="rq-img" src="' + u + '" alt="題目附圖" />';
     imgNotice = '<div class="rq-imgs">' + imgHTML +
       '<div class="rq-img-link">📷 <a href="' + _imgLink + '" target="_blank" rel="noopener">在新分頁開啟原試卷</a>（圖片較不清楚時可參考）</div>' +
       '</div>';
   } else if (q.hasImages) {
-    /* Fallback: hasImages=true but no image data (e.g. older broadcast) */
     imgNotice = '<div class="rq-img-notice">📷 此題含附圖。<a href="' + _imgLink + '" target="_blank" rel="noopener">在新分頁開啟原試卷查看第 ' + q.n + ' 題</a></div>';
   }
   const markBtnTxt = item.isMarked ? "🔖 已標記" : "🔖 標記";
@@ -1168,25 +1161,21 @@ function _rqRender() {
     '<div class="rq-stem">' + _esc2(q.stem) + '</div>' +
     '<div class="rq-opts">' + optsHTML + '</div>' +
     verdictHTML;
-  /* Wire option clicks */
   document.querySelectorAll("#rqCard .rq-opt").forEach(b => {
     b.onclick = () => {
       if (RQ.picks[RQ.idx]) return;
       const k = b.getAttribute("data-k");
       RQ.picks[RQ.idx] = k;
-      /* Persist back to original paper's picks in localStorage */
       _persistPickToOriginal(item, k);
       _rqRender();
     };
   });
-  /* Mark button */
   const mb = document.getElementById("rqMarkBtn");
   if (mb) mb.onclick = () => {
     item.isMarked = !item.isMarked;
     _persistMarkToOriginal(item, item.isMarked);
     _rqRender();
   };
-  /* Nav buttons */
   document.getElementById("rqPrevBtn").disabled = RQ.idx === 0;
   document.getElementById("rqNextBtn").textContent = RQ.idx === RQ.items.length - 1 ? "✓ 完成練習" : "下一題 →";
 }
@@ -1240,7 +1229,6 @@ function _rqExit() {
   document.getElementById("rqOverlay").style.display = "none";
   document.getElementById("rqPrevBtn").style.display = "";
   document.getElementById("rqNextBtn").style.display = "";
-  /* Refresh dashboard counts and progress */
   if (typeof refreshAllProgress === "function") refreshAllProgress();
 }
 window._rqExit = _rqExit;
@@ -1413,7 +1401,6 @@ window.addEventListener("DOMContentLoaded", () => {
   if (cancel) cancel.onclick = () => document.getElementById("rlModal").classList.remove("show");
   const bg = document.getElementById("rlModal");
   if (bg) bg.addEventListener("click", e => { if (e.target === bg) bg.classList.remove("show"); });
-  /* Overlay buttons */
   document.getElementById("rqExitBtn").onclick = () => {
     if (Object.keys(RQ.picks).length > 0 && !confirm("確定要結束隨機練習？\n（已作答的紀錄會保留到原試卷）")) return;
     _rqExit();
